@@ -5,11 +5,11 @@
 	version="2.0">
 	<tlib-version>2.1</tlib-version>
 	<short-name>simp</short-name>
-	<uri>http://icts.uiowa.edu/MEDLINETagLib</uri>
+	<uri>http://icts.uiowa.edu/medline</uri>
 
 	<tag>
 		<name>getSequenceNumber</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.Sequence</tag-class>
+		<tag-class>edu.uiowa.medline.Sequence</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -21,13 +21,13 @@
 
 	<tag>
 		<name>dbtest</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.DBTest</tag-class>
+		<tag-class>edu.uiowa.medline.DBTest</tag-class>
 		<body-content>empty</body-content>
 	</tag>
 
 	<tag>
 		<name>foreachArticle</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleIterator</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -57,7 +57,7 @@
 
 	<tag>
 		<name>article</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</tag-class>
+		<tag-class>edu.uiowa.medline.article.Article</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -69,7 +69,7 @@
 
 	<tag>
 		<name>deleteArticle</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -81,7 +81,7 @@
 
 	<tag>
 		<name>articlePmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticlePmid</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticlePmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -93,7 +93,7 @@
 
 	<tag>
 		<name>articleDateCreated</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleDateCreated</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleDateCreated</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -129,7 +129,7 @@
 
 	<tag>
 		<name>articleDateCreatedToNow</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleDateCreatedToNow</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleDateCreatedToNow</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -141,7 +141,7 @@
 
 	<tag>
 		<name>articleDateCompleted</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleDateCompleted</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleDateCompleted</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -177,7 +177,7 @@
 
 	<tag>
 		<name>articleDateCompletedToNow</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleDateCompletedToNow</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleDateCompletedToNow</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -189,7 +189,7 @@
 
 	<tag>
 		<name>articleDateRevised</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleDateRevised</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleDateRevised</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -225,7 +225,7 @@
 
 	<tag>
 		<name>articleDateRevisedToNow</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleDateRevisedToNow</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleDateRevisedToNow</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -237,7 +237,7 @@
 
 	<tag>
 		<name>articleTitle</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleTitle</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleTitle</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -249,7 +249,7 @@
 
 	<tag>
 		<name>articleStartPage</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleStartPage</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleStartPage</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -261,7 +261,7 @@
 
 	<tag>
 		<name>articleEndPage</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleEndPage</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleEndPage</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -273,7 +273,7 @@
 
 	<tag>
 		<name>articleMedlinePgn</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleMedlinePgn</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleMedlinePgn</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -285,7 +285,7 @@
 
 	<tag>
 		<name>articleAbstractText</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleAbstractText</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleAbstractText</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -297,7 +297,7 @@
 
 	<tag>
 		<name>articleCopyright</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleCopyright</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleCopyright</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -309,7 +309,7 @@
 
 	<tag>
 		<name>articleAffiliation</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleAffiliation</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleAffiliation</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -321,7 +321,7 @@
 
 	<tag>
 		<name>articleType</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleType</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleType</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -333,7 +333,7 @@
 
 	<tag>
 		<name>articleVernacularTitle</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleVernacularTitle</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleVernacularTitle</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -345,7 +345,7 @@
 
 	<tag>
 		<name>articleCountry</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleCountry</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleCountry</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -357,7 +357,7 @@
 
 	<tag>
 		<name>articleTa</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleTa</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleTa</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -369,7 +369,7 @@
 
 	<tag>
 		<name>articleNlmUniqueId</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleNlmUniqueId</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleNlmUniqueId</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -381,7 +381,7 @@
 
 	<tag>
 		<name>articleIssnLinking</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleIssnLinking</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleIssnLinking</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -393,7 +393,7 @@
 
 	<tag>
 		<name>articleReferenceCount</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleReferenceCount</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleReferenceCount</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -405,7 +405,7 @@
 
 	<tag>
 		<name>articlePubModel</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticlePubModel</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticlePubModel</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -417,7 +417,7 @@
 
 	<tag>
 		<name>articleStatus</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleStatus</tag-class>
+		<tag-class>edu.uiowa.medline.article.ArticleStatus</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -429,7 +429,7 @@
 
 	<tag>
 		<name>foreachJournal</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalIterator</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -459,7 +459,7 @@
 
 	<tag>
 		<name>journal</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</tag-class>
+		<tag-class>edu.uiowa.medline.journal.Journal</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -471,7 +471,7 @@
 
 	<tag>
 		<name>deleteJournal</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -483,7 +483,7 @@
 
 	<tag>
 		<name>journalPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalPmid</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -495,7 +495,7 @@
 
 	<tag>
 		<name>journalIssn</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalIssn</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalIssn</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -507,7 +507,7 @@
 
 	<tag>
 		<name>journalVolume</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalVolume</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalVolume</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -519,7 +519,7 @@
 
 	<tag>
 		<name>journalIssue</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalIssue</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalIssue</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -531,7 +531,7 @@
 
 	<tag>
 		<name>journalPubYear</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalPubYear</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalPubYear</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -543,7 +543,7 @@
 
 	<tag>
 		<name>journalPubMonth</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalPubMonth</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalPubMonth</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -555,7 +555,7 @@
 
 	<tag>
 		<name>journalPubDay</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalPubDay</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalPubDay</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -567,7 +567,7 @@
 
 	<tag>
 		<name>journalPubSeason</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalPubSeason</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalPubSeason</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -579,7 +579,7 @@
 
 	<tag>
 		<name>journalMedlineDate</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalMedlineDate</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalMedlineDate</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -591,7 +591,7 @@
 
 	<tag>
 		<name>journalTitle</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalTitle</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalTitle</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -603,7 +603,7 @@
 
 	<tag>
 		<name>journalIsoAbbreviation</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalIsoAbbreviation</tag-class>
+		<tag-class>edu.uiowa.medline.journal.JournalIsoAbbreviation</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -615,7 +615,7 @@
 
 	<tag>
 		<name>foreachElocation</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.ElocationIterator</tag-class>
+		<tag-class>edu.uiowa.medline.elocation.ElocationIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -651,7 +651,7 @@
 
 	<tag>
 		<name>elocation</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.Elocation</tag-class>
+		<tag-class>edu.uiowa.medline.elocation.Elocation</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -669,7 +669,7 @@
 
 	<tag>
 		<name>deleteElocation</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.ElocationDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.elocation.ElocationDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -687,7 +687,7 @@
 
 	<tag>
 		<name>elocationPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.ElocationPmid</tag-class>
+		<tag-class>edu.uiowa.medline.elocation.ElocationPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -699,7 +699,7 @@
 
 	<tag>
 		<name>elocationSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.ElocationSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.elocation.ElocationSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -711,7 +711,7 @@
 
 	<tag>
 		<name>elocationEid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.ElocationEid</tag-class>
+		<tag-class>edu.uiowa.medline.elocation.ElocationEid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -723,7 +723,7 @@
 
 	<tag>
 		<name>foreachAuthor</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorIterator</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -759,7 +759,7 @@
 
 	<tag>
 		<name>author</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.Author</tag-class>
+		<tag-class>edu.uiowa.medline.author.Author</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -777,7 +777,7 @@
 
 	<tag>
 		<name>deleteAuthor</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -795,7 +795,7 @@
 
 	<tag>
 		<name>authorPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorPmid</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -807,7 +807,7 @@
 
 	<tag>
 		<name>authorSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -819,7 +819,7 @@
 
 	<tag>
 		<name>authorLastName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorLastName</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorLastName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -831,7 +831,7 @@
 
 	<tag>
 		<name>authorForeName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorForeName</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorForeName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -843,7 +843,7 @@
 
 	<tag>
 		<name>authorInitials</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorInitials</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorInitials</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -855,7 +855,7 @@
 
 	<tag>
 		<name>authorSuffix</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorSuffix</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorSuffix</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -867,7 +867,7 @@
 
 	<tag>
 		<name>authorCollectiveName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorCollectiveName</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorCollectiveName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -879,7 +879,7 @@
 
 	<tag>
 		<name>authorAffiliation</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorAffiliation</tag-class>
+		<tag-class>edu.uiowa.medline.author.AuthorAffiliation</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -891,7 +891,7 @@
 
 	<tag>
 		<name>foreachLanguage</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.LanguageIterator</tag-class>
+		<tag-class>edu.uiowa.medline.language.LanguageIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -927,7 +927,7 @@
 
 	<tag>
 		<name>language</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.Language</tag-class>
+		<tag-class>edu.uiowa.medline.language.Language</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -945,7 +945,7 @@
 
 	<tag>
 		<name>deleteLanguage</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.LanguageDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.language.LanguageDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -963,7 +963,7 @@
 
 	<tag>
 		<name>languagePmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.LanguagePmid</tag-class>
+		<tag-class>edu.uiowa.medline.language.LanguagePmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -975,7 +975,7 @@
 
 	<tag>
 		<name>languageSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.LanguageSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.language.LanguageSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -987,7 +987,7 @@
 
 	<tag>
 		<name>languageLanguage</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.LanguageLanguage</tag-class>
+		<tag-class>edu.uiowa.medline.language.LanguageLanguage</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -999,7 +999,7 @@
 
 	<tag>
 		<name>foreachDataBank</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBankIterator</tag-class>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1035,7 +1035,7 @@
 
 	<tag>
 		<name>dataBank</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBank</tag-class>
+		<tag-class>edu.uiowa.medline.dataBank.DataBank</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1053,7 +1053,7 @@
 
 	<tag>
 		<name>deleteDataBank</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBankDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1071,7 +1071,7 @@
 
 	<tag>
 		<name>dataBankPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBankPmid</tag-class>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1083,7 +1083,7 @@
 
 	<tag>
 		<name>dataBankSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBankSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1095,7 +1095,7 @@
 
 	<tag>
 		<name>dataBankName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBankName</tag-class>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1107,7 +1107,7 @@
 
 	<tag>
 		<name>foreachAccession</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.AccessionIterator</tag-class>
+		<tag-class>edu.uiowa.medline.accession.AccessionIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1149,7 +1149,7 @@
 
 	<tag>
 		<name>accession</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.Accession</tag-class>
+		<tag-class>edu.uiowa.medline.accession.Accession</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1173,7 +1173,7 @@
 
 	<tag>
 		<name>deleteAccession</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.AccessionDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.accession.AccessionDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1197,7 +1197,7 @@
 
 	<tag>
 		<name>accessionPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.AccessionPmid</tag-class>
+		<tag-class>edu.uiowa.medline.accession.AccessionPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1209,7 +1209,7 @@
 
 	<tag>
 		<name>accessionSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.AccessionSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.accession.AccessionSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1221,7 +1221,7 @@
 
 	<tag>
 		<name>accessionAccnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.AccessionAccnum</tag-class>
+		<tag-class>edu.uiowa.medline.accession.AccessionAccnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1233,7 +1233,7 @@
 
 	<tag>
 		<name>accessionAccession</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.AccessionAccession</tag-class>
+		<tag-class>edu.uiowa.medline.accession.AccessionAccession</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1245,7 +1245,7 @@
 
 	<tag>
 		<name>foreachGrant</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantIterator</tag-class>
+		<tag-class>edu.uiowa.medline.grant.GrantIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1281,7 +1281,7 @@
 
 	<tag>
 		<name>grant</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.Grant</tag-class>
+		<tag-class>edu.uiowa.medline.grant.Grant</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1299,7 +1299,7 @@
 
 	<tag>
 		<name>deleteGrant</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.grant.GrantDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1317,7 +1317,7 @@
 
 	<tag>
 		<name>grantPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantPmid</tag-class>
+		<tag-class>edu.uiowa.medline.grant.GrantPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1329,7 +1329,7 @@
 
 	<tag>
 		<name>grantSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.grant.GrantSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1341,7 +1341,7 @@
 
 	<tag>
 		<name>grantGid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantGid</tag-class>
+		<tag-class>edu.uiowa.medline.grant.GrantGid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1353,7 +1353,7 @@
 
 	<tag>
 		<name>grantAcronym</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantAcronym</tag-class>
+		<tag-class>edu.uiowa.medline.grant.GrantAcronym</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1365,7 +1365,7 @@
 
 	<tag>
 		<name>grantAgency</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantAgency</tag-class>
+		<tag-class>edu.uiowa.medline.grant.GrantAgency</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1377,7 +1377,7 @@
 
 	<tag>
 		<name>grantCountry</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantCountry</tag-class>
+		<tag-class>edu.uiowa.medline.grant.GrantCountry</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1389,7 +1389,7 @@
 
 	<tag>
 		<name>foreachArticleDate</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDateIterator</tag-class>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1425,7 +1425,7 @@
 
 	<tag>
 		<name>articleDate</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDate</tag-class>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDate</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1443,7 +1443,7 @@
 
 	<tag>
 		<name>deleteArticleDate</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDateDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1461,7 +1461,7 @@
 
 	<tag>
 		<name>articleDatePmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDatePmid</tag-class>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDatePmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1473,7 +1473,7 @@
 
 	<tag>
 		<name>articleDateSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDateSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1485,7 +1485,7 @@
 
 	<tag>
 		<name>articleDateYear</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDateYear</tag-class>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateYear</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1497,7 +1497,7 @@
 
 	<tag>
 		<name>articleDateMonth</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDateMonth</tag-class>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateMonth</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1509,7 +1509,7 @@
 
 	<tag>
 		<name>articleDateDay</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDateDay</tag-class>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateDay</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1521,7 +1521,7 @@
 
 	<tag>
 		<name>foreachChemical</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.ChemicalIterator</tag-class>
+		<tag-class>edu.uiowa.medline.chemical.ChemicalIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1557,7 +1557,7 @@
 
 	<tag>
 		<name>chemical</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.Chemical</tag-class>
+		<tag-class>edu.uiowa.medline.chemical.Chemical</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1575,7 +1575,7 @@
 
 	<tag>
 		<name>deleteChemical</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.ChemicalDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.chemical.ChemicalDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1593,7 +1593,7 @@
 
 	<tag>
 		<name>chemicalPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.ChemicalPmid</tag-class>
+		<tag-class>edu.uiowa.medline.chemical.ChemicalPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1605,7 +1605,7 @@
 
 	<tag>
 		<name>chemicalSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.ChemicalSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.chemical.ChemicalSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1617,7 +1617,7 @@
 
 	<tag>
 		<name>chemicalRegistryNumber</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.ChemicalRegistryNumber</tag-class>
+		<tag-class>edu.uiowa.medline.chemical.ChemicalRegistryNumber</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1629,7 +1629,7 @@
 
 	<tag>
 		<name>chemicalSubstanceName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.ChemicalSubstanceName</tag-class>
+		<tag-class>edu.uiowa.medline.chemical.ChemicalSubstanceName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1641,7 +1641,7 @@
 
 	<tag>
 		<name>foreachCitationSubset</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubsetIterator</tag-class>
+		<tag-class>edu.uiowa.medline.citationSubset.CitationSubsetIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1677,7 +1677,7 @@
 
 	<tag>
 		<name>citationSubset</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubset</tag-class>
+		<tag-class>edu.uiowa.medline.citationSubset.CitationSubset</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1695,7 +1695,7 @@
 
 	<tag>
 		<name>deleteCitationSubset</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubsetDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.citationSubset.CitationSubsetDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1713,7 +1713,7 @@
 
 	<tag>
 		<name>citationSubsetPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubsetPmid</tag-class>
+		<tag-class>edu.uiowa.medline.citationSubset.CitationSubsetPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1725,7 +1725,7 @@
 
 	<tag>
 		<name>citationSubsetSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubsetSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.citationSubset.CitationSubsetSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1737,7 +1737,7 @@
 
 	<tag>
 		<name>citationSubsetLabel</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubsetLabel</tag-class>
+		<tag-class>edu.uiowa.medline.citationSubset.CitationSubsetLabel</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1749,7 +1749,7 @@
 
 	<tag>
 		<name>foreachCommentsCorrections</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsIterator</tag-class>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1785,7 +1785,7 @@
 
 	<tag>
 		<name>commentsCorrections</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrections</tag-class>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1803,7 +1803,7 @@
 
 	<tag>
 		<name>deleteCommentsCorrections</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1821,7 +1821,7 @@
 
 	<tag>
 		<name>commentsCorrectionsPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsPmid</tag-class>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1833,7 +1833,7 @@
 
 	<tag>
 		<name>commentsCorrectionsSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1845,7 +1845,7 @@
 
 	<tag>
 		<name>commentsCorrectionsRefType</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsRefType</tag-class>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsRefType</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1857,7 +1857,7 @@
 
 	<tag>
 		<name>commentsCorrectionsSource</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsSource</tag-class>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsSource</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1869,7 +1869,7 @@
 
 	<tag>
 		<name>commentsCorrectionsRefPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsRefPmid</tag-class>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsRefPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1881,7 +1881,7 @@
 
 	<tag>
 		<name>commentsCorrectionsNote</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsNote</tag-class>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsNote</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1893,7 +1893,7 @@
 
 	<tag>
 		<name>foreachGeneSymbol</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbolIterator</tag-class>
+		<tag-class>edu.uiowa.medline.geneSymbol.GeneSymbolIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1929,7 +1929,7 @@
 
 	<tag>
 		<name>geneSymbol</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbol</tag-class>
+		<tag-class>edu.uiowa.medline.geneSymbol.GeneSymbol</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1947,7 +1947,7 @@
 
 	<tag>
 		<name>deleteGeneSymbol</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbolDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.geneSymbol.GeneSymbolDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -1965,7 +1965,7 @@
 
 	<tag>
 		<name>geneSymbolPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbolPmid</tag-class>
+		<tag-class>edu.uiowa.medline.geneSymbol.GeneSymbolPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1977,7 +1977,7 @@
 
 	<tag>
 		<name>geneSymbolSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbolSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.geneSymbol.GeneSymbolSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -1989,7 +1989,7 @@
 
 	<tag>
 		<name>geneSymbolSymbol</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbolSymbol</tag-class>
+		<tag-class>edu.uiowa.medline.geneSymbol.GeneSymbolSymbol</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2001,7 +2001,7 @@
 
 	<tag>
 		<name>foreachMeshHeading</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeadingIterator</tag-class>
+		<tag-class>edu.uiowa.medline.meshHeading.MeshHeadingIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2037,7 +2037,7 @@
 
 	<tag>
 		<name>meshHeading</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeading</tag-class>
+		<tag-class>edu.uiowa.medline.meshHeading.MeshHeading</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2055,7 +2055,7 @@
 
 	<tag>
 		<name>deleteMeshHeading</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeadingDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.meshHeading.MeshHeadingDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2073,7 +2073,7 @@
 
 	<tag>
 		<name>meshHeadingPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeadingPmid</tag-class>
+		<tag-class>edu.uiowa.medline.meshHeading.MeshHeadingPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2085,7 +2085,7 @@
 
 	<tag>
 		<name>meshHeadingSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeadingSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.meshHeading.MeshHeadingSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2097,7 +2097,7 @@
 
 	<tag>
 		<name>meshHeadingDescriptorName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeadingDescriptorName</tag-class>
+		<tag-class>edu.uiowa.medline.meshHeading.MeshHeadingDescriptorName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2109,7 +2109,7 @@
 
 	<tag>
 		<name>meshHeadingMajor</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeadingMajor</tag-class>
+		<tag-class>edu.uiowa.medline.meshHeading.MeshHeadingMajor</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2121,7 +2121,7 @@
 
 	<tag>
 		<name>foreachMeshQualifier</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierIterator</tag-class>
+		<tag-class>edu.uiowa.medline.meshQualifier.MeshQualifierIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2163,7 +2163,7 @@
 
 	<tag>
 		<name>meshQualifier</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifier</tag-class>
+		<tag-class>edu.uiowa.medline.meshQualifier.MeshQualifier</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2187,7 +2187,7 @@
 
 	<tag>
 		<name>deleteMeshQualifier</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.meshQualifier.MeshQualifierDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2211,7 +2211,7 @@
 
 	<tag>
 		<name>meshQualifierPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierPmid</tag-class>
+		<tag-class>edu.uiowa.medline.meshQualifier.MeshQualifierPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2223,7 +2223,7 @@
 
 	<tag>
 		<name>meshQualifierSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.meshQualifier.MeshQualifierSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2235,7 +2235,7 @@
 
 	<tag>
 		<name>meshQualifierQnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierQnum</tag-class>
+		<tag-class>edu.uiowa.medline.meshQualifier.MeshQualifierQnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2247,7 +2247,7 @@
 
 	<tag>
 		<name>meshQualifierQualifierName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierQualifierName</tag-class>
+		<tag-class>edu.uiowa.medline.meshQualifier.MeshQualifierQualifierName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2259,7 +2259,7 @@
 
 	<tag>
 		<name>meshQualifierMajor</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierMajor</tag-class>
+		<tag-class>edu.uiowa.medline.meshQualifier.MeshQualifierMajor</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2271,7 +2271,7 @@
 
 	<tag>
 		<name>foreachPersonalNameSubject</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectIterator</tag-class>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2307,7 +2307,7 @@
 
 	<tag>
 		<name>personalNameSubject</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubject</tag-class>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2325,7 +2325,7 @@
 
 	<tag>
 		<name>deletePersonalNameSubject</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2343,7 +2343,7 @@
 
 	<tag>
 		<name>personalNameSubjectPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectPmid</tag-class>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2355,7 +2355,7 @@
 
 	<tag>
 		<name>personalNameSubjectSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2367,7 +2367,7 @@
 
 	<tag>
 		<name>personalNameSubjectLastName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectLastName</tag-class>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectLastName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2379,7 +2379,7 @@
 
 	<tag>
 		<name>personalNameSubjectForeName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectForeName</tag-class>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectForeName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2391,7 +2391,7 @@
 
 	<tag>
 		<name>personalNameSubjectInitials</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectInitials</tag-class>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectInitials</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2403,7 +2403,7 @@
 
 	<tag>
 		<name>personalNameSubjectSuffix</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectSuffix</tag-class>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectSuffix</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2415,7 +2415,7 @@
 
 	<tag>
 		<name>foreachOtherId</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherIdIterator</tag-class>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2451,7 +2451,7 @@
 
 	<tag>
 		<name>otherId</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherId</tag-class>
+		<tag-class>edu.uiowa.medline.otherId.OtherId</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2469,7 +2469,7 @@
 
 	<tag>
 		<name>deleteOtherId</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherIdDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2487,7 +2487,7 @@
 
 	<tag>
 		<name>otherIdPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherIdPmid</tag-class>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2499,7 +2499,7 @@
 
 	<tag>
 		<name>otherIdSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherIdSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2511,7 +2511,7 @@
 
 	<tag>
 		<name>otherIdSource</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherIdSource</tag-class>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdSource</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2523,7 +2523,7 @@
 
 	<tag>
 		<name>otherIdOtherId</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherIdOtherId</tag-class>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdOtherId</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2535,7 +2535,7 @@
 
 	<tag>
 		<name>foreachOtherAbstract</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractIterator</tag-class>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2571,7 +2571,7 @@
 
 	<tag>
 		<name>otherAbstract</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstract</tag-class>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstract</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2589,7 +2589,7 @@
 
 	<tag>
 		<name>deleteOtherAbstract</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2607,7 +2607,7 @@
 
 	<tag>
 		<name>otherAbstractPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractPmid</tag-class>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2619,7 +2619,7 @@
 
 	<tag>
 		<name>otherAbstractSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2631,7 +2631,7 @@
 
 	<tag>
 		<name>otherAbstractType</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractType</tag-class>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractType</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2643,7 +2643,7 @@
 
 	<tag>
 		<name>otherAbstractAbstractText</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractAbstractText</tag-class>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractAbstractText</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2655,7 +2655,7 @@
 
 	<tag>
 		<name>otherAbstractCopyright</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractCopyright</tag-class>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractCopyright</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2667,7 +2667,7 @@
 
 	<tag>
 		<name>foreachKeyword</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.KeywordIterator</tag-class>
+		<tag-class>edu.uiowa.medline.keyword.KeywordIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2703,7 +2703,7 @@
 
 	<tag>
 		<name>keyword</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.Keyword</tag-class>
+		<tag-class>edu.uiowa.medline.keyword.Keyword</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2721,7 +2721,7 @@
 
 	<tag>
 		<name>deleteKeyword</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.KeywordDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.keyword.KeywordDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2739,7 +2739,7 @@
 
 	<tag>
 		<name>keywordPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.KeywordPmid</tag-class>
+		<tag-class>edu.uiowa.medline.keyword.KeywordPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2751,7 +2751,7 @@
 
 	<tag>
 		<name>keywordSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.KeywordSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.keyword.KeywordSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2763,7 +2763,7 @@
 
 	<tag>
 		<name>keywordKeyword</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.KeywordKeyword</tag-class>
+		<tag-class>edu.uiowa.medline.keyword.KeywordKeyword</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2775,7 +2775,7 @@
 
 	<tag>
 		<name>keywordMajor</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.KeywordMajor</tag-class>
+		<tag-class>edu.uiowa.medline.keyword.KeywordMajor</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2787,7 +2787,7 @@
 
 	<tag>
 		<name>foreachSpaceflightMission</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMissionIterator</tag-class>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2823,7 +2823,7 @@
 
 	<tag>
 		<name>spaceflightMission</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMission</tag-class>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMission</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2841,7 +2841,7 @@
 
 	<tag>
 		<name>deleteSpaceflightMission</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMissionDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2859,7 +2859,7 @@
 
 	<tag>
 		<name>spaceflightMissionPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMissionPmid</tag-class>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2871,7 +2871,7 @@
 
 	<tag>
 		<name>spaceflightMissionSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMissionSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2883,7 +2883,7 @@
 
 	<tag>
 		<name>spaceflightMissionMission</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMissionMission</tag-class>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionMission</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2895,7 +2895,7 @@
 
 	<tag>
 		<name>foreachInvestigator</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorIterator</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2931,7 +2931,7 @@
 
 	<tag>
 		<name>investigator</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.Investigator</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.Investigator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2949,7 +2949,7 @@
 
 	<tag>
 		<name>deleteInvestigator</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -2967,7 +2967,7 @@
 
 	<tag>
 		<name>investigatorPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorPmid</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2979,7 +2979,7 @@
 
 	<tag>
 		<name>investigatorSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -2991,7 +2991,7 @@
 
 	<tag>
 		<name>investigatorLastName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorLastName</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorLastName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3003,7 +3003,7 @@
 
 	<tag>
 		<name>investigatorForeName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorForeName</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorForeName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3015,7 +3015,7 @@
 
 	<tag>
 		<name>investigatorInitials</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorInitials</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorInitials</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3027,7 +3027,7 @@
 
 	<tag>
 		<name>investigatorSuffix</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorSuffix</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorSuffix</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3039,7 +3039,7 @@
 
 	<tag>
 		<name>investigatorAffiliation</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorAffiliation</tag-class>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorAffiliation</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3051,7 +3051,7 @@
 
 	<tag>
 		<name>foreachGeneralNote</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNoteIterator</tag-class>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3087,7 +3087,7 @@
 
 	<tag>
 		<name>generalNote</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNote</tag-class>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNote</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3105,7 +3105,7 @@
 
 	<tag>
 		<name>deleteGeneralNote</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNoteDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3123,7 +3123,7 @@
 
 	<tag>
 		<name>generalNotePmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNotePmid</tag-class>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNotePmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3135,7 +3135,7 @@
 
 	<tag>
 		<name>generalNoteSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNoteSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3147,7 +3147,7 @@
 
 	<tag>
 		<name>generalNoteNote</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNoteNote</tag-class>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteNote</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3159,7 +3159,7 @@
 
 	<tag>
 		<name>foreachPublicationType</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationTypeIterator</tag-class>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3195,7 +3195,7 @@
 
 	<tag>
 		<name>publicationType</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationType</tag-class>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationType</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3213,7 +3213,7 @@
 
 	<tag>
 		<name>deletePublicationType</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationTypeDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3231,7 +3231,7 @@
 
 	<tag>
 		<name>publicationTypePmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationTypePmid</tag-class>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypePmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3243,7 +3243,7 @@
 
 	<tag>
 		<name>publicationTypeSeqnum</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationTypeSeqnum</tag-class>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3255,7 +3255,7 @@
 
 	<tag>
 		<name>publicationTypeLabel</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationTypeLabel</tag-class>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeLabel</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3267,7 +3267,7 @@
 
 	<tag>
 		<name>foreachAuthorCount</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountIterator</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3303,7 +3303,7 @@
 
 	<tag>
 		<name>authorCount</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCount</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCount</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3321,7 +3321,7 @@
 
 	<tag>
 		<name>deleteAuthorCount</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3339,7 +3339,7 @@
 
 	<tag>
 		<name>authorCountLastName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountLastName</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountLastName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3351,7 +3351,7 @@
 
 	<tag>
 		<name>authorCountForeName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountForeName</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountForeName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3363,7 +3363,7 @@
 
 	<tag>
 		<name>authorCountCount</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountCount</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountCount</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3375,7 +3375,7 @@
 
 	<tag>
 		<name>foreachDocumentCluster</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentClusterIterator</tag-class>
+		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3405,7 +3405,7 @@
 
 	<tag>
 		<name>documentCluster</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentCluster</tag-class>
+		<tag-class>edu.uiowa.medline.documentCluster.DocumentCluster</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3417,7 +3417,7 @@
 
 	<tag>
 		<name>deleteDocumentCluster</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentClusterDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3429,7 +3429,7 @@
 
 	<tag>
 		<name>documentClusterCid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentClusterCid</tag-class>
+		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterCid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3441,7 +3441,7 @@
 
 	<tag>
 		<name>documentClusterLastName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentClusterLastName</tag-class>
+		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterLastName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3453,7 +3453,7 @@
 
 	<tag>
 		<name>documentClusterForeName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentClusterForeName</tag-class>
+		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterForeName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3465,7 +3465,7 @@
 
 	<tag>
 		<name>foreachClusterDocument</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentIterator</tag-class>
+		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3514,7 +3514,7 @@
 
 	<tag>
 		<name>clusterDocument</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocument</tag-class>
+		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocument</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3532,7 +3532,7 @@
 
 	<tag>
 		<name>deleteClusterDocument</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentDeleter</tag-class>
+		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocumentDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3550,7 +3550,7 @@
 
 	<tag>
 		<name>clusterDocumentCid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentCid</tag-class>
+		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocumentCid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3562,7 +3562,7 @@
 
 	<tag>
 		<name>clusterDocumentPmid</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentPmid</tag-class>
+		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocumentPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3683,1255 +3683,1255 @@
 
 	<function>
 		<name>articleCount</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleIterator</function-class>
+		<function-class>edu.uiowa.medline.article.ArticleIterator</function-class>
 		<function-signature>java.lang.String articleCount()</function-signature>
 	</function>
 
 	<function>
 		<name>articleExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.ArticleIterator</function-class>
+		<function-class>edu.uiowa.medline.article.ArticleIterator</function-class>
 		<function-signature>java.lang.String articleExists(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articlePmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleDateCreatedValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.Date dateCreatedValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleDateCompletedValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.Date dateCompletedValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleDateRevisedValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.Date dateRevisedValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleTitleValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String titleValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleStartPageValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.Integer startPageValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleEndPageValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.Integer endPageValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleMedlinePgnValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String medlinePgnValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleAbstractTextValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String abstractTextValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleCopyrightValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String copyrightValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleAffiliationValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String affiliationValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleTypeValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String typeValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleVernacularTitleValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String vernacularTitleValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleCountryValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String countryValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleTaValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String taValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleNlmUniqueIdValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String nlmUniqueIdValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleIssnLinkingValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String issnLinkingValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleReferenceCountValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.Integer referenceCountValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articlePubModelValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String pubModelValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleStatusValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.Article</function-class>
+		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String statusValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalIterator</function-class>
+		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
 		<function-signature>java.lang.String journalExists(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>journalCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalIterator</function-class>
+		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
 		<function-signature>java.lang.String journalCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasJournal</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.JournalIterator</function-class>
+		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasJournal(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>journalPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalIssnValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.String issnValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalVolumeValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.String volumeValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalIssueValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.String issueValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalPubYearValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.Integer pubYearValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalPubMonthValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.String pubMonthValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalPubDayValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.Integer pubDayValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalPubSeasonValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.String pubSeasonValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalMedlineDateValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.String medlineDateValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalTitleValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.String titleValue()</function-signature>
 	</function>
 
 	<function>
 		<name>journalIsoAbbreviationValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.journal.Journal</function-class>
+		<function-class>edu.uiowa.medline.journal.Journal</function-class>
 		<function-signature>java.lang.String isoAbbreviationValue()</function-signature>
 	</function>
 
 	<function>
 		<name>elocationExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.ElocationIterator</function-class>
+		<function-class>edu.uiowa.medline.elocation.ElocationIterator</function-class>
 		<function-signature>java.lang.String elocationExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>elocationCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.ElocationIterator</function-class>
+		<function-class>edu.uiowa.medline.elocation.ElocationIterator</function-class>
 		<function-signature>java.lang.String elocationCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasElocation</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.ElocationIterator</function-class>
+		<function-class>edu.uiowa.medline.elocation.ElocationIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasElocation(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>elocationPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.Elocation</function-class>
+		<function-class>edu.uiowa.medline.elocation.Elocation</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>elocationSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.Elocation</function-class>
+		<function-class>edu.uiowa.medline.elocation.Elocation</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>elocationEidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.elocation.Elocation</function-class>
+		<function-class>edu.uiowa.medline.elocation.Elocation</function-class>
 		<function-signature>java.lang.String eidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorIterator</function-class>
+		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
 		<function-signature>java.lang.String authorExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorIterator</function-class>
+		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
 		<function-signature>java.lang.String authorCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasAuthor</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.AuthorIterator</function-class>
+		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasAuthor(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>authorPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.Author</function-class>
+		<function-class>edu.uiowa.medline.author.Author</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.Author</function-class>
+		<function-class>edu.uiowa.medline.author.Author</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorLastNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.Author</function-class>
+		<function-class>edu.uiowa.medline.author.Author</function-class>
 		<function-signature>java.lang.String lastNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorForeNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.Author</function-class>
+		<function-class>edu.uiowa.medline.author.Author</function-class>
 		<function-signature>java.lang.String foreNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorInitialsValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.Author</function-class>
+		<function-class>edu.uiowa.medline.author.Author</function-class>
 		<function-signature>java.lang.String initialsValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorSuffixValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.Author</function-class>
+		<function-class>edu.uiowa.medline.author.Author</function-class>
 		<function-signature>java.lang.String suffixValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCollectiveNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.Author</function-class>
+		<function-class>edu.uiowa.medline.author.Author</function-class>
 		<function-signature>java.lang.String collectiveNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorAffiliationValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.author.Author</function-class>
+		<function-class>edu.uiowa.medline.author.Author</function-class>
 		<function-signature>java.lang.String affiliationValue()</function-signature>
 	</function>
 
 	<function>
 		<name>languageExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.LanguageIterator</function-class>
+		<function-class>edu.uiowa.medline.language.LanguageIterator</function-class>
 		<function-signature>java.lang.String languageExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>languageCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.LanguageIterator</function-class>
+		<function-class>edu.uiowa.medline.language.LanguageIterator</function-class>
 		<function-signature>java.lang.String languageCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasLanguage</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.LanguageIterator</function-class>
+		<function-class>edu.uiowa.medline.language.LanguageIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasLanguage(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>languagePmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.Language</function-class>
+		<function-class>edu.uiowa.medline.language.Language</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>languageSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.Language</function-class>
+		<function-class>edu.uiowa.medline.language.Language</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>languageLanguageValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.language.Language</function-class>
+		<function-class>edu.uiowa.medline.language.Language</function-class>
 		<function-signature>java.lang.String languageValue()</function-signature>
 	</function>
 
 	<function>
 		<name>dataBankExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBankIterator</function-class>
+		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
 		<function-signature>java.lang.String dataBankExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>dataBankCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBankIterator</function-class>
+		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
 		<function-signature>java.lang.String dataBankCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasDataBank</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBankIterator</function-class>
+		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasDataBank(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>dataBankPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBank</function-class>
+		<function-class>edu.uiowa.medline.dataBank.DataBank</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>dataBankSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBank</function-class>
+		<function-class>edu.uiowa.medline.dataBank.DataBank</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>dataBankNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.dataBank.DataBank</function-class>
+		<function-class>edu.uiowa.medline.dataBank.DataBank</function-class>
 		<function-signature>java.lang.String nameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>accessionExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.AccessionIterator</function-class>
+		<function-class>edu.uiowa.medline.accession.AccessionIterator</function-class>
 		<function-signature>java.lang.String accessionExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>accessionCountByDataBank</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.AccessionIterator</function-class>
+		<function-class>edu.uiowa.medline.accession.AccessionIterator</function-class>
 		<function-signature>java.lang.String accessionCountByDataBank(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>dataBankHasAccession</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.AccessionIterator</function-class>
+		<function-class>edu.uiowa.medline.accession.AccessionIterator</function-class>
 		<function-signature>java.lang.Boolean dataBankHasAccession(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>accessionPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.Accession</function-class>
+		<function-class>edu.uiowa.medline.accession.Accession</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>accessionSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.Accession</function-class>
+		<function-class>edu.uiowa.medline.accession.Accession</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>accessionAccnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.Accession</function-class>
+		<function-class>edu.uiowa.medline.accession.Accession</function-class>
 		<function-signature>java.lang.Integer accnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>accessionAccessionValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.accession.Accession</function-class>
+		<function-class>edu.uiowa.medline.accession.Accession</function-class>
 		<function-signature>java.lang.String accessionValue()</function-signature>
 	</function>
 
 	<function>
 		<name>grantExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantIterator</function-class>
+		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
 		<function-signature>java.lang.String grantExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>grantCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantIterator</function-class>
+		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
 		<function-signature>java.lang.String grantCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasGrant</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.GrantIterator</function-class>
+		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasGrant(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>grantPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.Grant</function-class>
+		<function-class>edu.uiowa.medline.grant.Grant</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>grantSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.Grant</function-class>
+		<function-class>edu.uiowa.medline.grant.Grant</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>grantGidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.Grant</function-class>
+		<function-class>edu.uiowa.medline.grant.Grant</function-class>
 		<function-signature>java.lang.String gidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>grantAcronymValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.Grant</function-class>
+		<function-class>edu.uiowa.medline.grant.Grant</function-class>
 		<function-signature>java.lang.String acronymValue()</function-signature>
 	</function>
 
 	<function>
 		<name>grantAgencyValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.Grant</function-class>
+		<function-class>edu.uiowa.medline.grant.Grant</function-class>
 		<function-signature>java.lang.String agencyValue()</function-signature>
 	</function>
 
 	<function>
 		<name>grantCountryValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.grant.Grant</function-class>
+		<function-class>edu.uiowa.medline.grant.Grant</function-class>
 		<function-signature>java.lang.String countryValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleDateExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDateIterator</function-class>
+		<function-class>edu.uiowa.medline.articleDate.ArticleDateIterator</function-class>
 		<function-signature>java.lang.String articleDateExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleDateCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDateIterator</function-class>
+		<function-class>edu.uiowa.medline.articleDate.ArticleDateIterator</function-class>
 		<function-signature>java.lang.String articleDateCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasArticleDate</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDateIterator</function-class>
+		<function-class>edu.uiowa.medline.articleDate.ArticleDateIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasArticleDate(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleDatePmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDate</function-class>
+		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleDateSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDate</function-class>
+		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleDateYearValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDate</function-class>
+		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
 		<function-signature>java.lang.Integer yearValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleDateMonthValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDate</function-class>
+		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
 		<function-signature>java.lang.Integer monthValue()</function-signature>
 	</function>
 
 	<function>
 		<name>articleDateDayValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.articleDate.ArticleDate</function-class>
+		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
 		<function-signature>java.lang.Integer dayValue()</function-signature>
 	</function>
 
 	<function>
 		<name>chemicalExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.ChemicalIterator</function-class>
+		<function-class>edu.uiowa.medline.chemical.ChemicalIterator</function-class>
 		<function-signature>java.lang.String chemicalExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>chemicalCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.ChemicalIterator</function-class>
+		<function-class>edu.uiowa.medline.chemical.ChemicalIterator</function-class>
 		<function-signature>java.lang.String chemicalCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasChemical</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.ChemicalIterator</function-class>
+		<function-class>edu.uiowa.medline.chemical.ChemicalIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasChemical(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>chemicalPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.Chemical</function-class>
+		<function-class>edu.uiowa.medline.chemical.Chemical</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>chemicalSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.Chemical</function-class>
+		<function-class>edu.uiowa.medline.chemical.Chemical</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>chemicalRegistryNumberValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.Chemical</function-class>
+		<function-class>edu.uiowa.medline.chemical.Chemical</function-class>
 		<function-signature>java.lang.String registryNumberValue()</function-signature>
 	</function>
 
 	<function>
 		<name>chemicalSubstanceNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.chemical.Chemical</function-class>
+		<function-class>edu.uiowa.medline.chemical.Chemical</function-class>
 		<function-signature>java.lang.String substanceNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>citationSubsetExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubsetIterator</function-class>
+		<function-class>edu.uiowa.medline.citationSubset.CitationSubsetIterator</function-class>
 		<function-signature>java.lang.String citationSubsetExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>citationSubsetCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubsetIterator</function-class>
+		<function-class>edu.uiowa.medline.citationSubset.CitationSubsetIterator</function-class>
 		<function-signature>java.lang.String citationSubsetCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasCitationSubset</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubsetIterator</function-class>
+		<function-class>edu.uiowa.medline.citationSubset.CitationSubsetIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasCitationSubset(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>citationSubsetPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubset</function-class>
+		<function-class>edu.uiowa.medline.citationSubset.CitationSubset</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>citationSubsetSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubset</function-class>
+		<function-class>edu.uiowa.medline.citationSubset.CitationSubset</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>citationSubsetLabelValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.citationSubset.CitationSubset</function-class>
+		<function-class>edu.uiowa.medline.citationSubset.CitationSubset</function-class>
 		<function-signature>java.lang.String labelValue()</function-signature>
 	</function>
 
 	<function>
 		<name>commentsCorrectionsExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsIterator</function-class>
+		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsIterator</function-class>
 		<function-signature>java.lang.String commentsCorrectionsExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>commentsCorrectionsCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsIterator</function-class>
+		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsIterator</function-class>
 		<function-signature>java.lang.String commentsCorrectionsCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasCommentsCorrections</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrectionsIterator</function-class>
+		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasCommentsCorrections(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>commentsCorrectionsPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrections</function-class>
+		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>commentsCorrectionsSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrections</function-class>
+		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>commentsCorrectionsRefTypeValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrections</function-class>
+		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
 		<function-signature>java.lang.String refTypeValue()</function-signature>
 	</function>
 
 	<function>
 		<name>commentsCorrectionsSourceValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrections</function-class>
+		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
 		<function-signature>java.lang.String sourceValue()</function-signature>
 	</function>
 
 	<function>
 		<name>commentsCorrectionsRefPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrections</function-class>
+		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
 		<function-signature>java.lang.Integer refPmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>commentsCorrectionsNoteValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.commentsCorrections.CommentsCorrections</function-class>
+		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
 		<function-signature>java.lang.String noteValue()</function-signature>
 	</function>
 
 	<function>
 		<name>geneSymbolExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbolIterator</function-class>
+		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbolIterator</function-class>
 		<function-signature>java.lang.String geneSymbolExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>geneSymbolCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbolIterator</function-class>
+		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbolIterator</function-class>
 		<function-signature>java.lang.String geneSymbolCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasGeneSymbol</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbolIterator</function-class>
+		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbolIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasGeneSymbol(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>geneSymbolPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbol</function-class>
+		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbol</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>geneSymbolSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbol</function-class>
+		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbol</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>geneSymbolSymbolValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.geneSymbol.GeneSymbol</function-class>
+		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbol</function-class>
 		<function-signature>java.lang.String symbolValue()</function-signature>
 	</function>
 
 	<function>
 		<name>meshHeadingExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeadingIterator</function-class>
+		<function-class>edu.uiowa.medline.meshHeading.MeshHeadingIterator</function-class>
 		<function-signature>java.lang.String meshHeadingExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>meshHeadingCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeadingIterator</function-class>
+		<function-class>edu.uiowa.medline.meshHeading.MeshHeadingIterator</function-class>
 		<function-signature>java.lang.String meshHeadingCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasMeshHeading</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeadingIterator</function-class>
+		<function-class>edu.uiowa.medline.meshHeading.MeshHeadingIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasMeshHeading(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>meshHeadingPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeading</function-class>
+		<function-class>edu.uiowa.medline.meshHeading.MeshHeading</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>meshHeadingSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeading</function-class>
+		<function-class>edu.uiowa.medline.meshHeading.MeshHeading</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>meshHeadingDescriptorNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeading</function-class>
+		<function-class>edu.uiowa.medline.meshHeading.MeshHeading</function-class>
 		<function-signature>java.lang.String descriptorNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>meshHeadingMajorValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshHeading.MeshHeading</function-class>
+		<function-class>edu.uiowa.medline.meshHeading.MeshHeading</function-class>
 		<function-signature>java.lang.Boolean majorValue()</function-signature>
 	</function>
 
 	<function>
 		<name>meshQualifierExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierIterator</function-class>
+		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifierIterator</function-class>
 		<function-signature>java.lang.String meshQualifierExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>meshQualifierCountByMeshHeading</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierIterator</function-class>
+		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifierIterator</function-class>
 		<function-signature>java.lang.String meshQualifierCountByMeshHeading(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>meshHeadingHasMeshQualifier</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifierIterator</function-class>
+		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifierIterator</function-class>
 		<function-signature>java.lang.Boolean meshHeadingHasMeshQualifier(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>meshQualifierPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifier</function-class>
+		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>meshQualifierSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifier</function-class>
+		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>meshQualifierQnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifier</function-class>
+		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
 		<function-signature>java.lang.Integer qnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>meshQualifierQualifierNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifier</function-class>
+		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
 		<function-signature>java.lang.String qualifierNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>meshQualifierMajorValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.meshQualifier.MeshQualifier</function-class>
+		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
 		<function-signature>java.lang.Boolean majorValue()</function-signature>
 	</function>
 
 	<function>
 		<name>personalNameSubjectExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectIterator</function-class>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
 		<function-signature>java.lang.String personalNameSubjectExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>personalNameSubjectCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectIterator</function-class>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
 		<function-signature>java.lang.String personalNameSubjectCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasPersonalNameSubject</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubjectIterator</function-class>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasPersonalNameSubject(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>personalNameSubjectPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubject</function-class>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>personalNameSubjectSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubject</function-class>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>personalNameSubjectLastNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubject</function-class>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
 		<function-signature>java.lang.String lastNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>personalNameSubjectForeNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubject</function-class>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
 		<function-signature>java.lang.String foreNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>personalNameSubjectInitialsValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubject</function-class>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
 		<function-signature>java.lang.String initialsValue()</function-signature>
 	</function>
 
 	<function>
 		<name>personalNameSubjectSuffixValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.personalNameSubject.PersonalNameSubject</function-class>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
 		<function-signature>java.lang.String suffixValue()</function-signature>
 	</function>
 
 	<function>
 		<name>otherIdExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherIdIterator</function-class>
+		<function-class>edu.uiowa.medline.otherId.OtherIdIterator</function-class>
 		<function-signature>java.lang.String otherIdExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>otherIdCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherIdIterator</function-class>
+		<function-class>edu.uiowa.medline.otherId.OtherIdIterator</function-class>
 		<function-signature>java.lang.String otherIdCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasOtherId</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherIdIterator</function-class>
+		<function-class>edu.uiowa.medline.otherId.OtherIdIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasOtherId(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>otherIdPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherId</function-class>
+		<function-class>edu.uiowa.medline.otherId.OtherId</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>otherIdSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherId</function-class>
+		<function-class>edu.uiowa.medline.otherId.OtherId</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>otherIdSourceValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherId</function-class>
+		<function-class>edu.uiowa.medline.otherId.OtherId</function-class>
 		<function-signature>java.lang.String sourceValue()</function-signature>
 	</function>
 
 	<function>
 		<name>otherIdOtherIdValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherId.OtherId</function-class>
+		<function-class>edu.uiowa.medline.otherId.OtherId</function-class>
 		<function-signature>java.lang.String otherIdValue()</function-signature>
 	</function>
 
 	<function>
 		<name>otherAbstractExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractIterator</function-class>
+		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstractIterator</function-class>
 		<function-signature>java.lang.String otherAbstractExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>otherAbstractCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractIterator</function-class>
+		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstractIterator</function-class>
 		<function-signature>java.lang.String otherAbstractCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasOtherAbstract</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstractIterator</function-class>
+		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstractIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasOtherAbstract(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>otherAbstractPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstract</function-class>
+		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstract</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>otherAbstractSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstract</function-class>
+		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstract</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>otherAbstractTypeValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstract</function-class>
+		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstract</function-class>
 		<function-signature>java.lang.String typeValue()</function-signature>
 	</function>
 
 	<function>
 		<name>otherAbstractAbstractTextValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstract</function-class>
+		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstract</function-class>
 		<function-signature>java.lang.String abstractTextValue()</function-signature>
 	</function>
 
 	<function>
 		<name>otherAbstractCopyrightValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.otherAbstract.OtherAbstract</function-class>
+		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstract</function-class>
 		<function-signature>java.lang.String copyrightValue()</function-signature>
 	</function>
 
 	<function>
 		<name>keywordExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.KeywordIterator</function-class>
+		<function-class>edu.uiowa.medline.keyword.KeywordIterator</function-class>
 		<function-signature>java.lang.String keywordExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>keywordCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.KeywordIterator</function-class>
+		<function-class>edu.uiowa.medline.keyword.KeywordIterator</function-class>
 		<function-signature>java.lang.String keywordCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasKeyword</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.KeywordIterator</function-class>
+		<function-class>edu.uiowa.medline.keyword.KeywordIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasKeyword(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>keywordPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.Keyword</function-class>
+		<function-class>edu.uiowa.medline.keyword.Keyword</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>keywordSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.Keyword</function-class>
+		<function-class>edu.uiowa.medline.keyword.Keyword</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>keywordKeywordValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.Keyword</function-class>
+		<function-class>edu.uiowa.medline.keyword.Keyword</function-class>
 		<function-signature>java.lang.String keywordValue()</function-signature>
 	</function>
 
 	<function>
 		<name>keywordMajorValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.keyword.Keyword</function-class>
+		<function-class>edu.uiowa.medline.keyword.Keyword</function-class>
 		<function-signature>java.lang.Boolean majorValue()</function-signature>
 	</function>
 
 	<function>
 		<name>spaceflightMissionExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMissionIterator</function-class>
+		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
 		<function-signature>java.lang.String spaceflightMissionExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>spaceflightMissionCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMissionIterator</function-class>
+		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
 		<function-signature>java.lang.String spaceflightMissionCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasSpaceflightMission</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMissionIterator</function-class>
+		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasSpaceflightMission(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>spaceflightMissionPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMission</function-class>
+		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMission</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>spaceflightMissionSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMission</function-class>
+		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMission</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>spaceflightMissionMissionValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.spaceflightMission.SpaceflightMission</function-class>
+		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMission</function-class>
 		<function-signature>java.lang.String missionValue()</function-signature>
 	</function>
 
 	<function>
 		<name>investigatorExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorIterator</function-class>
+		<function-class>edu.uiowa.medline.investigator.InvestigatorIterator</function-class>
 		<function-signature>java.lang.String investigatorExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>investigatorCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorIterator</function-class>
+		<function-class>edu.uiowa.medline.investigator.InvestigatorIterator</function-class>
 		<function-signature>java.lang.String investigatorCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasInvestigator</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.InvestigatorIterator</function-class>
+		<function-class>edu.uiowa.medline.investigator.InvestigatorIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasInvestigator(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>investigatorPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.Investigator</function-class>
+		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>investigatorSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.Investigator</function-class>
+		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>investigatorLastNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.Investigator</function-class>
+		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
 		<function-signature>java.lang.String lastNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>investigatorForeNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.Investigator</function-class>
+		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
 		<function-signature>java.lang.String foreNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>investigatorInitialsValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.Investigator</function-class>
+		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
 		<function-signature>java.lang.String initialsValue()</function-signature>
 	</function>
 
 	<function>
 		<name>investigatorSuffixValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.Investigator</function-class>
+		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
 		<function-signature>java.lang.String suffixValue()</function-signature>
 	</function>
 
 	<function>
 		<name>investigatorAffiliationValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.investigator.Investigator</function-class>
+		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
 		<function-signature>java.lang.String affiliationValue()</function-signature>
 	</function>
 
 	<function>
 		<name>generalNoteExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNoteIterator</function-class>
+		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
 		<function-signature>java.lang.String generalNoteExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>generalNoteCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNoteIterator</function-class>
+		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
 		<function-signature>java.lang.String generalNoteCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasGeneralNote</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNoteIterator</function-class>
+		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasGeneralNote(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>generalNotePmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNote</function-class>
+		<function-class>edu.uiowa.medline.generalNote.GeneralNote</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>generalNoteSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNote</function-class>
+		<function-class>edu.uiowa.medline.generalNote.GeneralNote</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>generalNoteNoteValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.generalNote.GeneralNote</function-class>
+		<function-class>edu.uiowa.medline.generalNote.GeneralNote</function-class>
 		<function-signature>java.lang.String noteValue()</function-signature>
 	</function>
 
 	<function>
 		<name>publicationTypeExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationTypeIterator</function-class>
+		<function-class>edu.uiowa.medline.publicationType.PublicationTypeIterator</function-class>
 		<function-signature>java.lang.String publicationTypeExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>publicationTypeCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationTypeIterator</function-class>
+		<function-class>edu.uiowa.medline.publicationType.PublicationTypeIterator</function-class>
 		<function-signature>java.lang.String publicationTypeCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasPublicationType</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationTypeIterator</function-class>
+		<function-class>edu.uiowa.medline.publicationType.PublicationTypeIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasPublicationType(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>publicationTypePmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationType</function-class>
+		<function-class>edu.uiowa.medline.publicationType.PublicationType</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>publicationTypeSeqnumValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationType</function-class>
+		<function-class>edu.uiowa.medline.publicationType.PublicationType</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
 		<name>publicationTypeLabelValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.publicationType.PublicationType</function-class>
+		<function-class>edu.uiowa.medline.publicationType.PublicationType</function-class>
 		<function-signature>java.lang.String labelValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountCount</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountIterator</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountIterator</function-class>
 		<function-signature>java.lang.String authorCountCount()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountIterator</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountIterator</function-class>
 		<function-signature>java.lang.String authorCountExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountLastNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCount</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCount</function-class>
 		<function-signature>java.lang.String lastNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountForeNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCount</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCount</function-class>
 		<function-signature>java.lang.String foreNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountCountValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCount</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCount</function-class>
 		<function-signature>java.lang.Integer countValue()</function-signature>
 	</function>
 
 	<function>
 		<name>documentClusterCount</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentClusterIterator</function-class>
+		<function-class>edu.uiowa.medline.documentCluster.DocumentClusterIterator</function-class>
 		<function-signature>java.lang.String documentClusterCount()</function-signature>
 	</function>
 
 	<function>
 		<name>documentClusterExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentClusterIterator</function-class>
+		<function-class>edu.uiowa.medline.documentCluster.DocumentClusterIterator</function-class>
 		<function-signature>java.lang.String documentClusterExists(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>documentClusterCidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentCluster</function-class>
+		<function-class>edu.uiowa.medline.documentCluster.DocumentCluster</function-class>
 		<function-signature>java.lang.Integer cidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>documentClusterLastNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentCluster</function-class>
+		<function-class>edu.uiowa.medline.documentCluster.DocumentCluster</function-class>
 		<function-signature>java.lang.String lastNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>documentClusterForeNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.documentCluster.DocumentCluster</function-class>
+		<function-class>edu.uiowa.medline.documentCluster.DocumentCluster</function-class>
 		<function-signature>java.lang.String foreNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>clusterDocumentExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentIterator</function-class>
+		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
 		<function-signature>java.lang.String clusterDocumentExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>clusterDocumentCountByArticle</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentIterator</function-class>
+		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
 		<function-signature>java.lang.String clusterDocumentCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleHasClusterDocument</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentIterator</function-class>
+		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasClusterDocument(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>clusterDocumentCountByDocumentCluster</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentIterator</function-class>
+		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
 		<function-signature>java.lang.String clusterDocumentCountByDocumentCluster(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>documentClusterHasClusterDocument</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentIterator</function-class>
+		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
 		<function-signature>java.lang.Boolean documentClusterHasClusterDocument(java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>articleDocumentClusterExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocumentIterator</function-class>
+		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
 		<function-signature>java.lang.Boolean articleDocumentClusterExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>clusterDocumentCidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocument</function-class>
+		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocument</function-class>
 		<function-signature>java.lang.Integer cidValue()</function-signature>
 	</function>
 
 	<function>
 		<name>clusterDocumentPmidValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.clusterDocument.ClusterDocument</function-class>
+		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocument</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
