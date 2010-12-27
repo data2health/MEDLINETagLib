@@ -74,7 +74,7 @@
         <configuration>
 		<props>
 		 <property><name>project.name</name><value>${project.artifactId}</value> </property> 
-		 <property><name>package.name</name><value>edu.uiowa.icts.taglib.MEDLINETagLib</value></property>
+		 <property><name>package.name</name><value>edu.uiowa.medline</value></property>
 		 
 		 <property><name>generate.jsps</name><value>false</value> </property> 
 		 <property><name>generate.tld</name><value>true</value> </property> 
