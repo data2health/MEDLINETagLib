@@ -1,30 +1,30 @@
 	<function>
 		<name>authorCountPatternCount</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPatternIterator</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPatternIterator</function-class>
 		<function-signature>java.lang.String authorCountCount()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountPatternExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPatternIterator</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPatternIterator</function-class>
 		<function-signature>java.lang.String authorCountExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountPatternLastNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPattern</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPattern</function-class>
 		<function-signature>java.lang.String lastNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountPatternForeNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPattern</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPattern</function-class>
 		<function-signature>java.lang.String foreNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountPatternCountValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPattern</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPattern</function-class>
 		<function-signature>java.lang.Integer countValue()</function-signature>
 	</function>
 

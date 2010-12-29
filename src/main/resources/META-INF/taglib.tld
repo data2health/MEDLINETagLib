@@ -3574,7 +3574,7 @@
 
 	<tag>
 		<name>HTMLFormattedArticle</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.HTMLFormattedArticle</tag-class>
+		<tag-class>edu.uiowa.medline.article.HTMLFormattedArticle</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3586,7 +3586,7 @@
 
 	<tag>
 		<name>AuthorListForArticle</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.article.AuthorListForArticle</tag-class>
+		<tag-class>edu.uiowa.medline.article.AuthorListForArticle</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3598,7 +3598,7 @@
 
 	<tag>
 		<name>foreachAuthorCountPattern</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPatternIterator</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountPatternIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3628,7 +3628,7 @@
 
 	<tag>
 		<name>authorCountPattern</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPattern</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountPattern</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3646,7 +3646,7 @@
 
 	<tag>
 		<name>authorCountPatternLastName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPatternLastName</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountPatternLastName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3658,7 +3658,7 @@
 
 	<tag>
 		<name>authorCountPatternForeName</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPatternForeName</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountPatternForeName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3670,7 +3670,7 @@
 
 	<tag>
 		<name>authorCountPatternCount</name>
-		<tag-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPatternCount</tag-class>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountPatternCount</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -4937,31 +4937,31 @@
 
 	<function>
 		<name>authorCountPatternCount</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPatternIterator</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPatternIterator</function-class>
 		<function-signature>java.lang.String authorCountCount()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountPatternExists</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPatternIterator</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPatternIterator</function-class>
 		<function-signature>java.lang.String authorCountExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountPatternLastNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPattern</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPattern</function-class>
 		<function-signature>java.lang.String lastNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountPatternForeNameValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPattern</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPattern</function-class>
 		<function-signature>java.lang.String foreNameValue()</function-signature>
 	</function>
 
 	<function>
 		<name>authorCountPatternCountValue</name>
-		<function-class>edu.uiowa.icts.taglib.MEDLINETagLib.authorCount.AuthorCountPattern</function-class>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountPattern</function-class>
 		<function-signature>java.lang.Integer countValue()</function-signature>
 	</function>
 
