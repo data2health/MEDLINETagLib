@@ -64,7 +64,21 @@
   	<type>jar</type>
   	<scope>compile</scope>
   </dependency>
-	</dependencies>
+  <dependency>
+  	<groupId>jaxen</groupId>
+  	<artifactId>jaxen</artifactId>
+  	<version>1.1.1</version>
+  	<type>jar</type>
+  	<scope>compile</scope>
+  </dependency>
+  <dependency>
+  	<groupId>org.apache.commons</groupId>
+  	<artifactId>commons-compress</artifactId>
+  	<version>1.1</version>
+  	<type>jar</type>
+  	<scope>compile</scope>
+  </dependency>
+  </dependencies>
 	<build>
 	  	<plugins>
      	     <plugin>
