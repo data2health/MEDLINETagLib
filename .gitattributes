@@ -236,4 +236,3 @@ src/non-packaged-resources/MEDLINETagLib.sql svneol=native#text/plain
 src/non-packaged-resources/functions.tld -text svneol=unset#text/xml
 src/non-packaged-resources/tags.tld -text svneol=unset#text/xml
 src/test/resources/README.txt svneol=native#text/plain
-target/MEDLINETagLib-0.0.1-SNAPSHOT.jar -text svneol=unset#aplication/java-archive
