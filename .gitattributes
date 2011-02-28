@@ -6,7 +6,6 @@
 .settings/org.eclipse.wst.common.project.facet.core.xml svneol=native#text/xml
 .settings/org.maven.ide.eclipse.prefs -text
 /pom.xml svneol=native#text/xml
-src/main/java/META-INF/MANIFEST.MF svneol=native#text/plain
 src/main/resources/META-INF/taglib.tld -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.clay -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.sql svneol=native#text/plain
