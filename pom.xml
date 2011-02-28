@@ -60,7 +60,7 @@
   <dependency>
   	<groupId>edu.uiowa.icts.plugin</groupId>
   	<artifactId>protogen-plugin</artifactId>
-  	<version>0.0.4</version>
+  	<version>0.0.6-SNAPSHOT</version>
   	<type>jar</type>
   	<scope>compile</scope>
   </dependency>
@@ -70,9 +70,10 @@
      	     <plugin>
 		<groupId>edu.uiowa.icts.plugin</groupId>
 		<artifactId>protogen-plugin</artifactId>
-		<version>0.0.4</version>
+		<version>0.0.6-SNAPSHOT</version>
         <configuration>
 		<props>
+		 <property><name>generator.enabled</name><value>false</value></property>
 		 <property><name>project.name</name><value>${project.artifactId}</value> </property> 
 		 <property><name>package.name</name><value>edu.uiowa.medline</value></property>
 		 
