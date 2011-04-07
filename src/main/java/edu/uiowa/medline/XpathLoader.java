@@ -1,8 +1,10 @@
 package edu.uiowa.medline;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -89,6 +91,16 @@ public class XpathLoader {
 					sessionReset(db_url, props);
 				}
 			}			
+		} else if (args[1].equals("-daily")) {
+	        // read files from stdin
+	        BufferedReader IODesc = new BufferedReader(new InputStreamReader(System.in));
+	        String current = null;
+	        while ((current = IODesc.readLine()) != null) {
+				XpathLoader theLoader = new XpathLoader(current.trim());
+	        }
+	        materializeAuthorView();
+		} else if (args[1].equals("-materialize")) {
+	        materializeAuthorView();
 		} else {
 			XpathLoader theLoader = new XpathLoader(args[1]);
 		}
@@ -101,7 +113,7 @@ public class XpathLoader {
 		conn = DriverManager.getConnection(db_url, props);
 		conn.setAutoCommit(false);
 
-        PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline11");
+        PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline11,loki");
         pathStmt.executeUpdate();
         pathStmt.close();
 
@@ -140,6 +152,7 @@ public class XpathLoader {
         logger.info("\nrecords added: " + recordsAdded);
         logger.info("records updated: " + recordsUpdated);
         logger.info("records deleted: " + recordsDeleted);
+        logger.info("");
 	}
 	
 	void deleteCitation(Node deleteNode) throws SQLException {
@@ -1129,4 +1142,58 @@ public class XpathLoader {
 	        seqnum++;
         }
 	}
+
+    static void materializeAuthorView() throws SQLException {
+        // refresh author uid-pmid cache with new data
+        execute("delete from author_cache10");
+        execute("analyze medline11.author");
+        execute("analyze medline11.journal");
+        execute("update journal set pub_day=28 where (pub_month='Feb' or pub_month='02') and pub_day > 28");
+        execute("update journal set pub_day=30 where (pub_month='Sep' or pub_month='09' or pub_month='Apr' or pub_month='04' or pub_month='Jun' or pub_month='06' or pub_month='Nov' or pub_month='11') and pub_day > 30");
+        execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline11.author.pmid"
+                + " from loki.authors,medline11.author,medline11.journal"
+                + " where authors.lastname=medline11.author.last_name and authors.forename=medline11.author.fore_name and medline11.author.pmid=medline11.journal.pmid");
+        execute("analyze author_cache10");
+    	
+		PreparedStatement cntStmt = conn.prepareStatement("select count(*) from author_cache10");
+		ResultSet rs = cntStmt.executeQuery();
+		while (rs.next()) {
+			logger.info("\nauthor cache instance count: " + rs.getInt(1));
+		}
+        
+        //TODO The following two parameter adjustments make the following query appropriately use their indices in scans, rather than sequentially scanning.  We need to establish a generic means of doing this.
+        execute("set session enable_seqscan = off");
+        execute("set session random_page_cost = 1");
+
+		// refresh author statistics with new data
+        execute("truncate medline11.author_count");
+        execute("insert into medline11.author_count select last_name,fore_name,count(*) from medline11.author where fore_name is not null group by 1,2");
+        execute("analyze medline11.author_count");
+
+        // refresh MeSH terminology and tf*idf statistics with new data
+        execute("delete from loki.mesh");
+        execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline11.mesh_heading where descriptor_name is not null");
+
+        //TODO Now reset the parameters to their defaults.
+        execute("set session enable_seqscan = on");
+        execute("set session random_page_cost = 4");
+        
+        execute("analyze loki.mesh");
+        execute("delete from loki.mesh_lexicon");
+        execute("insert into loki.mesh_lexicon select term, count(distinct id), count(*) from loki.mesh where term is not null group by 1");
+        execute("analyze loki.mesh_lexicon");
+        execute("delete from loki.mesh_frequency");
+        execute("insert into loki.mesh_frequency select id, term, count(*) from loki.mesh where term is not null group by 1,2");
+        execute("analyze loki.mesh_frequency");
+
+        execute("end transaction");
+    }
+    
+    static void execute(String statement) throws SQLException {
+        logger.info("executing " + statement + "...");
+        PreparedStatement stmt = conn.prepareStatement(statement);
+        stmt.executeUpdate();
+        stmt.close();
+    }
+
 }
