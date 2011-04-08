@@ -1172,7 +1172,7 @@ public class XpathLoader {
 
         // refresh MeSH terminology and tf*idf statistics with new data
         execute("delete from loki.mesh");
-        execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline11.mesh_heading where descriptor_name is not null");
+        execute("insert into loki.mesh select id, descriptor_name as term from loki.publication natural join medline11.mesh_heading where descriptor_name is not null");
 
         //TODO Now reset the parameters to their defaults.
         execute("set session enable_seqscan = on");
