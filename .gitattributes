@@ -6,6 +6,7 @@
 .settings/org.eclipse.wst.common.project.facet.core.xml svneol=native#text/xml
 .settings/org.maven.ide.eclipse.prefs -text
 /pom.xml svneol=native#text/xml
+src/main/java/edu/uiowa/medline/CassandraLoader.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/DBTest.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/Loader.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/MEDLINETagLibBodyTagSupport.java svneol=native#text/x-java-source
@@ -277,6 +278,7 @@ src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshPmid.java svneo
 src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshSeqnum.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshType.java svneol=native#text/x-java-source
 src/main/resources/META-INF/taglib.tld -text svneol=unset#text/xml
+src/main/resources/cassandra.xml svneol=native#text/xml
 src/non-packaged-resources/MEDLINETagLib.clay -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.sql svneol=native#text/plain
 src/non-packaged-resources/functions.tld -text svneol=unset#text/xml
