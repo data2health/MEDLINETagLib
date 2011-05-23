@@ -6,6 +6,7 @@
 .settings/org.eclipse.wst.common.project.facet.core.xml svneol=native#text/xml
 .settings/org.maven.ide.eclipse.prefs -text
 /pom.xml svneol=native#text/xml
+src/main/java/edu/uiowa/medline/CitationDump.java -text
 src/main/java/edu/uiowa/medline/DBTest.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/Loader.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/MEDLINETagLibBodyTagSupport.java svneol=native#text/x-java-source
