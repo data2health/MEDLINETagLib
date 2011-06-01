@@ -1153,6 +1153,8 @@ public class XpathLoader {
         execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline11.author.pmid"
                 + " from loki.authors,medline11.author,medline11.journal"
                 + " where authors.lastname=medline11.author.last_name and authors.forename=medline11.author.fore_name and medline11.author.pmid=medline11.journal.pmid");
+        execute("update author_cache10 set pubdate = (pub_month||' 01 '||pub_year)::date from medline11.journal where journal.pmid=author_cache10.pmid and pubdate is null and pub_month is not null");
+        execute("update author_cache10 set pubdate = ('Jan 01 '||pub_year)::date from medline11.journal where journal.pmid=author_cache10.pmid and pubdate is null");
         execute("analyze author_cache10");
     	
 		PreparedStatement cntStmt = conn.prepareStatement("select count(*) from author_cache10");
