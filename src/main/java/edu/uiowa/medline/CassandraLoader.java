@@ -6,7 +6,12 @@
  */
 package edu.uiowa.medline;
 
+import static me.prettyprint.hector.api.factory.HFactory.createColumn;
+import static me.prettyprint.hector.api.factory.HFactory.createMutator;
+
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Connection;
@@ -14,12 +19,19 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 import java.util.zip.GZIPInputStream;
 
-import me.prettyprint.cassandra.dao.SimpleCassandraDao;
+import me.prettyprint.cassandra.serializers.StringSerializer;
 import me.prettyprint.hector.api.Keyspace;
+import me.prettyprint.hector.api.beans.HColumn;
+import me.prettyprint.hector.api.exceptions.HectorException;
+import me.prettyprint.hector.api.factory.HFactory;
+import me.prettyprint.hector.api.query.ColumnQuery;
+import me.prettyprint.hector.api.query.QueryResult;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
@@ -68,9 +80,13 @@ public class CassandraLoader extends DefaultHandler {
     
     
     
+    private final StringSerializer serializer = StringSerializer.get();
+
+    
 	Keyspace keyspace;
-	SimpleCassandraDao simpleCassandraDao;
-	
+//	SimpleCassandraDao foo;
+//	CassandraDao simpleCassandraDao;
+//	
     
     StringBuffer buffer = new StringBuffer();
     int count = 0;
@@ -206,12 +222,51 @@ public class CassandraLoader extends DefaultHandler {
             pathStmt = conn.prepareStatement("set constraints all deferred");
             pathStmt.executeUpdate();
             pathStmt.close();
-        }
 
-        xr = XMLReaderFactory.createXMLReader();
-        CassandraLoader handler = new CassandraLoader();
-        xr.setContentHandler(handler);
-        xr.setErrorHandler(handler);
+       }
+
+
+       xr = XMLReaderFactory.createXMLReader();
+       CassandraLoader handler = new CassandraLoader();
+       xr.setContentHandler(handler);
+       xr.setErrorHandler(handler);
+
+       
+       String fileDir = prop_file.getProperty("load.files.from.dir", "no");
+       if (!fileDir.equals("no")) {
+    	   File dir = new File(fileDir);
+
+    	   // It is also possible to filter the list of returned files.
+    	   // This example does not return any files that start with `.'.
+    	   FilenameFilter filter = new FilenameFilter() {
+    	       public boolean accept(File dir, String name) {
+    	           return name.endsWith(".xml.gz");
+    	       }
+    	   };
+
+    	   
+    	   
+    	   
+    	  String[] children = dir.list(filter);
+    	  
+    	  Arrays.sort(children);
+
+    	   
+    	   if (children == null) {
+    	       // Either dir does not exist or is not a directory
+    		   logger.error("Directory does not exist: " + fileDir);
+    	   } else {
+    	       for (int i=0; i<children.length; i++) {
+    	           // Get filename of file or directory
+    	           String filename = children[i];
+    	    	   //logger.debug("file://" + fileDir +  filename);
+		           processFile("file://" + fileDir +  filename); 
+		     
+    	       }
+    	   }
+    	   children = dir.list(filter);
+       } else {
+    	   
 
         // read files from stdin
         logger.info("Starting to load files");
@@ -223,6 +278,7 @@ public class CassandraLoader extends DefaultHandler {
 //            processFile(current.trim());
 //        }
        
+       }
         
         //handler.materializeAuthorView();
     }
@@ -245,9 +301,9 @@ public class CassandraLoader extends DefaultHandler {
     	
          super();
     	 ApplicationContext context = new ClassPathXmlApplicationContext("cassandra.xml");
-    	 simpleCassandraDao = (SimpleCassandraDao) context.getBean("articleCassandraDao");
+    	 //foo = (SimpleCassandraDao) context.getBean("cassandraDao");
     	 keyspace = (Keyspace) context.getBean("keyspace");
-	     simpleCassandraDao.setKeyspace(keyspace);
+    	 //   simpleCassandraDao.setKeyspace(keyspace);
 	   
      
     	
@@ -407,14 +463,14 @@ public class CassandraLoader extends DefaultHandler {
 					//	PreparedStatement cntStmt = conn.prepareStatement("select pmid from article where pmid = ?");
 					//	cntStmt.setInt(1, pmid);
 					//	ResultSet rs = cntStmt.executeQuery();
-						articleTitle = simpleCassandraDao.get("" +pmid, "ArticleTitle");
+						articleTitle = get("" +pmid,"Article", "ArticleTitle");
 						
 						if ("".equals(articleTitle)) {
 							existingID = pmid;
 							logger.debug("replacing " + pmid + "...");
 							replacementCount++;
 							//deleteCitation(existingID);
-							simpleCassandraDao.delete(""+ pmid);
+							//simpleCassandraDao.delete("Article",""+ pmid);
 						}
 
 						//cntStmt.close();
@@ -435,14 +491,14 @@ public class CassandraLoader extends DefaultHandler {
             year = null;
             month = null;
             day = null;
-        	simpleCassandraDao.insert(""+pmid, "DateCreated",dateCreated.toString());
+        	insert(""+pmid,"Article", "DateCreated",dateCreated.toString());
         } else if (qName.equals("DateCompleted")) {
             dateCompleted = new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
             logger.debug("\t\t\tDateCompleted: " + new java.sql.Date(dateCompleted.getTimeInMillis()));
             year = null;
             month = null;
             day = null;
-        	simpleCassandraDao.insert(""+pmid, "DateCompleted",dateCompleted.toString());
+        	insert(""+pmid,"Article", "DateCompleted",dateCompleted.toString());
         } else if (qName.equals("DateRevised")) {
             dateRevised = new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
             logger.debug("\t\t\tDateRevised: " + new java.sql.Date(dateRevised.getTimeInMillis()));
@@ -450,53 +506,53 @@ public class CassandraLoader extends DefaultHandler {
             month = null;
             day = null;
             
-        	simpleCassandraDao.insert(""+pmid, "DateRevised",dateRevised.toString());
+        	insert(""+pmid,"Article", "DateRevised",dateRevised.toString());
         } else if (qName.equals("ISSN")) {
-        	simpleCassandraDao.insert(""+pmid, "ISSN",buffer.toString());
+        	insert(""+pmid,"Article", "ISSN",buffer.toString());
         	
             issn = buffer.toString();
         } else if (qName.equals("Volume")) {
             volume = buffer.toString();
-        	simpleCassandraDao.insert(""+pmid, "Volume",buffer.toString());
+        	insert(""+pmid, "Article","Volume",buffer.toString());
         } else if (qName.equals("Issue")) {
-        	simpleCassandraDao.insert(""+pmid, "Issue",buffer.toString());
+        	insert(""+pmid,"Article", "Issue",buffer.toString());
             issue = buffer.toString();
         } else if (qName.equals("Season")) {
-        	simpleCassandraDao.insert(""+pmid, "Season",buffer.toString());
+        	insert(""+pmid,"Article", "Season",buffer.toString());
             season = buffer.toString();
         } else if (qName.equals("Issue")) {
-        	simpleCassandraDao.insert(""+pmid, "Issue",buffer.toString());
+        	insert(""+pmid,"Article", "Issue",buffer.toString());
             issue = buffer.toString();
         } else if (qName.equals("MedlineDate")) {
-        	simpleCassandraDao.insert(""+pmid, "MedlineDate",buffer.toString());
+        	insert(""+pmid,"Article", "MedlineDate",buffer.toString());
             medlineDate = buffer.toString();
         } else if (qName.equals("Title")) {
-        	simpleCassandraDao.insert(""+pmid, "Title",buffer.toString());
+        	insert(""+pmid,"Article", "Title",buffer.toString());
             journal = buffer.toString();
         } else if (qName.equals("ISOAbbreviation")) {
-        	simpleCassandraDao.insert(""+pmid, "ISOAbbreviation",buffer.toString());
+        	insert(""+pmid,"Article", "ISOAbbreviation",buffer.toString());
             isoAbbrev = buffer.toString();
         } else if (qName.equals("Journal")) {
-        	simpleCassandraDao.insert(""+pmid, "Volume",buffer.toString());
+        	insert(""+pmid,"Article", "Volume",buffer.toString());
             logger.debug("\t\t\tJournal issn : " + issn + " volume : " + volume + " issue : " + issue + " year : " + year + " month : " + month + " day : " + day + " season : " + season + " medlineDate : " + medlineDate + " journal : " + journal + " isoAbbrev : " + isoAbbrev);
-           //processJournal();
+           processJournal();
         } else if (qName.equals("CollectionTitle")) {
-        	simpleCassandraDao.insert(""+pmid, "CollectionTitle",buffer.toString());
+        	insert(""+pmid,"Article", "CollectionTitle",buffer.toString());
             collectionTitle = buffer.toString();
         } else if (qName.equals("Publisher")) {
-        	simpleCassandraDao.insert(""+pmid, "CollectionTitle",buffer.toString());
+        	insert(""+pmid,"Article", "CollectionTitle",buffer.toString());
             publisher = buffer.toString();
         } else if (qName.equals("ArticleTitle")) {
-        	simpleCassandraDao.insert(""+pmid, "ArticleTitle",buffer.toString());
+        	insert(""+pmid,"Article", "ArticleTitle",buffer.toString());
             articleTitle = buffer.toString();
         } else if (qName.equals("StartPage")) {
-        	simpleCassandraDao.insert(""+pmid, "StartPage",buffer.toString());
+        	insert(""+pmid,"Article", "StartPage",buffer.toString());
             startPage = buffer.toString();
         } else if (qName.equals("EndPage")) {
-        	simpleCassandraDao.insert(""+pmid, "EndPage",buffer.toString());
+        	insert(""+pmid,"Article", "EndPage",buffer.toString());
             endPage = buffer.toString();
         } else if (qName.equals("MedlinePgn")) {
-        	simpleCassandraDao.insert(""+pmid, "MedlinePgn",buffer.toString());
+        	insert(""+pmid,"Article", "MedlinePgn",buffer.toString());
             medlinePgn = buffer.toString();
         } else if (qName.equals("Pagination")) {
             logger.debug("\t\t\tPagination startPage : " + startPage + " endPage : " + endPage + " medlinePgn : " + medlinePgn);
@@ -507,15 +563,15 @@ public class CassandraLoader extends DefaultHandler {
         } else if (qName.equals("AbstractText")) {
             if (inOtherAbstract) {
                 otherAbstr = buffer.toString();
-        	simpleCassandraDao.insert(""+pmid, "AbstractText",buffer.toString());
+        	insert(""+pmid,"Article", "AbstractText",buffer.toString());
             } else {
                 articleAbstr = buffer.toString();
-        	simpleCassandraDao.insert(""+pmid, "AbstractText",buffer.toString());
+        	insert(""+pmid,"Article", "AbstractText",buffer.toString());
             }
         } else if (qName.equals("CopyrightInformation")) {
             if (inOtherAbstract) {
                 otherCopyright = buffer.toString();
-        	simpleCassandraDao.insert(""+pmid, "CopyrightInformation",buffer.toString());
+        	insert(""+pmid,"Article", "CopyrightInformation",buffer.toString());
             } else {
                 articleCopyright = buffer.toString();
             }
@@ -526,37 +582,37 @@ public class CassandraLoader extends DefaultHandler {
                 investigatorAffiliation = buffer.toString();
             } else {
                 articleAffiliation = buffer.toString();
-            	simpleCassandraDao.insert(""+pmid, "Affiliation",buffer.toString());
+            	insert(""+pmid,"Article", "Affiliation",buffer.toString());
                 logger.debug("\t\t\tarticleAffiliation : " + articleAffiliation);
             }
         } else if (qName.equals("Abstract")) {
             logger.debug("\t\t\tabstract : " + articleAbstr + "\n\t\t\tcopyright : " + articleCopyright);
             
         } else if (qName.equals("LastName")) {
-        	simpleCassandraDao.insert(""+pmid, "LastName",buffer.toString());
+        	insert(""+pmid, "Article","LastName",buffer.toString());
 
             lastName = buffer.toString();
         } else if (qName.equals("ForeName")) {
-        	simpleCassandraDao.insert(""+pmid, "ForeName",buffer.toString());
+        	insert(""+pmid,"Article", "ForeName",buffer.toString());
 
             foreName = buffer.toString();
         } else if (qName.equals("Initials")) {
-        	simpleCassandraDao.insert(""+pmid, "Initials",buffer.toString());
+        	insert(""+pmid,"Article", "Initials",buffer.toString());
 
             initials = buffer.toString();
         } else if (qName.equals("Suffix")) {
-        	simpleCassandraDao.insert(""+pmid, "Suffix",buffer.toString());
+        	insert(""+pmid,"Article", "Suffix",buffer.toString());
 
             suffix = buffer.toString();
         } else if (qName.equals("CollectiveName")) {
-        	simpleCassandraDao.insert(""+pmid, "CollectiveName",buffer.toString());
+        	insert(""+pmid,"Article", "CollectiveName",buffer.toString());
 
             collName = buffer.toString();
         } else if (qName.equals("Author")) {
             inAuthor = false;
             logger.debug("\t\t\tlastName : " + lastName + " foreName : " + foreName + " initials : " + initials + " suffix : " + suffix + " collectiveName : " + collName);
             logger.debug("\t\t\tauthorAffiliation : " + authorAffiliation + " dateAssocName : ");
-            //processAuthor();
+            processAuthor();
         } else if (qName.equals("Language")) {
             language = buffer.toString();
             logger.debug("\t\t\tlanguage : " + language);
@@ -570,19 +626,19 @@ public class CassandraLoader extends DefaultHandler {
             logger.debug("\t\t\taccNumber : " + accNumber);
             //processAccession();
         } else if (qName.equals("GrantID")) {
-        	simpleCassandraDao.insert(""+pmid, "GrantID",buffer.toString());
+        	insert(""+pmid,"Article", "GrantID",buffer.toString());
 
             grantID = buffer.toString();
         } else if (qName.equals("Acronym")) {
-        	simpleCassandraDao.insert(""+pmid, "Acronym",buffer.toString());
+        	insert(""+pmid,"Article", "Acronym",buffer.toString());
 
             grantAcronym = buffer.toString();
         } else if (qName.equals("Agency")) {
-        	simpleCassandraDao.insert(""+pmid, "Agency",buffer.toString());
+        	insert(""+pmid,"Article", "Agency",buffer.toString());
 
             grantAgency = buffer.toString();
         } else if (qName.equals("Country")) {
-        	simpleCassandraDao.insert(""+pmid, "Country",buffer.toString());
+        	insert(""+pmid,"Article", "Country",buffer.toString());
 
             grantCountry = buffer.toString();
         } else if (qName.equals("Grant")) {
@@ -590,12 +646,12 @@ public class CassandraLoader extends DefaultHandler {
             //processGrant();
         } else if (qName.equals("PublicationType")) {
             publType = buffer.toString();
-        	simpleCassandraDao.insert(""+pmid, "PublicationType",buffer.toString());
+        	insert(""+pmid,"Article", "PublicationType",buffer.toString());
 
             logger.debug("\t\t\tpublType : " + publType);
             //processPublicationType();
         } else if (qName.equals("VernacularTitle")) {
-        	simpleCassandraDao.insert(""+pmid, "VernacularTitle",buffer.toString());
+        	insert(""+pmid,"Article", "VernacularTitle",buffer.toString());
 
             vernacularTitle = buffer.toString();
             logger.debug("\t\t\tvernacularTitle : " + vernacularTitle);
@@ -606,25 +662,25 @@ public class CassandraLoader extends DefaultHandler {
         } else if (qName.equals("Article")) {
             afterArticle=true;;
         } else if (qName.equals("MedlineTA")) {
-        	simpleCassandraDao.insert(""+pmid, "MedlineTA",buffer.toString());
+        	insert(""+pmid,"Article", "MedlineTA",buffer.toString());
 
             medlineTA = buffer.toString();
         } else if (qName.equals("NlmUniqueID")) {
-        	simpleCassandraDao.insert(""+pmid, "NlmUniqueID",buffer.toString());
+        	insert(""+pmid,"Article", "NlmUniqueID",buffer.toString());
 
             nlmUniqueID = buffer.toString();
         } else if (qName.equals("ISSNLinking")) {
-        	simpleCassandraDao.insert(""+pmid, "ISSNLinking",buffer.toString());
+        	insert(""+pmid,"Article", "ISSNLinking",buffer.toString());
 
             issnLinking = buffer.toString();
         } else if (qName.equals("MedlineJournalInfo")) {
             logger.debug("\t\t\tjournal info - country : " + grantCountry + " medlineTA : " + medlineTA + " nlmUniqueID : " + nlmUniqueID + " issnLinking : " + issnLinking);
         } else if (qName.equals("RegistryNumber")) {
-        	simpleCassandraDao.insert(""+pmid, "RegistryNumber",buffer.toString());
+        	insert(""+pmid,"Article", "RegistryNumber",buffer.toString());
 
             chemNum = buffer.toString();
         } else if (qName.equals("NameOfSubstance")) {
-        	simpleCassandraDao.insert(""+pmid, "NameOfSubstance",buffer.toString());
+        	insert(""+pmid,"Article", "NameOfSubstance",buffer.toString());
 
             chemName = buffer.toString();
         } else if (qName.equals("Chemical")) {
@@ -635,42 +691,42 @@ public class CassandraLoader extends DefaultHandler {
             logger.debug("\t\t\tcitationSubset : " + citationSubset);
             //processCitationSubset();
         } else if (qName.equals("RefSource")) {
-        	simpleCassandraDao.insert(""+pmid, "RefSource",buffer.toString());
+        	insert(""+pmid,"Article", "RefSource",buffer.toString());
 
             refSource = buffer.toString();
         } else if (qName.equals("Note")) {
-        	simpleCassandraDao.insert(""+pmid, "Note",buffer.toString());
+        	insert(""+pmid,"Article", "Note",buffer.toString());
 
             note = buffer.toString();
         } else if (qName.equals("CommentsCorrections")) {
             logger.debug("\t\t\tcommentsCorrections - refType: " + refType + " refSource: " + refSource + " ref_pmid: " + ref_pmid + " note: " + note);
             //processCommentsCorrections();
         } else if (qName.equals("GeneSymbol")) {
-        	simpleCassandraDao.insert(""+pmid, "GeneSymbol",buffer.toString());
+        	insert(""+pmid,"Article", "GeneSymbol",buffer.toString());
 
             geneSymbol = buffer.toString();
             logger.debug("\t\t\tgeneSymbol : " + geneSymbol);
         } else if (qName.equals("DescriptorName")) {
-        	simpleCassandraDao.insert(""+pmid, "DescriptorName",buffer.toString());
+        	insert(""+pmid,"Article", "DescriptorName",buffer.toString());
 
             meshName = buffer.toString();
             logger.debug("\t\t\tmeshName: " + meshName + " majorMESH: " + majorMESH);
-            //processMeshHeading();
+            processMeshHeading();
         } else if (qName.equals("QualifierName")) {
-        	simpleCassandraDao.insert(""+pmid, "QualifierName",buffer.toString());
+        	insert(""+pmid,"Article", "QualifierName",buffer.toString());
 
             meshQual = buffer.toString();
             logger.debug("\t\t\tmeshQual: " + meshQual + " majorMESHqual: " + majorMESHqual);
             //processMeshQualifier();
         } else if (qName.equals("GeneSymbol")) {
-        	simpleCassandraDao.insert(""+pmid, "GeneSymbol",buffer.toString());
+        	insert(""+pmid,"Article", "GeneSymbol",buffer.toString());
 
             geneSymbol = buffer.toString();
             logger.debug("\t\t\tgeneSymbol : " + geneSymbol);
             //processGeneSymbol();
         } else if (qName.equals("NumberOfReferences")) {
             refCount = buffer.toString();
-        	simpleCassandraDao.insert(""+pmid, "NumberOfReferences",buffer.toString());
+        	insert(""+pmid, "Article","NumberOfReferences",buffer.toString());
 
             logger.debug("\t\t\trefCount : " + refCount);
         } else if (qName.equals("PersonalNameSubject")) {
@@ -685,26 +741,26 @@ public class CassandraLoader extends DefaultHandler {
             logger.debug("\t\t\totherAbstract : " + otherAbstr + " copyright: " + otherCopyright + " type: " + otherAbstrType);
             //processOtherAbstract();
         } else if (qName.equals("Keyword")) {
-        	simpleCassandraDao.insert(""+pmid, "Keyword",buffer.toString());
+        	insert(""+pmid,"Article", "Keyword",buffer.toString());
 
             keyword = buffer.toString();
             logger.debug("\t\t\tID: " + pmid + " major : " + majorKeyword  + " Keyword : " + keyword);
-            //processKeyword();
+            processKeyword();
         } else if (qName.equals("SpaceFlightMission")) {
-        	simpleCassandraDao.insert(""+pmid, "SpaceFlightMission",buffer.toString());
+        	insert(""+pmid, "Article","SpaceFlightMission",buffer.toString());
 
             spaceFlight = buffer.toString();
             logger.debug("\t\t\tspaceFlight : " + spaceFlight);
             //processSpaceFlightMission();
         } else if (qName.equals("Investigator")) {
-        	simpleCassandraDao.insert(""+pmid, "Investifator",buffer.toString());
+        	insert(""+pmid, "Article","Investifator",buffer.toString());
 
             inInvestigator = false;
             logger.debug("\t\t\tinvestigator - lastName : " + lastName + " foreName : " + foreName + " initials : " + initials + " suffix : " + suffix + " investigatorAffiliation : " + investigatorAffiliation);
             //processInvestigator();
         } else if (qName.equals("GeneralNote")) {
             generalNote = buffer.toString();
-        	simpleCassandraDao.insert(""+pmid, "GeneralNote",buffer.toString());
+        	insert(""+pmid,"Article", "GeneralNote",buffer.toString());
 
             logger.debug("\t\t\tgeneralNote : " + generalNote);
             //processGeneralNote();
@@ -895,39 +951,25 @@ public class CassandraLoader extends DefaultHandler {
     }
 
     public void processJournal() {
-        if (!load)
-            return;
-
-        PreparedStatement stmt;
-        try {
-            stmt = conn.prepareStatement("insert into journal values (?,?,?,?,?,?,?,?,?,?,?)");
-            stmt.setInt(1, pmid);
-            stmt.setString(2, issn);
-            stmt.setString(3, volume);
-            stmt.setString(4, issue);
-            if (medlineDate == null) {
-            	stmt.setInt(5, Integer.parseInt(year));
-            	stmt.setString(6, month);
-            	if (day != null)
-            	    stmt.setInt(7, Integer.parseInt(day));
-            	else
-                    stmt.setNull(7, java.sql.Types.INTEGER);
-            } else {
-            	stmt.setNull(5, java.sql.Types.INTEGER);
-            	stmt.setNull(6, java.sql.Types.CHAR);
-            	stmt.setNull(7, java.sql.Types.INTEGER);
-            }
-            stmt.setString(8, season);
-            stmt.setString(9, medlineDate);
-            stmt.setString(10, title);
-            stmt.setString(11, isoAbbrev);
-            stmt.executeUpdate();
-            stmt.close();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
+    	String colFamily = "Journal";
+    	
+        	if (get(isoAbbrev, colFamily, "title") == null) {
+        	if (issn != null)
+        		insert(isoAbbrev, colFamily,"issn",issn);
+        	if (volume != null)
+        		insert(isoAbbrev, colFamily,"volume",volume);
+        	if (issue != null)
+                insert(isoAbbrev, colFamily,"issue",issue);
+        	if (medlineDate != null)
+                insert(isoAbbrev, colFamily,"medlineDate",medlineDate);
+        	if (season != null)
+                insert(isoAbbrev, colFamily,"season",season);
+        	if (title != null)
+                insert(isoAbbrev, colFamily,"title",title);
+                
+        	}
+       		insert(isoAbbrev, "PubsByJournal", ""+pmid,  "1");
+        	
         issn = null;
         volume = null;
         issue = null;
@@ -941,27 +983,25 @@ public class CassandraLoader extends DefaultHandler {
     }
     
     public void processAuthor() {
-        if (!load)
-            return;
-
-        PreparedStatement stmt;
-        try {
-            stmt = conn.prepareStatement("insert into author values (?,?,?,?,?,?,?,?)");
-            stmt.setInt(1, pmid);
-            stmt.setInt(2, ++authorSeqNum);
-            stmt.setString(3, lastName);
-            stmt.setString(4, foreName);
-            stmt.setString(5, initials);
-            stmt.setString(6, suffix);
-            stmt.setString(7, collName);
-            stmt.setString(8, authorAffiliation);
-           stmt.executeUpdate();
-            stmt.close();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
+    	String colFamily = "Author";
+    	String author = (lastName +  "|" + foreName + "|" + initials).toLowerCase();
+    	if (get(author, colFamily, "lastName") == null) {
+    		if (lastName != null)
+                insert(author, colFamily,"lastName",lastName);
+    		if (foreName != null)
+                insert(author, colFamily,"foreName",foreName);
+    		if (initials != null)
+                insert(author, colFamily,"initials",initials);
+    		if (collName != null)
+                insert(author, colFamily,"collName",collName);
+    		if (authorAffiliation != null)
+                insert(author, colFamily,"authorAffiliation",authorAffiliation);
+            
+	    }
+    	insert(author,"PubsByAuthor", ""+pmid, "1");
+    	insert(author.substring(0, 1).toLowerCase(),"AlphaByAuthor", author, "1");
+    	insert(""+pmid,"AuthorsByPub",author, "1");
+    	
         lastName = null;
         foreName = null;
         initials = null;
@@ -1013,25 +1053,22 @@ public class CassandraLoader extends DefaultHandler {
     }
     
     public void processGrant() {
-        if (!load)
-            return;
-
-        PreparedStatement stmt;
-        try {
-            stmt = conn.prepareStatement("insert into medline10.grant values (?,?,?,?,?,?)");
-            stmt.setInt(1, pmid);
-            stmt.setInt(2, ++grantSeqNum);
-            stmt.setString(3, grantID);
-            stmt.setString(4, grantAcronym);
-            stmt.setString(5, grantAgency);
-            stmt.setString(6, grantCountry);
-            stmt.executeUpdate();
-            stmt.close();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
         
+    	String colFamily = "Grant";
+    	if (get(grantID, colFamily, "grantAcronym") == null) {
+    		if (grantAcronym != null)
+                insert(grantID, colFamily,"grantAcronym",grantAcronym);
+    		if (grantAgency != null)
+                insert(grantID, colFamily,"grantAgency",grantAgency);
+    		if (grantCountry != null)
+                insert(grantID, colFamily,"grantCountry",grantCountry);
+            
+	    }
+    	insert(grantID,"PubsByGrant", ""+pmid, "1");
+    	insert(""+pmid,"GrantsByPub",grantID, "1");
+    	
+    	
+    	
         grantID = null;
         grantAcronym = null;
         grantAgency = null;
@@ -1081,45 +1118,36 @@ public class CassandraLoader extends DefaultHandler {
     }
     
     public void processKeyword() {
-        if (!load)
-            return;
-
-        PreparedStatement stmt;
-        try {
-            stmt = conn.prepareStatement("insert into keyword values (?,?,?,?)");
-            stmt.setInt(1, pmid);
-            stmt.setInt(2, ++keywordSeqNum);
-            stmt.setString(3, keyword);
-            stmt.setBoolean(4, majorKeyword);
-            stmt.executeUpdate();
-            stmt.close();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    	String colFamily = "Keyword";
+    	if (get(keyword, colFamily, "keyword") == null) {
+    		if (keyword != null)
+                insert(keyword, colFamily,"keyword",keyword);
+            insert(keyword, colFamily,"majorKeyword",Boolean.toString(majorKeyword));
+            
+	    }
+    	insert(keyword.substring(0,1).toLowerCase(),"AlphaByKeyword", keyword, "1");
+    	insert(keyword,"PubsByKeyword", ""+pmid, "1");
+    	
+    	
         
         keyword = null;
         majorKeyword = false;
     }
     
     public void processMeshHeading() {
-        if (!load)
-            return;
+    	String colFamily = "Mesh";
+    	if (get(meshName, colFamily, "meshName") == null) {
+    		if (meshName != null)
+                insert(meshName, colFamily,"meshName",meshName);
+            insert(meshName, colFamily,"majorMESH",Boolean.toString(majorMESH));
+            
+	    }
+		if (meshName != null) {
 
-        PreparedStatement stmt;
-        try {
-            stmt = conn.prepareStatement("insert into mesh_heading values (?,?,?,?)");
-            stmt.setInt(1, pmid);
-            stmt.setInt(2, ++meshSeqNum);
-            stmt.setString(3, meshName);
-            stmt.setBoolean(4, majorMESH);
-            stmt.executeUpdate();
-            stmt.close();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
+	    	insert(meshName.substring(0,1).toLowerCase(),"AlphaByMESH", meshName, "1");
+	    	insert(meshName,"PubsByMESH", ""+pmid, "1");
+		}
+    	
         meshName = null;
         majorMESH = false;
         qualSeqNum = 0;
@@ -1535,5 +1563,24 @@ public class CassandraLoader extends DefaultHandler {
             System.out.print("\"\n");
         }
     }
+    
+    
+    public void insert(final String key, final String columnFamilyName, final String columnName, final String value) {
+        createMutator(keyspace, serializer).insert(
+            key, columnFamilyName, createColumn(columnName, value, serializer, serializer));
+
+   }
+   
+   
+   public String get(final String key,  final String columnFamilyName, final String columnName) throws HectorException {
+	    ColumnQuery<String, String, String> q = HFactory.createColumnQuery(keyspace,
+	        serializer, serializer, serializer);
+	    QueryResult<HColumn<String, String>> r = q.setKey(key).
+	        setName(columnName).
+	        setColumnFamily(columnFamilyName).
+	        execute();
+	    HColumn<String, String> c = r.get();
+	    return c != null ? c.getValue() : null;
+	  }
     
 }

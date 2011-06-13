@@ -17,7 +17,7 @@
        ">
 <bean id="cassandraHostConfigurator"
     class="me.prettyprint.cassandra.service.CassandraHostConfigurator">
-    <constructor-arg value="localhost:9260"/>
+    <constructor-arg value="tsunami.icts.uiowa.edu:9160"/>
 </bean>
 <bean id="cluster" class="me.prettyprint.cassandra.service.ThriftCluster">
     <constructor-arg value="Test Cluster"/>
@@ -29,8 +29,7 @@
     <constructor-arg ref="cluster"/>
 </bean>
 
-<bean id="articleCassandraDao" class="me.prettyprint.cassandra.dao.SimpleCassandraDao">
+<bean id="cassandraDao" class="me.prettyprint.cassandra.dao.SimpleCassandraDao">
     <property name="keyspace" ref="keyspace"/>
-    <property name="columnFamilyName" value="Article"/>
 </bean>
 </beans>

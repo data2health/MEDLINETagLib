@@ -174,6 +174,34 @@
 		      <target>1.6</target>
 		  </configuration>
     </plugin>
+     <plugin>
+      <artifactId>maven-dependency-plugin</artifactId>
+          <executions>
+              <execution>
+                  <phase>install</phase>
+                  <goals>
+                      <goal>copy-dependencies</goal>
+                  </goals>
+                  <configuration>
+                      <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                  </configuration>
+              </execution>
+          </executions>
+  </plugin>
+    
+    <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+        <archive>
+          <manifest>
+            <mainClass>edu.uiowa.medline.CassandraLoader</mainClass>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+          </manifest>
+          </archive>
+          </configuration>
+      </plugin>
       </plugins>
 	</build>
 </project>
