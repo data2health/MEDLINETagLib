@@ -105,7 +105,24 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
 
 
       try {
+            //run count query  
             int webapp_keySeq = 1;
+            stat = getConnection().prepareStatement("SELECT count(*) from " + generateFromClause() + " where 1=1"
+                                                        + generateJoinCriteria()
+                                                        + (pmid == 0 ? "" : " and pmid = ?")
+                                                        + (seqnum == 0 ? "" : " and seqnum = ?")
+                                                        +  generateLimitCriteria());
+            if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);
+            if (seqnum != 0) stat.setInt(webapp_keySeq++, seqnum);
+            rs = stat.executeQuery();
+
+            if (rs.next()) {
+                pageContext.setAttribute(var+"Total", rs.getInt(1));
+            }
+
+
+            //run select id query  
+            webapp_keySeq = 1;
             stat = getConnection().prepareStatement("SELECT medline11.accession.pmid, medline11.accession.seqnum, medline11.accession.accnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")

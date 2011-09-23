@@ -59,7 +59,7 @@ public class Abstr extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Abstr from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select abstract,label,category from medline11.abstract where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select abstract_text,label,category from medline11.abstr where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -91,7 +91,7 @@ public class Abstr extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline11.abstract set abstract = ?, label = ?, category = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline11.abstr set abstract_text = ?, label = ?, category = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,abstractText);
 				stmt.setString(2,label);
 				stmt.setString(3,category);
@@ -123,7 +123,7 @@ public class Abstr extends MEDLINETagLibTagSupport {
 				label = "";
 			if (category == null)
 				category = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline11.abstract(pmid,seqnum,abstract,label,category) values (?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline11.abstr(pmid,seqnum,abstract_text,label,category) values (?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,abstractText);
