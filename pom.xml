@@ -79,6 +79,11 @@
   	<type>jar</type>
   	<scope>compile</scope>
   </dependency>
+  <dependency>
+  	<groupId>edu.uiowa.icts.taglib</groupId>
+  	<artifactId>LokiTagLib</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </dependency>
   </dependencies>
 	<build>
 	  	<plugins>
