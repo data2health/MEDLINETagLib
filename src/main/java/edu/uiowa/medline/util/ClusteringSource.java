@@ -19,10 +19,20 @@ import edu.uiowa.loki.clustering.Instance;
 import edu.uiowa.loki.clustering.Author;
 import edu.uiowa.loki.clustering.Cluster;
 import edu.uiowa.loki.clustering.ExternalSource;
+import edu.uiowa.loki.clustering.Linkage;
 
 public class ClusteringSource extends ExternalSource {
 
     Hashtable<String, Instance> pmidHash = new Hashtable<String, Instance>();
+    
+    public ClusteringSource() {
+    	super();
+    	idHash = pmidHash;
+    }
+    
+    public Hashtable<String, Instance> instantiateIDHash() {
+    	return pmidHash;
+    }
 
     public void generateClusters(Vector<Cluster> clusters, Author author) {
     	try {
@@ -79,6 +89,7 @@ public class ClusteringSource extends ExternalSource {
             theInstance.setPmid(pmid);
             theInstance.setYear(year);
             theInstance.setTitle(title);
+            theInstance.getLinkages().add(new Linkage(sid,pmid));
             pmidHash.put(""+pmid, theInstance);
             
             PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline11.author where pmid = ? order by 1,2");
