@@ -9,8 +9,8 @@
   <description>Medline11 Schema Support</description>
   <url>http://www.icts.uiowa.edu/confluence/display/apps/MEDLINETagLib</url>
   <scm>
-  	<connection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/branches/maven/</connection>
-  	<developerConnection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/branches/maven/</developerConnection>
+  	<connection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/trunk</connection>
+  	<developerConnection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/trunk</developerConnection>
   	<url>https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib</url>
   </scm>
 <distributionManagement>
@@ -59,13 +59,6 @@
     <version>1.1.1</version>
 </dependency>	
   <dependency>
-  	<groupId>edu.uiowa.icts.plugin</groupId>
-  	<artifactId>protogen-plugin</artifactId>
-  	<version>0.0.7-SNAPSHOT</version>
-  	<type>jar</type>
-  	<scope>compile</scope>
-  </dependency>
-  <dependency>
   	<groupId>jaxen</groupId>
   	<artifactId>jaxen</artifactId>
   	<version>1.1.1</version>
@@ -85,7 +78,7 @@
      	     <plugin>
 		<groupId>edu.uiowa.icts.plugin</groupId>
 		<artifactId>protogen-plugin</artifactId>
-		<version>0.0.7-SNAPSHOT</version>
+		<version>0.0.7</version>
         <configuration>
 		<props>
 		 <property><name>generator.enabled</name><value>true</value></property>
