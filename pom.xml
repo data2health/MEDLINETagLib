@@ -3,15 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.uiowa.icts.taglib</groupId>
   <artifactId>MEDLINETagLib</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.2</version>
   <name>MEDLINETagLib</name>
   
   <description>Medline11 Schema Support</description>
   <url>http://www.icts.uiowa.edu/confluence/display/apps/MEDLINETagLib</url>
   <scm>
-  	<connection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/trunk</connection>
-  	<developerConnection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/trunk</developerConnection>
-  	<url>https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib</url>
+  	<connection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/tags/MEDLINETagLib-0.0.2</connection>
+  	<developerConnection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/tags/MEDLINETagLib-0.0.2</developerConnection>
+  	<url>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/tags/MEDLINETagLib-0.0.2</url>
   </scm>
 <distributionManagement>
     <repository>
