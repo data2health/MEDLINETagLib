@@ -77,14 +77,14 @@ public class ClusteringSource extends ExternalSource {
             
 			if (year == 0) {
 				Matcher medDateMatcher = medDatePattern.matcher(medlineDate);
-				logger.info("medlineDate: " + medlineDate);
+				logger.debug("medlineDate: " + medlineDate);
 				if (medDateMatcher.find()) {
 					year = Integer.parseInt(medDateMatcher.group(1));
-					logger.info("\tyear: " + year);
+					logger.debug("\tyear: " + year);
 				}
 			}
             
-            logger.info("\tpmid: " + pmid + "\tyear: " + year + "\ttitle: " + title);
+            logger.debug("\tpmid: " + pmid + "\tyear: " + year + "\ttitle: " + title);
             Instance theInstance = new Instance();
             theInstance.setPmid(pmid);
             theInstance.setYear(year);
@@ -100,7 +100,7 @@ public class ClusteringSource extends ExternalSource {
                 String fname = ars.getString(2);
                 String initials = ars.getString(3);
                 if (!(author.getLastName().equals(lname) && author.getForeName().equals(fname))) {
-                	logger.info("\t\tauthor: " + lname + " " + fname);
+                	logger.debug("\t\tauthor: " + lname + " " + fname);
                     theInstance.getAuthors().addElement(lname + " " + initials);
                 }
             }
