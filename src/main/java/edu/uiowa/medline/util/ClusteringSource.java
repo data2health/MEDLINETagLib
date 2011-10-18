@@ -33,6 +33,26 @@ public class ClusteringSource extends ExternalSource {
     public Hashtable<String, Instance> instantiateIDHash() {
     	return pmidHash;
     }
+    
+    private Connection getConnection() throws NamingException, SQLException, ClassNotFoundException {
+		Connection theConnection = null;
+
+		if (tomcat) {
+	    	DataSource theDataSource = (DataSource)new InitialContext().lookup("java:/comp/env/jdbc/MEDLINETagLib");
+	    	theConnection = theDataSource.getConnection();
+	    } else {
+	        Class.forName("org.postgresql.Driver");
+			Properties props = new Properties();
+			props.setProperty("user", "eichmann");
+			props.setProperty("password", "translational");
+			props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
+			props.setProperty("ssl", "true");
+			theConnection = DriverManager.getConnection("jdbc:postgresql://neuromancer.icts.uiowa.edu/bioinformatics", props);
+	    	
+	    }
+		
+		return theConnection;
+    }
 
     public void generateClusters(Vector<Cluster> clusters, Author author) {
     	try {
@@ -50,20 +70,7 @@ public class ClusteringSource extends ExternalSource {
     void cluster(Vector<Cluster> clusters, Author author) throws NamingException, SQLException, ClassNotFoundException {
 		logger.debug(label + " clustering: " + author);
 
-		Connection theConnection = null;
-	    if (tomcat) {
-	    	DataSource theDataSource = (DataSource)new InitialContext().lookup("java:/comp/env/jdbc/MEDLINETagLib");
-	    	theConnection = theDataSource.getConnection();
-	    } else {
-	        Class.forName("org.postgresql.Driver");
-			Properties props = new Properties();
-			props.setProperty("user", "eichmann");
-			props.setProperty("password", "translational");
-			props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
-			props.setProperty("ssl", "true");
-			theConnection = DriverManager.getConnection("jdbc:postgresql://neuromancer.icts.uiowa.edu/bioinformatics", props);
-	    	
-	    }
+		Connection theConnection = getConnection();
 		Pattern medDatePattern = Pattern.compile("^([0-9][0-9][0-9][0-9])(-[0-9][0-9][0-9][0-9])? ?.*");
         PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline11.author,medline11.journal, medline11.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
         stmt.setString(1,author.getLastName());
@@ -123,5 +130,32 @@ public class ClusteringSource extends ExternalSource {
         stmt.close();
         theConnection.close();
     }
+
+    public String authorString(int pmid) {
+        StringBuffer authorBuffer = new StringBuffer();
+
+        try {
+            Connection theConnection = getConnection();
+			int count = 0;
+			PreparedStatement loadStmt = getConnection().prepareStatement("select last_name,fore_name from medline11.author where pmid = ? order by seqnum");
+			loadStmt.setInt(1,pmid);
+			ResultSet lrs = loadStmt.executeQuery();
+			while (lrs.next()) {
+			    String lastName = lrs.getString(1);
+			    String foreName = lrs.getString(2);
+			    authorBuffer.append((count++ > 0 ? ", " : "") + lastName + ", " + foreName);
+			}
+			loadStmt.close();
+			authorBuffer.append(".");
+			
+			theConnection.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+        return authorBuffer.toString();
+    }
+
 
 }
