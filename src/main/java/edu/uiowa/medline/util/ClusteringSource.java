@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 import javax.sql.DataSource;
 
 import edu.uiowa.loki.clustering.Instance;
@@ -20,10 +22,13 @@ import edu.uiowa.loki.clustering.Author;
 import edu.uiowa.loki.clustering.Cluster;
 import edu.uiowa.loki.clustering.ExternalSource;
 import edu.uiowa.loki.clustering.Linkage;
+import edu.uiowa.medline.article.Article;
+import edu.uiowa.medline.journal.Journal;
 
 public class ClusteringSource extends ExternalSource {
 
     Hashtable<String, Instance> pmidHash = new Hashtable<String, Instance>();
+	Pattern medDatePattern = Pattern.compile("^([0-9][0-9][0-9][0-9])(-[0-9][0-9][0-9][0-9])? ?.*");
     
     public ClusteringSource() {
     	super();
@@ -157,5 +162,81 @@ public class ClusteringSource extends ExternalSource {
         return authorBuffer.toString();
     }
 
+    public String citationString(int pmid) {
+        String citationString = "";
+    	return null;
+    }
+    
+    public String hyperlinkedCitationString(int pmid, String hrefPrefix) {
+        String citationString = "";
+        int year = 0;
 
+		try {
+			Article theArticle = new Article();
+			theArticle.setPmid(pmid);
+			theArticle.doStartTag();
+			Journal theJournal = new Journal();
+			theJournal.setParent(theArticle);
+			theJournal.doStartTag();
+			year = theJournal.getPubYear();
+			
+			if (year == 0) {
+				Matcher medDateMatcher = medDatePattern.matcher(theJournal.getMedlineDate());
+				logger.info("medlineDate: " + theJournal.getMedlineDate());
+				if (medDateMatcher.find()) {
+					year = Integer.parseInt(medDateMatcher.group(1));
+					logger.info("\tyear: " + year);
+				}
+			}
+			
+			citationString = authorString(pmid)
+					+ " <a href=\"" + hrefPrefix + "?id="
+					+ theArticle.getPmid() + "\">" + theArticle.getTitle()
+					+ "</a> <i>" + theArticle.getTa() + "</i> "
+					+ theJournal.getVolume() + "(" + theJournal.getIssue()
+					+ "):" + theArticle.getMedlinePgn() + ", "
+					+ year + ".";
+			theJournal.freeConnection();
+			theArticle.freeConnection();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JspTagException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JspException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return citationString;
+    }
+
+    public int publicationYear(int pmid) {
+        int year = 0;
+
+		try {
+			Article theArticle = new Article();
+			theArticle.setPmid(pmid);
+			theArticle.doStartTag();
+			Journal theJournal = new Journal();
+			theJournal.setParent(theArticle);
+			theJournal.doStartTag();
+			year = theJournal.getPubYear();
+
+			theJournal.freeConnection();
+			theArticle.freeConnection();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JspTagException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JspException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return year;
+    }
 }
