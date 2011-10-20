@@ -224,6 +224,15 @@ public class ClusteringSource extends ExternalSource {
 			theJournal.doStartTag();
 			year = theJournal.getPubYear();
 
+			if (year == 0) {
+				Matcher medDateMatcher = medDatePattern.matcher(theJournal.getMedlineDate());
+				logger.info("medlineDate: " + theJournal.getMedlineDate());
+				if (medDateMatcher.find()) {
+					year = Integer.parseInt(medDateMatcher.group(1));
+					logger.info("\tyear: " + year);
+				}
+			}
+			
 			theJournal.freeConnection();
 			theArticle.freeConnection();
 		} catch (NumberFormatException e) {
