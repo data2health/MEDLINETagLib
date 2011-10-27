@@ -135,6 +135,62 @@ public class ClusteringSource extends ExternalSource {
         stmt.close();
         theConnection.close();
     }
+    
+    public int getAuthorCountCount() {
+    	int count = 0;
+    	
+		try {
+			PreparedStatement stat = getConnection().prepareStatement("SELECT count(*) from medline11.author_count");
+
+			ResultSet crs = stat.executeQuery();
+
+			if (crs.next()) {
+				count = crs.getInt(1);
+			}
+			stat.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    	
+    	return count;
+    }
+    
+	public boolean authorCountExists(String lastName, String foreName) {
+		int count = 0;
+
+		try {
+			PreparedStatement stat = getConnection().prepareStatement("SELECT count(*) from medline11.author_count where"
+																		+ " last_name = ?" + " and fore_name = ?");
+
+			stat.setString(1, lastName);
+			stat.setString(2, foreName);
+			ResultSet crs = stat.executeQuery();
+
+			if (crs.next()) {
+				count = crs.getInt(1);
+			}
+			stat.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return count > 0;
+	}
 
     public String authorString(int pmid) {
         StringBuffer authorBuffer = new StringBuffer();
