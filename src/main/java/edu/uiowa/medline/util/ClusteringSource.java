@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.Properties;
+import java.util.Set;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -192,6 +193,57 @@ public class ClusteringSource extends ExternalSource {
 		return count > 0;
 	}
 
+	public void getAuthorNames(String lastName, String foreNamePrefix, Vector<Author> authors) {
+        try {
+            PreparedStatement stat = getConnection().prepareStatement("select last_name, fore_name from medline11.author_count where last_name = ? and fore_name ~ ? order by last_name,fore_name");
+            stat.setString(1, lastName.substring(0, 1).toUpperCase() + lastName.substring(1));
+            stat.setString(2, "^" + foreNamePrefix.substring(0, 1).toUpperCase() + foreNamePrefix.substring(1));
+
+            ResultSet rs = stat.executeQuery();
+            while (rs.next()) {
+                String lName = rs.getString(1);
+                String fName = rs.getString(2);
+                addAuthor(authors, lName, fName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+//            freeConnection();
+        }
+		
+	}
+	
+	public void getIDs(String lastName, String foreName, Set<Integer> ids) {
+        try {
+            PreparedStatement stat = getConnection().prepareStatement("select pmid from medline11.author where last_name = ? and fore_name = ?");
+            stat.setString(1, lastName);
+            stat.setString(2, foreName);
+
+            ResultSet rs = stat.executeQuery();
+            while (rs.next()) {
+                int ID = rs.getInt(1);
+                ids.add(ID);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+//            freeConnection();
+        }
+		
+	}
+	
     public String authorString(int pmid) {
         StringBuffer authorBuffer = new StringBuffer();
 
