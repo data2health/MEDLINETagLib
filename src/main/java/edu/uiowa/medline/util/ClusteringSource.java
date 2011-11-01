@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Properties;
 import java.util.Set;
@@ -18,6 +19,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.sql.DataSource;
 
+import edu.uiowa.loki.authors.Authors;
 import edu.uiowa.loki.clustering.Instance;
 import edu.uiowa.loki.clustering.Author;
 import edu.uiowa.loki.clustering.Cluster;
@@ -356,4 +358,68 @@ public class ClusteringSource extends ExternalSource {
 
 		return year;
     }
+
+	public void getInstanceInformation(Instance theInstance) {
+		if (theInstance.getYear() > 0 && theInstance.getTitle() != null && theInstance.getAuthors().size() > 0)
+			return;
+		
+		int pmid = getPMIDbyInstance(theInstance);
+	
+		Connection theConnection = getConnection();
+		Pattern medDatePattern = Pattern.compile("^([0-9][0-9][0-9][0-9])(-[0-9][0-9][0-9][0-9])? ?.*");
+        PreparedStatement stmt = theConnection.prepareStatement("select pub_year,article.title,medline_date from medline11.journal, medline11.article where journal.pmid=article.pmid and article.pmid = ?");
+        stmt.setInt(1,pmid);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            int year = rs.getInt(1);
+            String title = rs.getString(2);
+            String medlineDate = rs.getString(3);
+            
+			if (year == 0) {
+				Matcher medDateMatcher = medDatePattern.matcher(medlineDate);
+				logger.debug("medlineDate: " + medlineDate);
+				if (medDateMatcher.find()) {
+					year = Integer.parseInt(medDateMatcher.group(1));
+					logger.debug("\tyear: " + year);
+				}
+			}
+            
+            logger.debug("\tpmid: " + pmid + "\tyear: " + year + "\ttitle: " + title);
+            if (theInstance.getYear() == 0)
+            	theInstance.setYear(year);
+            if (theInstance.getTitle() == null)
+            	theInstance.setTitle(title);
+            pmidHash.put(""+pmid, theInstance);
+            
+            PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline11.author where pmid = ? order by 1,2");
+            authStmt.setInt(1, pmid);
+            ResultSet ars = authStmt.executeQuery();
+            while (ars.next()) {
+                String lname = ars.getString(1);
+                String fname = ars.getString(2);
+                String initials = ars.getString(3);
+                if (!(author.getLastName().equals(lname) && author.getForeName().equals(fname))) {
+                	logger.debug("\t\tauthor: " + lname + " " + fname);
+                    theInstance.getAuthors().addElement(lname + " " + initials);
+                }
+            }
+            authStmt.close();
+        }
+        stmt.close();
+        theConnection.close();
+	}
+	
+	private int getPMIDbyInstance(Instance theInstance) {
+		int pmid = 0;
+	
+		Enumeration<Linkage> linkEnum = theInstance.getLinkages().elements();
+		while (linkEnum.hasMoreElements()) {
+			Linkage theLinkage = linkEnum.nextElement();
+			if (theLinkage.getSource_id() == sid)
+				pmid = theLinkage.getPub_id();
+		}
+		
+		return pmid;
+	}
+	
 }
