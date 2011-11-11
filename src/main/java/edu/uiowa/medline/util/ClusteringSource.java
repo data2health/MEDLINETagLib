@@ -75,9 +75,10 @@ public class ClusteringSource extends ExternalSource {
     
     void cluster(Vector<Cluster> clusters, Author author) throws NamingException, SQLException, ClassNotFoundException {
 		logger.debug(label + " clustering: " + author);
+		Hashtable<String,Instance> pmidHash = parentClusterer.getSourceIDHashByLabel("MEDLINE");
+		
 
 		Connection theConnection = getConnection();
-		Pattern medDatePattern = Pattern.compile("^([0-9][0-9][0-9][0-9])(-[0-9][0-9][0-9][0-9])? ?.*");
         PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline11.author,medline11.journal, medline11.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
         stmt.setString(1,author.getLastName());
         stmt.setString(2,author.getForeName());
@@ -97,6 +98,11 @@ public class ClusteringSource extends ExternalSource {
 				}
 			}
             
+			if (pmidHash.containsKey(""+pmid)) {
+	            logger.debug("\tskipping already present pmid: " + pmid + "\tyear: " + year + "\ttitle: " + title);
+				continue;
+			}
+			
             logger.debug("\tpmid: " + pmid + "\tyear: " + year + "\ttitle: " + title);
             Instance theInstance = new Instance();
             theInstance.setPmid(pmid);
@@ -363,6 +369,7 @@ public class ClusteringSource extends ExternalSource {
 			return;
 		
 		int pmid = getIDbyInstance(theInstance);
+		Hashtable<String,Instance> pmidHash = parentClusterer.getSourceIDHashByLabel("MEDLINE");
 	
 		try {
 			Connection theConnection = getConnection();
