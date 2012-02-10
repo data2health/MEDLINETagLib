@@ -26,6 +26,7 @@ import org.apache.lucene.store.LockObtainFailedException;
 public class LuceneIndex {
     static Logger logger = Logger.getLogger(LuceneIndex.class);
 	static boolean tomcat = false;
+	static boolean local = true;
 	static String lucenePath = "MEDLINEIndex";
 	static boolean truncate = true;
 
@@ -148,6 +149,12 @@ public class LuceneIndex {
 		if (tomcat) {
 	    	DataSource theDataSource = (DataSource)new InitialContext().lookup("java:/comp/env/jdbc/MEDLINETagLib");
 	    	theConnection = theDataSource.getConnection();
+	    } else if (local) {
+	        Class.forName("org.postgresql.Driver");
+			Properties props = new Properties();
+			props.setProperty("user", "eichmann");
+			props.setProperty("password", "translational");
+			theConnection = DriverManager.getConnection("jdbc:postgresql://localhost/loki", props);	    	
 	    } else {
 	        Class.forName("org.postgresql.Driver");
 			Properties props = new Properties();
@@ -156,7 +163,6 @@ public class LuceneIndex {
 			props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
 			props.setProperty("ssl", "true");
 			theConnection = DriverManager.getConnection("jdbc:postgresql://neuromancer.icts.uiowa.edu/bioinformatics", props);
-	    	
 	    }
 		
 		return theConnection;
