@@ -33,6 +33,7 @@ src/main/java/edu/uiowa/medline/accession/AccessionPmid.java svneol=native#text/
 src/main/java/edu/uiowa/medline/accession/AccessionSeqnum.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/article/Article.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/article/ArticleAffiliation.java svneol=native#text/x-java-source
+src/main/java/edu/uiowa/medline/article/ArticleByAuthorIterator.java -text
 src/main/java/edu/uiowa/medline/article/ArticleCopyright.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/article/ArticleCountry.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/article/ArticleDateCompleted.java svneol=native#text/x-java-source
@@ -56,6 +57,7 @@ src/main/java/edu/uiowa/medline/article/ArticleStatus.java svneol=native#text/x-
 src/main/java/edu/uiowa/medline/article/ArticleTa.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/article/ArticleTitle.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/article/ArticleVernacularTitle.java svneol=native#text/x-java-source
+src/main/java/edu/uiowa/medline/article/AuthorCountIterator.java -text
 src/main/java/edu/uiowa/medline/article/AuthorListForArticle.java -text
 src/main/java/edu/uiowa/medline/article/HTMLFormattedArticle.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/articleDate/ArticleDate.java svneol=native#text/x-java-source
@@ -107,6 +109,8 @@ src/main/java/edu/uiowa/medline/clusterDocument/ClusterDocumentDeleter.java svne
 src/main/java/edu/uiowa/medline/clusterDocument/ClusterDocumentIterator.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/clusterDocument/ClusterDocumentPmid.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/clusterDocument/ClusterDocumentSet.java -text
+src/main/java/edu/uiowa/medline/commentsCorrections/CitationByIterator.java -text
+src/main/java/edu/uiowa/medline/commentsCorrections/CitationIterator.java -text
 src/main/java/edu/uiowa/medline/commentsCorrections/CommentsCorrections.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/commentsCorrections/CommentsCorrectionsDeleter.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/commentsCorrections/CommentsCorrectionsIterator.java svneol=native#text/x-java-source

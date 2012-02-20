@@ -1,4 +1,40 @@
 	<function>
+		<name>authorArticleCount</name>
+		<function-class>edu.uiowa.medline.article.ArticleByAuthorIterator</function-class>
+		<function-signature>java.lang.String authorArticleCount(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>authorHasArticles</name>
+		<function-class>edu.uiowa.medline.article.ArticleByAuthorIterator</function-class>
+		<function-signature>java.lang.String authorHasArticles(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleCitationCount</name>
+		<function-class>edu.uiowa.medline.commentsCorrections.CitationIterator</function-class>
+		<function-signature>java.lang.String citationCount(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasCitedArticles</name>
+		<function-class>edu.uiowa.medline.commentsCorrections.CitationIterator</function-class>
+		<function-signature>java.lang.String articleHasCitedArticles(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleCitationByCount</name>
+		<function-class>edu.uiowa.medline.commentsCorrections.CitationByIterator</function-class>
+		<function-signature>java.lang.String citationByCount(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasCitingArticles</name>
+		<function-class>edu.uiowa.medline.commentsCorrections.CitationByIterator</function-class>
+		<function-signature>java.lang.String articleHasCitingArticles(java.lang.String)</function-signature>
+	</function>
+
+	<function>
 		<name>authorCountPatternCount</name>
 		<function-class>edu.uiowa.medline.authorCount.AuthorCountPatternIterator</function-class>
 		<function-signature>java.lang.String authorCountCount()</function-signature>

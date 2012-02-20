@@ -4308,6 +4308,156 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+
+		<attribute>
+			<name>targetPage</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachArticleByAuthor</name>
+		<tag-class>edu.uiowa.medline.article.ArticleByAuthorIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>lastName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>foreName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>year</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachCitedArticle</name>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CitationIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachAuthorEntryCount</name>
+		<tag-class>edu.uiowa.medline.article.AuthorCountIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>lastName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>foreName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>year</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachCitingArticle</name>
+		<tag-class>edu.uiowa.medline.commentsCorrections.CitationByIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 
 	<tag>
@@ -5905,6 +6055,42 @@
 		<name>clusterDocumentPmidValue</name>
 		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocument</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
+	</function>
+
+	<function>
+		<name>authorArticleCount</name>
+		<function-class>edu.uiowa.medline.article.ArticleByAuthorIterator</function-class>
+		<function-signature>java.lang.String authorArticleCount(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>authorHasArticles</name>
+		<function-class>edu.uiowa.medline.article.ArticleByAuthorIterator</function-class>
+		<function-signature>java.lang.String authorHasArticles(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleCitationCount</name>
+		<function-class>edu.uiowa.medline.commentsCorrections.CitationIterator</function-class>
+		<function-signature>java.lang.String citationCount(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasCitedArticles</name>
+		<function-class>edu.uiowa.medline.commentsCorrections.CitationIterator</function-class>
+		<function-signature>java.lang.String articleHasCitedArticles(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleCitationByCount</name>
+		<function-class>edu.uiowa.medline.commentsCorrections.CitationByIterator</function-class>
+		<function-signature>java.lang.String citationByCount(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasCitingArticles</name>
+		<function-class>edu.uiowa.medline.commentsCorrections.CitationByIterator</function-class>
+		<function-signature>java.lang.String articleHasCitingArticles(java.lang.String)</function-signature>
 	</function>
 
 	<function>
