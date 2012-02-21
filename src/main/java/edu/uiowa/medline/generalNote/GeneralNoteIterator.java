@@ -38,7 +38,7 @@ public class GeneralNoteIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		GeneralNoteIterator theIterator = new GeneralNoteIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.general_note where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.general_note where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -66,7 +66,7 @@ public class GeneralNoteIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		GeneralNoteIterator theIterator = new GeneralNoteIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.general_note where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.general_note where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -116,7 +116,7 @@ public class GeneralNoteIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline11.general_note.pmid, medline11.general_note.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline12.general_note.pmid, medline12.general_note.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -140,7 +140,7 @@ public class GeneralNoteIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline11.general_note");
+       StringBuffer theBuffer = new StringBuffer("medline12.general_note");
       return theBuffer.toString();
     }
 

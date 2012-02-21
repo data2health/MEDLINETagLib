@@ -58,7 +58,7 @@ public class GeneralNote extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a GeneralNote from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select note,owner from medline11.general_note where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select note,owner from medline12.general_note where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -88,7 +88,7 @@ public class GeneralNote extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline11.general_note set note = ?, owner = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline12.general_note set note = ?, owner = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,note);
 				stmt.setString(2,owner);
 				stmt.setInt(3,pmid);
@@ -117,7 +117,7 @@ public class GeneralNote extends MEDLINETagLibTagSupport {
 				note = "";
 			if (owner == null)
 				owner = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline11.general_note(pmid,seqnum,note,owner) values (?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.general_note(pmid,seqnum,note,owner) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,note);

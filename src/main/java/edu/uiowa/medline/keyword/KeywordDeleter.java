@@ -42,7 +42,7 @@ public class KeywordDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline11.keyword where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline12.keyword where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
                                                         );

@@ -38,7 +38,7 @@ public class ElocationIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		ElocationIterator theIterator = new ElocationIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.elocation where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.elocation where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -66,7 +66,7 @@ public class ElocationIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		ElocationIterator theIterator = new ElocationIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.elocation where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.elocation where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -116,7 +116,7 @@ public class ElocationIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline11.elocation.pmid, medline11.elocation.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline12.elocation.pmid, medline12.elocation.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -140,7 +140,7 @@ public class ElocationIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline11.elocation");
+       StringBuffer theBuffer = new StringBuffer("medline12.elocation");
       return theBuffer.toString();
     }
 

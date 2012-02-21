@@ -44,7 +44,7 @@ public class OtherAbstractTextDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline11.other_abstract_text where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline12.other_abstract_text where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
                                                         + (tnum == 0 ? "" : " and tnum = ?")

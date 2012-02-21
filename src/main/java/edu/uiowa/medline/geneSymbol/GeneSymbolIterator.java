@@ -37,7 +37,7 @@ public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		GeneSymbolIterator theIterator = new GeneSymbolIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.gene_symbol where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.gene_symbol where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -65,7 +65,7 @@ public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		GeneSymbolIterator theIterator = new GeneSymbolIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.gene_symbol where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.gene_symbol where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -115,7 +115,7 @@ public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline11.gene_symbol.pmid, medline11.gene_symbol.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline12.gene_symbol.pmid, medline12.gene_symbol.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -139,7 +139,7 @@ public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline11.gene_symbol");
+       StringBuffer theBuffer = new StringBuffer("medline12.gene_symbol");
       return theBuffer.toString();
     }
 

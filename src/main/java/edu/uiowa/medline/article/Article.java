@@ -64,7 +64,7 @@ public class Article extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or pmid was provided as an attribute - we need to load a Article from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select date_created,date_completed,date_revised,title,start_page,end_page,medline_pgn,copyright,affiliation,vernacular_title,country,ta,nlm_unique_id,issn_linking,reference_count,pub_model,status from medline11.article where pmid = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select date_created,date_completed,date_revised,title,start_page,end_page,medline_pgn,copyright,affiliation,vernacular_title,country,ta,nlm_unique_id,issn_linking,reference_count,pub_model,status from medline12.article where pmid = ?");
 				stmt.setInt(1,pmid);
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
@@ -123,7 +123,7 @@ public class Article extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline11.article set date_created = ?, date_completed = ?, date_revised = ?, title = ?, start_page = ?, end_page = ?, medline_pgn = ?, copyright = ?, affiliation = ?, vernacular_title = ?, country = ?, ta = ?, nlm_unique_id = ?, issn_linking = ?, reference_count = ?, pub_model = ?, status = ? where pmid = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline12.article set date_created = ?, date_completed = ?, date_revised = ?, title = ?, start_page = ?, end_page = ?, medline_pgn = ?, copyright = ?, affiliation = ?, vernacular_title = ?, country = ?, ta = ?, nlm_unique_id = ?, issn_linking = ?, reference_count = ?, pub_model = ?, status = ? where pmid = ?");
 				stmt.setDate(1,dateCreated == null ? null : new java.sql.Date(dateCreated.getTime()));
 				stmt.setDate(2,dateCompleted == null ? null : new java.sql.Date(dateCompleted.getTime()));
 				stmt.setDate(3,dateRevised == null ? null : new java.sql.Date(dateRevised.getTime()));
@@ -184,7 +184,7 @@ public class Article extends MEDLINETagLibTagSupport {
 				pubModel = "";
 			if (status == null)
 				status = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline11.article(pmid,date_created,date_completed,date_revised,title,start_page,end_page,medline_pgn,copyright,affiliation,vernacular_title,country,ta,nlm_unique_id,issn_linking,reference_count,pub_model,status) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.article(pmid,date_created,date_completed,date_revised,title,start_page,end_page,medline_pgn,copyright,affiliation,vernacular_title,country,ta,nlm_unique_id,issn_linking,reference_count,pub_model,status) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setDate(2,dateCreated == null ? null : new java.sql.Date(dateCreated.getTime()));
 			stmt.setDate(3,dateCompleted == null ? null : new java.sql.Date(dateCompleted.getTime()));

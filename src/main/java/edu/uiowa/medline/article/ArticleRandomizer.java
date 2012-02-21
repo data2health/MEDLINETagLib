@@ -27,7 +27,7 @@ public class ArticleRandomizer extends MEDLINETagLibBodyTagSupport {
 
         PreparedStatement stat;
         try {
-            stat = getConnection().prepareStatement("select pmid from medline11.article where pmid > RANDOM()*10000000000 order by pmid limit 1");
+            stat = getConnection().prepareStatement("select pmid from medline12.article where pmid > RANDOM()*10000000000 order by pmid limit 1");
             rs = stat.executeQuery();
 
             if (rs.next()) {

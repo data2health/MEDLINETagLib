@@ -37,7 +37,7 @@ public class DataBankIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		DataBankIterator theIterator = new DataBankIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.data_bank where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.data_bank where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -65,7 +65,7 @@ public class DataBankIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		DataBankIterator theIterator = new DataBankIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.data_bank where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.data_bank where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -115,7 +115,7 @@ public class DataBankIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline11.data_bank.pmid, medline11.data_bank.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline12.data_bank.pmid, medline12.data_bank.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -139,7 +139,7 @@ public class DataBankIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline11.data_bank");
+       StringBuffer theBuffer = new StringBuffer("medline12.data_bank");
       return theBuffer.toString();
     }
 

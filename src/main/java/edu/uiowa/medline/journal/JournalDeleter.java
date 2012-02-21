@@ -48,7 +48,7 @@ public class JournalDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline11.journal where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline12.journal where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         );
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);

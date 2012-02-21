@@ -59,7 +59,7 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a MeshHeading from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select descriptor_name,major,type from medline11.mesh_heading where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select descriptor_name,major,type from medline12.mesh_heading where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -91,7 +91,7 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline11.mesh_heading set descriptor_name = ?, major = ?, type = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline12.mesh_heading set descriptor_name = ?, major = ?, type = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,descriptorName);
 				stmt.setBoolean(2,major);
 				stmt.setString(3,type);
@@ -121,7 +121,7 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 				descriptorName = "";
 			if (type == null)
 				type = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline11.mesh_heading(pmid,seqnum,descriptor_name,major,type) values (?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.mesh_heading(pmid,seqnum,descriptor_name,major,type) values (?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,descriptorName);

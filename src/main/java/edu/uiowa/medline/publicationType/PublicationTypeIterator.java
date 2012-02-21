@@ -37,7 +37,7 @@ public class PublicationTypeIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		PublicationTypeIterator theIterator = new PublicationTypeIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.publication_type where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.publication_type where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -65,7 +65,7 @@ public class PublicationTypeIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		PublicationTypeIterator theIterator = new PublicationTypeIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.publication_type where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.publication_type where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -115,7 +115,7 @@ public class PublicationTypeIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline11.publication_type.pmid, medline11.publication_type.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline12.publication_type.pmid, medline12.publication_type.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -139,7 +139,7 @@ public class PublicationTypeIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline11.publication_type");
+       StringBuffer theBuffer = new StringBuffer("medline12.publication_type");
       return theBuffer.toString();
     }
 

@@ -52,7 +52,7 @@ public class ArticleIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		ArticleIterator theIterator = new ArticleIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.article"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.article"
 						);
 
 			ResultSet crs = stat.executeQuery();
@@ -74,7 +74,7 @@ public class ArticleIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		ArticleIterator theIterator = new ArticleIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.article where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.article where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -113,7 +113,7 @@ public class ArticleIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline11.article.pmid from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline12.article.pmid from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
             rs = stat.executeQuery();
@@ -134,7 +134,7 @@ public class ArticleIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline11.article");
+       StringBuffer theBuffer = new StringBuffer("medline12.article");
       return theBuffer.toString();
     }
 
