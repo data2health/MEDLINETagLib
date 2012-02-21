@@ -59,6 +59,7 @@ src/main/java/edu/uiowa/medline/article/ArticleTitle.java svneol=native#text/x-j
 src/main/java/edu/uiowa/medline/article/ArticleVernacularTitle.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/article/AuthorCountIterator.java -text
 src/main/java/edu/uiowa/medline/article/AuthorListForArticle.java -text
+src/main/java/edu/uiowa/medline/article/CoauthorCountIterator.java -text
 src/main/java/edu/uiowa/medline/article/HTMLFormattedArticle.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/articleDate/ArticleDate.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/articleDate/ArticleDateDay.java svneol=native#text/x-java-source
