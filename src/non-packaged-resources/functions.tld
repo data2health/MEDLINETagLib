@@ -23,6 +23,12 @@
 	</function>
 
 	<function>
+		<name>articleHasCoCitingArticles</name>
+		<function-class>edu.uiowa.medline.commentsCorrections.CoCitationIterator</function-class>
+		<function-signature>java.lang.String articleHasCoCitingArticles(java.lang.String)</function-signature>
+	</function>
+
+	<function>
 		<name>articleCitationByCount</name>
 		<function-class>edu.uiowa.medline.commentsCorrections.CitationByIterator</function-class>
 		<function-signature>java.lang.String citationByCount(java.lang.String)</function-signature>
