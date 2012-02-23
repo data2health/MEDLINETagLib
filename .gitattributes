@@ -112,6 +112,7 @@ src/main/java/edu/uiowa/medline/clusterDocument/ClusterDocumentPmid.java svneol=
 src/main/java/edu/uiowa/medline/clusterDocument/ClusterDocumentSet.java -text
 src/main/java/edu/uiowa/medline/commentsCorrections/CitationByIterator.java -text
 src/main/java/edu/uiowa/medline/commentsCorrections/CitationIterator.java -text
+src/main/java/edu/uiowa/medline/commentsCorrections/CoCitationIterator.java -text
 src/main/java/edu/uiowa/medline/commentsCorrections/CommentsCorrections.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/commentsCorrections/CommentsCorrectionsDeleter.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/commentsCorrections/CommentsCorrectionsIterator.java svneol=native#text/x-java-source
