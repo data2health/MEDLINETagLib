@@ -62,7 +62,7 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or tnum was provided as an attribute - we need to load a OtherAbstractText from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select abstract_text,label,category from medline11.other_abstract_text where pmid = ? and seqnum = ? and tnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select abstract_text,label,category from medline12.other_abstract_text where pmid = ? and seqnum = ? and tnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				stmt.setInt(3,tnum);
@@ -95,7 +95,7 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline11.other_abstract_text set abstract_text = ?, label = ?, category = ? where pmid = ? and seqnum = ? and tnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline12.other_abstract_text set abstract_text = ?, label = ?, category = ? where pmid = ? and seqnum = ? and tnum = ?");
 				stmt.setString(1,abstractText);
 				stmt.setString(2,label);
 				stmt.setString(3,category);
@@ -128,7 +128,7 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 				label = "";
 			if (category == null)
 				category = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline11.other_abstract_text(pmid,seqnum,tnum,abstract_text,label,category) values (?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.other_abstract_text(pmid,seqnum,tnum,abstract_text,label,category) values (?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setInt(3,tnum);

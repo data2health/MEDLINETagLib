@@ -61,7 +61,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or qnum was provided as an attribute - we need to load a MeshQualifier from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select qualifier_name,major from medline11.mesh_qualifier where pmid = ? and seqnum = ? and qnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select qualifier_name,major from medline12.mesh_qualifier where pmid = ? and seqnum = ? and qnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				stmt.setInt(3,qnum);
@@ -92,7 +92,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline11.mesh_qualifier set qualifier_name = ?, major = ? where pmid = ? and seqnum = ? and qnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline12.mesh_qualifier set qualifier_name = ?, major = ? where pmid = ? and seqnum = ? and qnum = ?");
 				stmt.setString(1,qualifierName);
 				stmt.setBoolean(2,major);
 				stmt.setInt(3,pmid);
@@ -120,7 +120,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 
 			if (qualifierName == null)
 				qualifierName = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline11.mesh_qualifier(pmid,seqnum,qnum,qualifier_name,major) values (?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.mesh_qualifier(pmid,seqnum,qnum,qualifier_name,major) values (?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setInt(3,qnum);

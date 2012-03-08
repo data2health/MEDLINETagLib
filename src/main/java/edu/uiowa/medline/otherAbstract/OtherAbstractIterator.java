@@ -38,7 +38,7 @@ public class OtherAbstractIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		OtherAbstractIterator theIterator = new OtherAbstractIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.other_abstract where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.other_abstract where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -66,7 +66,7 @@ public class OtherAbstractIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		OtherAbstractIterator theIterator = new OtherAbstractIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline11.other_abstract where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.other_abstract where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -116,7 +116,7 @@ public class OtherAbstractIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline11.other_abstract.pmid, medline11.other_abstract.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline12.other_abstract.pmid, medline12.other_abstract.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -140,7 +140,7 @@ public class OtherAbstractIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline11.other_abstract");
+       StringBuffer theBuffer = new StringBuffer("medline12.other_abstract");
       return theBuffer.toString();
     }
 
