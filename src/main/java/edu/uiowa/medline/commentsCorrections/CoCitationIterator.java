@@ -32,7 +32,7 @@ public class CoCitationIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		CommentsCorrectionsIterator theIterator = new CommentsCorrectionsIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("select count(distinct co2.pmid) from medline11.comments_corrections as co1, medline11.comments_corrections as co2"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("select count(distinct co2.pmid) from medline12.comments_corrections as co1, medline12.comments_corrections as co2"
 					+ " where co1.ref_type='Cites' and co2.ref_type='Cites' and co1.ref_pmid=co2.ref_pmid and co1.pmid!=co2.pmid and co1.pmid = ?"
 						);
 
@@ -75,7 +75,7 @@ public class CoCitationIterator extends MEDLINETagLibBodyTagSupport {
 
 
       try {
-            stat = getConnection().prepareStatement("select co2.pmid,count(*) from medline11.comments_corrections as co1, medline11.comments_corrections as co2 "
+            stat = getConnection().prepareStatement("select co2.pmid,count(*) from medline12.comments_corrections as co1, medline12.comments_corrections as co2 "
             		+ "where co1.ref_type='Cites' and co2.ref_type='Cites' and co1.ref_pmid=co2.ref_pmid and co1.pmid!=co2.pmid and co1.pmid=? group by 1 order by 2 desc, 1 desc" +  generateLimitCriteria());
             stat.setInt(1, pmid);
             rs = stat.executeQuery();
@@ -98,7 +98,7 @@ public class CoCitationIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline11.comments_corrections");
+       StringBuffer theBuffer = new StringBuffer("medline12.comments_corrections");
       return theBuffer.toString();
     }
 

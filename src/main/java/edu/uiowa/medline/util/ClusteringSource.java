@@ -79,7 +79,7 @@ public class ClusteringSource extends ExternalSource {
 		
 
 		Connection theConnection = getConnection();
-        PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline11.author,medline11.journal, medline11.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
+        PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from .author,medline12.journal, medline12.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
         stmt.setString(1,author.getLastName());
         stmt.setString(2,author.getForeName());
         ResultSet rs = stmt.executeQuery();
@@ -111,7 +111,7 @@ public class ClusteringSource extends ExternalSource {
             theInstance.getLinkages().add(new Linkage(sid,pmid));
             pmidHash.put(""+pmid, theInstance);
             
-            PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline11.author where pmid = ? order by 1,2");
+            PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline12.author where pmid = ? order by 1,2");
             authStmt.setInt(1, pmid);
             ResultSet ars = authStmt.executeQuery();
             while (ars.next()) {
@@ -148,7 +148,7 @@ public class ClusteringSource extends ExternalSource {
     	int count = 0;
     	
 		try {
-			PreparedStatement stat = getConnection().prepareStatement("SELECT count(*) from medline11.author_count");
+			PreparedStatement stat = getConnection().prepareStatement("SELECT count(*) from medline12.author_count");
 
 			ResultSet crs = stat.executeQuery();
 
@@ -175,7 +175,7 @@ public class ClusteringSource extends ExternalSource {
 		int count = 0;
 
 		try {
-			PreparedStatement stat = getConnection().prepareStatement("SELECT count(*) from medline11.author_count where"
+			PreparedStatement stat = getConnection().prepareStatement("SELECT count(*) from medline12.author_count where"
 																		+ " last_name = ?" + " and fore_name = ?");
 
 			stat.setString(1, lastName);
@@ -202,7 +202,7 @@ public class ClusteringSource extends ExternalSource {
 
 	public void getAuthorNames(String lastName, String foreNamePrefix, Vector<Author> authors) {
         try {
-            PreparedStatement stat = getConnection().prepareStatement("select last_name, fore_name from medline11.author_count where last_name = ? and fore_name ~ ? order by last_name,fore_name");
+            PreparedStatement stat = getConnection().prepareStatement("select last_name, fore_name from medline12.author_count where last_name = ? and fore_name ~ ? order by last_name,fore_name");
             stat.setString(1, lastName.substring(0, 1).toUpperCase() + lastName.substring(1));
             stat.setString(2, "^" + foreNamePrefix.substring(0, 1).toUpperCase() + foreNamePrefix.substring(1));
 
@@ -228,7 +228,7 @@ public class ClusteringSource extends ExternalSource {
 	
 	public void getIDs(String lastName, String foreName, Set<Integer> ids) {
         try {
-            PreparedStatement stat = getConnection().prepareStatement("select pmid from medline11.author where last_name = ? and fore_name = ?");
+            PreparedStatement stat = getConnection().prepareStatement("select pmid from medline12.author where last_name = ? and fore_name = ?");
             stat.setString(1, lastName);
             stat.setString(2, foreName);
 
@@ -257,7 +257,7 @@ public class ClusteringSource extends ExternalSource {
         try {
             Connection theConnection = getConnection();
 			int count = 0;
-			PreparedStatement loadStmt = getConnection().prepareStatement("select last_name,fore_name from medline11.author where pmid = ? order by seqnum");
+			PreparedStatement loadStmt = getConnection().prepareStatement("select last_name,fore_name from medline12.author where pmid = ? order by seqnum");
 			loadStmt.setInt(1,pmid);
 			ResultSet lrs = loadStmt.executeQuery();
 			while (lrs.next()) {
@@ -374,7 +374,7 @@ public class ClusteringSource extends ExternalSource {
 		try {
 			Connection theConnection = getConnection();
 			Pattern medDatePattern = Pattern.compile("^([0-9][0-9][0-9][0-9])(-[0-9][0-9][0-9][0-9])? ?.*");
-	        PreparedStatement stmt = theConnection.prepareStatement("select pub_year,article.title,medline_date from medline11.journal, medline11.article where journal.pmid=article.pmid and article.pmid = ?");
+	        PreparedStatement stmt = theConnection.prepareStatement("select pub_year,article.title,medline_date from medline12.journal, medline12.article where journal.pmid=article.pmid and article.pmid = ?");
 	        stmt.setInt(1,pmid);
 	        ResultSet rs = stmt.executeQuery();
 	        while (rs.next()) {
@@ -399,7 +399,7 @@ public class ClusteringSource extends ExternalSource {
 	            pmidHash.put(""+pmid, theInstance);
 	            
 		        if (theInstance.getAuthors().size() == 0) {
-		        	PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline11.author where pmid = ? order by 1,2");
+		        	PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline12.author where pmid = ? order by 1,2");
 		            authStmt.setInt(1, pmid);
 		            ResultSet ars = authStmt.executeQuery();
 		            while (ars.next()) {

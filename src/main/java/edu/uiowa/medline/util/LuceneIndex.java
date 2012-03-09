@@ -44,14 +44,14 @@ public class LuceneIndex {
 		
 		logger.info("Scanning pmids:");
 		Connection conn = getConnection();
-		PreparedStatement articleStmt = conn.prepareStatement("select pmid from medline11.article order by pmid");
+		PreparedStatement articleStmt = conn.prepareStatement("select pmid from medline12.article order by pmid");
 		ResultSet articleRS = articleStmt.executeQuery();
 		while (articleRS.next()) {
 			Document theDocument = new Document();
 			int pmid = articleRS.getInt(1);
             theDocument.add(new Field("pmid", pmid+"", Field.Store.YES, Field.Index.NOT_ANALYZED));
 			
-			PreparedStatement journalStmt = conn.prepareStatement("select article.title,pub_year from medline11.article,medline11.journal where article.pmid=journal.pmid and article.pmid = ?");
+			PreparedStatement journalStmt = conn.prepareStatement("select article.title,pub_year from medline12.article,medline12.journal where article.pmid=journal.pmid and article.pmid = ?");
 			journalStmt.setInt(1, pmid);
 			ResultSet journalRS = journalStmt.executeQuery();
 			while (journalRS.next()) {
@@ -65,7 +65,7 @@ public class LuceneIndex {
 				
 			}
 			
-			PreparedStatement authorStmt = conn.prepareStatement("select last_name,fore_name,initials,collective_name from medline11.author where author.pmid = ?");
+			PreparedStatement authorStmt = conn.prepareStatement("select last_name,fore_name,initials,collective_name from medline12.author where author.pmid = ?");
 			authorStmt.setInt(1, pmid);
 			ResultSet authorRS = authorStmt.executeQuery();
 			while (authorRS.next()) {
@@ -85,7 +85,7 @@ public class LuceneIndex {
 	            	theDocument.add(new Field("content", collectiveName, Field.Store.NO, Field.Index.ANALYZED));
 			}
 
-			PreparedStatement abstrStmt = conn.prepareStatement("select abstract_text,label,category from medline11.abstr where abstr.pmid = ?");
+			PreparedStatement abstrStmt = conn.prepareStatement("select abstract_text,label,category from medline12.abstr where abstr.pmid = ?");
 			abstrStmt.setInt(1, pmid);
 			ResultSet absgtrRS = abstrStmt.executeQuery();
 			while (absgtrRS.next()) {
