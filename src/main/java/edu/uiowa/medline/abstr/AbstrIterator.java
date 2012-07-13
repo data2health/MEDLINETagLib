@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -25,7 +24,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
     String category = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(Abstr.class);
+	private static final Log log = LogFactory.getLog(AbstrIterator.class);
 
 
     PreparedStatement stat = null;
@@ -51,7 +50,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Abstr iterator", e);
 			throw new JspTagException("Error: JDBC error generating Abstr iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -81,7 +80,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Abstr iterator", e);
 			throw new JspTagException("Error: JDBC error generating Abstr iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -131,7 +130,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating Abstr iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating Abstr iterator: " + stat.toString());
@@ -175,7 +174,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across Abstr", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across Abstr");
@@ -188,7 +187,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending Abstr iterator",e);
             throw new JspTagException("Error: JDBC error ending Abstr iterator");
         } finally {
             clearServiceState();

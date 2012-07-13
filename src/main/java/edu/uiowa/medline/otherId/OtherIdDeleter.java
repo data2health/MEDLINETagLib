@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
@@ -14,13 +16,14 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class OtherIdDeleter extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
     String source = null;
     String otherId = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
+
+	private static final Log log = LogFactory.getLog(OtherIdDeleter.class);
 
 
     ResultSet rs = null;
@@ -42,15 +45,15 @@ public class OtherIdDeleter extends MEDLINETagLibBodyTagSupport {
         try {
             int webapp_keySeq = 1;
             stat = getConnection().prepareStatement("DELETE from medline12.other_id where 1=1"
-                                                        + (pmid == 0 ? "" : " and pmid = ?")
-                                                        + (seqnum == 0 ? "" : " and seqnum = ?")
-                                                        );
+                                                        + (pmid == 0 ? "" : " and pmid = ? ")
+                                                        + (seqnum == 0 ? "" : " and seqnum = ? "));
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);
             if (seqnum != 0) stat.setInt(webapp_keySeq++, seqnum);
             stat.execute();
 
+			webapp_keySeq = 1;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating OtherId deleter", e);
             clearServiceState();
             throw new JspTagException("Error: JDBC error generating OtherId deleter");
         } finally {

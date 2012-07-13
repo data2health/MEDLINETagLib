@@ -2,11 +2,15 @@ package edu.uiowa.medline.meshQualifier;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class MeshQualifierQualifierName extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(MeshQualifierQualifierName.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class MeshQualifierQualifierName extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theMeshQualifier.getQualifierName());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing MeshQualifier for qualifierName tag ", e);
 			throw new JspTagException("Error: Can't find enclosing MeshQualifier for qualifierName tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class MeshQualifierQualifierName extends MEDLINETagLibTagSupport {
 			MeshQualifier theMeshQualifier = (MeshQualifier)findAncestorWithClass(this, MeshQualifier.class);
 			return theMeshQualifier.getQualifierName();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing MeshQualifier for qualifierName tag ", e);
 			throw new JspTagException("Error: Can't find enclosing MeshQualifier for qualifierName tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class MeshQualifierQualifierName extends MEDLINETagLibTagSupport {
 			MeshQualifier theMeshQualifier = (MeshQualifier)findAncestorWithClass(this, MeshQualifier.class);
 			theMeshQualifier.setQualifierName(qualifierName);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing MeshQualifier for qualifierName tag ", e);
 			throw new JspTagException("Error: Can't find enclosing MeshQualifier for qualifierName tag ");
 		}
 	}

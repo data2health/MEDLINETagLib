@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class ArticleDateIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -26,7 +25,7 @@ public class ArticleDateIterator extends MEDLINETagLibBodyTagSupport {
     String type = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(ArticleDate.class);
+	private static final Log log = LogFactory.getLog(ArticleDateIterator.class);
 
 
     PreparedStatement stat = null;
@@ -52,7 +51,7 @@ public class ArticleDateIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating ArticleDate iterator", e);
 			throw new JspTagException("Error: JDBC error generating ArticleDate iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -82,7 +81,7 @@ public class ArticleDateIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating ArticleDate iterator", e);
 			throw new JspTagException("Error: JDBC error generating ArticleDate iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -132,7 +131,7 @@ public class ArticleDateIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating ArticleDate iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating ArticleDate iterator: " + stat.toString());
@@ -176,7 +175,7 @@ public class ArticleDateIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across ArticleDate", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across ArticleDate");
@@ -189,7 +188,7 @@ public class ArticleDateIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending ArticleDate iterator",e);
             throw new JspTagException("Error: JDBC error ending ArticleDate iterator");
         } finally {
             clearServiceState();

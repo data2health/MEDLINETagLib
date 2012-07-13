@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import java.util.Date;
 
 import javax.servlet.jsp.JspException;
@@ -14,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 
 @SuppressWarnings("serial")
-
 public class ArticleDeleter extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     Date dateCreated = null;
@@ -36,6 +37,8 @@ public class ArticleDeleter extends MEDLINETagLibBodyTagSupport {
     String status = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
+	private static final Log log = LogFactory.getLog(ArticleDeleter.class);
+
 
     ResultSet rs = null;
     String var = null;
@@ -49,13 +52,13 @@ public class ArticleDeleter extends MEDLINETagLibBodyTagSupport {
         try {
             int webapp_keySeq = 1;
             stat = getConnection().prepareStatement("DELETE from medline12.article where 1=1"
-                                                        + (pmid == 0 ? "" : " and pmid = ?")
-                                                        );
+                                                        + (pmid == 0 ? "" : " and pmid = ? "));
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);
             stat.execute();
 
+			webapp_keySeq = 1;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating Article deleter", e);
             clearServiceState();
             throw new JspTagException("Error: JDBC error generating Article deleter");
         } finally {

@@ -11,7 +11,7 @@ import org.apache.commons.logging.LogFactory;
 @SuppressWarnings("serial")
 public class DBTest extends MEDLINETagLibBodyTagSupport {
 
-private static final Log log =LogFactory.getLog(DBTest.class);
+private static final Log log = LogFactory.getLog(DBTest.class);
 
 		public int doStartTag() throws JspException {
 			try { 

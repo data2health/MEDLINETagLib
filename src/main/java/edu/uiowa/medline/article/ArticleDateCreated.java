@@ -5,6 +5,8 @@ import javax.servlet.jsp.JspTagException;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
@@ -14,6 +16,8 @@ public class ArticleDateCreated extends MEDLINETagLibTagSupport {
 	String dateStyle = "DEFAULT";
 	String timeStyle = "DEFAULT";
 	String pattern = null;
+	private static final Log log = LogFactory.getLog(ArticleDateCreated.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -36,7 +40,7 @@ public class ArticleDateCreated extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(resultString);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Article for dateCreated tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Article for dateCreated tag ");
 		}
 		return SKIP_BODY;
@@ -47,7 +51,7 @@ public class ArticleDateCreated extends MEDLINETagLibTagSupport {
 			Article theArticle = (Article)findAncestorWithClass(this, Article.class);
 			return theArticle.getDateCreated();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing Article for dateCreated tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Article for dateCreated tag ");
 		}
 	}
@@ -57,7 +61,7 @@ public class ArticleDateCreated extends MEDLINETagLibTagSupport {
 			Article theArticle = (Article)findAncestorWithClass(this, Article.class);
 			theArticle.setDateCreated(dateCreated);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Article for dateCreated tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Article for dateCreated tag ");
 		}
 	}

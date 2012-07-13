@@ -16,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class CitationSubsetIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
     String label = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(CitationSubset.class);
+	private static final Log log = LogFactory.getLog(CitationSubsetIterator.class);
 
 
     PreparedStatement stat = null;
@@ -49,7 +48,7 @@ public class CitationSubsetIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating CitationSubset iterator", e);
 			throw new JspTagException("Error: JDBC error generating CitationSubset iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -79,7 +78,7 @@ public class CitationSubsetIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating CitationSubset iterator", e);
 			throw new JspTagException("Error: JDBC error generating CitationSubset iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -129,7 +128,7 @@ public class CitationSubsetIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating CitationSubset iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating CitationSubset iterator: " + stat.toString());
@@ -173,7 +172,7 @@ public class CitationSubsetIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across CitationSubset", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across CitationSubset");
@@ -186,7 +185,7 @@ public class CitationSubsetIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending CitationSubset iterator",e);
             throw new JspTagException("Error: JDBC error ending CitationSubset iterator");
         } finally {
             clearServiceState();

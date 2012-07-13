@@ -2,11 +2,15 @@ package edu.uiowa.medline.abstr;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class AbstrPmid extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(AbstrPmid.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class AbstrPmid extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theAbstr.getPmid());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Abstr for pmid tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Abstr for pmid tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class AbstrPmid extends MEDLINETagLibTagSupport {
 			Abstr theAbstr = (Abstr)findAncestorWithClass(this, Abstr.class);
 			return theAbstr.getPmid();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing Abstr for pmid tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Abstr for pmid tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class AbstrPmid extends MEDLINETagLibTagSupport {
 			Abstr theAbstr = (Abstr)findAncestorWithClass(this, Abstr.class);
 			theAbstr.setPmid(pmid);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Abstr for pmid tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Abstr for pmid tag ");
 		}
 	}

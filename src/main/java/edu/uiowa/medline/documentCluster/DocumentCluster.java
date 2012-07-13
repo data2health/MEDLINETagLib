@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -14,14 +15,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class DocumentCluster extends MEDLINETagLibTagSupport {
 
 	static DocumentCluster currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(DocumentCluster.class);
+	private static final Log log = LogFactory.getLog(DocumentCluster.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -43,7 +43,6 @@ public class DocumentCluster extends MEDLINETagLibTagSupport {
 			if (theDocumentClusterIterator == null && cid == 0) {
 				// no cid was provided - the default is to assume that it is a new DocumentCluster and to generate a new cid
 				cid = Sequence.generateID();
-				log.debug("generating new DocumentCluster " + cid);
 				insertEntity();
 			} else {
 				// an iterator or cid was provided as an attribute - we need to load a DocumentCluster from the database
@@ -65,7 +64,7 @@ public class DocumentCluster extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving cid " + cid, e);
 			throw new JspTagException("Error: JDBC error retrieving cid " + cid);
 		} finally {
 			freeConnection();
@@ -85,7 +84,7 @@ public class DocumentCluster extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -112,7 +111,7 @@ public class DocumentCluster extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -163,7 +162,7 @@ public class DocumentCluster extends MEDLINETagLibTagSupport {
 		return foreName;
 	}
 
-	public static int cidValue() throws JspException {
+	public static Integer cidValue() throws JspException {
 		try {
 			return currentInstance.getCid();
 		} catch (Exception e) {

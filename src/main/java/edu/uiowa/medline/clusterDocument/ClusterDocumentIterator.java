@@ -17,13 +17,12 @@ import edu.uiowa.medline.article.Article;
 import edu.uiowa.medline.documentCluster.DocumentCluster;
 
 @SuppressWarnings("serial")
-
 public class ClusterDocumentIterator extends MEDLINETagLibBodyTagSupport {
     int cid = 0;
     int pmid = 0;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(ClusterDocument.class);
+	private static final Log log = LogFactory.getLog(ClusterDocumentIterator.class);
 
 
     PreparedStatement stat = null;
@@ -52,7 +51,7 @@ public class ClusterDocumentIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating ClusterDocument iterator", e);
 			throw new JspTagException("Error: JDBC error generating ClusterDocument iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -80,7 +79,7 @@ public class ClusterDocumentIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating ClusterDocument iterator", e);
 			throw new JspTagException("Error: JDBC error generating ClusterDocument iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -110,7 +109,7 @@ public class ClusterDocumentIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating ClusterDocument iterator", e);
 			throw new JspTagException("Error: JDBC error generating ClusterDocument iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -136,7 +135,7 @@ public class ClusterDocumentIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating ClusterDocument iterator", e);
 			throw new JspTagException("Error: JDBC error generating ClusterDocument iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -197,7 +196,7 @@ public class ClusterDocumentIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating ClusterDocument iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating ClusterDocument iterator: " + stat.toString());
@@ -251,7 +250,7 @@ public class ClusterDocumentIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across ClusterDocument", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across ClusterDocument");
@@ -264,7 +263,7 @@ public class ClusterDocumentIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending ClusterDocument iterator",e);
             throw new JspTagException("Error: JDBC error ending ClusterDocument iterator");
         } finally {
             clearServiceState();

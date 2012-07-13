@@ -2,11 +2,15 @@ package edu.uiowa.medline.investigatorNameId;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class InvestigatorNameIdSource extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(InvestigatorNameIdSource.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class InvestigatorNameIdSource extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theInvestigatorNameId.getSource());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing InvestigatorNameId for source tag ", e);
 			throw new JspTagException("Error: Can't find enclosing InvestigatorNameId for source tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class InvestigatorNameIdSource extends MEDLINETagLibTagSupport {
 			InvestigatorNameId theInvestigatorNameId = (InvestigatorNameId)findAncestorWithClass(this, InvestigatorNameId.class);
 			return theInvestigatorNameId.getSource();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing InvestigatorNameId for source tag ", e);
 			throw new JspTagException("Error: Can't find enclosing InvestigatorNameId for source tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class InvestigatorNameIdSource extends MEDLINETagLibTagSupport {
 			InvestigatorNameId theInvestigatorNameId = (InvestigatorNameId)findAncestorWithClass(this, InvestigatorNameId.class);
 			theInvestigatorNameId.setSource(source);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing InvestigatorNameId for source tag ", e);
 			throw new JspTagException("Error: Can't find enclosing InvestigatorNameId for source tag ");
 		}
 	}

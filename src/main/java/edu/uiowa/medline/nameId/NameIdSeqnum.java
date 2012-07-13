@@ -2,11 +2,15 @@ package edu.uiowa.medline.nameId;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class NameIdSeqnum extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(NameIdSeqnum.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class NameIdSeqnum extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theNameId.getSeqnum());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing NameId for seqnum tag ", e);
 			throw new JspTagException("Error: Can't find enclosing NameId for seqnum tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class NameIdSeqnum extends MEDLINETagLibTagSupport {
 			NameId theNameId = (NameId)findAncestorWithClass(this, NameId.class);
 			return theNameId.getSeqnum();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing NameId for seqnum tag ", e);
 			throw new JspTagException("Error: Can't find enclosing NameId for seqnum tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class NameIdSeqnum extends MEDLINETagLibTagSupport {
 			NameId theNameId = (NameId)findAncestorWithClass(this, NameId.class);
 			theNameId.setSeqnum(seqnum);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing NameId for seqnum tag ", e);
 			throw new JspTagException("Error: Can't find enclosing NameId for seqnum tag ");
 		}
 	}

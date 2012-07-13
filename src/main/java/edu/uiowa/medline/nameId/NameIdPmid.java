@@ -2,11 +2,15 @@ package edu.uiowa.medline.nameId;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class NameIdPmid extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(NameIdPmid.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class NameIdPmid extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theNameId.getPmid());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing NameId for pmid tag ", e);
 			throw new JspTagException("Error: Can't find enclosing NameId for pmid tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class NameIdPmid extends MEDLINETagLibTagSupport {
 			NameId theNameId = (NameId)findAncestorWithClass(this, NameId.class);
 			return theNameId.getPmid();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing NameId for pmid tag ", e);
 			throw new JspTagException("Error: Can't find enclosing NameId for pmid tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class NameIdPmid extends MEDLINETagLibTagSupport {
 			NameId theNameId = (NameId)findAncestorWithClass(this, NameId.class);
 			theNameId.setPmid(pmid);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing NameId for pmid tag ", e);
 			throw new JspTagException("Error: Can't find enclosing NameId for pmid tag ");
 		}
 	}

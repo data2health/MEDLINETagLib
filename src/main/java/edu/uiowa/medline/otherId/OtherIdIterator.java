@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class OtherIdIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -24,7 +23,7 @@ public class OtherIdIterator extends MEDLINETagLibBodyTagSupport {
     String otherId = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(OtherId.class);
+	private static final Log log = LogFactory.getLog(OtherIdIterator.class);
 
 
     PreparedStatement stat = null;
@@ -50,7 +49,7 @@ public class OtherIdIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating OtherId iterator", e);
 			throw new JspTagException("Error: JDBC error generating OtherId iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -80,7 +79,7 @@ public class OtherIdIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating OtherId iterator", e);
 			throw new JspTagException("Error: JDBC error generating OtherId iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -130,7 +129,7 @@ public class OtherIdIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating OtherId iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating OtherId iterator: " + stat.toString());
@@ -174,7 +173,7 @@ public class OtherIdIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across OtherId", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across OtherId");
@@ -187,7 +186,7 @@ public class OtherIdIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending OtherId iterator",e);
             throw new JspTagException("Error: JDBC error ending OtherId iterator");
         } finally {
             clearServiceState();

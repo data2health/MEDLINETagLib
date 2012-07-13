@@ -2,11 +2,15 @@ package edu.uiowa.medline.abstr;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class AbstrLabel extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(AbstrLabel.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class AbstrLabel extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theAbstr.getLabel());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Abstr for label tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Abstr for label tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class AbstrLabel extends MEDLINETagLibTagSupport {
 			Abstr theAbstr = (Abstr)findAncestorWithClass(this, Abstr.class);
 			return theAbstr.getLabel();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing Abstr for label tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Abstr for label tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class AbstrLabel extends MEDLINETagLibTagSupport {
 			Abstr theAbstr = (Abstr)findAncestorWithClass(this, Abstr.class);
 			theAbstr.setLabel(label);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Abstr for label tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Abstr for label tag ");
 		}
 	}

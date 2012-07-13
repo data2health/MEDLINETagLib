@@ -16,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
     String language = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(Language.class);
+	private static final Log log = LogFactory.getLog(LanguageIterator.class);
 
 
     PreparedStatement stat = null;
@@ -49,7 +48,7 @@ public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Language iterator", e);
 			throw new JspTagException("Error: JDBC error generating Language iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -79,7 +78,7 @@ public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Language iterator", e);
 			throw new JspTagException("Error: JDBC error generating Language iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -129,7 +128,7 @@ public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating Language iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating Language iterator: " + stat.toString());
@@ -173,7 +172,7 @@ public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across Language", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across Language");
@@ -186,7 +185,7 @@ public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending Language iterator",e);
             throw new JspTagException("Error: JDBC error ending Language iterator");
         } finally {
             clearServiceState();

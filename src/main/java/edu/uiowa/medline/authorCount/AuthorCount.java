@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -14,14 +15,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class AuthorCount extends MEDLINETagLibTagSupport {
 
 	static AuthorCount currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(AuthorCount.class);
+	private static final Log log = LogFactory.getLog(AuthorCount.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -44,7 +44,6 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 			if (theAuthorCountIterator == null && lastName == null) {
 				// no lastName was provided - the default is to assume that it is a new AuthorCount and to generate a new lastName
 				lastName = null;
-				log.debug("generating new AuthorCount " + lastName);
 				insertEntity();
 			} else {
 				// an iterator or lastName was provided as an attribute - we need to load a AuthorCount from the database
@@ -65,7 +64,7 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving lastName " + lastName, e);
 			throw new JspTagException("Error: JDBC error retrieving lastName " + lastName);
 		} finally {
 			freeConnection();
@@ -85,7 +84,7 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -103,7 +102,7 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -169,7 +168,7 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int countValue() throws JspException {
+	public static Integer countValue() throws JspException {
 		try {
 			return currentInstance.getCount();
 		} catch (Exception e) {

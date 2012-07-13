@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
@@ -15,11 +17,12 @@ import edu.uiowa.medline.article.Article;
 import edu.uiowa.medline.documentCluster.DocumentCluster;
 
 @SuppressWarnings("serial")
-
 public class ClusterDocumentDeleter extends MEDLINETagLibBodyTagSupport {
     int cid = 0;
     int pmid = 0;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
+
+	private static final Log log = LogFactory.getLog(ClusterDocumentDeleter.class);
 
 
     ResultSet rs = null;
@@ -48,15 +51,15 @@ public class ClusterDocumentDeleter extends MEDLINETagLibBodyTagSupport {
         try {
             int webapp_keySeq = 1;
             stat = getConnection().prepareStatement("DELETE from medline_clustering.cluster_document where 1=1"
-                                                        + (cid == 0 ? "" : " and cid = ?")
-                                                        + (pmid == 0 ? "" : " and pmid = ?")
-                                                        );
+                                                        + (cid == 0 ? "" : " and cid = ? ")
+                                                        + (pmid == 0 ? "" : " and pmid = ? "));
             if (cid != 0) stat.setInt(webapp_keySeq++, cid);
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);
             stat.execute();
 
+			webapp_keySeq = 1;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating ClusterDocument deleter", e);
             clearServiceState();
             throw new JspTagException("Error: JDBC error generating ClusterDocument deleter");
         } finally {

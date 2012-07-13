@@ -15,14 +15,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 
 @SuppressWarnings("serial")
-
 public class DocumentClusterIterator extends MEDLINETagLibBodyTagSupport {
     int cid = 0;
     String lastName = null;
     String foreName = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(DocumentCluster.class);
+	private static final Log log = LogFactory.getLog(DocumentClusterIterator.class);
 
 
     PreparedStatement stat = null;
@@ -46,7 +45,7 @@ public class DocumentClusterIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating DocumentCluster iterator", e);
 			throw new JspTagException("Error: JDBC error generating DocumentCluster iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -70,7 +69,7 @@ public class DocumentClusterIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating DocumentCluster iterator", e);
 			throw new JspTagException("Error: JDBC error generating DocumentCluster iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -108,7 +107,7 @@ public class DocumentClusterIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating DocumentCluster iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating DocumentCluster iterator: " + stat.toString());
@@ -151,7 +150,7 @@ public class DocumentClusterIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across DocumentCluster", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across DocumentCluster");
@@ -164,7 +163,7 @@ public class DocumentClusterIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending DocumentCluster iterator",e);
             throw new JspTagException("Error: JDBC error ending DocumentCluster iterator");
         } finally {
             clearServiceState();

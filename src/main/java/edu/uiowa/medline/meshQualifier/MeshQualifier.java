@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class MeshQualifier extends MEDLINETagLibTagSupport {
 
 	static MeshQualifier currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(MeshQualifier.class);
+	private static final Log log = LogFactory.getLog(MeshQualifier.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -56,7 +56,6 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 			if (theMeshQualifierIterator == null && theMeshHeading == null && qnum == 0) {
 				// no qnum was provided - the default is to assume that it is a new MeshQualifier and to generate a new qnum
 				qnum = Sequence.generateID();
-				log.debug("generating new MeshQualifier " + qnum);
 				insertEntity();
 			} else {
 				// an iterator or qnum was provided as an attribute - we need to load a MeshQualifier from the database
@@ -80,7 +79,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving qnum " + qnum, e);
 			throw new JspTagException("Error: JDBC error retrieving qnum " + qnum);
 		} finally {
 			freeConnection();
@@ -102,7 +101,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -129,7 +128,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -201,7 +200,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		return major;
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {
@@ -209,7 +208,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int seqnumValue() throws JspException {
+	public static Integer seqnumValue() throws JspException {
 		try {
 			return currentInstance.getSeqnum();
 		} catch (Exception e) {
@@ -217,7 +216,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int qnumValue() throws JspException {
+	public static Integer qnumValue() throws JspException {
 		try {
 			return currentInstance.getQnum();
 		} catch (Exception e) {
@@ -233,7 +232,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static boolean majorValue() throws JspException {
+	public static Boolean majorValue() throws JspException {
 		try {
 			return currentInstance.getMajor();
 		} catch (Exception e) {

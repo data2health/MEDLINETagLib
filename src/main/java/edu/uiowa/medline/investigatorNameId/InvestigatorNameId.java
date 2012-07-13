@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 
 	static InvestigatorNameId currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(InvestigatorNameId.class);
+	private static final Log log = LogFactory.getLog(InvestigatorNameId.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -56,7 +56,6 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 			if (theInvestigatorNameIdIterator == null && theInvestigator == null && nnum == 0) {
 				// no nnum was provided - the default is to assume that it is a new InvestigatorNameId and to generate a new nnum
 				nnum = Sequence.generateID();
-				log.debug("generating new InvestigatorNameId " + nnum);
 				insertEntity();
 			} else {
 				// an iterator or nnum was provided as an attribute - we need to load a InvestigatorNameId from the database
@@ -80,7 +79,7 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving nnum " + nnum, e);
 			throw new JspTagException("Error: JDBC error retrieving nnum " + nnum);
 		} finally {
 			freeConnection();
@@ -102,7 +101,7 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -131,7 +130,7 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -206,7 +205,7 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 		return source;
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {
@@ -214,7 +213,7 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int seqnumValue() throws JspException {
+	public static Integer seqnumValue() throws JspException {
 		try {
 			return currentInstance.getSeqnum();
 		} catch (Exception e) {
@@ -222,7 +221,7 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int nnumValue() throws JspException {
+	public static Integer nnumValue() throws JspException {
 		try {
 			return currentInstance.getNnum();
 		} catch (Exception e) {

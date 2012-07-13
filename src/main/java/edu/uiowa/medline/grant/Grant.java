@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class Grant extends MEDLINETagLibTagSupport {
 
 	static Grant currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(Grant.class);
+	private static final Log log = LogFactory.getLog(Grant.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -55,7 +55,6 @@ public class Grant extends MEDLINETagLibTagSupport {
 			if (theGrantIterator == null && theArticle == null && seqnum == 0) {
 				// no seqnum was provided - the default is to assume that it is a new Grant and to generate a new seqnum
 				seqnum = Sequence.generateID();
-				log.debug("generating new Grant " + seqnum);
 				insertEntity();
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Grant from the database
@@ -82,7 +81,7 @@ public class Grant extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving seqnum " + seqnum, e);
 			throw new JspTagException("Error: JDBC error retrieving seqnum " + seqnum);
 		} finally {
 			freeConnection();
@@ -105,7 +104,7 @@ public class Grant extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -139,7 +138,7 @@ public class Grant extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -234,7 +233,7 @@ public class Grant extends MEDLINETagLibTagSupport {
 		return country;
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {
@@ -242,7 +241,7 @@ public class Grant extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int seqnumValue() throws JspException {
+	public static Integer seqnumValue() throws JspException {
 		try {
 			return currentInstance.getSeqnum();
 		} catch (Exception e) {

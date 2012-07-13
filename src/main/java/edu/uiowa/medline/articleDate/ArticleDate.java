@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class ArticleDate extends MEDLINETagLibTagSupport {
 
 	static ArticleDate currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(ArticleDate.class);
+	private static final Log log = LogFactory.getLog(ArticleDate.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -55,7 +55,6 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 			if (theArticleDateIterator == null && theArticle == null && seqnum == 0) {
 				// no seqnum was provided - the default is to assume that it is a new ArticleDate and to generate a new seqnum
 				seqnum = Sequence.generateID();
-				log.debug("generating new ArticleDate " + seqnum);
 				insertEntity();
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a ArticleDate from the database
@@ -82,7 +81,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving seqnum " + seqnum, e);
 			throw new JspTagException("Error: JDBC error retrieving seqnum " + seqnum);
 		} finally {
 			freeConnection();
@@ -105,7 +104,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -133,7 +132,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -219,7 +218,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 		return type;
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {
@@ -227,7 +226,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int seqnumValue() throws JspException {
+	public static Integer seqnumValue() throws JspException {
 		try {
 			return currentInstance.getSeqnum();
 		} catch (Exception e) {
@@ -235,7 +234,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int yearValue() throws JspException {
+	public static Integer yearValue() throws JspException {
 		try {
 			return currentInstance.getYear();
 		} catch (Exception e) {
@@ -243,7 +242,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int monthValue() throws JspException {
+	public static Integer monthValue() throws JspException {
 		try {
 			return currentInstance.getMonth();
 		} catch (Exception e) {
@@ -251,7 +250,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int dayValue() throws JspException {
+	public static Integer dayValue() throws JspException {
 		try {
 			return currentInstance.getDay();
 		} catch (Exception e) {

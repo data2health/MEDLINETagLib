@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.author.Author;
 
 @SuppressWarnings("serial")
-
 public class NameIdIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -25,7 +24,7 @@ public class NameIdIterator extends MEDLINETagLibBodyTagSupport {
     String source = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(NameId.class);
+	private static final Log log = LogFactory.getLog(NameIdIterator.class);
 
 
     PreparedStatement stat = null;
@@ -53,7 +52,7 @@ public class NameIdIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating NameId iterator", e);
 			throw new JspTagException("Error: JDBC error generating NameId iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -85,7 +84,7 @@ public class NameIdIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating NameId iterator", e);
 			throw new JspTagException("Error: JDBC error generating NameId iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -141,7 +140,7 @@ public class NameIdIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating NameId iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating NameId iterator: " + stat.toString());
@@ -186,7 +185,7 @@ public class NameIdIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across NameId", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across NameId");
@@ -199,7 +198,7 @@ public class NameIdIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending NameId iterator",e);
             throw new JspTagException("Error: JDBC error ending NameId iterator");
         } finally {
             clearServiceState();

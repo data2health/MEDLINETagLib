@@ -2,11 +2,15 @@ package edu.uiowa.medline.dataBank;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class DataBankSeqnum extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(DataBankSeqnum.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class DataBankSeqnum extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theDataBank.getSeqnum());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing DataBank for seqnum tag ", e);
 			throw new JspTagException("Error: Can't find enclosing DataBank for seqnum tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class DataBankSeqnum extends MEDLINETagLibTagSupport {
 			DataBank theDataBank = (DataBank)findAncestorWithClass(this, DataBank.class);
 			return theDataBank.getSeqnum();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing DataBank for seqnum tag ", e);
 			throw new JspTagException("Error: Can't find enclosing DataBank for seqnum tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class DataBankSeqnum extends MEDLINETagLibTagSupport {
 			DataBank theDataBank = (DataBank)findAncestorWithClass(this, DataBank.class);
 			theDataBank.setSeqnum(seqnum);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing DataBank for seqnum tag ", e);
 			throw new JspTagException("Error: Can't find enclosing DataBank for seqnum tag ");
 		}
 	}

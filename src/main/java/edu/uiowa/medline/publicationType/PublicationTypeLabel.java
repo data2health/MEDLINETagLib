@@ -2,11 +2,15 @@ package edu.uiowa.medline.publicationType;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class PublicationTypeLabel extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(PublicationTypeLabel.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class PublicationTypeLabel extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(thePublicationType.getLabel());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing PublicationType for label tag ", e);
 			throw new JspTagException("Error: Can't find enclosing PublicationType for label tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class PublicationTypeLabel extends MEDLINETagLibTagSupport {
 			PublicationType thePublicationType = (PublicationType)findAncestorWithClass(this, PublicationType.class);
 			return thePublicationType.getLabel();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing PublicationType for label tag ", e);
 			throw new JspTagException("Error: Can't find enclosing PublicationType for label tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class PublicationTypeLabel extends MEDLINETagLibTagSupport {
 			PublicationType thePublicationType = (PublicationType)findAncestorWithClass(this, PublicationType.class);
 			thePublicationType.setLabel(label);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing PublicationType for label tag ", e);
 			throw new JspTagException("Error: Can't find enclosing PublicationType for label tag ");
 		}
 	}

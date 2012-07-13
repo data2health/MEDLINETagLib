@@ -16,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
     String symbol = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(GeneSymbol.class);
+	private static final Log log = LogFactory.getLog(GeneSymbolIterator.class);
 
 
     PreparedStatement stat = null;
@@ -49,7 +48,7 @@ public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating GeneSymbol iterator", e);
 			throw new JspTagException("Error: JDBC error generating GeneSymbol iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -79,7 +78,7 @@ public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating GeneSymbol iterator", e);
 			throw new JspTagException("Error: JDBC error generating GeneSymbol iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -129,7 +128,7 @@ public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating GeneSymbol iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating GeneSymbol iterator: " + stat.toString());
@@ -173,7 +172,7 @@ public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across GeneSymbol", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across GeneSymbol");
@@ -186,7 +185,7 @@ public class GeneSymbolIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending GeneSymbol iterator",e);
             throw new JspTagException("Error: JDBC error ending GeneSymbol iterator");
         } finally {
             clearServiceState();

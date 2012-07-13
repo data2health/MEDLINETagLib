@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class OtherAbstractText extends MEDLINETagLibTagSupport {
 
 	static OtherAbstractText currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(OtherAbstractText.class);
+	private static final Log log = LogFactory.getLog(OtherAbstractText.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -57,7 +57,6 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 			if (theOtherAbstractTextIterator == null && theOtherAbstract == null && tnum == 0) {
 				// no tnum was provided - the default is to assume that it is a new OtherAbstractText and to generate a new tnum
 				tnum = Sequence.generateID();
-				log.debug("generating new OtherAbstractText " + tnum);
 				insertEntity();
 			} else {
 				// an iterator or tnum was provided as an attribute - we need to load a OtherAbstractText from the database
@@ -83,7 +82,7 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving tnum " + tnum, e);
 			throw new JspTagException("Error: JDBC error retrieving tnum " + tnum);
 		} finally {
 			freeConnection();
@@ -106,7 +105,7 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -138,7 +137,7 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -229,7 +228,7 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 		return category;
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {
@@ -237,7 +236,7 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int seqnumValue() throws JspException {
+	public static Integer seqnumValue() throws JspException {
 		try {
 			return currentInstance.getSeqnum();
 		} catch (Exception e) {
@@ -245,7 +244,7 @@ public class OtherAbstractText extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int tnumValue() throws JspException {
+	public static Integer tnumValue() throws JspException {
 		try {
 			return currentInstance.getTnum();
 		} catch (Exception e) {

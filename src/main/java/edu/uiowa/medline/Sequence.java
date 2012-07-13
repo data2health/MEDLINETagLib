@@ -11,7 +11,6 @@ import org.apache.commons.logging.LogFactory;
 import javax.servlet.jsp.JspException;
 
 @SuppressWarnings("serial")
-
 public class Sequence extends MEDLINETagLibTagSupport {
 	public static enum Driver {POSTGRESQL, ORACLE, MYSQL, SQLSERVER, UNKNOWN};
 	public static Driver theDriver = Driver.UNKNOWN;
@@ -23,7 +22,7 @@ public class Sequence extends MEDLINETagLibTagSupport {
 		theDriverHash.put("PostgreSQL", Driver.POSTGRESQL);
 		theDriverHash.put("Microsoft SQL Server", Driver.SQLSERVER);
 	}
-	private static final Log log =LogFactory.getLog(Sequence.class);
+	private static final Log log = LogFactory.getLog(Sequence.class);
 
 	public int doStartTag() throws JspException {
 		pageContext.setAttribute(var, generateID());
@@ -68,13 +67,13 @@ public class Sequence extends MEDLINETagLibTagSupport {
 					nextInt = 1;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("SeqNum Exception", e);
 		} finally {
 			try {
 				if (conn != null)
 					conn.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error("Problem closing Connection",e);
 			}
 		}
 		return nextInt;
