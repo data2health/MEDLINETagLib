@@ -79,7 +79,7 @@
 			<plugin>
 				<groupId>edu.uiowa.icts.plugin</groupId>
 				<artifactId>protogen-plugin</artifactId>
-				<version>0.0.10-SNAPSHOT</version>
+				<version>0.0.10</version>
 				<configuration>
 					<props>
 						<property>
