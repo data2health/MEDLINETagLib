@@ -6,23 +6,22 @@
  */
 package edu.uiowa.medline;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.xml.sax.helpers.*;
+
 import java.sql.*;
 import java.util.*;
 
 public class CitationDump extends DefaultHandler {
 
-	static Logger logger = Logger.getLogger(Loader.class);
+	private static final Log log = LogFactory.getLog(CitationDump.class);
 
 	static Connection conn = null;
 	static Connection medConn = null;
 
 
 	public static void main(String args[]) throws Exception {
-		logger.setLevel(Level.DEBUG);
-		
 		Class.forName("org.postgresql.Driver");
 
 		Properties props = new Properties();

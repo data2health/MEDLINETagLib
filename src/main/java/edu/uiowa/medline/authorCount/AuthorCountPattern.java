@@ -13,6 +13,9 @@ import java.util.Vector;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
@@ -22,6 +25,8 @@ public class AuthorCountPattern extends MEDLINETagLibTagSupport {
 	static AuthorCountPattern currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
+
+	private static final Log log = LogFactory.getLog(AuthorCountPattern.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -44,7 +49,7 @@ public class AuthorCountPattern extends MEDLINETagLibTagSupport {
 			if (theAuthorCountPatternIterator == null && lastName == null) {
 				// no lastName was provided - the default is to assume that it is a new AuthorCount and to generate a new lastName
 				lastName = null;
-				System.out.println("generating new AuthorCount " + lastName);
+				log.debug("generating new AuthorCount " + lastName);
 				insertEntity();
 			} else {
 				// an iterator or lastName was provided as an attribute - we need to load a AuthorCount from the database
