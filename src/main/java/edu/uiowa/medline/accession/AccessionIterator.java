@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.dataBank.DataBank;
 
 @SuppressWarnings("serial")
-
 public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -24,7 +23,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
     String accession = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(Accession.class);
+	private static final Log log = LogFactory.getLog(AccessionIterator.class);
 
 
     PreparedStatement stat = null;
@@ -52,7 +51,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Accession iterator", e);
 			throw new JspTagException("Error: JDBC error generating Accession iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -84,7 +83,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Accession iterator", e);
 			throw new JspTagException("Error: JDBC error generating Accession iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -140,7 +139,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating Accession iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating Accession iterator: " + stat.toString());
@@ -185,7 +184,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across Accession", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across Accession");
@@ -198,7 +197,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending Accession iterator",e);
             throw new JspTagException("Error: JDBC error ending Accession iterator");
         } finally {
             clearServiceState();

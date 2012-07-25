@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.otherAbstract.OtherAbstract;
 
 @SuppressWarnings("serial")
-
 public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -26,7 +25,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
     String category = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(OtherAbstractText.class);
+	private static final Log log = LogFactory.getLog(OtherAbstractTextIterator.class);
 
 
     PreparedStatement stat = null;
@@ -54,7 +53,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating OtherAbstractText iterator", e);
 			throw new JspTagException("Error: JDBC error generating OtherAbstractText iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -86,7 +85,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating OtherAbstractText iterator", e);
 			throw new JspTagException("Error: JDBC error generating OtherAbstractText iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -142,7 +141,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating OtherAbstractText iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating OtherAbstractText iterator: " + stat.toString());
@@ -187,7 +186,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across OtherAbstractText", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across OtherAbstractText");
@@ -200,7 +199,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending OtherAbstractText iterator",e);
             throw new JspTagException("Error: JDBC error ending OtherAbstractText iterator");
         } finally {
             clearServiceState();

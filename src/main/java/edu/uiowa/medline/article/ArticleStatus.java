@@ -2,11 +2,15 @@ package edu.uiowa.medline.article;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class ArticleStatus extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(ArticleStatus.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class ArticleStatus extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theArticle.getStatus());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Article for status tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Article for status tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class ArticleStatus extends MEDLINETagLibTagSupport {
 			Article theArticle = (Article)findAncestorWithClass(this, Article.class);
 			return theArticle.getStatus();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing Article for status tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Article for status tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class ArticleStatus extends MEDLINETagLibTagSupport {
 			Article theArticle = (Article)findAncestorWithClass(this, Article.class);
 			theArticle.setStatus(status);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Article for status tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Article for status tag ");
 		}
 	}

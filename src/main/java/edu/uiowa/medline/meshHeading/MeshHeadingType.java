@@ -2,11 +2,15 @@ package edu.uiowa.medline.meshHeading;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class MeshHeadingType extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(MeshHeadingType.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class MeshHeadingType extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theMeshHeading.getType());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing MeshHeading for type tag ", e);
 			throw new JspTagException("Error: Can't find enclosing MeshHeading for type tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class MeshHeadingType extends MEDLINETagLibTagSupport {
 			MeshHeading theMeshHeading = (MeshHeading)findAncestorWithClass(this, MeshHeading.class);
 			return theMeshHeading.getType();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing MeshHeading for type tag ", e);
 			throw new JspTagException("Error: Can't find enclosing MeshHeading for type tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class MeshHeadingType extends MEDLINETagLibTagSupport {
 			MeshHeading theMeshHeading = (MeshHeading)findAncestorWithClass(this, MeshHeading.class);
 			theMeshHeading.setType(type);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing MeshHeading for type tag ", e);
 			throw new JspTagException("Error: Can't find enclosing MeshHeading for type tag ");
 		}
 	}

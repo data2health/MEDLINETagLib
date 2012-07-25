@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import java.util.Date;
@@ -15,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class Article extends MEDLINETagLibTagSupport {
 
 	static Article currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(Article.class);
+	private static final Log log = LogFactory.getLog(Article.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -59,7 +59,6 @@ public class Article extends MEDLINETagLibTagSupport {
 			if (theArticleIterator == null && pmid == 0) {
 				// no pmid was provided - the default is to assume that it is a new Article and to generate a new pmid
 				pmid = Sequence.generateID();
-				log.debug("generating new Article " + pmid);
 				insertEntity();
 			} else {
 				// an iterator or pmid was provided as an attribute - we need to load a Article from the database
@@ -111,7 +110,7 @@ public class Article extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving pmid " + pmid, e);
 			throw new JspTagException("Error: JDBC error retrieving pmid " + pmid);
 		} finally {
 			freeConnection();
@@ -146,7 +145,7 @@ public class Article extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -206,7 +205,7 @@ public class Article extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -494,7 +493,7 @@ public class Article extends MEDLINETagLibTagSupport {
 		return status;
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {
@@ -534,7 +533,7 @@ public class Article extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int startPageValue() throws JspException {
+	public static Integer startPageValue() throws JspException {
 		try {
 			return currentInstance.getStartPage();
 		} catch (Exception e) {
@@ -542,7 +541,7 @@ public class Article extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int endPageValue() throws JspException {
+	public static Integer endPageValue() throws JspException {
 		try {
 			return currentInstance.getEndPage();
 		} catch (Exception e) {
@@ -614,7 +613,7 @@ public class Article extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int referenceCountValue() throws JspException {
+	public static Integer referenceCountValue() throws JspException {
 		try {
 			return currentInstance.getReferenceCount();
 		} catch (Exception e) {

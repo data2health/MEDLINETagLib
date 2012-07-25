@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class CommentsCorrectionsIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -26,7 +25,7 @@ public class CommentsCorrectionsIterator extends MEDLINETagLibBodyTagSupport {
     String note = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(CommentsCorrections.class);
+	private static final Log log = LogFactory.getLog(CommentsCorrectionsIterator.class);
 
 
     PreparedStatement stat = null;
@@ -52,7 +51,7 @@ public class CommentsCorrectionsIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating CommentsCorrections iterator", e);
 			throw new JspTagException("Error: JDBC error generating CommentsCorrections iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -82,7 +81,7 @@ public class CommentsCorrectionsIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating CommentsCorrections iterator", e);
 			throw new JspTagException("Error: JDBC error generating CommentsCorrections iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -132,7 +131,7 @@ public class CommentsCorrectionsIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating CommentsCorrections iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating CommentsCorrections iterator: " + stat.toString());
@@ -176,7 +175,7 @@ public class CommentsCorrectionsIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across CommentsCorrections", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across CommentsCorrections");
@@ -189,7 +188,7 @@ public class CommentsCorrectionsIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending CommentsCorrections iterator",e);
             throw new JspTagException("Error: JDBC error ending CommentsCorrections iterator");
         } finally {
             clearServiceState();

@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class GrantIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -26,7 +25,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
     String country = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(Grant.class);
+	private static final Log log = LogFactory.getLog(GrantIterator.class);
 
 
     PreparedStatement stat = null;
@@ -52,7 +51,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Grant iterator", e);
 			throw new JspTagException("Error: JDBC error generating Grant iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -82,7 +81,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Grant iterator", e);
 			throw new JspTagException("Error: JDBC error generating Grant iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -132,7 +131,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating Grant iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating Grant iterator: " + stat.toString());
@@ -176,7 +175,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across Grant", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across Grant");
@@ -189,7 +188,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending Grant iterator",e);
             throw new JspTagException("Error: JDBC error ending Grant iterator");
         } finally {
             clearServiceState();

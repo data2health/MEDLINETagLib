@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -16,14 +17,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class ClusterDocument extends MEDLINETagLibTagSupport {
 
 	static ClusterDocument currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(ClusterDocument.class);
+	private static final Log log = LogFactory.getLog(ClusterDocument.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -59,7 +59,6 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 			if (theClusterDocumentIterator == null && theArticle == null && theDocumentCluster == null && cid == 0) {
 				// no cid was provided - the default is to assume that it is a new ClusterDocument and to generate a new cid
 				cid = Sequence.generateID();
-				log.debug("generating new ClusterDocument " + cid);
 				insertEntity();
 			} else if (theClusterDocumentIterator == null && theArticle != null && theDocumentCluster == null) {
 				// an cid was provided as an attribute - we need to load a ClusterDocument from the database
@@ -110,7 +109,7 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving cid " + cid, e);
 			throw new JspTagException("Error: JDBC error retrieving cid " + cid);
 		} finally {
 			freeConnection();
@@ -129,7 +128,7 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -146,7 +145,7 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -177,7 +176,7 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 		return pmid;
 	}
 
-	public static int cidValue() throws JspException {
+	public static Integer cidValue() throws JspException {
 		try {
 			return currentInstance.getCid();
 		} catch (Exception e) {
@@ -185,7 +184,7 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {

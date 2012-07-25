@@ -2,11 +2,15 @@ package edu.uiowa.medline.grant;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class GrantGid extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(GrantGid.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class GrantGid extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theGrant.getGid());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Grant for gid tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Grant for gid tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class GrantGid extends MEDLINETagLibTagSupport {
 			Grant theGrant = (Grant)findAncestorWithClass(this, Grant.class);
 			return theGrant.getGid();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing Grant for gid tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Grant for gid tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class GrantGid extends MEDLINETagLibTagSupport {
 			Grant theGrant = (Grant)findAncestorWithClass(this, Grant.class);
 			theGrant.setGid(gid);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing Grant for gid tag ", e);
 			throw new JspTagException("Error: Can't find enclosing Grant for gid tag ");
 		}
 	}

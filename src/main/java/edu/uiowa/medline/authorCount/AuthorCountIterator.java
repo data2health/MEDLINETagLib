@@ -15,14 +15,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 
 @SuppressWarnings("serial")
-
 public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
     String lastName = null;
     String foreName = null;
     int count = 0;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(AuthorCount.class);
+	private static final Log log = LogFactory.getLog(AuthorCountIterator.class);
 
 
     PreparedStatement stat = null;
@@ -46,7 +45,7 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating AuthorCount iterator", e);
 			throw new JspTagException("Error: JDBC error generating AuthorCount iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -72,7 +71,7 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating AuthorCount iterator", e);
 			throw new JspTagException("Error: JDBC error generating AuthorCount iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -111,7 +110,7 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating AuthorCount iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating AuthorCount iterator: " + stat.toString());
@@ -155,7 +154,7 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across AuthorCount", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across AuthorCount");
@@ -168,7 +167,7 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending AuthorCount iterator",e);
             throw new JspTagException("Error: JDBC error ending AuthorCount iterator");
         } finally {
             clearServiceState();

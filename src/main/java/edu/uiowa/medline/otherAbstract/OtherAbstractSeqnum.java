@@ -2,11 +2,15 @@ package edu.uiowa.medline.otherAbstract;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class OtherAbstractSeqnum extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(OtherAbstractSeqnum.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class OtherAbstractSeqnum extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theOtherAbstract.getSeqnum());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing OtherAbstract for seqnum tag ", e);
 			throw new JspTagException("Error: Can't find enclosing OtherAbstract for seqnum tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class OtherAbstractSeqnum extends MEDLINETagLibTagSupport {
 			OtherAbstract theOtherAbstract = (OtherAbstract)findAncestorWithClass(this, OtherAbstract.class);
 			return theOtherAbstract.getSeqnum();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing OtherAbstract for seqnum tag ", e);
 			throw new JspTagException("Error: Can't find enclosing OtherAbstract for seqnum tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class OtherAbstractSeqnum extends MEDLINETagLibTagSupport {
 			OtherAbstract theOtherAbstract = (OtherAbstract)findAncestorWithClass(this, OtherAbstract.class);
 			theOtherAbstract.setSeqnum(seqnum);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing OtherAbstract for seqnum tag ", e);
 			throw new JspTagException("Error: Can't find enclosing OtherAbstract for seqnum tag ");
 		}
 	}

@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -25,7 +24,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
     String type = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(MeshHeading.class);
+	private static final Log log = LogFactory.getLog(MeshHeadingIterator.class);
 
 
     PreparedStatement stat = null;
@@ -51,7 +50,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating MeshHeading iterator", e);
 			throw new JspTagException("Error: JDBC error generating MeshHeading iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -81,7 +80,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating MeshHeading iterator", e);
 			throw new JspTagException("Error: JDBC error generating MeshHeading iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -131,7 +130,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating MeshHeading iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating MeshHeading iterator: " + stat.toString());
@@ -175,7 +174,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across MeshHeading", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across MeshHeading");
@@ -188,7 +187,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending MeshHeading iterator",e);
             throw new JspTagException("Error: JDBC error ending MeshHeading iterator");
         } finally {
             clearServiceState();

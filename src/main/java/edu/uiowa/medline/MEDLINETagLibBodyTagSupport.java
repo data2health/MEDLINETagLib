@@ -11,8 +11,8 @@ import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-@SuppressWarnings("serial")
 
+@SuppressWarnings("serial")
 public class MEDLINETagLibBodyTagSupport extends BodyTagSupport {
 
     protected DataSource theDataSource = null;
@@ -22,7 +22,7 @@ public class MEDLINETagLibBodyTagSupport extends BodyTagSupport {
         super();
     }
 
-    private static final Log log =LogFactory.getLog(MEDLINETagLibBodyTagSupport.class);
+    private static final Log log = LogFactory.getLog(MEDLINETagLibBodyTagSupport.class);
 
     @Override
     public int doEndTag() throws JspException {
@@ -52,7 +52,7 @@ public class MEDLINETagLibBodyTagSupport extends BodyTagSupport {
         	theConnection.close();
         theConnection = null;
      } catch (SQLException e) {
-         e.printStackTrace();
+         log.error("JDBC error freeing connection", e);
         theConnection = null;
          throw new JspTagException("Error: JDBC error freeing connection");
      }

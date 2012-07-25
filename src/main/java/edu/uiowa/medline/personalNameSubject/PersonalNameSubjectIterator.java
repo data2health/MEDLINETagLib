@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -26,7 +25,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
     String suffix = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(PersonalNameSubject.class);
+	private static final Log log = LogFactory.getLog(PersonalNameSubjectIterator.class);
 
 
     PreparedStatement stat = null;
@@ -52,7 +51,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating PersonalNameSubject iterator", e);
 			throw new JspTagException("Error: JDBC error generating PersonalNameSubject iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -82,7 +81,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating PersonalNameSubject iterator", e);
 			throw new JspTagException("Error: JDBC error generating PersonalNameSubject iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -132,7 +131,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating PersonalNameSubject iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating PersonalNameSubject iterator: " + stat.toString());
@@ -176,7 +175,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across PersonalNameSubject", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across PersonalNameSubject");
@@ -189,7 +188,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending PersonalNameSubject iterator",e);
             throw new JspTagException("Error: JDBC error ending PersonalNameSubject iterator");
         } finally {
             clearServiceState();

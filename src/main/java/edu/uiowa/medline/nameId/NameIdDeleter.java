@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
@@ -14,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.author.Author;
 
 @SuppressWarnings("serial")
-
 public class NameIdDeleter extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -22,6 +23,8 @@ public class NameIdDeleter extends MEDLINETagLibBodyTagSupport {
     String nameId = null;
     String source = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
+
+	private static final Log log = LogFactory.getLog(NameIdDeleter.class);
 
 
     ResultSet rs = null;
@@ -44,17 +47,17 @@ public class NameIdDeleter extends MEDLINETagLibBodyTagSupport {
         try {
             int webapp_keySeq = 1;
             stat = getConnection().prepareStatement("DELETE from medline12.name_id where 1=1"
-                                                        + (pmid == 0 ? "" : " and pmid = ?")
-                                                        + (seqnum == 0 ? "" : " and seqnum = ?")
-                                                        + (nnum == 0 ? "" : " and nnum = ?")
-                                                        );
+                                                        + (pmid == 0 ? "" : " and pmid = ? ")
+                                                        + (seqnum == 0 ? "" : " and seqnum = ? ")
+                                                        + (nnum == 0 ? "" : " and nnum = ? "));
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);
             if (seqnum != 0) stat.setInt(webapp_keySeq++, seqnum);
             if (nnum != 0) stat.setInt(webapp_keySeq++, nnum);
             stat.execute();
 
+			webapp_keySeq = 1;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating NameId deleter", e);
             clearServiceState();
             throw new JspTagException("Error: JDBC error generating NameId deleter");
         } finally {

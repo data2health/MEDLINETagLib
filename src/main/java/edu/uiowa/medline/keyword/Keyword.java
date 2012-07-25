@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class Keyword extends MEDLINETagLibTagSupport {
 
 	static Keyword currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(Keyword.class);
+	private static final Log log = LogFactory.getLog(Keyword.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -54,7 +54,6 @@ public class Keyword extends MEDLINETagLibTagSupport {
 			if (theKeywordIterator == null && theArticle == null && seqnum == 0) {
 				// no seqnum was provided - the default is to assume that it is a new Keyword and to generate a new seqnum
 				seqnum = Sequence.generateID();
-				log.debug("generating new Keyword " + seqnum);
 				insertEntity();
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Keyword from the database
@@ -79,7 +78,7 @@ public class Keyword extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving seqnum " + seqnum, e);
 			throw new JspTagException("Error: JDBC error retrieving seqnum " + seqnum);
 		} finally {
 			freeConnection();
@@ -101,7 +100,7 @@ public class Keyword extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -130,7 +129,7 @@ public class Keyword extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -206,7 +205,7 @@ public class Keyword extends MEDLINETagLibTagSupport {
 		return owner;
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {
@@ -214,7 +213,7 @@ public class Keyword extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int seqnumValue() throws JspException {
+	public static Integer seqnumValue() throws JspException {
 		try {
 			return currentInstance.getSeqnum();
 		} catch (Exception e) {
@@ -230,7 +229,7 @@ public class Keyword extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static boolean majorValue() throws JspException {
+	public static Boolean majorValue() throws JspException {
 		try {
 			return currentInstance.getMajor();
 		} catch (Exception e) {

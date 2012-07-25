@@ -2,11 +2,15 @@ package edu.uiowa.medline.otherId;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class OtherIdOtherId extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(OtherIdOtherId.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class OtherIdOtherId extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theOtherId.getOtherId());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing OtherId for otherId tag ", e);
 			throw new JspTagException("Error: Can't find enclosing OtherId for otherId tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class OtherIdOtherId extends MEDLINETagLibTagSupport {
 			OtherId theOtherId = (OtherId)findAncestorWithClass(this, OtherId.class);
 			return theOtherId.getOtherId();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing OtherId for otherId tag ", e);
 			throw new JspTagException("Error: Can't find enclosing OtherId for otherId tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class OtherIdOtherId extends MEDLINETagLibTagSupport {
 			OtherId theOtherId = (OtherId)findAncestorWithClass(this, OtherId.class);
 			theOtherId.setOtherId(otherId);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing OtherId for otherId tag ", e);
 			throw new JspTagException("Error: Can't find enclosing OtherId for otherId tag ");
 		}
 	}

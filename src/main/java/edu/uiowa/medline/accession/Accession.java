@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class Accession extends MEDLINETagLibTagSupport {
 
 	static Accession currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(Accession.class);
+	private static final Log log = LogFactory.getLog(Accession.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -55,7 +55,6 @@ public class Accession extends MEDLINETagLibTagSupport {
 			if (theAccessionIterator == null && theDataBank == null && accnum == 0) {
 				// no accnum was provided - the default is to assume that it is a new Accession and to generate a new accnum
 				accnum = Sequence.generateID();
-				log.debug("generating new Accession " + accnum);
 				insertEntity();
 			} else {
 				// an iterator or accnum was provided as an attribute - we need to load a Accession from the database
@@ -77,7 +76,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving accnum " + accnum, e);
 			throw new JspTagException("Error: JDBC error retrieving accnum " + accnum);
 		} finally {
 			freeConnection();
@@ -98,7 +97,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -124,7 +123,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -183,7 +182,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 		return accession;
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {
@@ -191,7 +190,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int seqnumValue() throws JspException {
+	public static Integer seqnumValue() throws JspException {
 		try {
 			return currentInstance.getSeqnum();
 		} catch (Exception e) {
@@ -199,7 +198,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int accnumValue() throws JspException {
+	public static Integer accnumValue() throws JspException {
 		try {
 			return currentInstance.getAccnum();
 		} catch (Exception e) {

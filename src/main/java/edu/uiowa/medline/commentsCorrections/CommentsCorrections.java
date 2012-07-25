@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,14 +16,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
-
 public class CommentsCorrections extends MEDLINETagLibTagSupport {
 
 	static CommentsCorrections currentInstance = null;
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
-	private static final Log log =LogFactory.getLog(CommentsCorrections.class);
+	private static final Log log = LogFactory.getLog(CommentsCorrections.class);
 
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
@@ -55,7 +55,6 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 			if (theCommentsCorrectionsIterator == null && theArticle == null && seqnum == 0) {
 				// no seqnum was provided - the default is to assume that it is a new CommentsCorrections and to generate a new seqnum
 				seqnum = Sequence.generateID();
-				log.debug("generating new CommentsCorrections " + seqnum);
 				insertEntity();
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a CommentsCorrections from the database
@@ -82,7 +81,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error retrieving seqnum " + seqnum, e);
 			throw new JspTagException("Error: JDBC error retrieving seqnum " + seqnum);
 		} finally {
 			freeConnection();
@@ -105,7 +104,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			clearServiceState();
@@ -137,7 +136,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error: IOException while writing to the user", e);
 			throw new JspTagException("Error: IOException while writing to the user");
 		} finally {
 			freeConnection();
@@ -229,7 +228,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 		return note;
 	}
 
-	public static int pmidValue() throws JspException {
+	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
 		} catch (Exception e) {
@@ -237,7 +236,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int seqnumValue() throws JspException {
+	public static Integer seqnumValue() throws JspException {
 		try {
 			return currentInstance.getSeqnum();
 		} catch (Exception e) {
@@ -261,7 +260,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static int refPmidValue() throws JspException {
+	public static Integer refPmidValue() throws JspException {
 		try {
 			return currentInstance.getRefPmid();
 		} catch (Exception e) {

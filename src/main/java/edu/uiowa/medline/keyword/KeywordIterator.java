@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class KeywordIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -25,7 +24,7 @@ public class KeywordIterator extends MEDLINETagLibBodyTagSupport {
     String owner = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(Keyword.class);
+	private static final Log log = LogFactory.getLog(KeywordIterator.class);
 
 
     PreparedStatement stat = null;
@@ -51,7 +50,7 @@ public class KeywordIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Keyword iterator", e);
 			throw new JspTagException("Error: JDBC error generating Keyword iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -81,7 +80,7 @@ public class KeywordIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Keyword iterator", e);
 			throw new JspTagException("Error: JDBC error generating Keyword iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -131,7 +130,7 @@ public class KeywordIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating Keyword iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating Keyword iterator: " + stat.toString());
@@ -175,7 +174,7 @@ public class KeywordIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across Keyword", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across Keyword");
@@ -188,7 +187,7 @@ public class KeywordIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending Keyword iterator",e);
             throw new JspTagException("Error: JDBC error ending Keyword iterator");
         } finally {
             clearServiceState();

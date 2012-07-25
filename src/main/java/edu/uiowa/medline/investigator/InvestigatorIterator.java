@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -27,7 +26,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
     String affiliation = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(Investigator.class);
+	private static final Log log = LogFactory.getLog(InvestigatorIterator.class);
 
 
     PreparedStatement stat = null;
@@ -53,7 +52,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Investigator iterator", e);
 			throw new JspTagException("Error: JDBC error generating Investigator iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -83,7 +82,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating Investigator iterator", e);
 			throw new JspTagException("Error: JDBC error generating Investigator iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -133,7 +132,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating Investigator iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating Investigator iterator: " + stat.toString());
@@ -177,7 +176,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across Investigator", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across Investigator");
@@ -190,7 +189,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending Investigator iterator",e);
             throw new JspTagException("Error: JDBC error ending Investigator iterator");
         } finally {
             clearServiceState();

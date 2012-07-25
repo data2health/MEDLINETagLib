@@ -2,11 +2,15 @@ package edu.uiowa.medline.meshHeading;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
 public class MeshHeadingDescriptorName extends MEDLINETagLibTagSupport {
+	private static final Log log = LogFactory.getLog(MeshHeadingDescriptorName.class);
+
 
 	public int doStartTag() throws JspException {
 		try {
@@ -15,7 +19,7 @@ public class MeshHeadingDescriptorName extends MEDLINETagLibTagSupport {
 				pageContext.getOut().print(theMeshHeading.getDescriptorName());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing MeshHeading for descriptorName tag ", e);
 			throw new JspTagException("Error: Can't find enclosing MeshHeading for descriptorName tag ");
 		}
 		return SKIP_BODY;
@@ -26,7 +30,7 @@ public class MeshHeadingDescriptorName extends MEDLINETagLibTagSupport {
 			MeshHeading theMeshHeading = (MeshHeading)findAncestorWithClass(this, MeshHeading.class);
 			return theMeshHeading.getDescriptorName();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(" Can't find enclosing MeshHeading for descriptorName tag ", e);
 			throw new JspTagException("Error: Can't find enclosing MeshHeading for descriptorName tag ");
 		}
 	}
@@ -36,7 +40,7 @@ public class MeshHeadingDescriptorName extends MEDLINETagLibTagSupport {
 			MeshHeading theMeshHeading = (MeshHeading)findAncestorWithClass(this, MeshHeading.class);
 			theMeshHeading.setDescriptorName(descriptorName);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Can't find enclosing MeshHeading for descriptorName tag ", e);
 			throw new JspTagException("Error: Can't find enclosing MeshHeading for descriptorName tag ");
 		}
 	}

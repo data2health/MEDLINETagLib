@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
@@ -13,12 +15,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 
 @SuppressWarnings("serial")
-
 public class AuthorCountDeleter extends MEDLINETagLibBodyTagSupport {
     String lastName = null;
     String foreName = null;
     int count = 0;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
+
+	private static final Log log = LogFactory.getLog(AuthorCountDeleter.class);
 
 
     ResultSet rs = null;
@@ -33,15 +36,15 @@ public class AuthorCountDeleter extends MEDLINETagLibBodyTagSupport {
         try {
             int webapp_keySeq = 1;
             stat = getConnection().prepareStatement("DELETE from medline12.author_count where 1=1"
-                                                        + (lastName == null ? "" : " and last_name = ?")
-                                                        + (foreName == null ? "" : " and fore_name = ?")
-                                                        );
+                                                        + (lastName == null ? "" : " and last_name = ? ")
+                                                        + (foreName == null ? "" : " and fore_name = ? "));
             if (lastName != null) stat.setString(webapp_keySeq++, lastName);
             if (foreName != null) stat.setString(webapp_keySeq++, foreName);
             stat.execute();
 
+			webapp_keySeq = 1;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating AuthorCount deleter", e);
             clearServiceState();
             throw new JspTagException("Error: JDBC error generating AuthorCount deleter");
         } finally {

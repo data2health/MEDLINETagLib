@@ -16,7 +16,6 @@ import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 import edu.uiowa.medline.article.Article;
 
 @SuppressWarnings("serial")
-
 public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
@@ -24,7 +23,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
     String type = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
-	private static final Log log =LogFactory.getLog(SupplementalMesh.class);
+	private static final Log log = LogFactory.getLog(SupplementalMeshIterator.class);
 
 
     PreparedStatement stat = null;
@@ -50,7 +49,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating SupplementalMesh iterator", e);
 			throw new JspTagException("Error: JDBC error generating SupplementalMesh iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -80,7 +79,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
 			}
 			stat.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error generating SupplementalMesh iterator", e);
 			throw new JspTagException("Error: JDBC error generating SupplementalMesh iterator");
 		} finally {
 			theIterator.freeConnection();
@@ -130,7 +129,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_INCLUDE;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating SupplementalMesh iterator: " + stat.toString(), e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error generating SupplementalMesh iterator: " + stat.toString());
@@ -174,7 +173,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
                 return EVAL_BODY_AGAIN;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error iterating across SupplementalMesh", e);
             clearServiceState();
             freeConnection();
             throw new JspTagException("Error: JDBC error iterating across SupplementalMesh");
@@ -187,7 +186,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
             rs.close();
             stat.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error ending SupplementalMesh iterator",e);
             throw new JspTagException("Error: JDBC error ending SupplementalMesh iterator");
         } finally {
             clearServiceState();

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
@@ -13,12 +15,13 @@ import edu.uiowa.medline.MEDLINETagLibTagSupport;
 import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
 
 @SuppressWarnings("serial")
-
 public class DocumentClusterDeleter extends MEDLINETagLibBodyTagSupport {
     int cid = 0;
     String lastName = null;
     String foreName = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
+
+	private static final Log log = LogFactory.getLog(DocumentClusterDeleter.class);
 
 
     ResultSet rs = null;
@@ -33,13 +36,13 @@ public class DocumentClusterDeleter extends MEDLINETagLibBodyTagSupport {
         try {
             int webapp_keySeq = 1;
             stat = getConnection().prepareStatement("DELETE from medline_clustering.document_cluster where 1=1"
-                                                        + (cid == 0 ? "" : " and cid = ?")
-                                                        );
+                                                        + (cid == 0 ? "" : " and cid = ? "));
             if (cid != 0) stat.setInt(webapp_keySeq++, cid);
             stat.execute();
 
+			webapp_keySeq = 1;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("JDBC error generating DocumentCluster deleter", e);
             clearServiceState();
             throw new JspTagException("Error: JDBC error generating DocumentCluster deleter");
         } finally {
