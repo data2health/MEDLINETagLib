@@ -6,6 +6,9 @@ import java.util.Vector;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
 
 @SuppressWarnings("serial")
@@ -16,6 +19,8 @@ public class ClusterDocumentSet extends MEDLINETagLibTagSupport {
 	boolean commitNeeded = false;
 	boolean newRecord = false;
 
+	private static final Log log = LogFactory.getLog(ClusterDocumentSet.class);
+
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
 	int cid = 0;
@@ -24,12 +29,12 @@ public class ClusterDocumentSet extends MEDLINETagLibTagSupport {
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
-		    if (false)
+		    if (currentInstance != this)
 		        throw new SQLException();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error in ClusterDocumentSet", e);
 			freeConnection();
-			throw new JspTagException("Error: JDBC error retrieving cid " + cid);
+			throw new JspTagException("JDBC error in ClusterDocumentSet");
 		}
 		return EVAL_PAGE;
 	}
@@ -37,12 +42,12 @@ public class ClusterDocumentSet extends MEDLINETagLibTagSupport {
 	public int doEndTag() throws JspException {
 		currentInstance = null;
 		try {
-            if (false)
+            if (currentInstance != this)
                 throw new SQLException();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("JDBC error in ClusterDocumentSet", e);
 			freeConnection();
-			throw new JspTagException("Error: IOException while writing to the user");
+			throw new JspTagException("JDBC error in ClusterDocumentSet");
 		}
 		clearServiceState();
 		return super.doEndTag();
