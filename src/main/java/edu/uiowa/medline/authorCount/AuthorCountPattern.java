@@ -54,7 +54,7 @@ public class AuthorCountPattern extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or lastName was provided as an attribute - we need to load a AuthorCount from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select count from medline12.author_count where last_name = ? and fore_name = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select count(*) from medline12.author where last_name = ? and fore_name = ?");
 				stmt.setString(1,lastName);
 				stmt.setString(2,foreName);
 				ResultSet rs = stmt.executeQuery();

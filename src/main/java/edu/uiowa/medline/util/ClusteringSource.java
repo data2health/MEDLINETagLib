@@ -76,10 +76,10 @@ public class ClusteringSource extends ExternalSource {
     void cluster(Vector<Cluster> clusters, Author author) throws NamingException, SQLException, ClassNotFoundException {
 		logger.debug(label + " clustering: " + author);
 		Hashtable<String,Instance> pmidHash = parentClusterer.getSourceIDHashByLabel("MEDLINE");
-		
+		logger.debug("pmidHash: " + pmidHash);
 
 		Connection theConnection = getConnection();
-        PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from .author,medline12.journal, medline12.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
+        PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline12.author,medline12.journal, medline12.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
         stmt.setString(1,author.getLastName());
         stmt.setString(2,author.getForeName());
         ResultSet rs = stmt.executeQuery();
@@ -202,7 +202,8 @@ public class ClusteringSource extends ExternalSource {
 
 	public void getAuthorNames(String lastName, String foreNamePrefix, Vector<Author> authors) {
         try {
-            PreparedStatement stat = getConnection().prepareStatement("select last_name, fore_name from medline12.author_count where last_name = ? and fore_name ~ ? order by last_name,fore_name");
+        	logger.debug(label + " scanning for author : " + lastName + " " + foreNamePrefix);
+            PreparedStatement stat = getConnection().prepareStatement("select distinct last_name, fore_name from medline12.author where last_name = ? and fore_name ~ ? order by last_name,fore_name");
             stat.setString(1, lastName.substring(0, 1).toUpperCase() + lastName.substring(1));
             stat.setString(2, "^" + foreNamePrefix.substring(0, 1).toUpperCase() + foreNamePrefix.substring(1));
 
@@ -210,6 +211,7 @@ public class ClusteringSource extends ExternalSource {
             while (rs.next()) {
                 String lName = rs.getString(1);
                 String fName = rs.getString(2);
+            	logger.debug(label + " matching for author : " + lName + " " + fName);
                 addAuthor(authors, lName, fName);
             }
         } catch (SQLException e) {
