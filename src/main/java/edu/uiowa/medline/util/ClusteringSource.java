@@ -28,17 +28,7 @@ import edu.uiowa.medline.journal.Journal;
 
 public class ClusteringSource extends ExternalSource {
 
-    Hashtable<String, Instance> pmidHash = new Hashtable<String, Instance>();
 	Pattern medDatePattern = Pattern.compile("^([0-9][0-9][0-9][0-9])(-[0-9][0-9][0-9][0-9])? ?.*");
-    
-    public ClusteringSource() {
-    	super();
-    	idHash = pmidHash;
-    }
-    
-    public Hashtable<String, Instance> instantiateIDHash() {
-    	return pmidHash;
-    }
     
     private Connection getConnection() throws NamingException, SQLException, ClassNotFoundException {
 		Connection theConnection = null;
@@ -75,8 +65,7 @@ public class ClusteringSource extends ExternalSource {
     
     void cluster(Vector<Cluster> clusters, Author author) throws NamingException, SQLException, ClassNotFoundException {
 		logger.debug(label + " clustering: " + author);
-		Hashtable<String,Instance> pmidHash = parentClusterer.getSourceIDHashByLabel("MEDLINE");
-		logger.debug("pmidHash: " + pmidHash);
+		logger.debug("idHash: " + idHash);
 
 		Connection theConnection = getConnection();
         PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline12.author,medline12.journal, medline12.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
@@ -98,8 +87,8 @@ public class ClusteringSource extends ExternalSource {
 				}
 			}
             
-			if (pmidHash.containsKey(""+pmid)) {
-	            logger.debug("\tskipping already present pmid: " + pmid + "\tyear: " + year + "\ttitle: " + title);
+			if (idHash.containsKey(""+pmid)) {
+	            logger.debug("\tskipping an already present pmid: " + pmid + "\tyear: " + year + "\ttitle: " + title);
 				continue;
 			}
 			
@@ -109,7 +98,8 @@ public class ClusteringSource extends ExternalSource {
             theInstance.setYear(year);
             theInstance.setTitle(title);
             theInstance.getLinkages().add(new Linkage(sid,pmid));
-            pmidHash.put(""+pmid, theInstance);
+            idHash.put(""+pmid, theInstance);
+    		logger.debug("idHash: " + idHash);
             
             PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline12.author where pmid = ? order by 1,2");
             authStmt.setInt(1, pmid);
