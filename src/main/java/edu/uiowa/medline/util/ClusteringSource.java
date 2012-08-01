@@ -97,7 +97,9 @@ public class ClusteringSource extends ExternalSource {
             theInstance.setPmid(pmid);
             theInstance.setYear(year);
             theInstance.setTitle(title);
-            theInstance.getLinkages().add(new Linkage(sid,pmid));
+    		Linkage newLink = new Linkage(sid, pmid);
+    		newLink.setRecent(true);
+    		theInstance.getLinkages().add(newLink);
             idHash.put(""+pmid, theInstance);
     		logger.debug("idHash: " + idHash);
             
