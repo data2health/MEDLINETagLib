@@ -18,12 +18,18 @@ public class AuthorListForArticle extends MEDLINETagLibTagSupport {
     public int doStartTag() throws JspException {
         PreparedStatement stat;
         try {
-            stat = getConnection().prepareStatement("select last_name, initials from medline12.author where pmid = ? order by seqnum");
+            stat = getConnection().prepareStatement("select last_name, initials, collective_name from medline12.author where pmid = ? order by seqnum");
             stat.setInt(1, ID);
             ResultSet rs = stat.executeQuery();
             StringBuffer authorString = new StringBuffer();
             while (rs.next()) {
-                authorString.append((authorString.length() > 0 ? ", " : "") + rs.getString(1) + " " + rs.getString(2));
+			    String lastName = rs.getString(1);
+			    String foreName = rs.getString(2);
+			    String collective = rs.getString(3);
+			    if (lastName == null)
+			    	authorString.append((authorString.length() > 0 ? ", " : "") + collective);
+			    else
+			    	authorString.append((authorString.length() > 0 ? ", " : "") + lastName + ", " + foreName);
             }
             pageContext.getOut().print(authorString.toString());
         } catch (Exception e) {

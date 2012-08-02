@@ -27,6 +27,7 @@ import edu.uiowa.medline.article.Article;
 import edu.uiowa.medline.journal.Journal;
 
 public class ClusteringSource extends ExternalSource {
+	private boolean useCollectiveName = true;
 
 	Pattern medDatePattern = Pattern.compile("^([0-9][0-9][0-9][0-9])(-[0-9][0-9][0-9][0-9])? ?.*");
     
@@ -97,20 +98,25 @@ public class ClusteringSource extends ExternalSource {
             theInstance.setPmid(pmid);
             theInstance.setYear(year);
             theInstance.setTitle(title);
+            theInstance.setValid(true);
     		Linkage newLink = new Linkage(sid, pmid);
     		newLink.setRecent(true);
     		theInstance.getLinkages().add(newLink);
             idHash.put(""+pmid, theInstance);
     		logger.debug("idHash: " + idHash);
             
-            PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline12.author where pmid = ? order by 1,2");
+            PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials, collective_name from medline12.author where pmid = ? order by 1,2");
             authStmt.setInt(1, pmid);
             ResultSet ars = authStmt.executeQuery();
             while (ars.next()) {
                 String lname = ars.getString(1);
                 String fname = ars.getString(2);
                 String initials = ars.getString(3);
-                if (!(author.getLastName().equals(lname) && author.getForeName().equals(fname))) {
+                String collective = ars.getString(4);
+                if (lname == null && collective != null && useCollectiveName) {
+                	logger.debug("\t\tauthor: " + collective);
+                    theInstance.getAuthors().addElement(collective);
+                } else if (!(author.getLastName().equals(lname) && author.getForeName().equals(fname))) {
                 	logger.debug("\t\tauthor: " + lname + " " + fname);
                     theInstance.getAuthors().addElement(lname + " " + initials);
                 }
@@ -261,13 +267,17 @@ public class ClusteringSource extends ExternalSource {
         try {
             Connection theConnection = getConnection();
 			int count = 0;
-			PreparedStatement loadStmt = getConnection().prepareStatement("select last_name,fore_name from medline12.author where pmid = ? order by seqnum");
+			PreparedStatement loadStmt = getConnection().prepareStatement("select last_name,fore_name,collective_name from medline12.author where pmid = ? order by seqnum");
 			loadStmt.setInt(1,pmid);
 			ResultSet lrs = loadStmt.executeQuery();
 			while (lrs.next()) {
 			    String lastName = lrs.getString(1);
 			    String foreName = lrs.getString(2);
-			    authorBuffer.append((count++ > 0 ? ", " : "") + lastName + ", " + foreName);
+			    String collective = lrs.getString(3);
+			    if (lastName == null)
+			    	authorBuffer.append((count++ > 0 ? ", " : "") + collective);
+			    else
+			    	authorBuffer.append((count++ > 0 ? ", " : "") + lastName + ", " + foreName);
 			}
 			loadStmt.close();
 			authorBuffer.append(".");
