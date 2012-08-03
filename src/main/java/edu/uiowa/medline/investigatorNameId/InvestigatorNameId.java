@@ -32,6 +32,10 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 	String nameId = null;
 	String source = null;
 
+	private String var = null;
+
+	private InvestigatorNameId cachedInvestigatorNameId = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -84,11 +88,27 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		InvestigatorNameId currentInvestigatorNameId = (InvestigatorNameId) pageContext.getAttribute("tag_investigatorNameId");
+		if(currentInvestigatorNameId != null){
+			cachedInvestigatorNameId = currentInvestigatorNameId;
+		}
+		currentInvestigatorNameId = this;
+		pageContext.setAttribute((var == null ? "tag_investigatorNameId" : var), currentInvestigatorNameId);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedInvestigatorNameId != null){
+			pageContext.setAttribute((var == null ? "tag_investigatorNameId" : var), this.cachedInvestigatorNameId);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_investigatorNameId" : var));
+			this.cachedInvestigatorNameId = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.investigator_name_id set name_id = ?, source = ? where pmid = ? and seqnum = ? and nnum = ?");
@@ -205,6 +225,18 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 		return source;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -254,6 +286,7 @@ public class InvestigatorNameId extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

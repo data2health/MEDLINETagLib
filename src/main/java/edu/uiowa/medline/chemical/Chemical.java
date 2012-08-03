@@ -31,6 +31,10 @@ public class Chemical extends MEDLINETagLibTagSupport {
 	String registryNumber = null;
 	String substanceName = null;
 
+	private String var = null;
+
+	private Chemical cachedChemical = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -80,11 +84,27 @@ public class Chemical extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Chemical currentChemical = (Chemical) pageContext.getAttribute("tag_chemical");
+		if(currentChemical != null){
+			cachedChemical = currentChemical;
+		}
+		currentChemical = this;
+		pageContext.setAttribute((var == null ? "tag_chemical" : var), currentChemical);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedChemical != null){
+			pageContext.setAttribute((var == null ? "tag_chemical" : var), this.cachedChemical);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_chemical" : var));
+			this.cachedChemical = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.chemical set registry_number = ?, substance_name = ? where pmid = ? and seqnum = ?");
@@ -187,6 +207,18 @@ public class Chemical extends MEDLINETagLibTagSupport {
 		return substanceName;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -227,6 +259,7 @@ public class Chemical extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

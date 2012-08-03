@@ -33,6 +33,10 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 	int refPmid = 0;
 	String note = null;
 
+	private String var = null;
+
+	private CommentsCorrections cachedCommentsCorrections = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -86,11 +90,27 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		CommentsCorrections currentCommentsCorrections = (CommentsCorrections) pageContext.getAttribute("tag_commentsCorrections");
+		if(currentCommentsCorrections != null){
+			cachedCommentsCorrections = currentCommentsCorrections;
+		}
+		currentCommentsCorrections = this;
+		pageContext.setAttribute((var == null ? "tag_commentsCorrections" : var), currentCommentsCorrections);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedCommentsCorrections != null){
+			pageContext.setAttribute((var == null ? "tag_commentsCorrections" : var), this.cachedCommentsCorrections);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_commentsCorrections" : var));
+			this.cachedCommentsCorrections = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.comments_corrections set ref_type = ?, source = ?, ref_pmid = ?, note = ? where pmid = ? and seqnum = ?");
@@ -228,6 +248,18 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 		return note;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -286,6 +318,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

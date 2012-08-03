@@ -31,6 +31,10 @@ public class Elocation extends MEDLINETagLibTagSupport {
 	String eid = null;
 	String type = null;
 
+	private String var = null;
+
+	private Elocation cachedElocation = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -80,11 +84,27 @@ public class Elocation extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Elocation currentElocation = (Elocation) pageContext.getAttribute("tag_elocation");
+		if(currentElocation != null){
+			cachedElocation = currentElocation;
+		}
+		currentElocation = this;
+		pageContext.setAttribute((var == null ? "tag_elocation" : var), currentElocation);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedElocation != null){
+			pageContext.setAttribute((var == null ? "tag_elocation" : var), this.cachedElocation);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_elocation" : var));
+			this.cachedElocation = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.elocation set eid = ?, type = ? where pmid = ? and seqnum = ?");
@@ -187,6 +207,18 @@ public class Elocation extends MEDLINETagLibTagSupport {
 		return type;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -227,6 +259,7 @@ public class Elocation extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

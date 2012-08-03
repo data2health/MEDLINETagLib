@@ -31,6 +31,10 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 	String name = null;
 	String type = null;
 
+	private String var = null;
+
+	private SupplementalMesh cachedSupplementalMesh = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -80,11 +84,27 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		SupplementalMesh currentSupplementalMesh = (SupplementalMesh) pageContext.getAttribute("tag_supplementalMesh");
+		if(currentSupplementalMesh != null){
+			cachedSupplementalMesh = currentSupplementalMesh;
+		}
+		currentSupplementalMesh = this;
+		pageContext.setAttribute((var == null ? "tag_supplementalMesh" : var), currentSupplementalMesh);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedSupplementalMesh != null){
+			pageContext.setAttribute((var == null ? "tag_supplementalMesh" : var), this.cachedSupplementalMesh);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_supplementalMesh" : var));
+			this.cachedSupplementalMesh = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.supplemental_mesh set name = ?, type = ? where pmid = ? and seqnum = ?");
@@ -187,6 +207,18 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 		return type;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -227,6 +259,7 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

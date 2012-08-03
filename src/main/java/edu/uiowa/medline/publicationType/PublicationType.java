@@ -30,6 +30,10 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 	int seqnum = 0;
 	String label = null;
 
+	private String var = null;
+
+	private PublicationType cachedPublicationType = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -77,11 +81,27 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		PublicationType currentPublicationType = (PublicationType) pageContext.getAttribute("tag_publicationType");
+		if(currentPublicationType != null){
+			cachedPublicationType = currentPublicationType;
+		}
+		currentPublicationType = this;
+		pageContext.setAttribute((var == null ? "tag_publicationType" : var), currentPublicationType);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedPublicationType != null){
+			pageContext.setAttribute((var == null ? "tag_publicationType" : var), this.cachedPublicationType);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_publicationType" : var));
+			this.cachedPublicationType = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.publication_type set label = ? where pmid = ? and seqnum = ?");
@@ -164,6 +184,18 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 		return label;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -195,6 +227,7 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

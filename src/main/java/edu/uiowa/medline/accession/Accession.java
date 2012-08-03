@@ -31,6 +31,10 @@ public class Accession extends MEDLINETagLibTagSupport {
 	int accnum = 0;
 	String accession = null;
 
+	private String var = null;
+
+	private Accession cachedAccession = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -81,11 +85,27 @@ public class Accession extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Accession currentAccession = (Accession) pageContext.getAttribute("tag_accession");
+		if(currentAccession != null){
+			cachedAccession = currentAccession;
+		}
+		currentAccession = this;
+		pageContext.setAttribute((var == null ? "tag_accession" : var), currentAccession);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedAccession != null){
+			pageContext.setAttribute((var == null ? "tag_accession" : var), this.cachedAccession);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_accession" : var));
+			this.cachedAccession = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.accession set accession = ? where pmid = ? and seqnum = ? and accnum = ?");
@@ -182,6 +202,18 @@ public class Accession extends MEDLINETagLibTagSupport {
 		return accession;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -222,6 +254,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

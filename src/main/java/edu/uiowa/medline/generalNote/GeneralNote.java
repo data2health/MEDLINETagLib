@@ -31,6 +31,10 @@ public class GeneralNote extends MEDLINETagLibTagSupport {
 	String note = null;
 	String owner = null;
 
+	private String var = null;
+
+	private GeneralNote cachedGeneralNote = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -80,11 +84,27 @@ public class GeneralNote extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		GeneralNote currentGeneralNote = (GeneralNote) pageContext.getAttribute("tag_generalNote");
+		if(currentGeneralNote != null){
+			cachedGeneralNote = currentGeneralNote;
+		}
+		currentGeneralNote = this;
+		pageContext.setAttribute((var == null ? "tag_generalNote" : var), currentGeneralNote);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedGeneralNote != null){
+			pageContext.setAttribute((var == null ? "tag_generalNote" : var), this.cachedGeneralNote);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_generalNote" : var));
+			this.cachedGeneralNote = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.general_note set note = ?, owner = ? where pmid = ? and seqnum = ?");
@@ -187,6 +207,18 @@ public class GeneralNote extends MEDLINETagLibTagSupport {
 		return owner;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -227,6 +259,7 @@ public class GeneralNote extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

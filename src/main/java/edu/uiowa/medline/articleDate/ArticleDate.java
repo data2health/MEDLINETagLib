@@ -33,6 +33,10 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 	int day = 0;
 	String type = null;
 
+	private String var = null;
+
+	private ArticleDate cachedArticleDate = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -86,11 +90,27 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		ArticleDate currentArticleDate = (ArticleDate) pageContext.getAttribute("tag_articleDate");
+		if(currentArticleDate != null){
+			cachedArticleDate = currentArticleDate;
+		}
+		currentArticleDate = this;
+		pageContext.setAttribute((var == null ? "tag_articleDate" : var), currentArticleDate);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedArticleDate != null){
+			pageContext.setAttribute((var == null ? "tag_articleDate" : var), this.cachedArticleDate);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_articleDate" : var));
+			this.cachedArticleDate = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.article_date set year = ?, month = ?, day = ?, type = ? where pmid = ? and seqnum = ?");
@@ -218,6 +238,18 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 		return type;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -276,6 +308,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

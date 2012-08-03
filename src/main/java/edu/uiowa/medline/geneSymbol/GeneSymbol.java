@@ -30,6 +30,10 @@ public class GeneSymbol extends MEDLINETagLibTagSupport {
 	int seqnum = 0;
 	String symbol = null;
 
+	private String var = null;
+
+	private GeneSymbol cachedGeneSymbol = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -77,11 +81,27 @@ public class GeneSymbol extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		GeneSymbol currentGeneSymbol = (GeneSymbol) pageContext.getAttribute("tag_geneSymbol");
+		if(currentGeneSymbol != null){
+			cachedGeneSymbol = currentGeneSymbol;
+		}
+		currentGeneSymbol = this;
+		pageContext.setAttribute((var == null ? "tag_geneSymbol" : var), currentGeneSymbol);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedGeneSymbol != null){
+			pageContext.setAttribute((var == null ? "tag_geneSymbol" : var), this.cachedGeneSymbol);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_geneSymbol" : var));
+			this.cachedGeneSymbol = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.gene_symbol set symbol = ? where pmid = ? and seqnum = ?");
@@ -164,6 +184,18 @@ public class GeneSymbol extends MEDLINETagLibTagSupport {
 		return symbol;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -195,6 +227,7 @@ public class GeneSymbol extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

@@ -30,6 +30,10 @@ public class CitationSubset extends MEDLINETagLibTagSupport {
 	int seqnum = 0;
 	String label = null;
 
+	private String var = null;
+
+	private CitationSubset cachedCitationSubset = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -77,11 +81,27 @@ public class CitationSubset extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		CitationSubset currentCitationSubset = (CitationSubset) pageContext.getAttribute("tag_citationSubset");
+		if(currentCitationSubset != null){
+			cachedCitationSubset = currentCitationSubset;
+		}
+		currentCitationSubset = this;
+		pageContext.setAttribute((var == null ? "tag_citationSubset" : var), currentCitationSubset);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedCitationSubset != null){
+			pageContext.setAttribute((var == null ? "tag_citationSubset" : var), this.cachedCitationSubset);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_citationSubset" : var));
+			this.cachedCitationSubset = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.citation_subset set label = ? where pmid = ? and seqnum = ?");
@@ -164,6 +184,18 @@ public class CitationSubset extends MEDLINETagLibTagSupport {
 		return label;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -195,6 +227,7 @@ public class CitationSubset extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

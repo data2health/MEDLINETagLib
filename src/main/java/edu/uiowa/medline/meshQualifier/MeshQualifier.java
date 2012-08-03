@@ -32,6 +32,10 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 	String qualifierName = null;
 	boolean major = false;
 
+	private String var = null;
+
+	private MeshQualifier cachedMeshQualifier = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -84,11 +88,27 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		MeshQualifier currentMeshQualifier = (MeshQualifier) pageContext.getAttribute("tag_meshQualifier");
+		if(currentMeshQualifier != null){
+			cachedMeshQualifier = currentMeshQualifier;
+		}
+		currentMeshQualifier = this;
+		pageContext.setAttribute((var == null ? "tag_meshQualifier" : var), currentMeshQualifier);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedMeshQualifier != null){
+			pageContext.setAttribute((var == null ? "tag_meshQualifier" : var), this.cachedMeshQualifier);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_meshQualifier" : var));
+			this.cachedMeshQualifier = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.mesh_qualifier set qualifier_name = ?, major = ? where pmid = ? and seqnum = ? and qnum = ?");
@@ -200,6 +220,18 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		return major;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -249,6 +281,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

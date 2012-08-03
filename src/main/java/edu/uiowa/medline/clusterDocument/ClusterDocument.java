@@ -30,6 +30,10 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 	int cid = 0;
 	int pmid = 0;
 
+	private String var = null;
+
+	private ClusterDocument cachedClusterDocument = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -114,11 +118,27 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		ClusterDocument currentClusterDocument = (ClusterDocument) pageContext.getAttribute("tag_clusterDocument");
+		if(currentClusterDocument != null){
+			cachedClusterDocument = currentClusterDocument;
+		}
+		currentClusterDocument = this;
+		pageContext.setAttribute((var == null ? "tag_clusterDocument" : var), currentClusterDocument);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedClusterDocument != null){
+			pageContext.setAttribute((var == null ? "tag_clusterDocument" : var), this.cachedClusterDocument);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_clusterDocument" : var));
+			this.cachedClusterDocument = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline_clustering.cluster_document set where cid = ? and pmid = ?");
@@ -176,6 +196,18 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 		return pmid;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer cidValue() throws JspException {
 		try {
 			return currentInstance.getCid();
@@ -198,6 +230,7 @@ public class ClusterDocument extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

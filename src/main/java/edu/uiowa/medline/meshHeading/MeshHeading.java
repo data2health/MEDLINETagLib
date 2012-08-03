@@ -32,6 +32,10 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 	boolean major = false;
 	String type = null;
 
+	private String var = null;
+
+	private MeshHeading cachedMeshHeading = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -83,11 +87,27 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		MeshHeading currentMeshHeading = (MeshHeading) pageContext.getAttribute("tag_meshHeading");
+		if(currentMeshHeading != null){
+			cachedMeshHeading = currentMeshHeading;
+		}
+		currentMeshHeading = this;
+		pageContext.setAttribute((var == null ? "tag_meshHeading" : var), currentMeshHeading);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedMeshHeading != null){
+			pageContext.setAttribute((var == null ? "tag_meshHeading" : var), this.cachedMeshHeading);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_meshHeading" : var));
+			this.cachedMeshHeading = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.mesh_heading set descriptor_name = ?, major = ?, type = ? where pmid = ? and seqnum = ?");
@@ -205,6 +225,18 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 		return type;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -254,6 +286,7 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

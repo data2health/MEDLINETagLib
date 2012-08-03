@@ -34,6 +34,10 @@ public class Author extends MEDLINETagLibTagSupport {
 	String suffix = null;
 	String collectiveName = null;
 
+	private String var = null;
+
+	private Author cachedAuthor = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -89,11 +93,27 @@ public class Author extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Author currentAuthor = (Author) pageContext.getAttribute("tag_author");
+		if(currentAuthor != null){
+			cachedAuthor = currentAuthor;
+		}
+		currentAuthor = this;
+		pageContext.setAttribute((var == null ? "tag_author" : var), currentAuthor);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedAuthor != null){
+			pageContext.setAttribute((var == null ? "tag_author" : var), this.cachedAuthor);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_author" : var));
+			this.cachedAuthor = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.author set last_name = ?, fore_name = ?, initials = ?, suffix = ?, collective_name = ? where pmid = ? and seqnum = ?");
@@ -256,6 +276,18 @@ public class Author extends MEDLINETagLibTagSupport {
 		return collectiveName;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -323,6 +355,7 @@ public class Author extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

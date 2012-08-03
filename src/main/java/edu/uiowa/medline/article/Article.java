@@ -45,6 +45,10 @@ public class Article extends MEDLINETagLibTagSupport {
 	String pubModel = null;
 	String status = null;
 
+	private String var = null;
+
+	private Article cachedArticle = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -115,11 +119,27 @@ public class Article extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Article currentArticle = (Article) pageContext.getAttribute("tag_article");
+		if(currentArticle != null){
+			cachedArticle = currentArticle;
+		}
+		currentArticle = this;
+		pageContext.setAttribute((var == null ? "tag_article" : var), currentArticle);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedArticle != null){
+			pageContext.setAttribute((var == null ? "tag_article" : var), this.cachedArticle);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_article" : var));
+			this.cachedArticle = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.article set date_created = ?, date_completed = ?, date_revised = ?, title = ?, start_page = ?, end_page = ?, medline_pgn = ?, copyright = ?, affiliation = ?, vernacular_title = ?, country = ?, ta = ?, nlm_unique_id = ?, issn_linking = ?, reference_count = ?, pub_model = ?, status = ? where pmid = ?");
@@ -493,6 +513,18 @@ public class Article extends MEDLINETagLibTagSupport {
 		return status;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -659,6 +691,7 @@ public class Article extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

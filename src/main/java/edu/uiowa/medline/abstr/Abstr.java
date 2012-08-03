@@ -32,6 +32,10 @@ public class Abstr extends MEDLINETagLibTagSupport {
 	String label = null;
 	String category = null;
 
+	private String var = null;
+
+	private Abstr cachedAbstr = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -83,11 +87,27 @@ public class Abstr extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Abstr currentAbstr = (Abstr) pageContext.getAttribute("tag_abstr");
+		if(currentAbstr != null){
+			cachedAbstr = currentAbstr;
+		}
+		currentAbstr = this;
+		pageContext.setAttribute((var == null ? "tag_abstr" : var), currentAbstr);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedAbstr != null){
+			pageContext.setAttribute((var == null ? "tag_abstr" : var), this.cachedAbstr);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_abstr" : var));
+			this.cachedAbstr = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.abstr set abstract_text = ?, label = ?, category = ? where pmid = ? and seqnum = ?");
@@ -210,6 +230,18 @@ public class Abstr extends MEDLINETagLibTagSupport {
 		return category;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -259,6 +291,7 @@ public class Abstr extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

@@ -29,6 +29,10 @@ public class DocumentCluster extends MEDLINETagLibTagSupport {
 	String lastName = null;
 	String foreName = null;
 
+	private String var = null;
+
+	private DocumentCluster cachedDocumentCluster = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -69,11 +73,27 @@ public class DocumentCluster extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		DocumentCluster currentDocumentCluster = (DocumentCluster) pageContext.getAttribute("tag_documentCluster");
+		if(currentDocumentCluster != null){
+			cachedDocumentCluster = currentDocumentCluster;
+		}
+		currentDocumentCluster = this;
+		pageContext.setAttribute((var == null ? "tag_documentCluster" : var), currentDocumentCluster);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedDocumentCluster != null){
+			pageContext.setAttribute((var == null ? "tag_documentCluster" : var), this.cachedDocumentCluster);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_documentCluster" : var));
+			this.cachedDocumentCluster = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline_clustering.document_cluster set last_name = ?, fore_name = ? where cid = ?");
@@ -162,6 +182,18 @@ public class DocumentCluster extends MEDLINETagLibTagSupport {
 		return foreName;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer cidValue() throws JspException {
 		try {
 			return currentInstance.getCid();
@@ -193,6 +225,7 @@ public class DocumentCluster extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

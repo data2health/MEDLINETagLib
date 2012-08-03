@@ -38,6 +38,10 @@ public class Journal extends MEDLINETagLibTagSupport {
 	String title = null;
 	String isoAbbreviation = null;
 
+	private String var = null;
+
+	private Journal cachedJournal = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -101,11 +105,27 @@ public class Journal extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Journal currentJournal = (Journal) pageContext.getAttribute("tag_journal");
+		if(currentJournal != null){
+			cachedJournal = currentJournal;
+		}
+		currentJournal = this;
+		pageContext.setAttribute((var == null ? "tag_journal" : var), currentJournal);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedJournal != null){
+			pageContext.setAttribute((var == null ? "tag_journal" : var), this.cachedJournal);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_journal" : var));
+			this.cachedJournal = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.journal set issn = ?, volume = ?, issue = ?, pub_year = ?, pub_month = ?, pub_day = ?, pub_season = ?, medline_date = ?, title = ?, iso_abbreviation = ? where pmid = ?");
@@ -339,6 +359,18 @@ public class Journal extends MEDLINETagLibTagSupport {
 		return isoAbbreviation;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -442,6 +474,7 @@ public class Journal extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

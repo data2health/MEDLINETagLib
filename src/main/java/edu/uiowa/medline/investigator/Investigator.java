@@ -34,6 +34,10 @@ public class Investigator extends MEDLINETagLibTagSupport {
 	String suffix = null;
 	String affiliation = null;
 
+	private String var = null;
+
+	private Investigator cachedInvestigator = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -89,11 +93,27 @@ public class Investigator extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Investigator currentInvestigator = (Investigator) pageContext.getAttribute("tag_investigator");
+		if(currentInvestigator != null){
+			cachedInvestigator = currentInvestigator;
+		}
+		currentInvestigator = this;
+		pageContext.setAttribute((var == null ? "tag_investigator" : var), currentInvestigator);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedInvestigator != null){
+			pageContext.setAttribute((var == null ? "tag_investigator" : var), this.cachedInvestigator);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_investigator" : var));
+			this.cachedInvestigator = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.investigator set last_name = ?, fore_name = ?, initials = ?, suffix = ?, affiliation = ? where pmid = ? and seqnum = ?");
@@ -256,6 +276,18 @@ public class Investigator extends MEDLINETagLibTagSupport {
 		return affiliation;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -323,6 +355,7 @@ public class Investigator extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

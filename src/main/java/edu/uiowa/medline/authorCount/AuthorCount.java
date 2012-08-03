@@ -29,6 +29,10 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 	String foreName = null;
 	int count = 0;
 
+	private String var = null;
+
+	private AuthorCount cachedAuthorCount = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -69,11 +73,27 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		AuthorCount currentAuthorCount = (AuthorCount) pageContext.getAttribute("tag_authorCount");
+		if(currentAuthorCount != null){
+			cachedAuthorCount = currentAuthorCount;
+		}
+		currentAuthorCount = this;
+		pageContext.setAttribute((var == null ? "tag_authorCount" : var), currentAuthorCount);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedAuthorCount != null){
+			pageContext.setAttribute((var == null ? "tag_authorCount" : var), this.cachedAuthorCount);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_authorCount" : var));
+			this.cachedAuthorCount = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.author_count set count = ? where last_name = ? and fore_name = ?");
@@ -152,6 +172,18 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 		return count;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static String lastNameValue() throws JspException {
 		try {
 			return currentInstance.getLastName();
@@ -183,6 +215,7 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

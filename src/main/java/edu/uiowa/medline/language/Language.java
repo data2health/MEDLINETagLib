@@ -30,6 +30,10 @@ public class Language extends MEDLINETagLibTagSupport {
 	int seqnum = 0;
 	String language = null;
 
+	private String var = null;
+
+	private Language cachedLanguage = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -77,11 +81,27 @@ public class Language extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Language currentLanguage = (Language) pageContext.getAttribute("tag_language");
+		if(currentLanguage != null){
+			cachedLanguage = currentLanguage;
+		}
+		currentLanguage = this;
+		pageContext.setAttribute((var == null ? "tag_language" : var), currentLanguage);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedLanguage != null){
+			pageContext.setAttribute((var == null ? "tag_language" : var), this.cachedLanguage);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_language" : var));
+			this.cachedLanguage = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.language set language = ? where pmid = ? and seqnum = ?");
@@ -164,6 +184,18 @@ public class Language extends MEDLINETagLibTagSupport {
 		return language;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -195,6 +227,7 @@ public class Language extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

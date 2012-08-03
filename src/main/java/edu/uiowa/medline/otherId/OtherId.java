@@ -31,6 +31,10 @@ public class OtherId extends MEDLINETagLibTagSupport {
 	String source = null;
 	String otherId = null;
 
+	private String var = null;
+
+	private OtherId cachedOtherId = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -80,11 +84,27 @@ public class OtherId extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		OtherId currentOtherId = (OtherId) pageContext.getAttribute("tag_otherId");
+		if(currentOtherId != null){
+			cachedOtherId = currentOtherId;
+		}
+		currentOtherId = this;
+		pageContext.setAttribute((var == null ? "tag_otherId" : var), currentOtherId);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedOtherId != null){
+			pageContext.setAttribute((var == null ? "tag_otherId" : var), this.cachedOtherId);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_otherId" : var));
+			this.cachedOtherId = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.other_id set source = ?, other_id = ? where pmid = ? and seqnum = ?");
@@ -187,6 +207,18 @@ public class OtherId extends MEDLINETagLibTagSupport {
 		return otherId;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -227,6 +259,7 @@ public class OtherId extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

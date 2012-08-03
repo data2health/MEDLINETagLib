@@ -30,6 +30,10 @@ public class SpaceflightMission extends MEDLINETagLibTagSupport {
 	int seqnum = 0;
 	String mission = null;
 
+	private String var = null;
+
+	private SpaceflightMission cachedSpaceflightMission = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -77,11 +81,27 @@ public class SpaceflightMission extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		SpaceflightMission currentSpaceflightMission = (SpaceflightMission) pageContext.getAttribute("tag_spaceflightMission");
+		if(currentSpaceflightMission != null){
+			cachedSpaceflightMission = currentSpaceflightMission;
+		}
+		currentSpaceflightMission = this;
+		pageContext.setAttribute((var == null ? "tag_spaceflightMission" : var), currentSpaceflightMission);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedSpaceflightMission != null){
+			pageContext.setAttribute((var == null ? "tag_spaceflightMission" : var), this.cachedSpaceflightMission);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_spaceflightMission" : var));
+			this.cachedSpaceflightMission = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.spaceflight_mission set mission = ? where pmid = ? and seqnum = ?");
@@ -164,6 +184,18 @@ public class SpaceflightMission extends MEDLINETagLibTagSupport {
 		return mission;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -195,6 +227,7 @@ public class SpaceflightMission extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

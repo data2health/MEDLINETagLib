@@ -61,6 +61,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -439,6 +445,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -631,6 +643,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -749,6 +767,12 @@
 		<name>author</name>
 		<tag-class>edu.uiowa.medline.author.Author</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -907,6 +931,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -1013,6 +1043,12 @@
 		<name>dataBank</name>
 		<tag-class>edu.uiowa.medline.dataBank.DataBank</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -1127,6 +1163,12 @@
 		<name>accession</name>
 		<tag-class>edu.uiowa.medline.accession.Accession</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -1259,6 +1301,12 @@
 		<name>grant</name>
 		<tag-class>edu.uiowa.medline.grant.Grant</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -1405,6 +1453,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -1549,6 +1603,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -1669,6 +1729,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -1775,6 +1841,12 @@
 		<name>commentsCorrections</name>
 		<tag-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -1921,6 +1993,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2027,6 +2105,12 @@
 		<name>meshHeading</name>
 		<tag-class>edu.uiowa.medline.meshHeading.MeshHeading</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -2165,6 +2249,12 @@
 		<name>meshQualifier</name>
 		<tag-class>edu.uiowa.medline.meshQualifier.MeshQualifier</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -2311,6 +2401,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2455,6 +2551,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2575,6 +2677,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2693,6 +2801,12 @@
 		<name>keyword</name>
 		<tag-class>edu.uiowa.medline.keyword.Keyword</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -2827,6 +2941,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2933,6 +3053,12 @@
 		<name>investigator</name>
 		<tag-class>edu.uiowa.medline.investigator.Investigator</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -3091,6 +3217,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3211,6 +3343,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3319,6 +3457,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>lastName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3425,6 +3569,12 @@
 		<name>supplementalMesh</name>
 		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMesh</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -3551,6 +3701,12 @@
 		<name>nameId</name>
 		<tag-class>edu.uiowa.medline.nameId.NameId</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -3697,6 +3853,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3833,6 +3995,12 @@
 		<name>otherAbstractText</name>
 		<tag-class>edu.uiowa.medline.otherAbstractText.OtherAbstractText</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>pmid</name>
@@ -3997,6 +4165,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -4135,6 +4309,12 @@
 		<body-content>JSP</body-content>
 
 		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
 			<name>cid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -4242,6 +4422,12 @@
 		<name>clusterDocument</name>
 		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocument</tag-class>
 		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 
 		<attribute>
 			<name>cid</name>
@@ -4420,114 +4606,6 @@
 	</function>
 
 	<function>
-		<name>articlePmidValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleDateCreatedValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.Date dateCreatedValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleDateCompletedValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.Date dateCompletedValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleDateRevisedValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.Date dateRevisedValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleTitleValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String titleValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleStartPageValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.Integer startPageValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleEndPageValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.Integer endPageValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleMedlinePgnValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String medlinePgnValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleCopyrightValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String copyrightValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleAffiliationValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String affiliationValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleVernacularTitleValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String vernacularTitleValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleCountryValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String countryValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleTaValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String taValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleNlmUniqueIdValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String nlmUniqueIdValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleIssnLinkingValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String issnLinkingValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleReferenceCountValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.Integer referenceCountValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articlePubModelValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String pubModelValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleStatusValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String statusValue()</function-signature>
-	</function>
-
-	<function>
 		<name>journalExists</name>
 		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
 		<function-signature>java.lang.String journalExists(java.lang.String)</function-signature>
@@ -4543,72 +4621,6 @@
 		<name>articleHasJournal</name>
 		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasJournal(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>journalPmidValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalIssnValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.String issnValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalVolumeValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.String volumeValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalIssueValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.String issueValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalPubYearValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.Integer pubYearValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalPubMonthValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.String pubMonthValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalPubDayValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.Integer pubDayValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalPubSeasonValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.String pubSeasonValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalMedlineDateValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.String medlineDateValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalTitleValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.String titleValue()</function-signature>
-	</function>
-
-	<function>
-		<name>journalIsoAbbreviationValue</name>
-		<function-class>edu.uiowa.medline.journal.Journal</function-class>
-		<function-signature>java.lang.String isoAbbreviationValue()</function-signature>
 	</function>
 
 	<function>
@@ -4630,30 +4642,6 @@
 	</function>
 
 	<function>
-		<name>elocationPmidValue</name>
-		<function-class>edu.uiowa.medline.elocation.Elocation</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>elocationSeqnumValue</name>
-		<function-class>edu.uiowa.medline.elocation.Elocation</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>elocationEidValue</name>
-		<function-class>edu.uiowa.medline.elocation.Elocation</function-class>
-		<function-signature>java.lang.String eidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>elocationTypeValue</name>
-		<function-class>edu.uiowa.medline.elocation.Elocation</function-class>
-		<function-signature>java.lang.String typeValue()</function-signature>
-	</function>
-
-	<function>
 		<name>authorExists</name>
 		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
 		<function-signature>java.lang.String authorExists(java.lang.String, java.lang.String)</function-signature>
@@ -4669,48 +4657,6 @@
 		<name>articleHasAuthor</name>
 		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasAuthor(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>authorPmidValue</name>
-		<function-class>edu.uiowa.medline.author.Author</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>authorSeqnumValue</name>
-		<function-class>edu.uiowa.medline.author.Author</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>authorLastNameValue</name>
-		<function-class>edu.uiowa.medline.author.Author</function-class>
-		<function-signature>java.lang.String lastNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>authorForeNameValue</name>
-		<function-class>edu.uiowa.medline.author.Author</function-class>
-		<function-signature>java.lang.String foreNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>authorInitialsValue</name>
-		<function-class>edu.uiowa.medline.author.Author</function-class>
-		<function-signature>java.lang.String initialsValue()</function-signature>
-	</function>
-
-	<function>
-		<name>authorSuffixValue</name>
-		<function-class>edu.uiowa.medline.author.Author</function-class>
-		<function-signature>java.lang.String suffixValue()</function-signature>
-	</function>
-
-	<function>
-		<name>authorCollectiveNameValue</name>
-		<function-class>edu.uiowa.medline.author.Author</function-class>
-		<function-signature>java.lang.String collectiveNameValue()</function-signature>
 	</function>
 
 	<function>
@@ -4732,24 +4678,6 @@
 	</function>
 
 	<function>
-		<name>languagePmidValue</name>
-		<function-class>edu.uiowa.medline.language.Language</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>languageSeqnumValue</name>
-		<function-class>edu.uiowa.medline.language.Language</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>languageLanguageValue</name>
-		<function-class>edu.uiowa.medline.language.Language</function-class>
-		<function-signature>java.lang.String languageValue()</function-signature>
-	</function>
-
-	<function>
 		<name>dataBankExists</name>
 		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
 		<function-signature>java.lang.String dataBankExists(java.lang.String, java.lang.String)</function-signature>
@@ -4765,24 +4693,6 @@
 		<name>articleHasDataBank</name>
 		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasDataBank(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>dataBankPmidValue</name>
-		<function-class>edu.uiowa.medline.dataBank.DataBank</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>dataBankSeqnumValue</name>
-		<function-class>edu.uiowa.medline.dataBank.DataBank</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>dataBankNameValue</name>
-		<function-class>edu.uiowa.medline.dataBank.DataBank</function-class>
-		<function-signature>java.lang.String nameValue()</function-signature>
 	</function>
 
 	<function>
@@ -4804,30 +4714,6 @@
 	</function>
 
 	<function>
-		<name>accessionPmidValue</name>
-		<function-class>edu.uiowa.medline.accession.Accession</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>accessionSeqnumValue</name>
-		<function-class>edu.uiowa.medline.accession.Accession</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>accessionAccnumValue</name>
-		<function-class>edu.uiowa.medline.accession.Accession</function-class>
-		<function-signature>java.lang.Integer accnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>accessionAccessionValue</name>
-		<function-class>edu.uiowa.medline.accession.Accession</function-class>
-		<function-signature>java.lang.String accessionValue()</function-signature>
-	</function>
-
-	<function>
 		<name>grantExists</name>
 		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
 		<function-signature>java.lang.String grantExists(java.lang.String, java.lang.String)</function-signature>
@@ -4843,42 +4729,6 @@
 		<name>articleHasGrant</name>
 		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasGrant(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>grantPmidValue</name>
-		<function-class>edu.uiowa.medline.grant.Grant</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>grantSeqnumValue</name>
-		<function-class>edu.uiowa.medline.grant.Grant</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>grantGidValue</name>
-		<function-class>edu.uiowa.medline.grant.Grant</function-class>
-		<function-signature>java.lang.String gidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>grantAcronymValue</name>
-		<function-class>edu.uiowa.medline.grant.Grant</function-class>
-		<function-signature>java.lang.String acronymValue()</function-signature>
-	</function>
-
-	<function>
-		<name>grantAgencyValue</name>
-		<function-class>edu.uiowa.medline.grant.Grant</function-class>
-		<function-signature>java.lang.String agencyValue()</function-signature>
-	</function>
-
-	<function>
-		<name>grantCountryValue</name>
-		<function-class>edu.uiowa.medline.grant.Grant</function-class>
-		<function-signature>java.lang.String countryValue()</function-signature>
 	</function>
 
 	<function>
@@ -4900,42 +4750,6 @@
 	</function>
 
 	<function>
-		<name>articleDatePmidValue</name>
-		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleDateSeqnumValue</name>
-		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleDateYearValue</name>
-		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
-		<function-signature>java.lang.Integer yearValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleDateMonthValue</name>
-		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
-		<function-signature>java.lang.Integer monthValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleDateDayValue</name>
-		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
-		<function-signature>java.lang.Integer dayValue()</function-signature>
-	</function>
-
-	<function>
-		<name>articleDateTypeValue</name>
-		<function-class>edu.uiowa.medline.articleDate.ArticleDate</function-class>
-		<function-signature>java.lang.String typeValue()</function-signature>
-	</function>
-
-	<function>
 		<name>chemicalExists</name>
 		<function-class>edu.uiowa.medline.chemical.ChemicalIterator</function-class>
 		<function-signature>java.lang.String chemicalExists(java.lang.String, java.lang.String)</function-signature>
@@ -4951,30 +4765,6 @@
 		<name>articleHasChemical</name>
 		<function-class>edu.uiowa.medline.chemical.ChemicalIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasChemical(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>chemicalPmidValue</name>
-		<function-class>edu.uiowa.medline.chemical.Chemical</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>chemicalSeqnumValue</name>
-		<function-class>edu.uiowa.medline.chemical.Chemical</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>chemicalRegistryNumberValue</name>
-		<function-class>edu.uiowa.medline.chemical.Chemical</function-class>
-		<function-signature>java.lang.String registryNumberValue()</function-signature>
-	</function>
-
-	<function>
-		<name>chemicalSubstanceNameValue</name>
-		<function-class>edu.uiowa.medline.chemical.Chemical</function-class>
-		<function-signature>java.lang.String substanceNameValue()</function-signature>
 	</function>
 
 	<function>
@@ -4996,24 +4786,6 @@
 	</function>
 
 	<function>
-		<name>citationSubsetPmidValue</name>
-		<function-class>edu.uiowa.medline.citationSubset.CitationSubset</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>citationSubsetSeqnumValue</name>
-		<function-class>edu.uiowa.medline.citationSubset.CitationSubset</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>citationSubsetLabelValue</name>
-		<function-class>edu.uiowa.medline.citationSubset.CitationSubset</function-class>
-		<function-signature>java.lang.String labelValue()</function-signature>
-	</function>
-
-	<function>
 		<name>commentsCorrectionsExists</name>
 		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsIterator</function-class>
 		<function-signature>java.lang.String commentsCorrectionsExists(java.lang.String, java.lang.String)</function-signature>
@@ -5029,42 +4801,6 @@
 		<name>articleHasCommentsCorrections</name>
 		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrectionsIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasCommentsCorrections(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>commentsCorrectionsPmidValue</name>
-		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>commentsCorrectionsSeqnumValue</name>
-		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>commentsCorrectionsRefTypeValue</name>
-		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
-		<function-signature>java.lang.String refTypeValue()</function-signature>
-	</function>
-
-	<function>
-		<name>commentsCorrectionsSourceValue</name>
-		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
-		<function-signature>java.lang.String sourceValue()</function-signature>
-	</function>
-
-	<function>
-		<name>commentsCorrectionsRefPmidValue</name>
-		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
-		<function-signature>java.lang.Integer refPmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>commentsCorrectionsNoteValue</name>
-		<function-class>edu.uiowa.medline.commentsCorrections.CommentsCorrections</function-class>
-		<function-signature>java.lang.String noteValue()</function-signature>
 	</function>
 
 	<function>
@@ -5086,24 +4822,6 @@
 	</function>
 
 	<function>
-		<name>geneSymbolPmidValue</name>
-		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbol</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>geneSymbolSeqnumValue</name>
-		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbol</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>geneSymbolSymbolValue</name>
-		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbol</function-class>
-		<function-signature>java.lang.String symbolValue()</function-signature>
-	</function>
-
-	<function>
 		<name>meshHeadingExists</name>
 		<function-class>edu.uiowa.medline.meshHeading.MeshHeadingIterator</function-class>
 		<function-signature>java.lang.String meshHeadingExists(java.lang.String, java.lang.String)</function-signature>
@@ -5119,36 +4837,6 @@
 		<name>articleHasMeshHeading</name>
 		<function-class>edu.uiowa.medline.meshHeading.MeshHeadingIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasMeshHeading(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>meshHeadingPmidValue</name>
-		<function-class>edu.uiowa.medline.meshHeading.MeshHeading</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>meshHeadingSeqnumValue</name>
-		<function-class>edu.uiowa.medline.meshHeading.MeshHeading</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>meshHeadingDescriptorNameValue</name>
-		<function-class>edu.uiowa.medline.meshHeading.MeshHeading</function-class>
-		<function-signature>java.lang.String descriptorNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>meshHeadingMajorValue</name>
-		<function-class>edu.uiowa.medline.meshHeading.MeshHeading</function-class>
-		<function-signature>java.lang.Boolean majorValue()</function-signature>
-	</function>
-
-	<function>
-		<name>meshHeadingTypeValue</name>
-		<function-class>edu.uiowa.medline.meshHeading.MeshHeading</function-class>
-		<function-signature>java.lang.String typeValue()</function-signature>
 	</function>
 
 	<function>
@@ -5170,36 +4858,6 @@
 	</function>
 
 	<function>
-		<name>meshQualifierPmidValue</name>
-		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>meshQualifierSeqnumValue</name>
-		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>meshQualifierQnumValue</name>
-		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
-		<function-signature>java.lang.Integer qnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>meshQualifierQualifierNameValue</name>
-		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
-		<function-signature>java.lang.String qualifierNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>meshQualifierMajorValue</name>
-		<function-class>edu.uiowa.medline.meshQualifier.MeshQualifier</function-class>
-		<function-signature>java.lang.Boolean majorValue()</function-signature>
-	</function>
-
-	<function>
 		<name>personalNameSubjectExists</name>
 		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
 		<function-signature>java.lang.String personalNameSubjectExists(java.lang.String, java.lang.String)</function-signature>
@@ -5215,42 +4873,6 @@
 		<name>articleHasPersonalNameSubject</name>
 		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasPersonalNameSubject(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>personalNameSubjectPmidValue</name>
-		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>personalNameSubjectSeqnumValue</name>
-		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>personalNameSubjectLastNameValue</name>
-		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
-		<function-signature>java.lang.String lastNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>personalNameSubjectForeNameValue</name>
-		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
-		<function-signature>java.lang.String foreNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>personalNameSubjectInitialsValue</name>
-		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
-		<function-signature>java.lang.String initialsValue()</function-signature>
-	</function>
-
-	<function>
-		<name>personalNameSubjectSuffixValue</name>
-		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</function-class>
-		<function-signature>java.lang.String suffixValue()</function-signature>
 	</function>
 
 	<function>
@@ -5272,30 +4894,6 @@
 	</function>
 
 	<function>
-		<name>otherIdPmidValue</name>
-		<function-class>edu.uiowa.medline.otherId.OtherId</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherIdSeqnumValue</name>
-		<function-class>edu.uiowa.medline.otherId.OtherId</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherIdSourceValue</name>
-		<function-class>edu.uiowa.medline.otherId.OtherId</function-class>
-		<function-signature>java.lang.String sourceValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherIdOtherIdValue</name>
-		<function-class>edu.uiowa.medline.otherId.OtherId</function-class>
-		<function-signature>java.lang.String otherIdValue()</function-signature>
-	</function>
-
-	<function>
 		<name>otherAbstractExists</name>
 		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstractIterator</function-class>
 		<function-signature>java.lang.String otherAbstractExists(java.lang.String, java.lang.String)</function-signature>
@@ -5311,30 +4909,6 @@
 		<name>articleHasOtherAbstract</name>
 		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstractIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasOtherAbstract(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractPmidValue</name>
-		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstract</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractSeqnumValue</name>
-		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstract</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractTypeValue</name>
-		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstract</function-class>
-		<function-signature>java.lang.String typeValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractCopyrightValue</name>
-		<function-class>edu.uiowa.medline.otherAbstract.OtherAbstract</function-class>
-		<function-signature>java.lang.String copyrightValue()</function-signature>
 	</function>
 
 	<function>
@@ -5356,36 +4930,6 @@
 	</function>
 
 	<function>
-		<name>keywordPmidValue</name>
-		<function-class>edu.uiowa.medline.keyword.Keyword</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>keywordSeqnumValue</name>
-		<function-class>edu.uiowa.medline.keyword.Keyword</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>keywordKeywordValue</name>
-		<function-class>edu.uiowa.medline.keyword.Keyword</function-class>
-		<function-signature>java.lang.String keywordValue()</function-signature>
-	</function>
-
-	<function>
-		<name>keywordMajorValue</name>
-		<function-class>edu.uiowa.medline.keyword.Keyword</function-class>
-		<function-signature>java.lang.Boolean majorValue()</function-signature>
-	</function>
-
-	<function>
-		<name>keywordOwnerValue</name>
-		<function-class>edu.uiowa.medline.keyword.Keyword</function-class>
-		<function-signature>java.lang.String ownerValue()</function-signature>
-	</function>
-
-	<function>
 		<name>spaceflightMissionExists</name>
 		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
 		<function-signature>java.lang.String spaceflightMissionExists(java.lang.String, java.lang.String)</function-signature>
@@ -5401,24 +4945,6 @@
 		<name>articleHasSpaceflightMission</name>
 		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasSpaceflightMission(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>spaceflightMissionPmidValue</name>
-		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMission</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>spaceflightMissionSeqnumValue</name>
-		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMission</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>spaceflightMissionMissionValue</name>
-		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMission</function-class>
-		<function-signature>java.lang.String missionValue()</function-signature>
 	</function>
 
 	<function>
@@ -5440,48 +4966,6 @@
 	</function>
 
 	<function>
-		<name>investigatorPmidValue</name>
-		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorSeqnumValue</name>
-		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorLastNameValue</name>
-		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
-		<function-signature>java.lang.String lastNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorForeNameValue</name>
-		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
-		<function-signature>java.lang.String foreNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorInitialsValue</name>
-		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
-		<function-signature>java.lang.String initialsValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorSuffixValue</name>
-		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
-		<function-signature>java.lang.String suffixValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorAffiliationValue</name>
-		<function-class>edu.uiowa.medline.investigator.Investigator</function-class>
-		<function-signature>java.lang.String affiliationValue()</function-signature>
-	</function>
-
-	<function>
 		<name>generalNoteExists</name>
 		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
 		<function-signature>java.lang.String generalNoteExists(java.lang.String, java.lang.String)</function-signature>
@@ -5497,30 +4981,6 @@
 		<name>articleHasGeneralNote</name>
 		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasGeneralNote(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>generalNotePmidValue</name>
-		<function-class>edu.uiowa.medline.generalNote.GeneralNote</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>generalNoteSeqnumValue</name>
-		<function-class>edu.uiowa.medline.generalNote.GeneralNote</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>generalNoteNoteValue</name>
-		<function-class>edu.uiowa.medline.generalNote.GeneralNote</function-class>
-		<function-signature>java.lang.String noteValue()</function-signature>
-	</function>
-
-	<function>
-		<name>generalNoteOwnerValue</name>
-		<function-class>edu.uiowa.medline.generalNote.GeneralNote</function-class>
-		<function-signature>java.lang.String ownerValue()</function-signature>
 	</function>
 
 	<function>
@@ -5542,24 +5002,6 @@
 	</function>
 
 	<function>
-		<name>publicationTypePmidValue</name>
-		<function-class>edu.uiowa.medline.publicationType.PublicationType</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>publicationTypeSeqnumValue</name>
-		<function-class>edu.uiowa.medline.publicationType.PublicationType</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>publicationTypeLabelValue</name>
-		<function-class>edu.uiowa.medline.publicationType.PublicationType</function-class>
-		<function-signature>java.lang.String labelValue()</function-signature>
-	</function>
-
-	<function>
 		<name>authorCountCount</name>
 		<function-class>edu.uiowa.medline.authorCount.AuthorCountIterator</function-class>
 		<function-signature>java.lang.String authorCountCount()</function-signature>
@@ -5569,24 +5011,6 @@
 		<name>authorCountExists</name>
 		<function-class>edu.uiowa.medline.authorCount.AuthorCountIterator</function-class>
 		<function-signature>java.lang.String authorCountExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>authorCountLastNameValue</name>
-		<function-class>edu.uiowa.medline.authorCount.AuthorCount</function-class>
-		<function-signature>java.lang.String lastNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>authorCountForeNameValue</name>
-		<function-class>edu.uiowa.medline.authorCount.AuthorCount</function-class>
-		<function-signature>java.lang.String foreNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>authorCountCountValue</name>
-		<function-class>edu.uiowa.medline.authorCount.AuthorCount</function-class>
-		<function-signature>java.lang.Integer countValue()</function-signature>
 	</function>
 
 	<function>
@@ -5608,30 +5032,6 @@
 	</function>
 
 	<function>
-		<name>supplementalMeshPmidValue</name>
-		<function-class>edu.uiowa.medline.supplementalMesh.SupplementalMesh</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>supplementalMeshSeqnumValue</name>
-		<function-class>edu.uiowa.medline.supplementalMesh.SupplementalMesh</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>supplementalMeshNameValue</name>
-		<function-class>edu.uiowa.medline.supplementalMesh.SupplementalMesh</function-class>
-		<function-signature>java.lang.String nameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>supplementalMeshTypeValue</name>
-		<function-class>edu.uiowa.medline.supplementalMesh.SupplementalMesh</function-class>
-		<function-signature>java.lang.String typeValue()</function-signature>
-	</function>
-
-	<function>
 		<name>nameIdExists</name>
 		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
 		<function-signature>java.lang.String nameIdExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
@@ -5647,36 +5047,6 @@
 		<name>authorHasNameId</name>
 		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
 		<function-signature>java.lang.Boolean authorHasNameId(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>nameIdPmidValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>nameIdSeqnumValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>nameIdNnumValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
-		<function-signature>java.lang.Integer nnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>nameIdNameIdValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
-		<function-signature>java.lang.String nameIdValue()</function-signature>
-	</function>
-
-	<function>
-		<name>nameIdSourceValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
-		<function-signature>java.lang.String sourceValue()</function-signature>
 	</function>
 
 	<function>
@@ -5698,36 +5068,6 @@
 	</function>
 
 	<function>
-		<name>abstrPmidValue</name>
-		<function-class>edu.uiowa.medline.abstr.Abstr</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>abstrSeqnumValue</name>
-		<function-class>edu.uiowa.medline.abstr.Abstr</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>abstrAbstractTextValue</name>
-		<function-class>edu.uiowa.medline.abstr.Abstr</function-class>
-		<function-signature>java.lang.String abstractTextValue()</function-signature>
-	</function>
-
-	<function>
-		<name>abstrLabelValue</name>
-		<function-class>edu.uiowa.medline.abstr.Abstr</function-class>
-		<function-signature>java.lang.String labelValue()</function-signature>
-	</function>
-
-	<function>
-		<name>abstrCategoryValue</name>
-		<function-class>edu.uiowa.medline.abstr.Abstr</function-class>
-		<function-signature>java.lang.String categoryValue()</function-signature>
-	</function>
-
-	<function>
 		<name>otherAbstractTextExists</name>
 		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractTextIterator</function-class>
 		<function-signature>java.lang.String otherAbstractTextExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
@@ -5743,42 +5083,6 @@
 		<name>otherAbstractHasOtherAbstractText</name>
 		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractTextIterator</function-class>
 		<function-signature>java.lang.Boolean otherAbstractHasOtherAbstractText(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractTextPmidValue</name>
-		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractText</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractTextSeqnumValue</name>
-		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractText</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractTextTnumValue</name>
-		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractText</function-class>
-		<function-signature>java.lang.Integer tnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractTextAbstractTextValue</name>
-		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractText</function-class>
-		<function-signature>java.lang.String abstractTextValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractTextLabelValue</name>
-		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractText</function-class>
-		<function-signature>java.lang.String labelValue()</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractTextCategoryValue</name>
-		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractText</function-class>
-		<function-signature>java.lang.String categoryValue()</function-signature>
 	</function>
 
 	<function>
@@ -5800,36 +5104,6 @@
 	</function>
 
 	<function>
-		<name>investigatorNameIdPmidValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorNameIdSeqnumValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
-		<function-signature>java.lang.Integer seqnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorNameIdNnumValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
-		<function-signature>java.lang.Integer nnumValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorNameIdNameIdValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
-		<function-signature>java.lang.String nameIdValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorNameIdSourceValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
-		<function-signature>java.lang.String sourceValue()</function-signature>
-	</function>
-
-	<function>
 		<name>documentClusterCount</name>
 		<function-class>edu.uiowa.medline.documentCluster.DocumentClusterIterator</function-class>
 		<function-signature>java.lang.String documentClusterCount()</function-signature>
@@ -5839,24 +5113,6 @@
 		<name>documentClusterExists</name>
 		<function-class>edu.uiowa.medline.documentCluster.DocumentClusterIterator</function-class>
 		<function-signature>java.lang.String documentClusterExists(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>documentClusterCidValue</name>
-		<function-class>edu.uiowa.medline.documentCluster.DocumentCluster</function-class>
-		<function-signature>java.lang.Integer cidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>documentClusterLastNameValue</name>
-		<function-class>edu.uiowa.medline.documentCluster.DocumentCluster</function-class>
-		<function-signature>java.lang.String lastNameValue()</function-signature>
-	</function>
-
-	<function>
-		<name>documentClusterForeNameValue</name>
-		<function-class>edu.uiowa.medline.documentCluster.DocumentCluster</function-class>
-		<function-signature>java.lang.String foreNameValue()</function-signature>
 	</function>
 
 	<function>
@@ -5893,18 +5149,6 @@
 		<name>articleDocumentClusterExists</name>
 		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
 		<function-signature>java.lang.Boolean articleDocumentClusterExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>clusterDocumentCidValue</name>
-		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocument</function-class>
-		<function-signature>java.lang.Integer cidValue()</function-signature>
-	</function>
-
-	<function>
-		<name>clusterDocumentPmidValue</name>
-		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocument</function-class>
-		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>

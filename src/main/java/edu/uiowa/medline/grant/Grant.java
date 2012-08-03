@@ -33,6 +33,10 @@ public class Grant extends MEDLINETagLibTagSupport {
 	String agency = null;
 	String country = null;
 
+	private String var = null;
+
+	private Grant cachedGrant = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -86,11 +90,27 @@ public class Grant extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		Grant currentGrant = (Grant) pageContext.getAttribute("tag_grant");
+		if(currentGrant != null){
+			cachedGrant = currentGrant;
+		}
+		currentGrant = this;
+		pageContext.setAttribute((var == null ? "tag_grant" : var), currentGrant);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedGrant != null){
+			pageContext.setAttribute((var == null ? "tag_grant" : var), this.cachedGrant);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_grant" : var));
+			this.cachedGrant = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.grant set gid = ?, acronym = ?, agency = ?, country = ? where pmid = ? and seqnum = ?");
@@ -233,6 +253,18 @@ public class Grant extends MEDLINETagLibTagSupport {
 		return country;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -291,6 +323,7 @@ public class Grant extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

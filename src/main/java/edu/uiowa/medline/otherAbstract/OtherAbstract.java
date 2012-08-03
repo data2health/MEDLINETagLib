@@ -31,6 +31,10 @@ public class OtherAbstract extends MEDLINETagLibTagSupport {
 	String type = null;
 	String copyright = null;
 
+	private String var = null;
+
+	private OtherAbstract cachedOtherAbstract = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -80,11 +84,27 @@ public class OtherAbstract extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		OtherAbstract currentOtherAbstract = (OtherAbstract) pageContext.getAttribute("tag_otherAbstract");
+		if(currentOtherAbstract != null){
+			cachedOtherAbstract = currentOtherAbstract;
+		}
+		currentOtherAbstract = this;
+		pageContext.setAttribute((var == null ? "tag_otherAbstract" : var), currentOtherAbstract);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedOtherAbstract != null){
+			pageContext.setAttribute((var == null ? "tag_otherAbstract" : var), this.cachedOtherAbstract);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_otherAbstract" : var));
+			this.cachedOtherAbstract = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.other_abstract set type = ?, copyright = ? where pmid = ? and seqnum = ?");
@@ -187,6 +207,18 @@ public class OtherAbstract extends MEDLINETagLibTagSupport {
 		return copyright;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -227,6 +259,7 @@ public class OtherAbstract extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

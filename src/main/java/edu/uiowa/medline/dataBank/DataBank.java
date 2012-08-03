@@ -30,6 +30,10 @@ public class DataBank extends MEDLINETagLibTagSupport {
 	int seqnum = 0;
 	String name = null;
 
+	private String var = null;
+
+	private DataBank cachedDataBank = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -77,11 +81,27 @@ public class DataBank extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		DataBank currentDataBank = (DataBank) pageContext.getAttribute("tag_dataBank");
+		if(currentDataBank != null){
+			cachedDataBank = currentDataBank;
+		}
+		currentDataBank = this;
+		pageContext.setAttribute((var == null ? "tag_dataBank" : var), currentDataBank);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedDataBank != null){
+			pageContext.setAttribute((var == null ? "tag_dataBank" : var), this.cachedDataBank);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_dataBank" : var));
+			this.cachedDataBank = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.data_bank set name = ? where pmid = ? and seqnum = ?");
@@ -164,6 +184,18 @@ public class DataBank extends MEDLINETagLibTagSupport {
 		return name;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -195,6 +227,7 @@ public class DataBank extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 

@@ -33,6 +33,10 @@ public class PersonalNameSubject extends MEDLINETagLibTagSupport {
 	String initials = null;
 	String suffix = null;
 
+	private String var = null;
+
+	private PersonalNameSubject cachedPersonalNameSubject = null;
+
 	public int doStartTag() throws JspException {
 		currentInstance = this;
 		try {
@@ -86,11 +90,27 @@ public class PersonalNameSubject extends MEDLINETagLibTagSupport {
 		} finally {
 			freeConnection();
 		}
+
+		PersonalNameSubject currentPersonalNameSubject = (PersonalNameSubject) pageContext.getAttribute("tag_personalNameSubject");
+		if(currentPersonalNameSubject != null){
+			cachedPersonalNameSubject = currentPersonalNameSubject;
+		}
+		currentPersonalNameSubject = this;
+		pageContext.setAttribute((var == null ? "tag_personalNameSubject" : var), currentPersonalNameSubject);
+
 		return EVAL_PAGE;
 	}
 
 	public int doEndTag() throws JspException {
 		currentInstance = null;
+
+		if(this.cachedPersonalNameSubject != null){
+			pageContext.setAttribute((var == null ? "tag_personalNameSubject" : var), this.cachedPersonalNameSubject);
+		}else{
+			pageContext.removeAttribute((var == null ? "tag_personalNameSubject" : var));
+			this.cachedPersonalNameSubject = null;
+		}
+
 		try {
 			if (commitNeeded) {
 				PreparedStatement stmt = getConnection().prepareStatement("update medline12.personal_name_subject set last_name = ?, fore_name = ?, initials = ?, suffix = ? where pmid = ? and seqnum = ?");
@@ -233,6 +253,18 @@ public class PersonalNameSubject extends MEDLINETagLibTagSupport {
 		return suffix;
 	}
 
+	public String getVar () {
+		return var;
+	}
+
+	public void setVar (String var) {
+		this.var = var;
+	}
+
+	public String getActualVar () {
+		return var;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -291,6 +323,7 @@ public class PersonalNameSubject extends MEDLINETagLibTagSupport {
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();
+		this.var = null;
 
 	}
 
