@@ -16,6 +16,7 @@ public class HTMLFormattedArticle extends MEDLINETagLibTagSupport {
 		try {
             Article theArticle = (Article)findAncestorWithClass(this, Article.class);
             theJournal = new Journal();
+            theJournal.setPageContext(pageContext);
             theJournal.setParent(theArticle);
             theJournal.doStartTag();
             
