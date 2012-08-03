@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.uiowa.icts.taglib</groupId>
 	<artifactId>MEDLINETagLib</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>0.0.5</version>
 	<name>MEDLINETagLib</name>
 
 	<description>Medline11 Schema Support</description>
 	<url>http://www.icts.uiowa.edu/confluence/display/apps/MEDLINETagLib</url>
 	<scm>
-		<connection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/trunk</connection>
-		<developerConnection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/trunk</developerConnection>
-		<url>https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib</url>
+		<connection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/tags/MEDLINETagLib-0.0.5</connection>
+		<developerConnection>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/tags/MEDLINETagLib-0.0.5</developerConnection>
+		<url>scm:svn:https://srcvault.icts.uiowa.edu/repos/TagLibs/MEDLINETagLib/tags/MEDLINETagLib-0.0.5</url>
 	</scm>
 	<distributionManagement>
 		<repository>
