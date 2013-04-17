@@ -283,5 +283,6 @@ src/main/resources/META-INF/taglib.tld -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.clay -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.sql svneol=native#text/plain
 src/non-packaged-resources/functions.tld -text svneol=unset#text/xml
+src/non-packaged-resources/medline13.clay -text
 src/non-packaged-resources/tags.tld -text svneol=unset#text/xml
 src/test/resources/README.txt svneol=native#text/plain

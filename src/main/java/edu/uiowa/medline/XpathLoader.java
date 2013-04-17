@@ -73,7 +73,7 @@ public class XpathLoader {
 
         if (args[1].equals("-full")) {
 			for (int i = 1; i <= 653; i++) {
-				String fileName = "/Users/eichmann/downloads/MEDLINE11/ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/medline12n" + formatter.format(i) + ".xml.gz";
+				String fileName = "/Users/eichmann/downloads/MEDLINE11/ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/medline13n" + formatter.format(i) + ".xml.gz";
 				logger.trace("file: " + fileName);
 				XpathLoader theLoader = new XpathLoader(fileName);
 				
@@ -83,7 +83,7 @@ public class XpathLoader {
 			}
 		} else if (args[1].equals("-update")) {
 			for (int i = 654; i <= 715; i++) {
-				String fileName = "/Users/eichmann/downloads/MEDLINE11/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline12n" + formatter.format(i) + ".xml.gz";
+				String fileName = "/Users/eichmann/downloads/MEDLINE11/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline13n" + formatter.format(i) + ".xml.gz";
 				logger.trace("file: " + fileName);
 				XpathLoader theLoader = new XpathLoader(fileName);
 				
@@ -113,7 +113,7 @@ public class XpathLoader {
 		conn = DriverManager.getConnection(db_url, props);
 		conn.setAutoCommit(false);
 
-        PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline12,loki");
+        PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline13,loki");
         pathStmt.executeUpdate();
         pathStmt.close();
 
@@ -1040,7 +1040,7 @@ public class XpathLoader {
 			String country = grantNode.selectSingleNode("Country") == null ? null : grantNode.selectSingleNode("Country").getText();
 			logger.trace("\t\tcountry: " + country);
 
-            PreparedStatement stmt = conn.prepareStatement("insert into medline12.grant values (?,?,?,?,?,?)");
+            PreparedStatement stmt = conn.prepareStatement("insert into medline13.grant values (?,?,?,?,?,?)");
             stmt.setInt(1, pmid);
             stmt.setInt(2, seqnum);
             stmt.setString(3, grantID);
@@ -1146,15 +1146,15 @@ public class XpathLoader {
     static void materializeAuthorView() throws SQLException {
         // refresh author uid-pmid cache with new data
         execute("delete from author_cache10");
-        execute("analyze medline12.author");
-        execute("analyze medline12.journal");
+        execute("analyze medline13.author");
+        execute("analyze medline13.journal");
         execute("update journal set pub_day=28 where (pub_month='Feb' or pub_month='02') and pub_day > 28");
         execute("update journal set pub_day=30 where (pub_month='Sep' or pub_month='09' or pub_month='Apr' or pub_month='04' or pub_month='Jun' or pub_month='06' or pub_month='Nov' or pub_month='11') and pub_day > 30");
-        execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline12.author.pmid"
-                + " from loki.authors,medline12.author,medline12.journal"
-                + " where authors.lastname=medline12.author.last_name and authors.forename=medline12.author.fore_name and medline12.author.pmid=medline12.journal.pmid");
-        execute("update author_cache10 set pubdate = (pub_month||' 01 '||pub_year)::date from medline12.journal where journal.pmid=author_cache10.pmid and pubdate is null and pub_month is not null");
-        execute("update author_cache10 set pubdate = ('Jan 01 '||pub_year)::date from medline12.journal where journal.pmid=author_cache10.pmid and pubdate is null");
+        execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline13.author.pmid"
+                + " from loki.authors,medline13.author,medline13.journal"
+                + " where authors.lastname=medline13.author.last_name and authors.forename=medline13.author.fore_name and medline13.author.pmid=medline13.journal.pmid");
+        execute("update author_cache10 set pubdate = (pub_month||' 01 '||pub_year)::date from medline13.journal where journal.pmid=author_cache10.pmid and pubdate is null and pub_month is not null");
+        execute("update author_cache10 set pubdate = ('Jan 01 '||pub_year)::date from medline13.journal where journal.pmid=author_cache10.pmid and pubdate is null");
         execute("analyze author_cache10");
     	
 		PreparedStatement cntStmt = conn.prepareStatement("select count(*) from author_cache10");
@@ -1168,14 +1168,14 @@ public class XpathLoader {
         execute("set session random_page_cost = 1");
 
 		// refresh author statistics with new data
-        execute("truncate medline12.author_count");
-        execute("insert into medline12.author_count select last_name,fore_name,count(*) from medline12.author where fore_name is not null group by 1,2");
-        execute("analyze medline12.author_count");
+        execute("truncate medline13.author_count");
+        execute("insert into medline13.author_count select last_name,fore_name,count(*) from medline13.author where fore_name is not null group by 1,2");
+        execute("analyze medline13.author_count");
 
         // refresh MeSH terminology and tf*idf statistics with new data
         execute("delete from loki.mesh");
-        execute("insert into loki.mesh select id, descriptor_name as term from loki.publication natural join medline12.mesh_heading where descriptor_name is not null");
-        execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline12.mesh_heading where descriptor_name is not null and not exists (select id from publication where author_cache10.id=publication.id and pmid > 0)");
+        execute("insert into loki.mesh select id, descriptor_name as term from loki.publication natural join medline13.mesh_heading where descriptor_name is not null");
+        execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline13.mesh_heading where descriptor_name is not null and not exists (select id from publication where author_cache10.id=publication.id and pmid > 0)");
 
         //TODO Now reset the parameters to their defaults.
         execute("set session enable_seqscan = on");

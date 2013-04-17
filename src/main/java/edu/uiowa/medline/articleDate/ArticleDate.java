@@ -63,7 +63,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a ArticleDate from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select year,month,day,type from medline12.article_date where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select year,month,day,type from medline13.article_date where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -113,7 +113,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.article_date set year = ?, month = ?, day = ?, type = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline13.article_date set year = ?, month = ?, day = ?, type = ? where pmid = ? and seqnum = ?");
 				stmt.setInt(1,year);
 				stmt.setInt(2,month);
 				stmt.setInt(3,day);
@@ -142,7 +142,7 @@ public class ArticleDate extends MEDLINETagLibTagSupport {
 
 			if (type == null)
 				type = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.article_date(pmid,seqnum,year,month,day,type) values (?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline13.article_date(pmid,seqnum,year,month,day,type) values (?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setInt(3,year);

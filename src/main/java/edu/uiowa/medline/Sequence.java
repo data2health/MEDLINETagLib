@@ -51,7 +51,7 @@ public class Sequence extends MEDLINETagLibTagSupport {
 
 			switch (theDriver) {
 				case POSTGRESQL:
-					PreparedStatement stat = conn.prepareStatement("SELECT nextval ('medline_clustering.seqnum')");
+					PreparedStatement stat = conn.prepareStatement("SELECT nextval ('medline13.seqnum')");
 
 					ResultSet rs = stat.executeQuery();
 

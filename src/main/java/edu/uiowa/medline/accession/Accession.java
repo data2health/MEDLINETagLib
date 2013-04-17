@@ -63,7 +63,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or accnum was provided as an attribute - we need to load a Accession from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select accession from medline12.accession where pmid = ? and seqnum = ? and accnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select accession from medline13.accession where pmid = ? and seqnum = ? and accnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				stmt.setInt(3,accnum);
@@ -108,7 +108,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.accession set accession = ? where pmid = ? and seqnum = ? and accnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline13.accession set accession = ? where pmid = ? and seqnum = ? and accnum = ?");
 				stmt.setString(1,accession);
 				stmt.setInt(2,pmid);
 				stmt.setInt(3,seqnum);
@@ -135,7 +135,7 @@ public class Accession extends MEDLINETagLibTagSupport {
 
 			if (accession == null)
 				accession = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.accession(pmid,seqnum,accnum,accession) values (?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline13.accession(pmid,seqnum,accnum,accession) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setInt(3,accnum);

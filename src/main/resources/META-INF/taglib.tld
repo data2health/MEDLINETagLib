@@ -26,6 +26,288 @@
 	</tag>
 
 	<tag>
+		<name>foreachAbstr</name>
+		<tag-class>edu.uiowa.medline.abstr.AbstrIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>abstr</name>
+		<tag-class>edu.uiowa.medline.abstr.Abstr</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteAbstr</name>
+		<tag-class>edu.uiowa.medline.abstr.AbstrDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>abstrPmid</name>
+		<tag-class>edu.uiowa.medline.abstr.AbstrPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>abstrSeqnum</name>
+		<tag-class>edu.uiowa.medline.abstr.AbstrSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>abstrAbstractText</name>
+		<tag-class>edu.uiowa.medline.abstr.AbstrAbstractText</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>abstractText</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>abstrLabel</name>
+		<tag-class>edu.uiowa.medline.abstr.AbstrLabel</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>label</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>abstrCategory</name>
+		<tag-class>edu.uiowa.medline.abstr.AbstrCategory</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>category</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachAccession</name>
+		<tag-class>edu.uiowa.medline.accession.AccessionIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>accnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>accession</name>
+		<tag-class>edu.uiowa.medline.accession.Accession</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>accnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteAccession</name>
+		<tag-class>edu.uiowa.medline.accession.AccessionDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>accnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>accessionPmid</name>
+		<tag-class>edu.uiowa.medline.accession.AccessionPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>accessionSeqnum</name>
+		<tag-class>edu.uiowa.medline.accession.AccessionSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>accessionAccnum</name>
+		<tag-class>edu.uiowa.medline.accession.AccessionAccnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>accnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>accessionAccession</name>
+		<tag-class>edu.uiowa.medline.accession.AccessionAccession</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>accession</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
 		<name>foreachArticle</name>
 		<tag-class>edu.uiowa.medline.article.ArticleIterator</tag-class>
 		<body-content>JSP</body-content>
@@ -410,200 +692,8 @@
 	</tag>
 
 	<tag>
-		<name>foreachJournal</name>
-		<tag-class>edu.uiowa.medline.journal.JournalIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journal</name>
-		<tag-class>edu.uiowa.medline.journal.Journal</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteJournal</name>
-		<tag-class>edu.uiowa.medline.journal.JournalDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalPmid</name>
-		<tag-class>edu.uiowa.medline.journal.JournalPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalIssn</name>
-		<tag-class>edu.uiowa.medline.journal.JournalIssn</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>issn</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalVolume</name>
-		<tag-class>edu.uiowa.medline.journal.JournalVolume</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>volume</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalIssue</name>
-		<tag-class>edu.uiowa.medline.journal.JournalIssue</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>issue</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalPubYear</name>
-		<tag-class>edu.uiowa.medline.journal.JournalPubYear</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pubYear</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalPubMonth</name>
-		<tag-class>edu.uiowa.medline.journal.JournalPubMonth</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pubMonth</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalPubDay</name>
-		<tag-class>edu.uiowa.medline.journal.JournalPubDay</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pubDay</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalPubSeason</name>
-		<tag-class>edu.uiowa.medline.journal.JournalPubSeason</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pubSeason</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalMedlineDate</name>
-		<tag-class>edu.uiowa.medline.journal.JournalMedlineDate</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>medlineDate</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalTitle</name>
-		<tag-class>edu.uiowa.medline.journal.JournalTitle</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>title</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>journalIsoAbbreviation</name>
-		<tag-class>edu.uiowa.medline.journal.JournalIsoAbbreviation</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>isoAbbreviation</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachElocation</name>
-		<tag-class>edu.uiowa.medline.elocation.ElocationIterator</tag-class>
+		<name>foreachArticleDate</name>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -638,8 +728,8 @@
 	</tag>
 
 	<tag>
-		<name>elocation</name>
-		<tag-class>edu.uiowa.medline.elocation.Elocation</tag-class>
+		<name>articleDate</name>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDate</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -662,8 +752,8 @@
 	</tag>
 
 	<tag>
-		<name>deleteElocation</name>
-		<tag-class>edu.uiowa.medline.elocation.ElocationDeleter</tag-class>
+		<name>deleteArticleDate</name>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -680,8 +770,8 @@
 	</tag>
 
 	<tag>
-		<name>elocationPmid</name>
-		<tag-class>edu.uiowa.medline.elocation.ElocationPmid</tag-class>
+		<name>articleDatePmid</name>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDatePmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -692,8 +782,8 @@
 	</tag>
 
 	<tag>
-		<name>elocationSeqnum</name>
-		<tag-class>edu.uiowa.medline.elocation.ElocationSeqnum</tag-class>
+		<name>articleDateSeqnum</name>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -704,20 +794,44 @@
 	</tag>
 
 	<tag>
-		<name>elocationEid</name>
-		<tag-class>edu.uiowa.medline.elocation.ElocationEid</tag-class>
+		<name>articleDateYear</name>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateYear</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>eid</name>
+			<name>year</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>elocationType</name>
-		<tag-class>edu.uiowa.medline.elocation.ElocationType</tag-class>
+		<name>articleDateMonth</name>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateMonth</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>month</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>articleDateDay</name>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateDay</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>day</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>articleDateType</name>
+		<tag-class>edu.uiowa.medline.articleDate.ArticleDateType</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -890,8 +1004,8 @@
 	</tag>
 
 	<tag>
-		<name>foreachLanguage</name>
-		<tag-class>edu.uiowa.medline.language.LanguageIterator</tag-class>
+		<name>foreachAuthorCount</name>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -913,21 +1027,21 @@
 		</attribute>
 
 		<attribute>
-			<name>pmid</name>
+			<name>lastName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 
 		<attribute>
-			<name>seqnum</name>
+			<name>foreName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>language</name>
-		<tag-class>edu.uiowa.medline.language.Language</tag-class>
+		<name>authorCount</name>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCount</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -937,625 +1051,67 @@
 		</attribute>
 
 		<attribute>
-			<name>pmid</name>
+			<name>lastName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 
 		<attribute>
-			<name>seqnum</name>
+			<name>foreName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>deleteLanguage</name>
-		<tag-class>edu.uiowa.medline.language.LanguageDeleter</tag-class>
+		<name>deleteAuthorCount</name>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
-			<name>pmid</name>
+			<name>lastName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 
 		<attribute>
-			<name>seqnum</name>
+			<name>foreName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>languagePmid</name>
-		<tag-class>edu.uiowa.medline.language.LanguagePmid</tag-class>
+		<name>authorCountLastName</name>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountLastName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>pmid</name>
+			<name>lastName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>languageSeqnum</name>
-		<tag-class>edu.uiowa.medline.language.LanguageSeqnum</tag-class>
+		<name>authorCountForeName</name>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountForeName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>seqnum</name>
+			<name>foreName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>languageLanguage</name>
-		<tag-class>edu.uiowa.medline.language.LanguageLanguage</tag-class>
+		<name>authorCountCount</name>
+		<tag-class>edu.uiowa.medline.authorCount.AuthorCountCount</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>language</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachDataBank</name>
-		<tag-class>edu.uiowa.medline.dataBank.DataBankIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>dataBank</name>
-		<tag-class>edu.uiowa.medline.dataBank.DataBank</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteDataBank</name>
-		<tag-class>edu.uiowa.medline.dataBank.DataBankDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>dataBankPmid</name>
-		<tag-class>edu.uiowa.medline.dataBank.DataBankPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>dataBankSeqnum</name>
-		<tag-class>edu.uiowa.medline.dataBank.DataBankSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>dataBankName</name>
-		<tag-class>edu.uiowa.medline.dataBank.DataBankName</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>name</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachAccession</name>
-		<tag-class>edu.uiowa.medline.accession.AccessionIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>accnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>accession</name>
-		<tag-class>edu.uiowa.medline.accession.Accession</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>accnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteAccession</name>
-		<tag-class>edu.uiowa.medline.accession.AccessionDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>accnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>accessionPmid</name>
-		<tag-class>edu.uiowa.medline.accession.AccessionPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>accessionSeqnum</name>
-		<tag-class>edu.uiowa.medline.accession.AccessionSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>accessionAccnum</name>
-		<tag-class>edu.uiowa.medline.accession.AccessionAccnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>accnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>accessionAccession</name>
-		<tag-class>edu.uiowa.medline.accession.AccessionAccession</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>accession</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachGrant</name>
-		<tag-class>edu.uiowa.medline.grant.GrantIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>grant</name>
-		<tag-class>edu.uiowa.medline.grant.Grant</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteGrant</name>
-		<tag-class>edu.uiowa.medline.grant.GrantDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>grantPmid</name>
-		<tag-class>edu.uiowa.medline.grant.GrantPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>grantSeqnum</name>
-		<tag-class>edu.uiowa.medline.grant.GrantSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>grantGid</name>
-		<tag-class>edu.uiowa.medline.grant.GrantGid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>gid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>grantAcronym</name>
-		<tag-class>edu.uiowa.medline.grant.GrantAcronym</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>acronym</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>grantAgency</name>
-		<tag-class>edu.uiowa.medline.grant.GrantAgency</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>agency</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>grantCountry</name>
-		<tag-class>edu.uiowa.medline.grant.GrantCountry</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>country</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachArticleDate</name>
-		<tag-class>edu.uiowa.medline.articleDate.ArticleDateIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>articleDate</name>
-		<tag-class>edu.uiowa.medline.articleDate.ArticleDate</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteArticleDate</name>
-		<tag-class>edu.uiowa.medline.articleDate.ArticleDateDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>articleDatePmid</name>
-		<tag-class>edu.uiowa.medline.articleDate.ArticleDatePmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>articleDateSeqnum</name>
-		<tag-class>edu.uiowa.medline.articleDate.ArticleDateSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>articleDateYear</name>
-		<tag-class>edu.uiowa.medline.articleDate.ArticleDateYear</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>year</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>articleDateMonth</name>
-		<tag-class>edu.uiowa.medline.articleDate.ArticleDateMonth</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>month</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>articleDateDay</name>
-		<tag-class>edu.uiowa.medline.articleDate.ArticleDateDay</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>day</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>articleDateType</name>
-		<tag-class>edu.uiowa.medline.articleDate.ArticleDateType</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>type</name>
+			<name>count</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -1952,6 +1508,246 @@
 	</tag>
 
 	<tag>
+		<name>foreachDataBank</name>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>dataBank</name>
+		<tag-class>edu.uiowa.medline.dataBank.DataBank</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteDataBank</name>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>dataBankPmid</name>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>dataBankSeqnum</name>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>dataBankName</name>
+		<tag-class>edu.uiowa.medline.dataBank.DataBankName</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachElocation</name>
+		<tag-class>edu.uiowa.medline.elocation.ElocationIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>elocation</name>
+		<tag-class>edu.uiowa.medline.elocation.Elocation</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteElocation</name>
+		<tag-class>edu.uiowa.medline.elocation.ElocationDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>elocationPmid</name>
+		<tag-class>edu.uiowa.medline.elocation.ElocationPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>elocationSeqnum</name>
+		<tag-class>edu.uiowa.medline.elocation.ElocationSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>elocationEid</name>
+		<tag-class>edu.uiowa.medline.elocation.ElocationEid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>eid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>elocationType</name>
+		<tag-class>edu.uiowa.medline.elocation.ElocationType</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
 		<name>foreachGeneSymbol</name>
 		<tag-class>edu.uiowa.medline.geneSymbol.GeneSymbolIterator</tag-class>
 		<body-content>JSP</body-content>
@@ -2060,6 +1856,1044 @@
 
 		<attribute>
 			<name>symbol</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachGeneralNote</name>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>generalNote</name>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNote</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteGeneralNote</name>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>generalNotePmid</name>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNotePmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>generalNoteSeqnum</name>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>generalNoteNote</name>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteNote</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>note</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>generalNoteOwner</name>
+		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteOwner</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>owner</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachGrant</name>
+		<tag-class>edu.uiowa.medline.grant.GrantIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>grant</name>
+		<tag-class>edu.uiowa.medline.grant.Grant</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteGrant</name>
+		<tag-class>edu.uiowa.medline.grant.GrantDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>grantPmid</name>
+		<tag-class>edu.uiowa.medline.grant.GrantPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>grantSeqnum</name>
+		<tag-class>edu.uiowa.medline.grant.GrantSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>grantGid</name>
+		<tag-class>edu.uiowa.medline.grant.GrantGid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>gid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>grantAcronym</name>
+		<tag-class>edu.uiowa.medline.grant.GrantAcronym</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>acronym</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>grantAgency</name>
+		<tag-class>edu.uiowa.medline.grant.GrantAgency</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>agency</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>grantCountry</name>
+		<tag-class>edu.uiowa.medline.grant.GrantCountry</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>country</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachInvestigator</name>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigator</name>
+		<tag-class>edu.uiowa.medline.investigator.Investigator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteInvestigator</name>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorPmid</name>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorSeqnum</name>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorLastName</name>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorLastName</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>lastName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorForeName</name>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorForeName</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>foreName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorInitials</name>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorInitials</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>initials</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorSuffix</name>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorSuffix</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>suffix</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorAffiliation</name>
+		<tag-class>edu.uiowa.medline.investigator.InvestigatorAffiliation</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>affiliation</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachInvestigatorNameId</name>
+		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>nnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorNameId</name>
+		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>nnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteInvestigatorNameId</name>
+		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>nnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorNameIdPmid</name>
+		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorNameIdSeqnum</name>
+		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorNameIdNnum</name>
+		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdNnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>nnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorNameIdNameId</name>
+		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdNameId</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>nameId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorNameIdSource</name>
+		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdSource</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>source</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachJournal</name>
+		<tag-class>edu.uiowa.medline.journal.JournalIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journal</name>
+		<tag-class>edu.uiowa.medline.journal.Journal</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteJournal</name>
+		<tag-class>edu.uiowa.medline.journal.JournalDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalPmid</name>
+		<tag-class>edu.uiowa.medline.journal.JournalPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalIssn</name>
+		<tag-class>edu.uiowa.medline.journal.JournalIssn</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>issn</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalVolume</name>
+		<tag-class>edu.uiowa.medline.journal.JournalVolume</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>volume</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalIssue</name>
+		<tag-class>edu.uiowa.medline.journal.JournalIssue</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>issue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalPubYear</name>
+		<tag-class>edu.uiowa.medline.journal.JournalPubYear</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pubYear</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalPubMonth</name>
+		<tag-class>edu.uiowa.medline.journal.JournalPubMonth</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pubMonth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalPubDay</name>
+		<tag-class>edu.uiowa.medline.journal.JournalPubDay</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pubDay</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalPubSeason</name>
+		<tag-class>edu.uiowa.medline.journal.JournalPubSeason</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pubSeason</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalMedlineDate</name>
+		<tag-class>edu.uiowa.medline.journal.JournalMedlineDate</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>medlineDate</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalTitle</name>
+		<tag-class>edu.uiowa.medline.journal.JournalTitle</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>journalIsoAbbreviation</name>
+		<tag-class>edu.uiowa.medline.journal.JournalIsoAbbreviation</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>isoAbbreviation</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachKeyword</name>
+		<tag-class>edu.uiowa.medline.keyword.KeywordIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>keyword</name>
+		<tag-class>edu.uiowa.medline.keyword.Keyword</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteKeyword</name>
+		<tag-class>edu.uiowa.medline.keyword.KeywordDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>keywordPmid</name>
+		<tag-class>edu.uiowa.medline.keyword.KeywordPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>keywordSeqnum</name>
+		<tag-class>edu.uiowa.medline.keyword.KeywordSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>keywordKeyword</name>
+		<tag-class>edu.uiowa.medline.keyword.KeywordKeyword</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>keyword</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>keywordMajor</name>
+		<tag-class>edu.uiowa.medline.keyword.KeywordMajor</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>major</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>keywordOwner</name>
+		<tag-class>edu.uiowa.medline.keyword.KeywordOwner</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>owner</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachLanguage</name>
+		<tag-class>edu.uiowa.medline.language.LanguageIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>language</name>
+		<tag-class>edu.uiowa.medline.language.Language</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteLanguage</name>
+		<tag-class>edu.uiowa.medline.language.LanguageDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>languagePmid</name>
+		<tag-class>edu.uiowa.medline.language.LanguagePmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>languageSeqnum</name>
+		<tag-class>edu.uiowa.medline.language.LanguageSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>languageLanguage</name>
+		<tag-class>edu.uiowa.medline.language.LanguageLanguage</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>language</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -2360,1302 +3194,6 @@
 	</tag>
 
 	<tag>
-		<name>foreachPersonalNameSubject</name>
-		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>personalNameSubject</name>
-		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deletePersonalNameSubject</name>
-		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>personalNameSubjectPmid</name>
-		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>personalNameSubjectSeqnum</name>
-		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>personalNameSubjectLastName</name>
-		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectLastName</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>lastName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>personalNameSubjectForeName</name>
-		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectForeName</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>foreName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>personalNameSubjectInitials</name>
-		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectInitials</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>initials</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>personalNameSubjectSuffix</name>
-		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectSuffix</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>suffix</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachOtherId</name>
-		<tag-class>edu.uiowa.medline.otherId.OtherIdIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherId</name>
-		<tag-class>edu.uiowa.medline.otherId.OtherId</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteOtherId</name>
-		<tag-class>edu.uiowa.medline.otherId.OtherIdDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherIdPmid</name>
-		<tag-class>edu.uiowa.medline.otherId.OtherIdPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherIdSeqnum</name>
-		<tag-class>edu.uiowa.medline.otherId.OtherIdSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherIdSource</name>
-		<tag-class>edu.uiowa.medline.otherId.OtherIdSource</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>source</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherIdOtherId</name>
-		<tag-class>edu.uiowa.medline.otherId.OtherIdOtherId</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>otherId</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachOtherAbstract</name>
-		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherAbstract</name>
-		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstract</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteOtherAbstract</name>
-		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherAbstractPmid</name>
-		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherAbstractSeqnum</name>
-		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherAbstractType</name>
-		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractType</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>type</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>otherAbstractCopyright</name>
-		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractCopyright</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>copyright</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachKeyword</name>
-		<tag-class>edu.uiowa.medline.keyword.KeywordIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>keyword</name>
-		<tag-class>edu.uiowa.medline.keyword.Keyword</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteKeyword</name>
-		<tag-class>edu.uiowa.medline.keyword.KeywordDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>keywordPmid</name>
-		<tag-class>edu.uiowa.medline.keyword.KeywordPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>keywordSeqnum</name>
-		<tag-class>edu.uiowa.medline.keyword.KeywordSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>keywordKeyword</name>
-		<tag-class>edu.uiowa.medline.keyword.KeywordKeyword</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>keyword</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>keywordMajor</name>
-		<tag-class>edu.uiowa.medline.keyword.KeywordMajor</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>major</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>keywordOwner</name>
-		<tag-class>edu.uiowa.medline.keyword.KeywordOwner</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>owner</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachSpaceflightMission</name>
-		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>spaceflightMission</name>
-		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMission</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteSpaceflightMission</name>
-		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>spaceflightMissionPmid</name>
-		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>spaceflightMissionSeqnum</name>
-		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>spaceflightMissionMission</name>
-		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionMission</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>mission</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachInvestigator</name>
-		<tag-class>edu.uiowa.medline.investigator.InvestigatorIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigator</name>
-		<tag-class>edu.uiowa.medline.investigator.Investigator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteInvestigator</name>
-		<tag-class>edu.uiowa.medline.investigator.InvestigatorDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorPmid</name>
-		<tag-class>edu.uiowa.medline.investigator.InvestigatorPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorSeqnum</name>
-		<tag-class>edu.uiowa.medline.investigator.InvestigatorSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorLastName</name>
-		<tag-class>edu.uiowa.medline.investigator.InvestigatorLastName</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>lastName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorForeName</name>
-		<tag-class>edu.uiowa.medline.investigator.InvestigatorForeName</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>foreName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorInitials</name>
-		<tag-class>edu.uiowa.medline.investigator.InvestigatorInitials</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>initials</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorSuffix</name>
-		<tag-class>edu.uiowa.medline.investigator.InvestigatorSuffix</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>suffix</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorAffiliation</name>
-		<tag-class>edu.uiowa.medline.investigator.InvestigatorAffiliation</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>affiliation</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachGeneralNote</name>
-		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>generalNote</name>
-		<tag-class>edu.uiowa.medline.generalNote.GeneralNote</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteGeneralNote</name>
-		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>generalNotePmid</name>
-		<tag-class>edu.uiowa.medline.generalNote.GeneralNotePmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>generalNoteSeqnum</name>
-		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>generalNoteNote</name>
-		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteNote</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>note</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>generalNoteOwner</name>
-		<tag-class>edu.uiowa.medline.generalNote.GeneralNoteOwner</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>owner</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachPublicationType</name>
-		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>publicationType</name>
-		<tag-class>edu.uiowa.medline.publicationType.PublicationType</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deletePublicationType</name>
-		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>publicationTypePmid</name>
-		<tag-class>edu.uiowa.medline.publicationType.PublicationTypePmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>publicationTypeSeqnum</name>
-		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>publicationTypeLabel</name>
-		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeLabel</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>label</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachAuthorCount</name>
-		<tag-class>edu.uiowa.medline.authorCount.AuthorCountIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>lastName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>foreName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>authorCount</name>
-		<tag-class>edu.uiowa.medline.authorCount.AuthorCount</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>lastName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>foreName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteAuthorCount</name>
-		<tag-class>edu.uiowa.medline.authorCount.AuthorCountDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>lastName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>foreName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>authorCountLastName</name>
-		<tag-class>edu.uiowa.medline.authorCount.AuthorCountLastName</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>lastName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>authorCountForeName</name>
-		<tag-class>edu.uiowa.medline.authorCount.AuthorCountForeName</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>foreName</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>authorCountCount</name>
-		<tag-class>edu.uiowa.medline.authorCount.AuthorCountCount</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>count</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>foreachSupplementalMesh</name>
-		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>supplementalMesh</name>
-		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMesh</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteSupplementalMesh</name>
-		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>supplementalMeshPmid</name>
-		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>supplementalMeshSeqnum</name>
-		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>supplementalMeshName</name>
-		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshName</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>name</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>supplementalMeshType</name>
-		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshType</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>type</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
 		<name>foreachNameId</name>
 		<tag-class>edu.uiowa.medline.nameId.NameIdIterator</tag-class>
 		<body-content>JSP</body-content>
@@ -3812,8 +3350,8 @@
 	</tag>
 
 	<tag>
-		<name>foreachAbstr</name>
-		<tag-class>edu.uiowa.medline.abstr.AbstrIterator</tag-class>
+		<name>foreachOtherAbstract</name>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3848,8 +3386,8 @@
 	</tag>
 
 	<tag>
-		<name>abstr</name>
-		<tag-class>edu.uiowa.medline.abstr.Abstr</tag-class>
+		<name>otherAbstract</name>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstract</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3872,8 +3410,8 @@
 	</tag>
 
 	<tag>
-		<name>deleteAbstr</name>
-		<tag-class>edu.uiowa.medline.abstr.AbstrDeleter</tag-class>
+		<name>deleteOtherAbstract</name>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3890,8 +3428,8 @@
 	</tag>
 
 	<tag>
-		<name>abstrPmid</name>
-		<tag-class>edu.uiowa.medline.abstr.AbstrPmid</tag-class>
+		<name>otherAbstractPmid</name>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3902,8 +3440,8 @@
 	</tag>
 
 	<tag>
-		<name>abstrSeqnum</name>
-		<tag-class>edu.uiowa.medline.abstr.AbstrSeqnum</tag-class>
+		<name>otherAbstractSeqnum</name>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3914,36 +3452,24 @@
 	</tag>
 
 	<tag>
-		<name>abstrAbstractText</name>
-		<tag-class>edu.uiowa.medline.abstr.AbstrAbstractText</tag-class>
+		<name>otherAbstractType</name>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractType</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>abstractText</name>
+			<name>type</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>abstrLabel</name>
-		<tag-class>edu.uiowa.medline.abstr.AbstrLabel</tag-class>
+		<name>otherAbstractCopyright</name>
+		<tag-class>edu.uiowa.medline.otherAbstract.OtherAbstractCopyright</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>label</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>abstrCategory</name>
-		<tag-class>edu.uiowa.medline.abstr.AbstrCategory</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>category</name>
+			<name>copyright</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -4118,8 +3644,8 @@
 	</tag>
 
 	<tag>
-		<name>foreachInvestigatorNameId</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</tag-class>
+		<name>foreachOtherId</name>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4151,17 +3677,11 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-
-		<attribute>
-			<name>nnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
 	</tag>
 
 	<tag>
-		<name>investigatorNameId</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</tag-class>
+		<name>otherId</name>
+		<tag-class>edu.uiowa.medline.otherId.OtherId</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4181,17 +3701,11 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-
-		<attribute>
-			<name>nnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
 	</tag>
 
 	<tag>
-		<name>deleteInvestigatorNameId</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdDeleter</tag-class>
+		<name>deleteOtherId</name>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4205,17 +3719,11 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-
-		<attribute>
-			<name>nnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
 	</tag>
 
 	<tag>
-		<name>investigatorNameIdPmid</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdPmid</tag-class>
+		<name>otherIdPmid</name>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -4226,8 +3734,8 @@
 	</tag>
 
 	<tag>
-		<name>investigatorNameIdSeqnum</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdSeqnum</tag-class>
+		<name>otherIdSeqnum</name>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -4238,32 +3746,8 @@
 	</tag>
 
 	<tag>
-		<name>investigatorNameIdNnum</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdNnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>nnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorNameIdNameId</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdNameId</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>nameId</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorNameIdSource</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdSource</tag-class>
+		<name>otherIdSource</name>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdSource</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -4274,8 +3758,20 @@
 	</tag>
 
 	<tag>
-		<name>foreachDocumentCluster</name>
-		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterIterator</tag-class>
+		<name>otherIdOtherId</name>
+		<tag-class>edu.uiowa.medline.otherId.OtherIdOtherId</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>otherId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachPersonalNameSubject</name>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4297,15 +3793,21 @@
 		</attribute>
 
 		<attribute>
-			<name>cid</name>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>documentCluster</name>
-		<tag-class>edu.uiowa.medline.documentCluster.DocumentCluster</tag-class>
+		<name>personalNameSubject</name>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubject</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4315,39 +3817,63 @@
 		</attribute>
 
 		<attribute>
-			<name>cid</name>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>deleteDocumentCluster</name>
-		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterDeleter</tag-class>
+		<name>deletePersonalNameSubject</name>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
-			<name>cid</name>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>documentClusterCid</name>
-		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterCid</tag-class>
+		<name>personalNameSubjectPmid</name>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>cid</name>
+			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>documentClusterLastName</name>
-		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterLastName</tag-class>
+		<name>personalNameSubjectSeqnum</name>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>personalNameSubjectLastName</name>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectLastName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -4358,8 +3884,8 @@
 	</tag>
 
 	<tag>
-		<name>documentClusterForeName</name>
-		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterForeName</tag-class>
+		<name>personalNameSubjectForeName</name>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectForeName</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -4370,8 +3896,32 @@
 	</tag>
 
 	<tag>
-		<name>foreachClusterDocument</name>
-		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</tag-class>
+		<name>personalNameSubjectInitials</name>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectInitials</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>initials</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>personalNameSubjectSuffix</name>
+		<tag-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectSuffix</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>suffix</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachPublicationType</name>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4393,34 +3943,21 @@
 		</attribute>
 
 		<attribute>
-			<name>cid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
 			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 
 		<attribute>
-			<name>useArticle</name>
+			<name>seqnum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-
-		<attribute>
-			<name>useDocumentCluster</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
 	</tag>
 
 	<tag>
-		<name>clusterDocument</name>
-		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocument</tag-class>
+		<name>publicationType</name>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationType</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4430,28 +3967,40 @@
 		</attribute>
 
 		<attribute>
-			<name>cid</name>
+			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 
 		<attribute>
-			<name>pmid</name>
+			<name>seqnum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>deleteClusterDocument</name>
-		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocumentDeleter</tag-class>
+		<name>deletePublicationType</name>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
-			<name>cid</name>
+			<name>pmid</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>publicationTypePmid</name>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypePmid</tag-class>
+		<body-content>empty</body-content>
 
 		<attribute>
 			<name>pmid</name>
@@ -4461,24 +4010,264 @@
 	</tag>
 
 	<tag>
-		<name>clusterDocumentCid</name>
-		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocumentCid</tag-class>
+		<name>publicationTypeSeqnum</name>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>cid</name>
+			<name>seqnum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>clusterDocumentPmid</name>
-		<tag-class>edu.uiowa.medline.clusterDocument.ClusterDocumentPmid</tag-class>
+		<name>publicationTypeLabel</name>
+		<tag-class>edu.uiowa.medline.publicationType.PublicationTypeLabel</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>label</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachSpaceflightMission</name>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>spaceflightMission</name>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMission</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteSpaceflightMission</name>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>spaceflightMissionPmid</name>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
 			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>spaceflightMissionSeqnum</name>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>spaceflightMissionMission</name>
+		<tag-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionMission</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>mission</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachSupplementalMesh</name>
+		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>supplementalMesh</name>
+		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMesh</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteSupplementalMesh</name>
+		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>supplementalMeshPmid</name>
+		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>supplementalMeshSeqnum</name>
+		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>supplementalMeshName</name>
+		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshName</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>supplementalMeshType</name>
+		<tag-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshType</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>type</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -4594,105 +4383,21 @@
 
 
 	<function>
-		<name>articleCount</name>
-		<function-class>edu.uiowa.medline.article.ArticleIterator</function-class>
-		<function-signature>java.lang.String articleCount()</function-signature>
+		<name>abstrExists</name>
+		<function-class>edu.uiowa.medline.abstr.AbstrIterator</function-class>
+		<function-signature>java.lang.String abstrExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>articleExists</name>
-		<function-class>edu.uiowa.medline.article.ArticleIterator</function-class>
-		<function-signature>java.lang.String articleExists(java.lang.String)</function-signature>
+		<name>abstrCountByArticle</name>
+		<function-class>edu.uiowa.medline.abstr.AbstrIterator</function-class>
+		<function-signature>java.lang.String abstrCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>journalExists</name>
-		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
-		<function-signature>java.lang.String journalExists(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>journalCountByArticle</name>
-		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
-		<function-signature>java.lang.String journalCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasJournal</name>
-		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasJournal(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>elocationExists</name>
-		<function-class>edu.uiowa.medline.elocation.ElocationIterator</function-class>
-		<function-signature>java.lang.String elocationExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>elocationCountByArticle</name>
-		<function-class>edu.uiowa.medline.elocation.ElocationIterator</function-class>
-		<function-signature>java.lang.String elocationCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasElocation</name>
-		<function-class>edu.uiowa.medline.elocation.ElocationIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasElocation(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>authorExists</name>
-		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
-		<function-signature>java.lang.String authorExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>authorCountByArticle</name>
-		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
-		<function-signature>java.lang.String authorCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasAuthor</name>
-		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasAuthor(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>languageExists</name>
-		<function-class>edu.uiowa.medline.language.LanguageIterator</function-class>
-		<function-signature>java.lang.String languageExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>languageCountByArticle</name>
-		<function-class>edu.uiowa.medline.language.LanguageIterator</function-class>
-		<function-signature>java.lang.String languageCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasLanguage</name>
-		<function-class>edu.uiowa.medline.language.LanguageIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasLanguage(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>dataBankExists</name>
-		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
-		<function-signature>java.lang.String dataBankExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>dataBankCountByArticle</name>
-		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
-		<function-signature>java.lang.String dataBankCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasDataBank</name>
-		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasDataBank(java.lang.String)</function-signature>
+		<name>articleHasAbstr</name>
+		<function-class>edu.uiowa.medline.abstr.AbstrIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasAbstr(java.lang.String)</function-signature>
 	</function>
 
 	<function>
@@ -4714,21 +4419,15 @@
 	</function>
 
 	<function>
-		<name>grantExists</name>
-		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
-		<function-signature>java.lang.String grantExists(java.lang.String, java.lang.String)</function-signature>
+		<name>articleCount</name>
+		<function-class>edu.uiowa.medline.article.ArticleIterator</function-class>
+		<function-signature>java.lang.String articleCount()</function-signature>
 	</function>
 
 	<function>
-		<name>grantCountByArticle</name>
-		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
-		<function-signature>java.lang.String grantCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasGrant</name>
-		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasGrant(java.lang.String)</function-signature>
+		<name>articleExists</name>
+		<function-class>edu.uiowa.medline.article.ArticleIterator</function-class>
+		<function-signature>java.lang.String articleExists(java.lang.String)</function-signature>
 	</function>
 
 	<function>
@@ -4747,6 +4446,36 @@
 		<name>articleHasArticleDate</name>
 		<function-class>edu.uiowa.medline.articleDate.ArticleDateIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasArticleDate(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>authorExists</name>
+		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
+		<function-signature>java.lang.String authorExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>authorCountByArticle</name>
+		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
+		<function-signature>java.lang.String authorCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasAuthor</name>
+		<function-class>edu.uiowa.medline.author.AuthorIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasAuthor(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>authorCountCount</name>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountIterator</function-class>
+		<function-signature>java.lang.String authorCountCount()</function-signature>
+	</function>
+
+	<function>
+		<name>authorCountExists</name>
+		<function-class>edu.uiowa.medline.authorCount.AuthorCountIterator</function-class>
+		<function-signature>java.lang.String authorCountExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
@@ -4804,6 +4533,42 @@
 	</function>
 
 	<function>
+		<name>dataBankExists</name>
+		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
+		<function-signature>java.lang.String dataBankExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>dataBankCountByArticle</name>
+		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
+		<function-signature>java.lang.String dataBankCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasDataBank</name>
+		<function-class>edu.uiowa.medline.dataBank.DataBankIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasDataBank(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>elocationExists</name>
+		<function-class>edu.uiowa.medline.elocation.ElocationIterator</function-class>
+		<function-signature>java.lang.String elocationExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>elocationCountByArticle</name>
+		<function-class>edu.uiowa.medline.elocation.ElocationIterator</function-class>
+		<function-signature>java.lang.String elocationCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasElocation</name>
+		<function-class>edu.uiowa.medline.elocation.ElocationIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasElocation(java.lang.String)</function-signature>
+	</function>
+
+	<function>
 		<name>geneSymbolExists</name>
 		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbolIterator</function-class>
 		<function-signature>java.lang.String geneSymbolExists(java.lang.String, java.lang.String)</function-signature>
@@ -4819,6 +4584,132 @@
 		<name>articleHasGeneSymbol</name>
 		<function-class>edu.uiowa.medline.geneSymbol.GeneSymbolIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasGeneSymbol(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>generalNoteExists</name>
+		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
+		<function-signature>java.lang.String generalNoteExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>generalNoteCountByArticle</name>
+		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
+		<function-signature>java.lang.String generalNoteCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasGeneralNote</name>
+		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasGeneralNote(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>grantExists</name>
+		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
+		<function-signature>java.lang.String grantExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>grantCountByArticle</name>
+		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
+		<function-signature>java.lang.String grantCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasGrant</name>
+		<function-class>edu.uiowa.medline.grant.GrantIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasGrant(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorExists</name>
+		<function-class>edu.uiowa.medline.investigator.InvestigatorIterator</function-class>
+		<function-signature>java.lang.String investigatorExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorCountByArticle</name>
+		<function-class>edu.uiowa.medline.investigator.InvestigatorIterator</function-class>
+		<function-signature>java.lang.String investigatorCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasInvestigator</name>
+		<function-class>edu.uiowa.medline.investigator.InvestigatorIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasInvestigator(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorNameIdExists</name>
+		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</function-class>
+		<function-signature>java.lang.String investigatorNameIdExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorNameIdCountByInvestigator</name>
+		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</function-class>
+		<function-signature>java.lang.String investigatorNameIdCountByInvestigator(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorHasInvestigatorNameId</name>
+		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</function-class>
+		<function-signature>java.lang.Boolean investigatorHasInvestigatorNameId(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>journalExists</name>
+		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
+		<function-signature>java.lang.String journalExists(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>journalCountByArticle</name>
+		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
+		<function-signature>java.lang.String journalCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasJournal</name>
+		<function-class>edu.uiowa.medline.journal.JournalIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasJournal(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>keywordExists</name>
+		<function-class>edu.uiowa.medline.keyword.KeywordIterator</function-class>
+		<function-signature>java.lang.String keywordExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>keywordCountByArticle</name>
+		<function-class>edu.uiowa.medline.keyword.KeywordIterator</function-class>
+		<function-signature>java.lang.String keywordCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasKeyword</name>
+		<function-class>edu.uiowa.medline.keyword.KeywordIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasKeyword(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>languageExists</name>
+		<function-class>edu.uiowa.medline.language.LanguageIterator</function-class>
+		<function-signature>java.lang.String languageExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>languageCountByArticle</name>
+		<function-class>edu.uiowa.medline.language.LanguageIterator</function-class>
+		<function-signature>java.lang.String languageCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasLanguage</name>
+		<function-class>edu.uiowa.medline.language.LanguageIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasLanguage(java.lang.String)</function-signature>
 	</function>
 
 	<function>
@@ -4858,39 +4749,21 @@
 	</function>
 
 	<function>
-		<name>personalNameSubjectExists</name>
-		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
-		<function-signature>java.lang.String personalNameSubjectExists(java.lang.String, java.lang.String)</function-signature>
+		<name>nameIdExists</name>
+		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
+		<function-signature>java.lang.String nameIdExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>personalNameSubjectCountByArticle</name>
-		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
-		<function-signature>java.lang.String personalNameSubjectCountByArticle(java.lang.String)</function-signature>
+		<name>nameIdCountByAuthor</name>
+		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
+		<function-signature>java.lang.String nameIdCountByAuthor(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>articleHasPersonalNameSubject</name>
-		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasPersonalNameSubject(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>otherIdExists</name>
-		<function-class>edu.uiowa.medline.otherId.OtherIdIterator</function-class>
-		<function-signature>java.lang.String otherIdExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>otherIdCountByArticle</name>
-		<function-class>edu.uiowa.medline.otherId.OtherIdIterator</function-class>
-		<function-signature>java.lang.String otherIdCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasOtherId</name>
-		<function-class>edu.uiowa.medline.otherId.OtherIdIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasOtherId(java.lang.String)</function-signature>
+		<name>authorHasNameId</name>
+		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
+		<function-signature>java.lang.Boolean authorHasNameId(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
@@ -4912,75 +4785,57 @@
 	</function>
 
 	<function>
-		<name>keywordExists</name>
-		<function-class>edu.uiowa.medline.keyword.KeywordIterator</function-class>
-		<function-signature>java.lang.String keywordExists(java.lang.String, java.lang.String)</function-signature>
+		<name>otherAbstractTextExists</name>
+		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractTextIterator</function-class>
+		<function-signature>java.lang.String otherAbstractTextExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>keywordCountByArticle</name>
-		<function-class>edu.uiowa.medline.keyword.KeywordIterator</function-class>
-		<function-signature>java.lang.String keywordCountByArticle(java.lang.String)</function-signature>
+		<name>otherAbstractTextCountByOtherAbstract</name>
+		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractTextIterator</function-class>
+		<function-signature>java.lang.String otherAbstractTextCountByOtherAbstract(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>articleHasKeyword</name>
-		<function-class>edu.uiowa.medline.keyword.KeywordIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasKeyword(java.lang.String)</function-signature>
+		<name>otherAbstractHasOtherAbstractText</name>
+		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractTextIterator</function-class>
+		<function-signature>java.lang.Boolean otherAbstractHasOtherAbstractText(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>spaceflightMissionExists</name>
-		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
-		<function-signature>java.lang.String spaceflightMissionExists(java.lang.String, java.lang.String)</function-signature>
+		<name>otherIdExists</name>
+		<function-class>edu.uiowa.medline.otherId.OtherIdIterator</function-class>
+		<function-signature>java.lang.String otherIdExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>spaceflightMissionCountByArticle</name>
-		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
-		<function-signature>java.lang.String spaceflightMissionCountByArticle(java.lang.String)</function-signature>
+		<name>otherIdCountByArticle</name>
+		<function-class>edu.uiowa.medline.otherId.OtherIdIterator</function-class>
+		<function-signature>java.lang.String otherIdCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>articleHasSpaceflightMission</name>
-		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasSpaceflightMission(java.lang.String)</function-signature>
+		<name>articleHasOtherId</name>
+		<function-class>edu.uiowa.medline.otherId.OtherIdIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasOtherId(java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>investigatorExists</name>
-		<function-class>edu.uiowa.medline.investigator.InvestigatorIterator</function-class>
-		<function-signature>java.lang.String investigatorExists(java.lang.String, java.lang.String)</function-signature>
+		<name>personalNameSubjectExists</name>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
+		<function-signature>java.lang.String personalNameSubjectExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>investigatorCountByArticle</name>
-		<function-class>edu.uiowa.medline.investigator.InvestigatorIterator</function-class>
-		<function-signature>java.lang.String investigatorCountByArticle(java.lang.String)</function-signature>
+		<name>personalNameSubjectCountByArticle</name>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
+		<function-signature>java.lang.String personalNameSubjectCountByArticle(java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>articleHasInvestigator</name>
-		<function-class>edu.uiowa.medline.investigator.InvestigatorIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasInvestigator(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>generalNoteExists</name>
-		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
-		<function-signature>java.lang.String generalNoteExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>generalNoteCountByArticle</name>
-		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
-		<function-signature>java.lang.String generalNoteCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasGeneralNote</name>
-		<function-class>edu.uiowa.medline.generalNote.GeneralNoteIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasGeneralNote(java.lang.String)</function-signature>
+		<name>articleHasPersonalNameSubject</name>
+		<function-class>edu.uiowa.medline.personalNameSubject.PersonalNameSubjectIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasPersonalNameSubject(java.lang.String)</function-signature>
 	</function>
 
 	<function>
@@ -5002,15 +4857,21 @@
 	</function>
 
 	<function>
-		<name>authorCountCount</name>
-		<function-class>edu.uiowa.medline.authorCount.AuthorCountIterator</function-class>
-		<function-signature>java.lang.String authorCountCount()</function-signature>
+		<name>spaceflightMissionExists</name>
+		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
+		<function-signature>java.lang.String spaceflightMissionExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>authorCountExists</name>
-		<function-class>edu.uiowa.medline.authorCount.AuthorCountIterator</function-class>
-		<function-signature>java.lang.String authorCountExists(java.lang.String, java.lang.String)</function-signature>
+		<name>spaceflightMissionCountByArticle</name>
+		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
+		<function-signature>java.lang.String spaceflightMissionCountByArticle(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>articleHasSpaceflightMission</name>
+		<function-class>edu.uiowa.medline.spaceflightMission.SpaceflightMissionIterator</function-class>
+		<function-signature>java.lang.Boolean articleHasSpaceflightMission(java.lang.String)</function-signature>
 	</function>
 
 	<function>
@@ -5029,126 +4890,6 @@
 		<name>articleHasSupplementalMesh</name>
 		<function-class>edu.uiowa.medline.supplementalMesh.SupplementalMeshIterator</function-class>
 		<function-signature>java.lang.Boolean articleHasSupplementalMesh(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>nameIdExists</name>
-		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
-		<function-signature>java.lang.String nameIdExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>nameIdCountByAuthor</name>
-		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
-		<function-signature>java.lang.String nameIdCountByAuthor(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>authorHasNameId</name>
-		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
-		<function-signature>java.lang.Boolean authorHasNameId(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>abstrExists</name>
-		<function-class>edu.uiowa.medline.abstr.AbstrIterator</function-class>
-		<function-signature>java.lang.String abstrExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>abstrCountByArticle</name>
-		<function-class>edu.uiowa.medline.abstr.AbstrIterator</function-class>
-		<function-signature>java.lang.String abstrCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasAbstr</name>
-		<function-class>edu.uiowa.medline.abstr.AbstrIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasAbstr(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractTextExists</name>
-		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractTextIterator</function-class>
-		<function-signature>java.lang.String otherAbstractTextExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractTextCountByOtherAbstract</name>
-		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractTextIterator</function-class>
-		<function-signature>java.lang.String otherAbstractTextCountByOtherAbstract(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>otherAbstractHasOtherAbstractText</name>
-		<function-class>edu.uiowa.medline.otherAbstractText.OtherAbstractTextIterator</function-class>
-		<function-signature>java.lang.Boolean otherAbstractHasOtherAbstractText(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorNameIdExists</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</function-class>
-		<function-signature>java.lang.String investigatorNameIdExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorNameIdCountByInvestigator</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</function-class>
-		<function-signature>java.lang.String investigatorNameIdCountByInvestigator(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorHasInvestigatorNameId</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</function-class>
-		<function-signature>java.lang.Boolean investigatorHasInvestigatorNameId(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>documentClusterCount</name>
-		<function-class>edu.uiowa.medline.documentCluster.DocumentClusterIterator</function-class>
-		<function-signature>java.lang.String documentClusterCount()</function-signature>
-	</function>
-
-	<function>
-		<name>documentClusterExists</name>
-		<function-class>edu.uiowa.medline.documentCluster.DocumentClusterIterator</function-class>
-		<function-signature>java.lang.String documentClusterExists(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>clusterDocumentExists</name>
-		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
-		<function-signature>java.lang.String clusterDocumentExists(java.lang.String, java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>clusterDocumentCountByArticle</name>
-		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
-		<function-signature>java.lang.String clusterDocumentCountByArticle(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleHasClusterDocument</name>
-		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
-		<function-signature>java.lang.Boolean articleHasClusterDocument(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>clusterDocumentCountByDocumentCluster</name>
-		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
-		<function-signature>java.lang.String clusterDocumentCountByDocumentCluster(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>documentClusterHasClusterDocument</name>
-		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
-		<function-signature>java.lang.Boolean documentClusterHasClusterDocument(java.lang.String)</function-signature>
-	</function>
-
-	<function>
-		<name>articleDocumentClusterExists</name>
-		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocumentIterator</function-class>
-		<function-signature>java.lang.Boolean articleDocumentClusterExists(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>

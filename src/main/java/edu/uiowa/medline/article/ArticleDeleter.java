@@ -51,7 +51,7 @@ public class ArticleDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline12.article where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline13.article where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? "));
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);
             stat.execute();

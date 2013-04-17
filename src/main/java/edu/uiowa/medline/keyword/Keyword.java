@@ -62,7 +62,7 @@ public class Keyword extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Keyword from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select keyword,major,owner from medline12.keyword where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select keyword,major,owner from medline13.keyword where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -110,7 +110,7 @@ public class Keyword extends MEDLINETagLibTagSupport {
 
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.keyword set keyword = ?, major = ?, owner = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline13.keyword set keyword = ?, major = ?, owner = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,keyword);
 				stmt.setBoolean(2,major);
 				stmt.setString(3,owner);
@@ -140,7 +140,7 @@ public class Keyword extends MEDLINETagLibTagSupport {
 				keyword = "";
 			if (owner == null)
 				owner = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.keyword(pmid,seqnum,keyword,major,owner) values (?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline13.keyword(pmid,seqnum,keyword,major,owner) values (?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,keyword);

@@ -39,7 +39,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		OtherAbstractTextIterator theIterator = new OtherAbstractTextIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.other_abstract_text where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline13.other_abstract_text where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -69,7 +69,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		OtherAbstractTextIterator theIterator = new OtherAbstractTextIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.other_abstract_text where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline13.other_abstract_text where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						+ " and tnum = ?"
@@ -124,7 +124,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline12.other_abstract_text.pmid, medline12.other_abstract_text.seqnum, medline12.other_abstract_text.tnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline13.other_abstract_text.pmid, medline13.other_abstract_text.seqnum, medline13.other_abstract_text.tnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
@@ -151,7 +151,7 @@ public class OtherAbstractTextIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline12.other_abstract_text");
+       StringBuffer theBuffer = new StringBuffer("medline13.other_abstract_text");
       return theBuffer.toString();
     }
 

@@ -1,0 +1,1562 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clay-model clay-version="1.4.2">
+<database-model alias="" author="" begin-script="" end-script="" name="medline13" remarks="" sql-dialect-id="jp.azzurri.clay.dialect.Postgre_7_3_Dialect" uid="1ba05f40:13e196103ea:-7f30" version="1.0">
+<database-model-description/>
+<schema-list>
+<schema alias="" name="medline13" remarks="" uid="1ba05f40:13e196103ea:-7f2e">
+<schema-description/>
+<domain-list/>
+<table-list>
+<table alias="" name="abstr" remarks="" uid="1ba05f40:13e196103ea:-7f2d">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="313" y="131"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7f2b">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7f2a">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="abstract_text" remarks="" uid="1ba05f40:13e196103ea:-7f29">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="label" remarks="" uid="1ba05f40:13e196103ea:-7f28">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="category" remarks="" uid="1ba05f40:13e196103ea:-7f27">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="abstr_pkey" remarks="" uid="1ba05f40:13e196103ea:-7f2c">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_abstract_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e5a">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="accession" remarks="" uid="1ba05f40:13e196103ea:-7f26">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1239" y="166"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7f24">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7f23">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="accnum" remarks="" uid="1ba05f40:13e196103ea:-7f22">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="accession" remarks="" uid="1ba05f40:13e196103ea:-7f21">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="accession_pkey" remarks="" uid="1ba05f40:13e196103ea:-7f25">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+<primary-key-column name="accnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_accession_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="data_bank_pkey" referenced-table="data_bank" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e59">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+<foreign-key-column column-name="seqnum" referenced-key-column-name="seqnum"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="article" remarks="" uid="1ba05f40:13e196103ea:-7f20">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="486" y="288"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7f1e">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="13" decimal-digits="0" default-value="" mandatory="false" name="date_created" remarks="" uid="1ba05f40:13e196103ea:-7f1d">
+<column-description/>
+<data-type jdbc-type="91" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="13" decimal-digits="0" default-value="" mandatory="false" name="date_completed" remarks="" uid="1ba05f40:13e196103ea:-7f1c">
+<column-description/>
+<data-type jdbc-type="91" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="13" decimal-digits="0" default-value="" mandatory="false" name="date_revised" remarks="" uid="1ba05f40:13e196103ea:-7f1b">
+<column-description/>
+<data-type jdbc-type="91" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="title" remarks="" uid="1ba05f40:13e196103ea:-7f1a">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="start_page" remarks="" uid="1ba05f40:13e196103ea:-7f19">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="end_page" remarks="" uid="1ba05f40:13e196103ea:-7f18">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="medline_pgn" remarks="" uid="1ba05f40:13e196103ea:-7f17">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="copyright" remarks="" uid="1ba05f40:13e196103ea:-7f16">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="affiliation" remarks="" uid="1ba05f40:13e196103ea:-7f15">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="vernacular_title" remarks="" uid="1ba05f40:13e196103ea:-7f14">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="country" remarks="" uid="1ba05f40:13e196103ea:-7f13">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="ta" remarks="" uid="1ba05f40:13e196103ea:-7f12">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="nlm_unique_id" remarks="" uid="1ba05f40:13e196103ea:-7f11">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="issn_linking" remarks="" uid="1ba05f40:13e196103ea:-7f10">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="reference_count" remarks="" uid="1ba05f40:13e196103ea:-7f0f">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="pub_model" remarks="" uid="1ba05f40:13e196103ea:-7f0e">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="status" remarks="" uid="1ba05f40:13e196103ea:-7f0d">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="article_pkey" remarks="" uid="1ba05f40:13e196103ea:-7f1f">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list/>
+<index-list/>
+</table>
+<table alias="" name="article_date" remarks="" uid="1ba05f40:13e196103ea:-7f0c">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="853" y="100"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7f0a">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7f09">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="year" remarks="" uid="1ba05f40:13e196103ea:-7f08">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="month" remarks="" uid="1ba05f40:13e196103ea:-7f07">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="day" remarks="" uid="1ba05f40:13e196103ea:-7f06">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="type" remarks="" uid="1ba05f40:13e196103ea:-7f05">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="article_date_pkey" remarks="" uid="1ba05f40:13e196103ea:-7f0b">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_article_date_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e58">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="author" remarks="" uid="1ba05f40:13e196103ea:-7f04">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="128" y="213"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7f02">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7f01">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="last_name" remarks="" uid="1ba05f40:13e196103ea:-7f00">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="fore_name" remarks="" uid="1ba05f40:13e196103ea:-7eff">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="initials" remarks="" uid="1ba05f40:13e196103ea:-7efe">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="suffix" remarks="" uid="1ba05f40:13e196103ea:-7efd">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="collective_name" remarks="" uid="1ba05f40:13e196103ea:-7efc">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="author_pkey" remarks="" uid="1ba05f40:13e196103ea:-7f03">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_author_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e57">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list>
+<index alias="" name="authname" remarks="" uid="1ba05f40:13e196103ea:-7efb" unique="false">
+<index-description/>
+<index-column name="last_name" sort="ASC"/>
+<index-column name="fore_name" sort="ASC"/>
+</index>
+</index-list>
+</table>
+<table alias="" name="author_count" remarks="" uid="1ba05f40:13e196103ea:-7efa">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="204" y="53"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="true" name="last_name" remarks="" uid="1ba05f40:13e196103ea:-7ef8">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="true" name="fore_name" remarks="" uid="1ba05f40:13e196103ea:-7ef7">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="count" remarks="" uid="1ba05f40:13e196103ea:-7ef6">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="author_count_pkey" remarks="" uid="1ba05f40:13e196103ea:-7ef9">
+<primary-key-description/>
+<primary-key-column name="last_name"/>
+<primary-key-column name="fore_name"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list/>
+<index-list/>
+</table>
+<table alias="" name="chemical" remarks="" uid="1ba05f40:13e196103ea:-7ef5">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="390" y="46"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7ef3">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7ef2">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="registry_number" remarks="" uid="1ba05f40:13e196103ea:-7ef1">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="substance_name" remarks="" uid="1ba05f40:13e196103ea:-7ef0">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="chemical_pkey" remarks="" uid="1ba05f40:13e196103ea:-7ef4">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_chemical_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e56">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="citation_subset" remarks="" uid="1ba05f40:13e196103ea:-7eef">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="440" y="956"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7eed">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7eec">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="label" remarks="" uid="1ba05f40:13e196103ea:-7eeb">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="citation_subset_pkey" remarks="" uid="1ba05f40:13e196103ea:-7eee">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_citation_subset_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e55">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="comments_corrections" remarks="" uid="1ba05f40:13e196103ea:-7eea">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="959" y="188"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7ee8">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7ee7">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="ref_type" remarks="" uid="1ba05f40:13e196103ea:-7ee6">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="source" remarks="" uid="1ba05f40:13e196103ea:-7ee5">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="ref_pmid" remarks="" uid="1ba05f40:13e196103ea:-7ee4">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="note" remarks="" uid="1ba05f40:13e196103ea:-7ee3">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="comments_corrections_pkey" remarks="" uid="1ba05f40:13e196103ea:-7ee9">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_comment_on_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e54">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="data_bank" remarks="" uid="1ba05f40:13e196103ea:-7ee2">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1040" y="312"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7ee0">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7edf">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="name" remarks="" uid="1ba05f40:13e196103ea:-7ede">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="data_bank_pkey" remarks="" uid="1ba05f40:13e196103ea:-7ee1">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_data_bank_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e53">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="elocation" remarks="" uid="1ba05f40:13e196103ea:-7edd">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="199" y="560"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7edb">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7eda">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="eid" remarks="" uid="1ba05f40:13e196103ea:-7ed9">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="type" remarks="" uid="1ba05f40:13e196103ea:-7ed8">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="elocation_pkey" remarks="" uid="1ba05f40:13e196103ea:-7edc">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_elocation_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e52">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="gene_symbol" remarks="" uid="1ba05f40:13e196103ea:-7ed7">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="186" y="466"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7ed5">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7ed4">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="symbol" remarks="" uid="1ba05f40:13e196103ea:-7ed3">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="gene_symbol_pkey" remarks="" uid="1ba05f40:13e196103ea:-7ed6">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_gene_symbol_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e51">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="general_note" remarks="" uid="1ba05f40:13e196103ea:-7ed2">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="565" y="100"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7ed0">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7ecf">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="note" remarks="" uid="1ba05f40:13e196103ea:-7ece">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="owner" remarks="" uid="1ba05f40:13e196103ea:-7ecd">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="general_note_pkey" remarks="" uid="1ba05f40:13e196103ea:-7ed1">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_general_note_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e50">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="grant" remarks="" uid="1ba05f40:13e196103ea:-7ecc">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1038" y="613"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7eca">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7ec9">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="gid" remarks="" uid="1ba05f40:13e196103ea:-7ec8">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="acronym" remarks="" uid="1ba05f40:13e196103ea:-7ec7">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="agency" remarks="" uid="1ba05f40:13e196103ea:-7ec6">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="country" remarks="" uid="1ba05f40:13e196103ea:-7ec5">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="grant_pkey" remarks="" uid="1ba05f40:13e196103ea:-7ecb">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_grant_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e4f">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="investigator" remarks="" uid="1ba05f40:13e196103ea:-7ec4">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1160" y="355"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7ec2">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7ec1">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="last_name" remarks="" uid="1ba05f40:13e196103ea:-7ec0">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="fore_name" remarks="" uid="1ba05f40:13e196103ea:-7ebf">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="initials" remarks="" uid="1ba05f40:13e196103ea:-7ebe">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="suffix" remarks="" uid="1ba05f40:13e196103ea:-7ebd">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="affiliation" remarks="" uid="1ba05f40:13e196103ea:-7ebc">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="investigator_pkey" remarks="" uid="1ba05f40:13e196103ea:-7ec3">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_investigator_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e4e">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="investigator_name_id" remarks="" uid="1ba05f40:13e196103ea:-7ebb">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1347" y="324"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7eb9">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7eb8">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="nnum" remarks="" uid="1ba05f40:13e196103ea:-7eb7">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="name_id" remarks="" uid="1ba05f40:13e196103ea:-7eb6">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="source" remarks="" uid="1ba05f40:13e196103ea:-7eb5">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="investigator_name_id_pkey" remarks="" uid="1ba05f40:13e196103ea:-7eba">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+<primary-key-column name="nnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_investigator_name_id_1" on-delete="NO ACTION" on-update="NO ACTION" referenced-key="investigator_pkey" referenced-table="investigator" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e4d">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+<foreign-key-column column-name="seqnum" referenced-key-column-name="seqnum"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="journal" remarks="" uid="1ba05f40:13e196103ea:-7eb4">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="48" y="350"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7eb2">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="issn" remarks="" uid="1ba05f40:13e196103ea:-7eb1">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="volume" remarks="" uid="1ba05f40:13e196103ea:-7eb0">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="issue" remarks="" uid="1ba05f40:13e196103ea:-7eaf">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="pub_year" remarks="" uid="1ba05f40:13e196103ea:-7eae">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="pub_month" remarks="" uid="1ba05f40:13e196103ea:-7ead">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="pub_day" remarks="" uid="1ba05f40:13e196103ea:-7eac">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="pub_season" remarks="" uid="1ba05f40:13e196103ea:-7eab">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="medline_date" remarks="" uid="1ba05f40:13e196103ea:-7eaa">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="title" remarks="" uid="1ba05f40:13e196103ea:-7ea9">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="iso_abbreviation" remarks="" uid="1ba05f40:13e196103ea:-7ea8">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="journal_pkey" remarks="" uid="1ba05f40:13e196103ea:-7eb3">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_journal_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e4c">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="keyword" remarks="" uid="1ba05f40:13e196103ea:-7ea7">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="710" y="754"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7ea5">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7ea4">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="keyword" remarks="" uid="1ba05f40:13e196103ea:-7ea3">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="1" decimal-digits="0" default-value="" mandatory="false" name="major" remarks="" uid="1ba05f40:13e196103ea:-7ea2">
+<column-description/>
+<data-type jdbc-type="16" name="BOOL" selected-variant-pattern="BOOL">
+<variant type-name-pattern="BOOL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="owner" remarks="" uid="1ba05f40:13e196103ea:-7ea1">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="keyword_pkey" remarks="" uid="1ba05f40:13e196103ea:-7ea6">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_keyword_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e4b">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="language" remarks="" uid="1ba05f40:13e196103ea:-7ea0">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1204" y="556"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e9e">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e9d">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="language" remarks="" uid="1ba05f40:13e196103ea:-7e9c">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="language_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e9f">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_language_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e4a">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="mesh_heading" remarks="" uid="1ba05f40:13e196103ea:-7e9b">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="659" y="37"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e99">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e98">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="descriptor_name" remarks="" uid="1ba05f40:13e196103ea:-7e97">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="1" decimal-digits="0" default-value="" mandatory="false" name="major" remarks="" uid="1ba05f40:13e196103ea:-7e96">
+<column-description/>
+<data-type jdbc-type="16" name="BOOL" selected-variant-pattern="BOOL">
+<variant type-name-pattern="BOOL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="type" remarks="" uid="1ba05f40:13e196103ea:-7e95">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="mesh_heading_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e9a">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_mesh_heading_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e49">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="mesh_qualifier" remarks="" uid="1ba05f40:13e196103ea:-7e94">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1058" y="-6"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e92">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e91">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="qnum" remarks="" uid="1ba05f40:13e196103ea:-7e90">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="qualifier_name" remarks="" uid="1ba05f40:13e196103ea:-7e8f">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="1" decimal-digits="0" default-value="" mandatory="false" name="major" remarks="" uid="1ba05f40:13e196103ea:-7e8e">
+<column-description/>
+<data-type jdbc-type="16" name="BOOL" selected-variant-pattern="BOOL">
+<variant type-name-pattern="BOOL"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="mesh_qualifier_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e93">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+<primary-key-column name="qnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_mesh_qualifier_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="mesh_heading_pkey" referenced-table="mesh_heading" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e48">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+<foreign-key-column column-name="seqnum" referenced-key-column-name="seqnum"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="name_id" remarks="" uid="1ba05f40:13e196103ea:-7e8d">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="16" y="47"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e8b">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e8a">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="nnum" remarks="" uid="1ba05f40:13e196103ea:-7e89">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="name_id" remarks="" uid="1ba05f40:13e196103ea:-7e88">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="source" remarks="" uid="1ba05f40:13e196103ea:-7e87">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="name_id_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e8c">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+<primary-key-column name="nnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_name_id_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="author_pkey" referenced-table="author" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e47">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+<foreign-key-column column-name="seqnum" referenced-key-column-name="seqnum"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="other_abstract" remarks="" uid="1ba05f40:13e196103ea:-7e86">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="641" y="839"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e84">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e83">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="type" remarks="" uid="1ba05f40:13e196103ea:-7e82">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="copyright" remarks="" uid="1ba05f40:13e196103ea:-7e81">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="other_abstract_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e85">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_other_abstract_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e46">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="other_abstract_text" remarks="" uid="1ba05f40:13e196103ea:-7e80">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="884" y="923"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e7e">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e7d">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="tnum" remarks="" uid="1ba05f40:13e196103ea:-7e7c">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="abstract_text" remarks="" uid="1ba05f40:13e196103ea:-7e7b">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="label" remarks="" uid="1ba05f40:13e196103ea:-7e7a">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="category" remarks="" uid="1ba05f40:13e196103ea:-7e79">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="other_abstract_text_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e7f">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+<primary-key-column name="tnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_other_abstract_text_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="other_abstract_pkey" referenced-table="other_abstract" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e45">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+<foreign-key-column column-name="seqnum" referenced-key-column-name="seqnum"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="other_id" remarks="" uid="1ba05f40:13e196103ea:-7e78">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1324" y="483"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e76">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e75">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="source" remarks="" uid="1ba05f40:13e196103ea:-7e74">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="other_id" remarks="" uid="1ba05f40:13e196103ea:-7e73">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="other_id_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e77">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_other_id_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e44">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="personal_name_subject" remarks="" uid="1ba05f40:13e196103ea:-7e72">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="326" y="568"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e70">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e6f">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="last_name" remarks="" uid="1ba05f40:13e196103ea:-7e6e">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="fore_name" remarks="" uid="1ba05f40:13e196103ea:-7e6d">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="initials" remarks="" uid="1ba05f40:13e196103ea:-7e6c">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="suffix" remarks="" uid="1ba05f40:13e196103ea:-7e6b">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="personal_name_subject_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e71">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_personal_name_subject_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e43">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="publication_type" remarks="" uid="1ba05f40:13e196103ea:-7e6a">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="339" y="858"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e68">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e67">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="label" remarks="" uid="1ba05f40:13e196103ea:-7e66">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="publication_type_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e69">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_publication_type_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e42">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="spaceflight_mission" remarks="" uid="1ba05f40:13e196103ea:-7e65">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="553" y="981"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e63">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e62">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="mission" remarks="" uid="1ba05f40:13e196103ea:-7e61">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="spaceflight_mission_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e64">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_spaceflight_mission_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e41">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="supplemental_mesh" remarks="" uid="1ba05f40:13e196103ea:-7e60">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="762" y="662"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="1ba05f40:13e196103ea:-7e5e">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="1ba05f40:13e196103ea:-7e5d">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="name" remarks="" uid="1ba05f40:13e196103ea:-7e5c">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="type" remarks="" uid="1ba05f40:13e196103ea:-7e5b">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="supplemental_mesh_pkey" remarks="" uid="1ba05f40:13e196103ea:-7e5f">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="fk_supplemental_mesh_1" on-delete="CASCADE" on-update="NO ACTION" referenced-key="article_pkey" referenced-table="article" referenced-table-schema="medline13" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="1ba05f40:13e196103ea:-7e40">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+</table-list>
+</schema>
+</schema-list>
+</database-model>
+</clay-model>

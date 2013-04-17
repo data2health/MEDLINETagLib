@@ -60,7 +60,7 @@ public class SpaceflightMission extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a SpaceflightMission from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select mission from medline12.spaceflight_mission where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select mission from medline13.spaceflight_mission where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -104,7 +104,7 @@ public class SpaceflightMission extends MEDLINETagLibTagSupport {
 
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.spaceflight_mission set mission = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline13.spaceflight_mission set mission = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,mission);
 				stmt.setInt(2,pmid);
 				stmt.setInt(3,seqnum);
@@ -130,7 +130,7 @@ public class SpaceflightMission extends MEDLINETagLibTagSupport {
 
 			if (mission == null)
 				mission = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.spaceflight_mission(pmid,seqnum,mission) values (?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline13.spaceflight_mission(pmid,seqnum,mission) values (?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,mission);

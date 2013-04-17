@@ -60,7 +60,7 @@ public class CitationSubset extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a CitationSubset from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select label from medline12.citation_subset where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select label from medline13.citation_subset where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -104,7 +104,7 @@ public class CitationSubset extends MEDLINETagLibTagSupport {
 
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.citation_subset set label = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline13.citation_subset set label = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,label);
 				stmt.setInt(2,pmid);
 				stmt.setInt(3,seqnum);
@@ -130,7 +130,7 @@ public class CitationSubset extends MEDLINETagLibTagSupport {
 
 			if (label == null)
 				label = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.citation_subset(pmid,seqnum,label) values (?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline13.citation_subset(pmid,seqnum,label) values (?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,label);

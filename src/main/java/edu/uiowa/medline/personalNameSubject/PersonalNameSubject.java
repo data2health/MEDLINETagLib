@@ -63,7 +63,7 @@ public class PersonalNameSubject extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a PersonalNameSubject from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select last_name,fore_name,initials,suffix from medline12.personal_name_subject where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select last_name,fore_name,initials,suffix from medline13.personal_name_subject where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -113,7 +113,7 @@ public class PersonalNameSubject extends MEDLINETagLibTagSupport {
 
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.personal_name_subject set last_name = ?, fore_name = ?, initials = ?, suffix = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline13.personal_name_subject set last_name = ?, fore_name = ?, initials = ?, suffix = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,lastName);
 				stmt.setString(2,foreName);
 				stmt.setString(3,initials);
@@ -148,7 +148,7 @@ public class PersonalNameSubject extends MEDLINETagLibTagSupport {
 				initials = "";
 			if (suffix == null)
 				suffix = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.personal_name_subject(pmid,seqnum,last_name,fore_name,initials,suffix) values (?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline13.personal_name_subject(pmid,seqnum,last_name,fore_name,initials,suffix) values (?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,lastName);

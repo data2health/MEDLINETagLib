@@ -18,7 +18,7 @@ public class AuthorListForArticle extends MEDLINETagLibTagSupport {
     public int doStartTag() throws JspException {
         PreparedStatement stat;
         try {
-            stat = getConnection().prepareStatement("select last_name, initials from medline12.author where pmid = ? order by seqnum");
+            stat = getConnection().prepareStatement("select last_name, initials from medline13.author where pmid = ? order by seqnum");
             stat.setInt(1, ID);
             ResultSet rs = stat.executeQuery();
             StringBuffer authorString = new StringBuffer();

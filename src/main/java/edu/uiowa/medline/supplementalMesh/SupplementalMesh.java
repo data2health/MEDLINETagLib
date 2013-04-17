@@ -61,7 +61,7 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a SupplementalMesh from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select name,type from medline12.supplemental_mesh where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select name,type from medline13.supplemental_mesh where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -107,7 +107,7 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.supplemental_mesh set name = ?, type = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline13.supplemental_mesh set name = ?, type = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,name);
 				stmt.setString(2,type);
 				stmt.setInt(3,pmid);
@@ -136,7 +136,7 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 				name = "";
 			if (type == null)
 				type = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.supplemental_mesh(pmid,seqnum,name,type) values (?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline13.supplemental_mesh(pmid,seqnum,name,type) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,name);

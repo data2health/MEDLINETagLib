@@ -39,7 +39,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		GrantIterator theIterator = new GrantIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.grant where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline13.grant where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -67,7 +67,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		GrantIterator theIterator = new GrantIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.grant where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline13.grant where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -117,7 +117,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline12.grant.pmid, medline12.grant.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline13.grant.pmid, medline13.grant.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -141,7 +141,7 @@ public class GrantIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline12.grant");
+       StringBuffer theBuffer = new StringBuffer("medline13.grant");
       return theBuffer.toString();
     }
 

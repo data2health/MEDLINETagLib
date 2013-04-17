@@ -61,7 +61,7 @@ public class Chemical extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Chemical from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select registry_number,substance_name from medline12.chemical where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select registry_number,substance_name from medline13.chemical where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -107,7 +107,7 @@ public class Chemical extends MEDLINETagLibTagSupport {
 
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.chemical set registry_number = ?, substance_name = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline13.chemical set registry_number = ?, substance_name = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,registryNumber);
 				stmt.setString(2,substanceName);
 				stmt.setInt(3,pmid);
@@ -136,7 +136,7 @@ public class Chemical extends MEDLINETagLibTagSupport {
 				registryNumber = "";
 			if (substanceName == null)
 				substanceName = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.chemical(pmid,seqnum,registry_number,substance_name) values (?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline13.chemical(pmid,seqnum,registry_number,substance_name) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,registryNumber);

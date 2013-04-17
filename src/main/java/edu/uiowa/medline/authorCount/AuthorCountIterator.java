@@ -35,7 +35,7 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorCountIterator theIterator = new AuthorCountIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.author_count"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline13.author_count"
 						);
 
 			ResultSet crs = stat.executeQuery();
@@ -57,7 +57,7 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorCountIterator theIterator = new AuthorCountIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.author_count where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline13.author_count where 1=1"
 						+ " and last_name = ?"
 						+ " and fore_name = ?"
 						);
@@ -98,7 +98,7 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline12.author_count.last_name, medline12.author_count.fore_name from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline13.author_count.last_name, medline13.author_count.fore_name from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
             rs = stat.executeQuery();
@@ -120,7 +120,7 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline12.author_count");
+       StringBuffer theBuffer = new StringBuffer("medline13.author_count");
       return theBuffer.toString();
     }
 
