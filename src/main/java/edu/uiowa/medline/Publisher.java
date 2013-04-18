@@ -74,17 +74,17 @@ public class Publisher {
 
     void materializeAuthorView() throws SQLException {
         // refresh author uid-pmid cache with new data
-        execute("delete from author_cache10");
+        execute("delete from author_cache13");
         execute("analyze medline10.author");
         execute("analyze medline10.journal");
         execute("update journal set pub_day=28 where (pub_month='Feb' or pub_month='02') and pub_day > 28");
         execute("update journal set pub_day=30 where (pub_month='Sep' or pub_month='09' or pub_month='Apr' or pub_month='04' or pub_month='Jun' or pub_month='06' or pub_month='Nov' or pub_month='11') and pub_day > 30");
-        execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline10.author.pmid"
+        execute("insert into author_cache13 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline10.author.pmid"
                 + " from loki.authors,medline10.author,medline10.journal"
                 + " where authors.lastname=medline10.author.last_name and authors.forename=medline10.author.fore_name and medline10.author.pmid=medline10.journal.pmid");
-        execute("analyze author_cache10");
+        execute("analyze author_cache13");
 
-        PreparedStatement cntStmt = conn.prepareStatement("select count(*) from author_cache10");
+        PreparedStatement cntStmt = conn.prepareStatement("select count(*) from author_cache13");
         ResultSet rs = cntStmt.executeQuery();
         while (rs.next()) {
             logger.info("\nauthor cache instance count: " + rs.getInt(1));
@@ -103,7 +103,7 @@ public class Publisher {
 
         // refresh MeSH terminology and tf*idf statistics with new data
         execute("delete from loki.mesh");
-        execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline10.mesh_heading");
+        execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache13 natural join medline10.mesh_heading");
 
         // TOTO Now reset the parameters to their defaults.
         execute("set session enable_seqscan = on");
@@ -121,7 +121,7 @@ public class Publisher {
     }
     
     void identifyResearchers() throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("select distinct id from author_cache10 where id in (select id from author_cluster) and pmid not in (select pmid from cluster_document where author_cache10.id=cluster_document.id)");
+        PreparedStatement stmt = conn.prepareStatement("select distinct id from author_cache13 where id in (select id from author_cluster) and pmid not in (select pmid from cluster_document where author_cache13.id=cluster_document.id)");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             int id = rs.getInt(1);
@@ -136,7 +136,7 @@ public class Publisher {
     void incrementResearcherClusters(int id) throws SQLException {
         Vector<DocumentCluster> theClusters = loadClusters(id);
 
-        PreparedStatement stmt = conn.prepareStatement("select pmid from author_cache10 where id = ? and pmid not in (select pmid from cluster_document where author_cache10.id=cluster_document.id)");
+        PreparedStatement stmt = conn.prepareStatement("select pmid from author_cache13 where id = ? and pmid not in (select pmid from cluster_document where author_cache13.id=cluster_document.id)");
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {

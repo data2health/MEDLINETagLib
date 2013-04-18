@@ -1145,19 +1145,19 @@ public class XpathLoader {
 
     static void materializeAuthorView() throws SQLException {
         // refresh author uid-pmid cache with new data
-        execute("delete from author_cache10");
+        execute("delete from author_cache13");
         execute("analyze medline13.author");
         execute("analyze medline13.journal");
         execute("update journal set pub_day=28 where (pub_month='Feb' or pub_month='02') and pub_day > 28");
         execute("update journal set pub_day=30 where (pub_month='Sep' or pub_month='09' or pub_month='Apr' or pub_month='04' or pub_month='Jun' or pub_month='06' or pub_month='Nov' or pub_month='11') and pub_day > 30");
-        execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline13.author.pmid"
+        execute("insert into author_cache13 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline13.author.pmid"
                 + " from loki.authors,medline13.author,medline13.journal"
                 + " where authors.lastname=medline13.author.last_name and authors.forename=medline13.author.fore_name and medline13.author.pmid=medline13.journal.pmid");
-        execute("update author_cache10 set pubdate = (pub_month||' 01 '||pub_year)::date from medline13.journal where journal.pmid=author_cache10.pmid and pubdate is null and pub_month is not null");
-        execute("update author_cache10 set pubdate = ('Jan 01 '||pub_year)::date from medline13.journal where journal.pmid=author_cache10.pmid and pubdate is null");
-        execute("analyze author_cache10");
+        execute("update author_cache13 set pubdate = (pub_month||' 01 '||pub_year)::date from medline13.journal where journal.pmid=author_cache13.pmid and pubdate is null and pub_month is not null");
+        execute("update author_cache13 set pubdate = ('Jan 01 '||pub_year)::date from medline13.journal where journal.pmid=author_cache13.pmid and pubdate is null");
+        execute("analyze author_cache13");
     	
-		PreparedStatement cntStmt = conn.prepareStatement("select count(*) from author_cache10");
+		PreparedStatement cntStmt = conn.prepareStatement("select count(*) from author_cache13");
 		ResultSet rs = cntStmt.executeQuery();
 		while (rs.next()) {
 			logger.info("\nauthor cache instance count: " + rs.getInt(1));
@@ -1175,7 +1175,7 @@ public class XpathLoader {
         // refresh MeSH terminology and tf*idf statistics with new data
         execute("delete from loki.mesh");
         execute("insert into loki.mesh select id, descriptor_name as term from loki.publication natural join medline13.mesh_heading where descriptor_name is not null");
-        execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline13.mesh_heading where descriptor_name is not null and not exists (select id from publication where author_cache10.id=publication.id and pmid > 0)");
+        execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache13 natural join medline13.mesh_heading where descriptor_name is not null and not exists (select id from publication where author_cache13.id=publication.id and pmid > 0)");
 
         //TODO Now reset the parameters to their defaults.
         execute("set session enable_seqscan = on");
