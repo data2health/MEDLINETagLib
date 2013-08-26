@@ -72,7 +72,7 @@ public class XpathLoader {
 		sessionReset(db_url, props);
 
         if (args[1].equals("-full")) {
-			for (int i = 835; i <= 842; i++) {
+			for (int i = 842; i <= 983; i++) {
 				String fileName = "/Users/eichmann/downloads/MEDLINE13/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline13n" + formatter.format(i) + ".xml.gz";
 				logger.trace("file: " + fileName);
 				XpathLoader theLoader = new XpathLoader(fileName);
@@ -149,7 +149,7 @@ public class XpathLoader {
         commitStmt.executeUpdate();
         commitStmt.close();
 
-        logger.info("\nrecords added: " + recordsAdded);
+        logger.info("records added: " + recordsAdded);
         logger.info("records updated: " + recordsUpdated);
         logger.info("records deleted: " + recordsDeleted);
         logger.info("");
