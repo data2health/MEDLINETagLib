@@ -51,10 +51,10 @@ public class XpathLoader {
         String use_ssl = prop_file.getProperty("db.use.ssl", "false");
         logger.debug("Database SSL: " + use_ssl);
 
-        String databaseHost = prop_file.getProperty("db.host", "192.168.2.2");
+        String databaseHost = prop_file.getProperty("db.host", "localhost");
         logger.debug("Database Host: " + databaseHost);
 
-        String databaseName = prop_file.getProperty("db.name", "bioinformatics");
+        String databaseName = prop_file.getProperty("db.name", "loki");
         logger.debug("Database Name: " + databaseName);
 
         String db_url = prop_file.getProperty("db.url", "jdbc:postgresql://" + databaseHost + "/" + databaseName);
@@ -72,8 +72,8 @@ public class XpathLoader {
 		sessionReset(db_url, props);
 
         if (args[1].equals("-full")) {
-			for (int i = 1; i <= 684; i++) {
-				String fileName = "/Volumes/ICTS/Corpora/MEDLINE12/ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/medline12n" + formatter.format(i) + ".xml.gz";
+			for (int i = 835; i <= 842; i++) {
+				String fileName = "/Users/eichmann/downloads/MEDLINE13/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline13n" + formatter.format(i) + ".xml.gz";
 				logger.trace("file: " + fileName);
 				XpathLoader theLoader = new XpathLoader(fileName);
 				
@@ -113,7 +113,7 @@ public class XpathLoader {
 		conn = DriverManager.getConnection(db_url, props);
 		conn.setAutoCommit(false);
 
-        PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline12,loki");
+        PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline13,loki");
         pathStmt.executeUpdate();
         pathStmt.close();
 
@@ -938,7 +938,7 @@ public class XpathLoader {
 		String category = ((Element)abstractNode).attributeValue("NlmCategory");
 		logger.trace("\t\tcategory: " + category);
 
-        PreparedStatement stmt = conn.prepareStatement("insert into abstract values (?,?,?,?,?)");
+        PreparedStatement stmt = conn.prepareStatement("insert into abstr values (?,?,?,?,?)");
         stmt.setInt(1, pmid);
         stmt.setInt(2, seqnum);
         stmt.setString(3, abstractText);
@@ -1040,7 +1040,7 @@ public class XpathLoader {
 			String country = grantNode.selectSingleNode("Country") == null ? null : grantNode.selectSingleNode("Country").getText();
 			logger.trace("\t\tcountry: " + country);
 
-            PreparedStatement stmt = conn.prepareStatement("insert into medline12.grant values (?,?,?,?,?,?)");
+            PreparedStatement stmt = conn.prepareStatement("insert into medline13.grant values (?,?,?,?,?,?)");
             stmt.setInt(1, pmid);
             stmt.setInt(2, seqnum);
             stmt.setString(3, grantID);
