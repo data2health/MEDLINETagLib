@@ -42,9 +42,9 @@ public class ClusteringSource extends ExternalSource {
 			Properties props = new Properties();
 			props.setProperty("user", "eichmann");
 			props.setProperty("password", "translational");
-			props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
-			props.setProperty("ssl", "true");
-			theConnection = DriverManager.getConnection("jdbc:postgresql://neuromancer.icts.uiowa.edu/bioinformatics", props);
+//			props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
+//			props.setProperty("ssl", "true");
+			theConnection = DriverManager.getConnection("jdbc:postgresql://localhost/loki", props);
 	    	
 	    }
 		
@@ -69,7 +69,7 @@ public class ClusteringSource extends ExternalSource {
 		logger.debug("idHash: " + idHash);
 
 		Connection theConnection = getConnection();
-        PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline12.author,medline12.journal, medline12.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
+        PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline13.author,medline13.journal, medline13.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
         stmt.setString(1,author.getLastName());
         stmt.setString(2,author.getForeName());
         ResultSet rs = stmt.executeQuery();
@@ -105,7 +105,7 @@ public class ClusteringSource extends ExternalSource {
             idHash.put(""+pmid, theInstance);
     		logger.debug("idHash: " + idHash);
             
-            PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials, collective_name from medline12.author where pmid = ? order by 1,2");
+            PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials, collective_name from medline13.author where pmid = ? order by 1,2");
             authStmt.setInt(1, pmid);
             ResultSet ars = authStmt.executeQuery();
             while (ars.next()) {
@@ -147,7 +147,7 @@ public class ClusteringSource extends ExternalSource {
     	
 		try {
 			Connection theConnection = getConnection();
-	        PreparedStatement stat = theConnection.prepareStatement("SELECT count(*) from medline12.author_count");
+	        PreparedStatement stat = theConnection.prepareStatement("SELECT count(*) from medline13.author_count");
 
 			ResultSet crs = stat.executeQuery();
 
@@ -176,7 +176,7 @@ public class ClusteringSource extends ExternalSource {
 
 		try {
 			Connection theConnection = getConnection();
-	        PreparedStatement stat = theConnection.prepareStatement("SELECT count(*) from medline12.author_count where"
+	        PreparedStatement stat = theConnection.prepareStatement("SELECT count(*) from medline13.author_count where"
 																		+ " last_name = ?" + " and fore_name = ?");
 
 			stat.setString(1, lastName);
@@ -206,7 +206,7 @@ public class ClusteringSource extends ExternalSource {
         try {
         	logger.debug(label + " scanning for author : " + lastName + " " + foreNamePrefix);
         	Connection theConnection = getConnection();
-	        PreparedStatement stat = theConnection.prepareStatement("select distinct last_name, fore_name from medline12.author where last_name = ? and fore_name ~ ? order by last_name,fore_name");
+	        PreparedStatement stat = theConnection.prepareStatement("select distinct last_name, fore_name from medline13.author where last_name = ? and fore_name ~ ? order by last_name,fore_name");
             stat.setString(1, lastName.substring(0, 1).toUpperCase() + lastName.substring(1));
             stat.setString(2, "^" + foreNamePrefix.substring(0, 1).toUpperCase() + foreNamePrefix.substring(1));
 
@@ -236,7 +236,7 @@ public class ClusteringSource extends ExternalSource {
 	public void getIDs(String lastName, String foreName, Set<Integer> ids) {
         try {
         	Connection theConnection = getConnection();
-	        PreparedStatement stat = theConnection.prepareStatement("select pmid from medline12.author where last_name = ? and fore_name = ?");
+	        PreparedStatement stat = theConnection.prepareStatement("select pmid from medline13.author where last_name = ? and fore_name = ?");
             stat.setString(1, lastName);
             stat.setString(2, foreName);
 
@@ -267,7 +267,7 @@ public class ClusteringSource extends ExternalSource {
         try {
             Connection theConnection = getConnection();
 			int count = 0;
-			PreparedStatement loadStmt = getConnection().prepareStatement("select last_name,fore_name,collective_name from medline12.author where pmid = ? order by seqnum");
+			PreparedStatement loadStmt = getConnection().prepareStatement("select last_name,fore_name,collective_name from medline13.author where pmid = ? order by seqnum");
 			loadStmt.setInt(1,pmid);
 			ResultSet lrs = loadStmt.executeQuery();
 			while (lrs.next()) {
@@ -388,7 +388,7 @@ public class ClusteringSource extends ExternalSource {
 		try {
 			Connection theConnection = getConnection();
 			Pattern medDatePattern = Pattern.compile("^([0-9][0-9][0-9][0-9])(-[0-9][0-9][0-9][0-9])? ?.*");
-	        PreparedStatement stmt = theConnection.prepareStatement("select pub_year,article.title,medline_date from medline12.journal, medline12.article where journal.pmid=article.pmid and article.pmid = ?");
+	        PreparedStatement stmt = theConnection.prepareStatement("select pub_year,article.title,medline_date from medline13.journal, medline13.article where journal.pmid=article.pmid and article.pmid = ?");
 	        stmt.setInt(1,pmid);
 	        ResultSet rs = stmt.executeQuery();
 	        while (rs.next()) {
@@ -413,7 +413,7 @@ public class ClusteringSource extends ExternalSource {
 	            pmidHash.put(""+pmid, theInstance);
 	            
 		        if (theInstance.getAuthors().size() == 0) {
-		        	PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline12.author where pmid = ? order by 1,2");
+		        	PreparedStatement authStmt = theConnection.prepareStatement("select last_name, fore_name, initials from medline13.author where pmid = ? order by 1,2");
 		            authStmt.setInt(1, pmid);
 		            ResultSet ars = authStmt.executeQuery();
 		            while (ars.next()) {

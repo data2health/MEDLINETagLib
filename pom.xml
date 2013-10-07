@@ -85,6 +85,13 @@
   	<type>jar</type>
   	<scope>compile</scope>
   </dependency>
+  <dependency>
+  	<groupId>com.ibm.tspaces</groupId>
+  	<artifactId>tspaces</artifactId>
+  	<version>1.0</version>
+  	<type>jar</type>
+  	<scope>compile</scope>
+  </dependency>
   </dependencies>
 	<build>
 	  	<plugins>

@@ -284,6 +284,8 @@ src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshName.java svneo
 src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshPmid.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshSeqnum.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshType.java svneol=native#text/x-java-source
+src/main/java/edu/uiowa/medline/util/ClusterMEDLINE.java -text
+src/main/java/edu/uiowa/medline/util/ClusterMEDLINEhub.java -text
 src/main/java/edu/uiowa/medline/util/ClusteringSource.java -text
 src/main/java/edu/uiowa/medline/util/LuceneIndex.java -text
 src/main/resources/META-INF/taglib.tld -text svneol=unset#text/xml
