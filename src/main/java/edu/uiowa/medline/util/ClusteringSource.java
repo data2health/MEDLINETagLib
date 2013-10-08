@@ -65,7 +65,8 @@ public class ClusteringSource extends ExternalSource {
     }
     
     void cluster(Vector<Cluster> clusters, Author author) throws NamingException, SQLException, ClassNotFoundException {
-		logger.debug(label + " clustering: " + author);
+    	idHash = new Hashtable<String, Instance>();
+    	logger.debug(label + " clustering: " + author);
 		logger.debug("idHash: " + idHash);
 
 		Connection theConnection = getConnection();

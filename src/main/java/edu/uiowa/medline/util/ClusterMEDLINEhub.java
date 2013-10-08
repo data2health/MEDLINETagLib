@@ -42,7 +42,7 @@ public class ClusterMEDLINEhub {
         }
 
 		Statement stmt = theConnection.createStatement();
-		ResultSet rs = stmt.executeQuery("select last_name,fore_name from medline_clustering.author_count where not completed order by 1,2 limit 1000000");
+		ResultSet rs = stmt.executeQuery("select last_name,fore_name from medline_clustering.author_count where not completed order by 1,2 limit 2000000");
 
 		while (rs.next()) {
 			String lastName = rs.getString(1);
