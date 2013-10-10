@@ -47,7 +47,10 @@ public class ClusterMEDLINE {
 
 		ClusterMEDLINE theClusterer = new ClusterMEDLINE();
 		
-		theClusterer.tspace();
+		if (args.length > 1 && args[1].equals("null"))
+				theClusterer.tspace_null();
+		else
+			theClusterer.tspace();
 	}
 	
 	void solo() throws SQLException {
@@ -104,6 +107,36 @@ public class ClusterMEDLINE {
 			theConnection.commit();
 
 			theTuple = ts.waitToTake("cluster_request", new Field(String.class), new Field(String.class));
+        }
+	}
+
+	void tspace_null() throws TupleSpaceException, SQLException {
+		TupleSpace ts = null;
+		logger.debug("initializing tspace...");
+		try {
+			ts = new TupleSpace("MEDLINE", "localhost");
+		} catch (TupleSpaceException tse) {
+			logger.error("TSpace error: " + tse);
+		}
+		
+        Tuple theTuple = null;
+
+        theTuple = ts.waitToTake("cluster_request", new Field(String.class));
+
+        while (theTuple != null) {
+            String lastName = (String) theTuple.getField(1).getValue();
+            String foreName = null;
+            logger.info("consuming " + lastName + ", " + foreName);
+
+            cluster(new Author(lastName, foreName));
+
+			PreparedStatement compStmt = theConnection.prepareStatement("update medline_clustering.author_count set completed = true where last_name = ? and fore_name is null");
+			compStmt.setString(1, lastName);
+			compStmt.execute();
+			compStmt.close();
+			theConnection.commit();
+
+			theTuple = ts.waitToTake("cluster_request", new Field(String.class));
         }
 	}
 
