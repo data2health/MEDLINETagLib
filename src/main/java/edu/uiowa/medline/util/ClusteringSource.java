@@ -70,9 +70,15 @@ public class ClusteringSource extends ExternalSource {
 		logger.debug("idHash: " + idHash);
 
 		Connection theConnection = getConnection();
-        PreparedStatement stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline13.author,medline13.journal, medline13.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
-        stmt.setString(1,author.getLastName());
-        stmt.setString(2,author.getForeName());
+        PreparedStatement stmt = null;
+        if (author.getForeName() == null) {
+        	stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline13.author,medline13.journal, medline13.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name is null order by pmid desc");
+            stmt.setString(1,author.getLastName());
+        } else {
+        	stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline13.author,medline13.journal, medline13.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
+            stmt.setString(1,author.getLastName());
+            stmt.setString(2,author.getForeName());
+        }
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             int pmid = rs.getInt(1);
@@ -117,7 +123,7 @@ public class ClusteringSource extends ExternalSource {
                 if (lname == null && collective != null && useCollectiveName) {
                 	logger.debug("\t\tauthor: " + collective);
                     theInstance.getAuthors().addElement(collective);
-                } else if (!(author.getLastName().equals(lname) && author.getForeName().equals(fname))) {
+                } else if (!(author.getLastName().equals(lname) && ((author.getForeName() == null && fname == null) ||  (author.getForeName() != null && author.getForeName().equals(fname))))) {
                 	logger.debug("\t\tauthor: " + lname + " " + fname);
                     theInstance.getAuthors().addElement(lname + " " + initials);
                 }
