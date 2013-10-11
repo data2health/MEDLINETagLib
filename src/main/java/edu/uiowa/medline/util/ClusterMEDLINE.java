@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Vector;
 
@@ -47,10 +48,11 @@ public class ClusterMEDLINE {
 
 		ClusterMEDLINE theClusterer = new ClusterMEDLINE();
 		
-		if (args.length > 1 && args[1].equals("null"))
-				theClusterer.tspace_null();
-		else
-			theClusterer.tspace();
+		theClusterer.solo();
+//		if (args.length > 1 && args[1].equals("null"))
+//				theClusterer.tspace_null();
+//		else
+//			theClusterer.tspace();
 	}
 	
 	void solo() throws SQLException {
@@ -60,7 +62,7 @@ public class ClusterMEDLINE {
 		while (foundSome) {
 			foundSome = false;
 
-			PreparedStatement stmt = theConnection.prepareStatement("select last_name,fore_name from medline_clustering.author_count where not completed limit 10000");
+			PreparedStatement stmt = theConnection.prepareStatement("select last_name,fore_name from medline_clustering.author_count where last_name='Bickenbach' limit 10");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				String lastName = rs.getString(1);
@@ -76,6 +78,7 @@ public class ClusterMEDLINE {
 				theConnection.commit();
 			}
 			stmt.close();
+			break;
 		}
 	}
 	
@@ -146,7 +149,8 @@ public class ClusterMEDLINE {
 		logger.info("clustering: " + theAuthor.getLastName() + ", " + theAuthor.getForeName());
 		source.generateClusters(clusters,theAuthor);
 		
-		storeClusters(theAuthor,clusters);
+		dumpClusters(clusters);
+//		storeClusters(theAuthor,clusters);
 		logger.info("");
 	}
 
@@ -161,6 +165,12 @@ public class ClusterMEDLINE {
                 for (int k = 0; k < theInstance.getLinkages().size(); k++)
                 	logger.info("\t\tLinkage: " + theInstance.getLinkages().elementAt(k));
                 logger.info("");
+            }
+            logger.info("authors:");
+            Enumeration<Author> authEnum = theCluster.authors.elements();
+            while (authEnum.hasMoreElements()) {
+            	Author author = authEnum.nextElement();
+            	logger.info("\tauthor: " + author);
             }
         }
 	}
