@@ -123,9 +123,11 @@ public class ClusteringSource extends ExternalSource {
                 if (lname == null && collective != null && useCollectiveName) {
                 	logger.debug("\t\tauthor: " + collective);
                     theInstance.getAuthors().addElement(collective);
+                    theInstance.addAuthor(new Author(collective,null));
                 } else if (!(author.getLastName().equals(lname) && ((author.getForeName() == null && fname == null) ||  (author.getForeName() != null && author.getForeName().equals(fname))))) {
                 	logger.debug("\t\tauthor: " + lname + " " + fname);
                     theInstance.getAuthors().addElement(lname + " " + initials);
+                    theInstance.addAuthor(new Author(lname,fname));
                 }
             }
             authStmt.close();
@@ -143,6 +145,9 @@ public class ClusteringSource extends ExternalSource {
         	bestMatch.getInstances().addElement(theInstance);
         	for (int i = 0; i < theInstance.getAuthors().size(); i++) {
         		bestMatch.getAuthorHash().put(theInstance.getAuthors().elementAt(i), theInstance.getAuthors().elementAt(i));
+        	}
+        	for (Author theAuthor : theInstance.authorVector) {
+        		bestMatch.addAuthor(theAuthor);
         	}
         }
         stmt.close();
