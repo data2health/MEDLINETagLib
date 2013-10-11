@@ -1627,6 +1627,110 @@
 </foreign-key-list>
 <index-list/>
 </table>
+<table alias="" name="cluster_author" remarks="" uid="15a2515c:141a82e8fba:-7fe1">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1336" y="607"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="cid" remarks="" uid="15a2515c:141a82e8fba:-7fc6">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT">
+<variant type-name-pattern="INT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="15a2515c:141a82e8fba:-7fbb">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT">
+<variant type-name-pattern="INT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="last_name" remarks="" uid="15a2515c:141a82e8fba:-7fdd">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="fore_name" remarks="" uid="15a2515c:141a82e8fba:-7fdc">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="occurrences" remarks="" uid="15a2515c:141a82e8fba:-7fba">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT">
+<variant type-name-pattern="INT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_CLUSTER_AUTHOR" remarks="" uid="15a2515c:141a82e8fba:-7fe0">
+<primary-key-description/>
+<primary-key-column name="cid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="FK_cluster_author_1" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_DOCUMENT_CLUSTER" referenced-table="document_cluster" referenced-table-schema="medline_clustering" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="15a2515c:141a82e8fba:-7fc7">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="cid" referenced-key-column-name="cid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="cluster_pattern" remarks="" uid="15a2515c:141a82e8fba:-7fb9">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="1213" y="636"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="cid" remarks="" uid="15a2515c:141a82e8fba:-7fb7">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT">
+<variant type-name-pattern="INT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="15a2515c:141a82e8fba:-7fb6">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT">
+<variant type-name-pattern="INT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="last_name" remarks="" uid="15a2515c:141a82e8fba:-7fb5">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="fore_name" remarks="" uid="15a2515c:141a82e8fba:-7fb4">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="occurrences" remarks="" uid="15a2515c:141a82e8fba:-7fb3">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT">
+<variant type-name-pattern="INT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_CLUSTER_PATTERN" remarks="" uid="15a2515c:141a82e8fba:-7fb2">
+<primary-key-description/>
+<primary-key-column name="cid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="FK_cluster_pattern_1" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_DOCUMENT_CLUSTER" referenced-table="document_cluster" referenced-table-schema="medline_clustering" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="15a2515c:141a82e8fba:-7f9a">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="cid" referenced-key-column-name="cid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
 </table-list>
 </schema>
 </schema-list>
