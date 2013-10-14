@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Vector;
 
@@ -19,9 +18,7 @@ import com.ibm.tspaces.TupleSpace;
 import com.ibm.tspaces.TupleSpaceException;
 
 import edu.uiowa.loki.clustering.Author;
-import edu.uiowa.loki.clustering.Cluster;
 import edu.uiowa.loki.clustering.ExternalSource;
-import edu.uiowa.loki.clustering.Instance;
 import edu.uiowa.tagUtil.grantParser.nih;
 
 public class ClusterByGrant {
@@ -45,21 +42,54 @@ public class ClusterByGrant {
 //		props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
 //		props.setProperty("ssl", "true");
 		theConnection = DriverManager.getConnection("jdbc:postgresql://localhost/loki", props);
-//		theConnection.setAutoCommit(false);
+		theConnection.setAutoCommit(false);
 
 		ClusterByGrant theClusterer = new ClusterByGrant();
 		
-		theClusterer.solo();
-//		if (args.length > 1 && args[1].equals("null"))
-//				theClusterer.tspace_null();
-//		else
-//			theClusterer.tspace();
+//		theClusterer.solo();
+		theClusterer.tspace();
 	}
 	
 	void solo() throws SQLException {
+//		cluster(new Author("Bickenbach", "J R"));
+		cluster(new Author("Engelhardt", "John F"));
+		theConnection.commit();
+	}
+	
+	void tspace() throws TupleSpaceException, SQLException {
+		TupleSpace ts = null;
+		logger.debug("initializing tspace...");
+		try {
+			ts = new TupleSpace("MEDLINE", "localhost");
+		} catch (TupleSpaceException tse) {
+			logger.error("TSpace error: " + tse);
+		}
+		
+        Tuple theTuple = null;
+
+        theTuple = ts.waitToTake("cluster_request", new Field(String.class), new Field(String.class));
+
+        while (theTuple != null) {
+            String lastName = (String) theTuple.getField(1).getValue();
+            String foreName = (String) theTuple.getField(2).getValue();
+            logger.info("consuming " + lastName + ", " + foreName);
+
+            cluster(new Author(lastName, foreName));
+			theConnection.commit();
+
+			theTuple = ts.waitToTake("cluster_request", new Field(String.class), new Field(String.class));
+        }
+	}
+
+	void cluster(Author theAuthor) throws SQLException {
+		logger.info("");
+		logger.info("author: " + theAuthor.getLastName() + "\t" + theAuthor.getForeName());
+		logger.info("");
 		Vector<Cluster> clusters = new Vector<Cluster>();
 		
-		PreparedStatement stmt = theConnection.prepareStatement("select cid from medline_clustering.document_cluster where last_name='Engelhardt' and fore_name='John F' order by cid");
+		PreparedStatement stmt = theConnection.prepareStatement("select cid from medline_clustering.document_cluster_2 where last_name=? and fore_name=? order by cid");
+		stmt.setString(1, theAuthor.getLastName());
+		stmt.setString(2, theAuthor.getForeName());
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
 			int cid = rs.getInt(1);
@@ -67,7 +97,7 @@ public class ClusterByGrant {
 			Cluster theCluster = new Cluster(cid);
 			clusters.add(theCluster);
 			
-			PreparedStatement grantStmt = theConnection.prepareStatement("select gid from medline13.grant,medline_clustering.document_cluster as cluster,medline_clustering.cluster_document as document where cluster.cid=? and medline13.grant.pmid=document.pmid and document.cid=cluster.cid");
+			PreparedStatement grantStmt = theConnection.prepareStatement("select gid from medline13.grant,medline_clustering.document_cluster_2 as cluster,medline_clustering.cluster_document_2 as document where cluster.cid=? and medline13.grant.pmid=document.pmid and document.cid=cluster.cid");
 			grantStmt.setInt(1, cid);
 			ResultSet grs = grantStmt.executeQuery();
 			while (grs.next()) {
@@ -110,80 +140,9 @@ public class ClusterByGrant {
 			}
 		}
 		dumpClusters(clusters);
+		remapClusters(clusters);
 	}
 	
-	void tspace() throws TupleSpaceException, SQLException {
-		TupleSpace ts = null;
-		logger.debug("initializing tspace...");
-		try {
-			ts = new TupleSpace("MEDLINE", "localhost");
-		} catch (TupleSpaceException tse) {
-			logger.error("TSpace error: " + tse);
-		}
-		
-        Tuple theTuple = null;
-
-        theTuple = ts.waitToTake("cluster_request", new Field(String.class), new Field(String.class));
-
-        while (theTuple != null) {
-            String lastName = (String) theTuple.getField(1).getValue();
-            String foreName = (String) theTuple.getField(2).getValue();
-            logger.info("consuming " + lastName + ", " + foreName);
-
-            cluster(new Author(lastName, foreName));
-
-			PreparedStatement compStmt = theConnection.prepareStatement("update medline_clustering.author_count set completed = true where last_name = ? and fore_name = ?");
-			compStmt.setString(1, lastName);
-			compStmt.setString(2, foreName);
-			compStmt.execute();
-			compStmt.close();
-			theConnection.commit();
-
-			theTuple = ts.waitToTake("cluster_request", new Field(String.class), new Field(String.class));
-        }
-	}
-
-	void tspace_null() throws TupleSpaceException, SQLException {
-		TupleSpace ts = null;
-		logger.debug("initializing tspace...");
-		try {
-			ts = new TupleSpace("MEDLINE", "localhost");
-		} catch (TupleSpaceException tse) {
-			logger.error("TSpace error: " + tse);
-		}
-		
-        Tuple theTuple = null;
-
-        theTuple = ts.waitToTake("cluster_request", new Field(String.class));
-
-        while (theTuple != null) {
-            String lastName = (String) theTuple.getField(1).getValue();
-            String foreName = null;
-            logger.info("consuming " + lastName + ", " + foreName);
-
-            cluster(new Author(lastName, foreName));
-
-			PreparedStatement compStmt = theConnection.prepareStatement("update medline_clustering.author_count set completed = true where last_name = ? and fore_name is null");
-			compStmt.setString(1, lastName);
-			compStmt.execute();
-			compStmt.close();
-			theConnection.commit();
-
-			theTuple = ts.waitToTake("cluster_request", new Field(String.class));
-        }
-	}
-
-	void cluster(Author theAuthor) throws SQLException {
-		Vector<Cluster> clusters = new Vector<Cluster>();
-
-		logger.info("clustering: " + theAuthor.getLastName() + ", " + theAuthor.getForeName());
-		source.generateClusters(clusters,theAuthor);
-		
-		dumpClusters(clusters);
-//		storeClusters(theAuthor,clusters);
-		logger.info("");
-	}
-
 	void dumpClusters(Vector<Cluster> clusters) {
 		logger.info("======= cluster list =======");
         for (int i=0; i<clusters.size(); i++) {
@@ -201,43 +160,22 @@ public class ClusterByGrant {
         }
 	}
 
-	void storeClusters(Author theAuthor, Vector<Cluster> clusters) throws SQLException {
-		int nextInt = 0;
-		
-        for (int i=0; i<clusters.size(); i++) {
-            PreparedStatement stat = theConnection.prepareStatement("SELECT nextval ('medline_clustering.seqnum')");
-            ResultSet rs = stat.executeQuery();
-            while (rs.next()) {
-                nextInt = rs.getInt(1);
-            }
-            stat.close();
-            
-            Cluster theCluster = clusters.elementAt(i);
-            logger.info("cluster " + i + ":\tvalid: " + theCluster.isValid() + "\trecent: " + theCluster.isRecent());
-            
-            PreparedStatement authStat = theConnection.prepareStatement("insert into medline_clustering.document_cluster values (?,?,?)");
-            authStat.setInt(1, nextInt);
-            authStat.setString(2, theAuthor.getLastName());
-            authStat.setString(3, theAuthor.getForeName());
-            authStat.execute();
-            authStat.close();
-            
-            for (int j = 0; j < theCluster.getInstances().size(); j++) {
-                Instance theInstance = theCluster.getInstances().elementAt(j);
-                logger.info("\tinstance: " + theInstance.getTitle());
-                logger.info("\t\t" + theInstance.getAuthors());
-                for (int k = 0; k < theInstance.getLinkages().size(); k++)
-                	logger.info("\t\tLinkage: " + theInstance.getLinkages().elementAt(k));
-                
-                PreparedStatement docStat = theConnection.prepareStatement("insert into medline_clustering.cluster_document values (?,?)");
-                docStat.setInt(1, nextInt);
-                docStat.setInt(2, theInstance.getLinkages().firstElement().getPub_id());
-                docStat.execute();
-                docStat.close();
-                
-                logger.info("");
-            }
-        }
+	void remapClusters(Vector<Cluster> clusters) throws SQLException {
+		for (Cluster cluster : clusters) {
+			for (Cluster merged : cluster.mergedClusters) {
+	            PreparedStatement docStat = theConnection.prepareStatement("update medline_clustering.cluster_document_2 set cid = ? where cid = ?");
+	            docStat.setInt(1, cluster.cid);
+	            docStat.setInt(2, merged.cid);
+	            docStat.execute();
+	            docStat.close();
+				
+	            PreparedStatement clusterStat = theConnection.prepareStatement("delete from medline_clustering.document_cluster_2 where cid = ?");
+	            clusterStat.setInt(1, merged.cid);
+	            clusterStat.execute();
+	            clusterStat.close();
+			}
+			
+		}
 	}
 	
 	class Cluster {
