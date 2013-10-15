@@ -24,6 +24,8 @@ import edu.uiowa.loki.clustering.ExternalSource;
 import edu.uiowa.loki.clustering.Instance;
 
 public class ClusterMEDLINE {
+	final static boolean useFirstInitial = true;
+	
 	protected static final Log logger = LogFactory.getLog(ExternalSource.class);
 	static Connection theConnection = null;
 	ExternalSource source = new ClusteringSource();
@@ -48,11 +50,11 @@ public class ClusterMEDLINE {
 
 		ClusterMEDLINE theClusterer = new ClusterMEDLINE();
 		
-		theClusterer.solo();
-//		if (args.length > 1 && args[1].equals("null"))
-//				theClusterer.tspace_null();
-//		else
-//			theClusterer.tspace();
+//		theClusterer.solo();
+		if (args.length > 1 && args[1].equals("null"))
+				theClusterer.tspace_null();
+		else
+			theClusterer.tspace();
 	}
 	
 	void solo() throws SQLException {
@@ -102,7 +104,8 @@ public class ClusterMEDLINE {
 
             cluster(new Author(lastName, foreName));
 
-			PreparedStatement compStmt = theConnection.prepareStatement("update medline_clustering.author_count set completed = true where last_name = ? and fore_name = ?");
+			PreparedStatement compStmt = useFirstInitial ? theConnection.prepareStatement("update medline_clustering.author_prefix set completed = true where last_name = ? and initial = ?")
+														 : theConnection.prepareStatement("update medline_clustering.author_count set completed = true where last_name = ? and fore_name = ?");
 			compStmt.setString(1, lastName);
 			compStmt.setString(2, foreName);
 			compStmt.execute();
@@ -133,7 +136,8 @@ public class ClusterMEDLINE {
 
             cluster(new Author(lastName, foreName));
 
-			PreparedStatement compStmt = theConnection.prepareStatement("update medline_clustering.author_count set completed = true where last_name = ? and fore_name is null");
+			PreparedStatement compStmt = useFirstInitial ? theConnection.prepareStatement("update medline_clustering.author_prefix set completed = true where last_name = ? and initial is null")
+														 : theConnection.prepareStatement("update medline_clustering.author_count set completed = true where last_name = ? and fore_name is null");
 			compStmt.setString(1, lastName);
 			compStmt.execute();
 			compStmt.close();
@@ -150,7 +154,7 @@ public class ClusterMEDLINE {
 		source.generateClusters(clusters,theAuthor);
 		
 		dumpClusters(clusters);
-//		storeClusters(theAuthor,clusters);
+		storeClusters(theAuthor,clusters);
 		logger.info("");
 	}
 
@@ -189,7 +193,8 @@ public class ClusterMEDLINE {
             Cluster theCluster = clusters.elementAt(i);
             logger.info("cluster " + i + ":\tvalid: " + theCluster.isValid() + "\trecent: " + theCluster.isRecent());
             
-            PreparedStatement authStat = theConnection.prepareStatement("insert into medline_clustering.document_cluster values (?,?,?)");
+            PreparedStatement authStat = useFirstInitial ? theConnection.prepareStatement("insert into medline_clustering.document_cluster_prefix values (?,?,?)")
+            											 : theConnection.prepareStatement("insert into medline_clustering.document_cluster values (?,?,?)");
             authStat.setInt(1, nextInt);
             authStat.setString(2, theAuthor.getLastName());
             authStat.setString(3, theAuthor.getForeName());
@@ -203,7 +208,8 @@ public class ClusterMEDLINE {
                 for (int k = 0; k < theInstance.getLinkages().size(); k++)
                 	logger.info("\t\tLinkage: " + theInstance.getLinkages().elementAt(k));
                 
-                PreparedStatement docStat = theConnection.prepareStatement("insert into medline_clustering.cluster_document values (?,?)");
+                PreparedStatement docStat = useFirstInitial ? theConnection.prepareStatement("insert into medline_clustering.cluster_document_prefix values (?,?)")
+                											: theConnection.prepareStatement("insert into medline_clustering.cluster_document values (?,?)");
                 docStat.setInt(1, nextInt);
                 docStat.setInt(2, theInstance.getLinkages().firstElement().getPub_id());
                 docStat.execute();

@@ -28,6 +28,7 @@ import edu.uiowa.medline.journal.Journal;
 
 public class ClusteringSource extends ExternalSource {
 	private boolean useCollectiveName = true;
+	private boolean useFirstInitial = true;
 
 	Pattern medDatePattern = Pattern.compile("^([0-9][0-9][0-9][0-9])(-[0-9][0-9][0-9][0-9])? ?.*");
     
@@ -74,6 +75,12 @@ public class ClusteringSource extends ExternalSource {
         if (author.getForeName() == null) {
         	stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline13.author,medline13.journal, medline13.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name is null order by pmid desc");
             stmt.setString(1,author.getLastName());
+        } else if (useFirstInitial) {
+            if (author.getForeName() != null)
+            	author.setForeName(""+author.getForeName().charAt(0));
+        	stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline13.author,medline13.journal, medline13.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name ~ ? order by pmid desc");
+            stmt.setString(1,author.getLastName());
+            stmt.setString(2,"^"+author.getForeName());
         } else {
         	stmt = theConnection.prepareStatement("select author.pmid,pub_year,article.title,medline_date from medline13.author,medline13.journal, medline13.article where journal.pmid=article.pmid and article.pmid=author.pmid and last_name = ? and fore_name = ? order by pmid desc");
             stmt.setString(1,author.getLastName());
@@ -117,7 +124,7 @@ public class ClusteringSource extends ExternalSource {
             ResultSet ars = authStmt.executeQuery();
             while (ars.next()) {
                 String lname = ars.getString(1);
-                String fname = ars.getString(2);
+                String fname = (useFirstInitial && ars.getString(2) != null) ? ""+ars.getString(2).charAt(0) : ars.getString(2);
                 String initials = ars.getString(3);
                 String collective = ars.getString(4);
                 if (lname == null && collective != null && useCollectiveName) {

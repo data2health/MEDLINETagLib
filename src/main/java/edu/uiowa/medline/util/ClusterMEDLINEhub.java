@@ -42,8 +42,9 @@ public class ClusterMEDLINEhub {
         }
 
 		Statement stmt = theConnection.createStatement();
-//		ResultSet rs = stmt.executeQuery("select last_name,fore_name from medline_clustering.author_count where not completed order by 1,2 limit 2000000");
-		ResultSet rs = stmt.executeQuery("select last_name,fore_name,count(*) from medline_clustering.document_cluster_2 group by 1,2 having count(*) > 1 order by 1,2");
+		ResultSet rs = ClusterMEDLINE.useFirstInitial ? stmt.executeQuery("select last_name,initial from medline_clustering.author_prefix where not completed order by 1,2")
+													  : stmt.executeQuery("select last_name,fore_name from medline_clustering.author_count where not completed order by 1,2 limit 2000000");
+//		ResultSet rs = stmt.executeQuery("select last_name,fore_name,count(*) from medline_clustering.document_cluster_2 group by 1,2 having count(*) > 1 order by 1,2");
 
 		while (rs.next()) {
 			String lastName = rs.getString(1);
