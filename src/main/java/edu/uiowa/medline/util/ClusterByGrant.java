@@ -22,6 +22,7 @@ import edu.uiowa.loki.clustering.ExternalSource;
 import edu.uiowa.tagUtil.grantParser.nih;
 
 public class ClusterByGrant {
+	static boolean useFirstInitial = true;
 	protected static final Log logger = LogFactory.getLog(ExternalSource.class);
 	static Connection theConnection = null;
 	ExternalSource source = new ClusteringSource();
@@ -87,7 +88,8 @@ public class ClusterByGrant {
 		logger.info("");
 		Vector<Cluster> clusters = new Vector<Cluster>();
 		
-		PreparedStatement stmt = theConnection.prepareStatement("select cid from medline_clustering.document_cluster_2 where last_name=? and fore_name=? order by cid");
+		PreparedStatement stmt = useFirstInitial ? theConnection.prepareStatement("select cid from medline_clustering.document_cluster_prefix_2 where last_name=? and fore_name=? order by cid")
+												 : theConnection.prepareStatement("select cid from medline_clustering.document_cluster_2 where last_name=? and fore_name=? order by cid");
 		stmt.setString(1, theAuthor.getLastName());
 		stmt.setString(2, theAuthor.getForeName());
 		ResultSet rs = stmt.executeQuery();
@@ -97,7 +99,8 @@ public class ClusterByGrant {
 			Cluster theCluster = new Cluster(cid);
 			clusters.add(theCluster);
 			
-			PreparedStatement grantStmt = theConnection.prepareStatement("select gid from medline13.grant,medline_clustering.document_cluster_2 as cluster,medline_clustering.cluster_document_2 as document where cluster.cid=? and medline13.grant.pmid=document.pmid and document.cid=cluster.cid");
+			PreparedStatement grantStmt = useFirstInitial ? theConnection.prepareStatement("select gid from medline13.grant,medline_clustering.document_cluster_prefix_2 as cluster,medline_clustering.cluster_document_prefix_2 as document where cluster.cid=? and medline13.grant.pmid=document.pmid and document.cid=cluster.cid")
+														  : theConnection.prepareStatement("select gid from medline13.grant,medline_clustering.document_cluster_2 as cluster,medline_clustering.cluster_document_2 as document where cluster.cid=? and medline13.grant.pmid=document.pmid and document.cid=cluster.cid");
 			grantStmt.setInt(1, cid);
 			ResultSet grs = grantStmt.executeQuery();
 			while (grs.next()) {
@@ -163,13 +166,15 @@ public class ClusterByGrant {
 	void remapClusters(Vector<Cluster> clusters) throws SQLException {
 		for (Cluster cluster : clusters) {
 			for (Cluster merged : cluster.mergedClusters) {
-	            PreparedStatement docStat = theConnection.prepareStatement("update medline_clustering.cluster_document_2 set cid = ? where cid = ?");
+	            PreparedStatement docStat = useFirstInitial ? theConnection.prepareStatement("update medline_clustering.cluster_document_prefix_2 set cid = ? where cid = ?")
+	            											: theConnection.prepareStatement("update medline_clustering.cluster_document_2 set cid = ? where cid = ?");
 	            docStat.setInt(1, cluster.cid);
 	            docStat.setInt(2, merged.cid);
 	            docStat.execute();
 	            docStat.close();
 				
-	            PreparedStatement clusterStat = theConnection.prepareStatement("delete from medline_clustering.document_cluster_2 where cid = ?");
+	            PreparedStatement clusterStat = useFirstInitial ? theConnection.prepareStatement("delete from medline_clustering.document_cluster_prefix_2 where cid = ?")
+	            												: theConnection.prepareStatement("delete from medline_clustering.document_cluster_2 where cid = ?");
 	            clusterStat.setInt(1, merged.cid);
 	            clusterStat.execute();
 	            clusterStat.close();

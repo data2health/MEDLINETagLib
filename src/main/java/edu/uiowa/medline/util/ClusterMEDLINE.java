@@ -55,6 +55,34 @@ public class ClusterMEDLINE {
 				theClusterer.tspace_null();
 		else
 			theClusterer.tspace();
+//		theClusterer.unicodeInitial();
+	}
+	
+	void unicodeInitial() throws SQLException {
+			PreparedStatement stmt = theConnection.prepareStatement("select last_name from medline_clustering.author_prefix where not completed");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				String lastName = rs.getString(1);
+				
+				PreparedStatement countStmt = theConnection.prepareStatement("select fore_name from medline_clustering.author_count where last_name = ? order by fore_name");
+				countStmt.setString(1, lastName);
+				ResultSet crs = countStmt.executeQuery();
+				while (crs.next()) {
+					String foreName = crs.getString(1);
+					if (foreName == null || foreName.length() == 0)
+						continue;
+					String initial = "" + foreName.charAt(0);
+
+					PreparedStatement compStmt = theConnection.prepareStatement("insert into medline_clustering.author_patch values (?,?)");
+					compStmt.setString(1, lastName);
+					compStmt.setString(2, initial);
+					compStmt.execute();
+					compStmt.close();
+				}
+				countStmt.close();
+				theConnection.commit();
+			}
+			stmt.close();
 	}
 	
 	void solo() throws SQLException {
