@@ -63,7 +63,7 @@ public class Journal extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or pmid was provided as an attribute - we need to load a Journal from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select issn,volume,issue,pub_year,pub_month,pub_day,pub_season,medline_date,title,iso_abbreviation from medline12.journal where pmid = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select issn,volume,issue,pub_year,pub_month,pub_day,pub_season,medline_date,title,iso_abbreviation from medline14.journal where pmid = ?");
 				stmt.setInt(1,pmid);
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
@@ -108,7 +108,7 @@ public class Journal extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.journal set issn = ?, volume = ?, issue = ?, pub_year = ?, pub_month = ?, pub_day = ?, pub_season = ?, medline_date = ?, title = ?, iso_abbreviation = ? where pmid = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline14.journal set issn = ?, volume = ?, issue = ?, pub_year = ?, pub_month = ?, pub_day = ?, pub_season = ?, medline_date = ?, title = ?, iso_abbreviation = ? where pmid = ?");
 				stmt.setString(1,issn);
 				stmt.setString(2,volume);
 				stmt.setString(3,issue);
@@ -151,7 +151,7 @@ public class Journal extends MEDLINETagLibTagSupport {
 				title = "";
 			if (isoAbbreviation == null)
 				isoAbbreviation = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.journal(pmid,issn,volume,issue,pub_year,pub_month,pub_day,pub_season,medline_date,title,iso_abbreviation) values (?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.journal(pmid,issn,volume,issue,pub_year,pub_month,pub_day,pub_season,medline_date,title,iso_abbreviation) values (?,?,?,?,?,?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setString(2,issn);
 			stmt.setString(3,volume);

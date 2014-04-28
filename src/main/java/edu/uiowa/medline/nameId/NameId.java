@@ -60,7 +60,7 @@ public class NameId extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or nnum was provided as an attribute - we need to load a NameId from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select name_id,source from medline12.name_id where pmid = ? and seqnum = ? and nnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select name_id,source from medline14.name_id where pmid = ? and seqnum = ? and nnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				stmt.setInt(3,nnum);
@@ -91,7 +91,7 @@ public class NameId extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.name_id set name_id = ?, source = ? where pmid = ? and seqnum = ? and nnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline14.name_id set name_id = ?, source = ? where pmid = ? and seqnum = ? and nnum = ?");
 				stmt.setString(1,nameId);
 				stmt.setString(2,source);
 				stmt.setInt(3,pmid);
@@ -121,7 +121,7 @@ public class NameId extends MEDLINETagLibTagSupport {
 				nameId = "";
 			if (source == null)
 				source = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.name_id(pmid,seqnum,nnum,name_id,source) values (?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.name_id(pmid,seqnum,nnum,name_id,source) values (?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setInt(3,nnum);

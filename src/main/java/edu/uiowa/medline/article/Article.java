@@ -35,7 +35,6 @@ public class Article extends MEDLINETagLibTagSupport {
 	int endPage = 0;
 	String medlinePgn = null;
 	String copyright = null;
-	String affiliation = null;
 	String vernacularTitle = null;
 	String country = null;
 	String ta = null;
@@ -63,7 +62,7 @@ public class Article extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or pmid was provided as an attribute - we need to load a Article from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select date_created,date_completed,date_revised,title,start_page,end_page,medline_pgn,copyright,affiliation,vernacular_title,country,ta,nlm_unique_id,issn_linking,reference_count,pub_model,status from medline12.article where pmid = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select date_created,date_completed,date_revised,title,start_page,end_page,medline_pgn,copyright,vernacular_title,country,ta,nlm_unique_id,issn_linking,reference_count,pub_model,status from medline14.article where pmid = ?");
 				stmt.setInt(1,pmid);
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
@@ -83,24 +82,22 @@ public class Article extends MEDLINETagLibTagSupport {
 						medlinePgn = rs.getString(7);
 					if (copyright == null)
 						copyright = rs.getString(8);
-					if (affiliation == null)
-						affiliation = rs.getString(9);
 					if (vernacularTitle == null)
-						vernacularTitle = rs.getString(10);
+						vernacularTitle = rs.getString(9);
 					if (country == null)
-						country = rs.getString(11);
+						country = rs.getString(10);
 					if (ta == null)
-						ta = rs.getString(12);
+						ta = rs.getString(11);
 					if (nlmUniqueId == null)
-						nlmUniqueId = rs.getString(13);
+						nlmUniqueId = rs.getString(12);
 					if (issnLinking == null)
-						issnLinking = rs.getString(14);
+						issnLinking = rs.getString(13);
 					if (referenceCount == 0)
-						referenceCount = rs.getInt(15);
+						referenceCount = rs.getInt(14);
 					if (pubModel == null)
-						pubModel = rs.getString(16);
+						pubModel = rs.getString(15);
 					if (status == null)
-						status = rs.getString(17);
+						status = rs.getString(16);
 					found = true;
 				}
 				stmt.close();
@@ -122,7 +119,7 @@ public class Article extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.article set date_created = ?, date_completed = ?, date_revised = ?, title = ?, start_page = ?, end_page = ?, medline_pgn = ?, copyright = ?, affiliation = ?, vernacular_title = ?, country = ?, ta = ?, nlm_unique_id = ?, issn_linking = ?, reference_count = ?, pub_model = ?, status = ? where pmid = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline14.article set date_created = ?, date_completed = ?, date_revised = ?, title = ?, start_page = ?, end_page = ?, medline_pgn = ?, copyright = ?, vernacular_title = ?, country = ?, ta = ?, nlm_unique_id = ?, issn_linking = ?, reference_count = ?, pub_model = ?, status = ? where pmid = ?");
 				stmt.setDate(1,dateCreated == null ? null : new java.sql.Date(dateCreated.getTime()));
 				stmt.setDate(2,dateCompleted == null ? null : new java.sql.Date(dateCompleted.getTime()));
 				stmt.setDate(3,dateRevised == null ? null : new java.sql.Date(dateRevised.getTime()));
@@ -131,16 +128,15 @@ public class Article extends MEDLINETagLibTagSupport {
 				stmt.setInt(6,endPage);
 				stmt.setString(7,medlinePgn);
 				stmt.setString(8,copyright);
-				stmt.setString(9,affiliation);
-				stmt.setString(10,vernacularTitle);
-				stmt.setString(11,country);
-				stmt.setString(12,ta);
-				stmt.setString(13,nlmUniqueId);
-				stmt.setString(14,issnLinking);
-				stmt.setInt(15,referenceCount);
-				stmt.setString(16,pubModel);
-				stmt.setString(17,status);
-				stmt.setInt(18,pmid);
+				stmt.setString(9,vernacularTitle);
+				stmt.setString(10,country);
+				stmt.setString(11,ta);
+				stmt.setString(12,nlmUniqueId);
+				stmt.setString(13,issnLinking);
+				stmt.setInt(14,referenceCount);
+				stmt.setString(15,pubModel);
+				stmt.setString(16,status);
+				stmt.setInt(17,pmid);
 				stmt.executeUpdate();
 				stmt.close();
 			}
@@ -167,8 +163,6 @@ public class Article extends MEDLINETagLibTagSupport {
 				medlinePgn = "";
 			if (copyright == null)
 				copyright = "";
-			if (affiliation == null)
-				affiliation = "";
 			if (vernacularTitle == null)
 				vernacularTitle = "";
 			if (country == null)
@@ -183,7 +177,7 @@ public class Article extends MEDLINETagLibTagSupport {
 				pubModel = "";
 			if (status == null)
 				status = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.article(pmid,date_created,date_completed,date_revised,title,start_page,end_page,medline_pgn,copyright,affiliation,vernacular_title,country,ta,nlm_unique_id,issn_linking,reference_count,pub_model,status) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.article(pmid,date_created,date_completed,date_revised,title,start_page,end_page,medline_pgn,copyright,vernacular_title,country,ta,nlm_unique_id,issn_linking,reference_count,pub_model,status) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setDate(2,dateCreated == null ? null : new java.sql.Date(dateCreated.getTime()));
 			stmt.setDate(3,dateCompleted == null ? null : new java.sql.Date(dateCompleted.getTime()));
@@ -193,15 +187,14 @@ public class Article extends MEDLINETagLibTagSupport {
 			stmt.setInt(7,endPage);
 			stmt.setString(8,medlinePgn);
 			stmt.setString(9,copyright);
-			stmt.setString(10,affiliation);
-			stmt.setString(11,vernacularTitle);
-			stmt.setString(12,country);
-			stmt.setString(13,ta);
-			stmt.setString(14,nlmUniqueId);
-			stmt.setString(15,issnLinking);
-			stmt.setInt(16,referenceCount);
-			stmt.setString(17,pubModel);
-			stmt.setString(18,status);
+			stmt.setString(10,vernacularTitle);
+			stmt.setString(11,country);
+			stmt.setString(12,ta);
+			stmt.setString(13,nlmUniqueId);
+			stmt.setString(14,issnLinking);
+			stmt.setInt(15,referenceCount);
+			stmt.setString(16,pubModel);
+			stmt.setString(17,status);
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
@@ -350,22 +343,6 @@ public class Article extends MEDLINETagLibTagSupport {
 
 	public String getActualCopyright () {
 		return copyright;
-	}
-
-	public String getAffiliation () {
-		if (commitNeeded)
-			return "";
-		else
-			return affiliation;
-	}
-
-	public void setAffiliation (String affiliation) {
-		this.affiliation = affiliation;
-		commitNeeded = true;
-	}
-
-	public String getActualAffiliation () {
-		return affiliation;
 	}
 
 	public String getVernacularTitle () {
@@ -565,14 +542,6 @@ public class Article extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static String affiliationValue() throws JspException {
-		try {
-			return currentInstance.getAffiliation();
-		} catch (Exception e) {
-			 throw new JspTagException("Error in tag function affiliationValue()");
-		}
-	}
-
 	public static String vernacularTitleValue() throws JspException {
 		try {
 			return currentInstance.getVernacularTitle();
@@ -647,7 +616,6 @@ public class Article extends MEDLINETagLibTagSupport {
 		endPage = 0;
 		medlinePgn = null;
 		copyright = null;
-		affiliation = null;
 		vernacularTitle = null;
 		country = null;
 		ta = null;

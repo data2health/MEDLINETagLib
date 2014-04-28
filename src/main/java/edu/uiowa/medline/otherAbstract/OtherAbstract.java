@@ -57,7 +57,7 @@ public class OtherAbstract extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a OtherAbstract from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select type,copyright from medline12.other_abstract where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select type,copyright from medline14.other_abstract where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -87,7 +87,7 @@ public class OtherAbstract extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.other_abstract set type = ?, copyright = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline14.other_abstract set type = ?, copyright = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,type);
 				stmt.setString(2,copyright);
 				stmt.setInt(3,pmid);
@@ -116,7 +116,7 @@ public class OtherAbstract extends MEDLINETagLibTagSupport {
 				type = "";
 			if (copyright == null)
 				copyright = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.other_abstract(pmid,seqnum,type,copyright) values (?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.other_abstract(pmid,seqnum,type,copyright) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,type);

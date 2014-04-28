@@ -24,6 +24,7 @@ public class AuthorDeleter extends MEDLINETagLibBodyTagSupport {
     String initials = null;
     String suffix = null;
     String collectiveName = null;
+    String affiliation = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
 	private static final Log log = LogFactory.getLog(AuthorDeleter.class);
@@ -47,7 +48,7 @@ public class AuthorDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline12.author where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline14.author where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? ")
                                                         + (seqnum == 0 ? "" : " and seqnum = ? "));
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);

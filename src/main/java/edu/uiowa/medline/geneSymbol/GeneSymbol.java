@@ -56,7 +56,7 @@ public class GeneSymbol extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a GeneSymbol from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select symbol from medline12.gene_symbol where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select symbol from medline14.gene_symbol where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -84,7 +84,7 @@ public class GeneSymbol extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.gene_symbol set symbol = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline14.gene_symbol set symbol = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,symbol);
 				stmt.setInt(2,pmid);
 				stmt.setInt(3,seqnum);
@@ -110,7 +110,7 @@ public class GeneSymbol extends MEDLINETagLibTagSupport {
 
 			if (symbol == null)
 				symbol = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.gene_symbol(pmid,seqnum,symbol) values (?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.gene_symbol(pmid,seqnum,symbol) values (?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,symbol);

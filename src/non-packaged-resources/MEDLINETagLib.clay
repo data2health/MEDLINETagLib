@@ -3,7 +3,7 @@
 <database-model alias="" author="" begin-script="" end-script="" name="MEDLINETagLib" remarks="" sql-dialect-id="jp.azzurri.clay.dialect.Postgre_7_3_Dialect" uid="392d25:11f8bbc6e4b:-7f85" version="1.0">
 <database-model-description/>
 <schema-list>
-<schema alias="" name="medline12" remarks="" uid="392d25:11f8bbc6e4b:-7f82">
+<schema alias="" name="medline14" remarks="" uid="392d25:11f8bbc6e4b:-7f82">
 <schema-description/>
 <domain-list/>
 <table-list>
@@ -60,12 +60,6 @@
 </data-type>
 </column>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="copyright" remarks="" uid="bedf7:11f82875ee1:-7f86">
-<column-description/>
-<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
-<variant type-name-pattern="TEXT"/>
-</data-type>
-</column>
-<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="affiliation" remarks="" uid="bedf7:11f82875ee1:-7f85">
 <column-description/>
 <data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
 <variant type-name-pattern="TEXT"/>
@@ -205,7 +199,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_journal_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..1" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7f6c">
+<foreign-key alias="" name="FK_journal_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..1" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7f6c">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -251,7 +245,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_elocation_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7f8f">
+<foreign-key alias="" name="FK_elocation_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7f8f">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -263,7 +257,7 @@
 </table>
 <table alias="" name="author" remarks="" uid="bedf7:11f82875ee1:-7f84">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="142" y="341"/>
+<table-figure-bounds height="-1" width="-1" x="155" y="348"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="bedf7:11f82875ee1:-7f6e">
 <column-description/>
@@ -307,6 +301,12 @@
 <variant type-name-pattern="TEXT"/>
 </data-type>
 </column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="affiliation" remarks="" uid="bab25cc:145969f43e0:-7eb0">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
 </column-list>
 <primary-key alias="" name="PK_AUTHOR" remarks="" uid="bedf7:11f82875ee1:-7f83">
 <primary-key-description/>
@@ -315,7 +315,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_author_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7f6f">
+<foreign-key alias="" name="FK_author_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7f6f">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -355,7 +355,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_language_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7f41">
+<foreign-key alias="" name="FK_language_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7f41">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -395,7 +395,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_data_bank_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7f1c">
+<foreign-key alias="" name="FK_data_bank_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7f1c">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -442,7 +442,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_accession_1" on-delete="CASCADE" on-update="" referenced-key="PK_DATA_BANK" referenced-table="data_bank" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7ef7">
+<foreign-key alias="" name="FK_accession_1" on-delete="CASCADE" on-update="" referenced-key="PK_DATA_BANK" referenced-table="data_bank" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7ef7">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -501,7 +501,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_grant_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7ed9">
+<foreign-key alias="" name="FK_grant_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7ed9">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -559,7 +559,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_article_date_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7eb3">
+<foreign-key alias="" name="FK_article_date_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7eb3">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -605,7 +605,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_chemical_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7e89">
+<foreign-key alias="" name="FK_chemical_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7e89">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -645,7 +645,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_citation_subset_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7e59">
+<foreign-key alias="" name="FK_citation_subset_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7e59">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -703,7 +703,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_comment_on_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7e25">
+<foreign-key alias="" name="FK_comment_on_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="bedf7:11f82875ee1:-7e25">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -743,7 +743,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_gene_symbol_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7eeb">
+<foreign-key alias="" name="FK_gene_symbol_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7eeb">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -795,7 +795,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_mesh_heading_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7ecd">
+<foreign-key alias="" name="FK_mesh_heading_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7ecd">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -848,7 +848,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_mesh_qualifier_1" on-delete="CASCADE" on-update="" referenced-key="PK_MESH_HEADING" referenced-table="mesh_heading" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7ea3">
+<foreign-key alias="" name="FK_mesh_qualifier_1" on-delete="CASCADE" on-update="" referenced-key="PK_MESH_HEADING" referenced-table="mesh_heading" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7ea3">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -907,7 +907,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_personal_name_subject_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7e73">
+<foreign-key alias="" name="FK_personal_name_subject_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7e73">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -953,7 +953,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_other_id_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7e48">
+<foreign-key alias="" name="FK_other_id_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7e48">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -999,7 +999,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_other_abstract_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7e2b">
+<foreign-key alias="" name="FK_other_abstract_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7e2b">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1051,7 +1051,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_keyword_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7e0e">
+<foreign-key alias="" name="FK_keyword_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7e0e">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1091,7 +1091,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_spaceflight_mission_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7dee">
+<foreign-key alias="" name="FK_spaceflight_mission_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7dee">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1155,7 +1155,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_investigator_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7dbf">
+<foreign-key alias="" name="FK_investigator_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7dbf">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1201,7 +1201,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_general_note_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7d9d">
+<foreign-key alias="" name="FK_general_note_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7d9d">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1241,7 +1241,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_publication_type_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7d0b">
+<foreign-key alias="" name="FK_publication_type_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="392d25:11f8bbc6e4b:-7d0b">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1319,7 +1319,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_supplemental_mesh_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="579cec04:12cd120518d:-7f7b">
+<foreign-key alias="" name="FK_supplemental_mesh_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="579cec04:12cd120518d:-7f7b">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1372,7 +1372,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_name_id_1" on-delete="CASCADE" on-update="" referenced-key="PK_AUTHOR" referenced-table="author" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="579cec04:12cd120518d:-7f61">
+<foreign-key alias="" name="FK_name_id_1" on-delete="CASCADE" on-update="" referenced-key="PK_AUTHOR" referenced-table="author" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="579cec04:12cd120518d:-7f61">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1385,7 +1385,7 @@
 </table>
 <table alias="" name="abstr" remarks="" uid="579cec04:12cd120518d:-7f57">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="326" y="283"/>
+<table-figure-bounds height="-1" width="-1" x="288" y="274"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="579cec04:12cd120518d:-7f41">
 <column-description/>
@@ -1425,7 +1425,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_abstract_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="579cec04:12cd120518d:-7f42">
+<foreign-key alias="" name="FK_abstract_1" on-delete="CASCADE" on-update="" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="579cec04:12cd120518d:-7f42">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1484,7 +1484,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_other_abstract_text_1" on-delete="CASCADE" on-update="" referenced-key="PK_OTHER_ABSTRACT" referenced-table="other_abstract" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="2e7e34db:12d049796d6:-7f90">
+<foreign-key alias="" name="FK_other_abstract_text_1" on-delete="CASCADE" on-update="" referenced-key="PK_OTHER_ABSTRACT" referenced-table="other_abstract" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="2e7e34db:12d049796d6:-7f90">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1538,7 +1538,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_investigator_name_id_1" on-delete="" on-update="" referenced-key="PK_INVESTIGATOR" referenced-table="investigator" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="2e7e34db:12d049796d6:-7f6d">
+<foreign-key alias="" name="FK_investigator_name_id_1" on-delete="" on-update="" referenced-key="PK_INVESTIGATOR" referenced-table="investigator" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="2e7e34db:12d049796d6:-7f6d">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
@@ -1610,7 +1610,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_cluster_document_2" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline12" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="42c7c9aa:128cc32cf06:-7f98">
+<foreign-key alias="" name="FK_cluster_document_2" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline14" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="42c7c9aa:128cc32cf06:-7f98">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>

@@ -72,8 +72,8 @@ public class XpathLoader {
 		sessionReset(db_url, props);
 
         if (args[1].equals("-full")) {
-			for (int i = 984; i <= 1010; i++) {
-				String fileName = "/Users/eichmann/downloads/MEDLINE13/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline13n" + formatter.format(i) + ".xml.gz";
+			for (int i = 1; i <= 746; i++) {
+				String fileName = "/Volumes/ICTS/Corpora/MEDLINE14/ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/medline14n" + formatter.format(i) + ".xml.gz";
 				logger.trace("file: " + fileName);
 				XpathLoader theLoader = new XpathLoader(fileName);
 				
@@ -113,7 +113,7 @@ public class XpathLoader {
 		conn = DriverManager.getConnection(db_url, props);
 		conn.setAutoCommit(false);
 
-        PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline13,loki");
+        PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline14,loki");
         pathStmt.executeUpdate();
         pathStmt.close();
 
@@ -232,8 +232,6 @@ public class XpathLoader {
 		logger.trace("\tpagination: " + pagination);
 		String copyright = citationElement.selectSingleNode("Article/Abstract/CopyrightInformation") == null ? null : citationElement.selectSingleNode("Article/Abstract/CopyrightInformation").getText();
 		logger.trace("\tcopyright: " + copyright);
-		String affiliation = citationElement.selectSingleNode("Article/Affiliation") == null ? null : citationElement.selectSingleNode("Article/Affiliation").getText();
-		logger.trace("\taffiliation: " + affiliation);
 		String vernacularTitle = citationElement.selectSingleNode("Article/VernacularTitle") == null ? null : citationElement.selectSingleNode("Article/VernacularTitle").getText();
 		logger.trace("\tvernacularTitle: " + vernacularTitle);
 		String pubModel = ((Element)citationElement.selectSingleNode("Article")).attributeValue("PubModel");
@@ -255,7 +253,7 @@ public class XpathLoader {
 		}
 		cntStmt.close();
 
-		PreparedStatement citeStmt = conn.prepareStatement("insert into article values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		PreparedStatement citeStmt = conn.prepareStatement("insert into article values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         citeStmt.setInt(1, pmid);
         citeStmt.setDate(2, new java.sql.Date(dateCreated.getTimeInMillis()));
         if (dateCompleted == null )
@@ -277,15 +275,14 @@ public class XpathLoader {
             citeStmt.setInt(7,endPage);
         citeStmt.setString(8, pagination);
         citeStmt.setString(9, copyright);
-        citeStmt.setString(10, affiliation);
-        citeStmt.setString(11, vernacularTitle);
-        citeStmt.setString(12, country);
-        citeStmt.setString(13, medlineTA);
-        citeStmt.setString(14, nlmID);
-        citeStmt.setString(15, ISSNlinking);
-        citeStmt.setInt(16,numRefs);
-        citeStmt.setString(17, pubModel);
-        citeStmt.setString(18, status);
+        citeStmt.setString(10, vernacularTitle);
+        citeStmt.setString(11, country);
+        citeStmt.setString(12, medlineTA);
+        citeStmt.setString(13, nlmID);
+        citeStmt.setString(14, ISSNlinking);
+        citeStmt.setInt(15,numRefs);
+        citeStmt.setString(16, pubModel);
+        citeStmt.setString(17, status);
         citeStmt.executeUpdate();
         citeStmt.close();
 		
@@ -398,8 +395,10 @@ public class XpathLoader {
 			logger.trace("\t\tsuffix: " + suffix);
 			String collectiveName = authorNode.selectSingleNode("CollectiveName") == null ? null : authorNode.selectSingleNode("CollectiveName").getText();
 			logger.trace("\t\tcollectiveName: " + collectiveName);
+			String affiliation = authorNode.selectSingleNode("Affiliation") == null ? null : authorNode.selectSingleNode("Affiliation").getText();
+			logger.trace("\taffiliation: " + affiliation);
 
-            PreparedStatement stmt = conn.prepareStatement("insert into author values (?,?,?,?,?,?,?)");
+            PreparedStatement stmt = conn.prepareStatement("insert into author values (?,?,?,?,?,?,?,?)");
             stmt.setInt(1, pmid);
             stmt.setInt(2, seqnum);
             stmt.setString(3, lastName);
@@ -407,6 +406,7 @@ public class XpathLoader {
             stmt.setString(5, initials);
             stmt.setString(6, suffix);
             stmt.setString(7, collectiveName);
+            stmt.setString(8, affiliation);
             stmt.executeUpdate();
             stmt.close();
 
@@ -1040,7 +1040,7 @@ public class XpathLoader {
 			String country = grantNode.selectSingleNode("Country") == null ? null : grantNode.selectSingleNode("Country").getText();
 			logger.trace("\t\tcountry: " + country);
 
-            PreparedStatement stmt = conn.prepareStatement("insert into medline13.grant values (?,?,?,?,?,?)");
+            PreparedStatement stmt = conn.prepareStatement("insert into medline14.grant values (?,?,?,?,?,?)");
             stmt.setInt(1, pmid);
             stmt.setInt(2, seqnum);
             stmt.setString(3, grantID);

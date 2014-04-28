@@ -33,6 +33,7 @@ public class Author extends MEDLINETagLibTagSupport {
 	String initials = null;
 	String suffix = null;
 	String collectiveName = null;
+	String affiliation = null;
 
 	public int doStartTag() throws JspException {
 		currentInstance = this;
@@ -60,7 +61,7 @@ public class Author extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Author from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select last_name,fore_name,initials,suffix,collective_name from medline12.author where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select last_name,fore_name,initials,suffix,collective_name,affiliation from medline14.author where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -75,6 +76,8 @@ public class Author extends MEDLINETagLibTagSupport {
 						suffix = rs.getString(4);
 					if (collectiveName == null)
 						collectiveName = rs.getString(5);
+					if (affiliation == null)
+						affiliation = rs.getString(6);
 					found = true;
 				}
 				stmt.close();
@@ -96,14 +99,15 @@ public class Author extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline12.author set last_name = ?, fore_name = ?, initials = ?, suffix = ?, collective_name = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline14.author set last_name = ?, fore_name = ?, initials = ?, suffix = ?, collective_name = ?, affiliation = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,lastName);
 				stmt.setString(2,foreName);
 				stmt.setString(3,initials);
 				stmt.setString(4,suffix);
 				stmt.setString(5,collectiveName);
-				stmt.setInt(6,pmid);
-				stmt.setInt(7,seqnum);
+				stmt.setString(6,affiliation);
+				stmt.setInt(7,pmid);
+				stmt.setInt(8,seqnum);
 				stmt.executeUpdate();
 				stmt.close();
 			}
@@ -134,7 +138,9 @@ public class Author extends MEDLINETagLibTagSupport {
 				suffix = "";
 			if (collectiveName == null)
 				collectiveName = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline12.author(pmid,seqnum,last_name,fore_name,initials,suffix,collective_name) values (?,?,?,?,?,?,?)");
+			if (affiliation == null)
+				affiliation = "";
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.author(pmid,seqnum,last_name,fore_name,initials,suffix,collective_name,affiliation) values (?,?,?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,lastName);
@@ -142,6 +148,7 @@ public class Author extends MEDLINETagLibTagSupport {
 			stmt.setString(5,initials);
 			stmt.setString(6,suffix);
 			stmt.setString(7,collectiveName);
+			stmt.setString(8,affiliation);
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
@@ -256,6 +263,22 @@ public class Author extends MEDLINETagLibTagSupport {
 		return collectiveName;
 	}
 
+	public String getAffiliation () {
+		if (commitNeeded)
+			return "";
+		else
+			return affiliation;
+	}
+
+	public void setAffiliation (String affiliation) {
+		this.affiliation = affiliation;
+		commitNeeded = true;
+	}
+
+	public String getActualAffiliation () {
+		return affiliation;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -312,6 +335,14 @@ public class Author extends MEDLINETagLibTagSupport {
 		}
 	}
 
+	public static String affiliationValue() throws JspException {
+		try {
+			return currentInstance.getAffiliation();
+		} catch (Exception e) {
+			 throw new JspTagException("Error in tag function affiliationValue()");
+		}
+	}
+
 	private void clearServiceState () {
 		pmid = 0;
 		seqnum = 0;
@@ -320,6 +351,7 @@ public class Author extends MEDLINETagLibTagSupport {
 		initials = null;
 		suffix = null;
 		collectiveName = null;
+		affiliation = null;
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();

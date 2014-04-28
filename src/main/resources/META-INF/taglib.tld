@@ -296,18 +296,6 @@
 	</tag>
 
 	<tag>
-		<name>articleAffiliation</name>
-		<tag-class>edu.uiowa.medline.article.ArticleAffiliation</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>affiliation</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
 		<name>articleVernacularTitle</name>
 		<tag-class>edu.uiowa.medline.article.ArticleVernacularTitle</tag-class>
 		<body-content>empty</body-content>
@@ -860,6 +848,18 @@
 
 		<attribute>
 			<name>collectiveName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliation</name>
+		<tag-class>edu.uiowa.medline.author.AuthorAffiliation</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>affiliation</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -4299,6 +4299,270 @@
 	</tag>
 
 	<tag>
+		<name>foreachClusterAuthor</name>
+		<tag-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>cid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterAuthor</name>
+		<tag-class>edu.uiowa.medline.clusterAuthor.ClusterAuthor</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>cid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteClusterAuthor</name>
+		<tag-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>cid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterAuthorCid</name>
+		<tag-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorCid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>cid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterAuthorSeqnum</name>
+		<tag-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterAuthorLastName</name>
+		<tag-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorLastName</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>lastName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterAuthorForeName</name>
+		<tag-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorForeName</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>foreName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterAuthorOccurrences</name>
+		<tag-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorOccurrences</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>occurrences</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachClusterPattern</name>
+		<tag-class>edu.uiowa.medline.clusterPattern.ClusterPatternIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>cid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterPattern</name>
+		<tag-class>edu.uiowa.medline.clusterPattern.ClusterPattern</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>cid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteClusterPattern</name>
+		<tag-class>edu.uiowa.medline.clusterPattern.ClusterPatternDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>cid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterPatternCid</name>
+		<tag-class>edu.uiowa.medline.clusterPattern.ClusterPatternCid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>cid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterPatternSeqnum</name>
+		<tag-class>edu.uiowa.medline.clusterPattern.ClusterPatternSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterPatternLastName</name>
+		<tag-class>edu.uiowa.medline.clusterPattern.ClusterPatternLastName</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>lastName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterPatternForeName</name>
+		<tag-class>edu.uiowa.medline.clusterPattern.ClusterPatternForeName</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>foreName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>clusterPatternOccurrences</name>
+		<tag-class>edu.uiowa.medline.clusterPattern.ClusterPatternOccurrences</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>occurrences</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
 		<name>HTMLFormattedArticle</name>
 		<tag-class>edu.uiowa.medline.article.HTMLFormattedArticle</tag-class>
 		<body-content>JSP</body-content>
@@ -4690,12 +4954,6 @@
 	</function>
 
 	<function>
-		<name>articleAffiliationValue</name>
-		<function-class>edu.uiowa.medline.article.Article</function-class>
-		<function-signature>java.lang.String affiliationValue()</function-signature>
-	</function>
-
-	<function>
 		<name>articleVernacularTitleValue</name>
 		<function-class>edu.uiowa.medline.article.Article</function-class>
 		<function-signature>java.lang.String vernacularTitleValue()</function-signature>
@@ -4927,6 +5185,12 @@
 		<name>authorCollectiveNameValue</name>
 		<function-class>edu.uiowa.medline.author.Author</function-class>
 		<function-signature>java.lang.String collectiveNameValue()</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationValue</name>
+		<function-class>edu.uiowa.medline.author.Author</function-class>
+		<function-signature>java.lang.String affiliationValue()</function-signature>
 	</function>
 
 	<function>
@@ -6121,6 +6385,102 @@
 		<name>clusterDocumentPmidValue</name>
 		<function-class>edu.uiowa.medline.clusterDocument.ClusterDocument</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterAuthorExists</name>
+		<function-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorIterator</function-class>
+		<function-signature>java.lang.String clusterAuthorExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>clusterAuthorCountByDocumentCluster</name>
+		<function-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorIterator</function-class>
+		<function-signature>java.lang.String clusterAuthorCountByDocumentCluster(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>documentClusterHasClusterAuthor</name>
+		<function-class>edu.uiowa.medline.clusterAuthor.ClusterAuthorIterator</function-class>
+		<function-signature>java.lang.Boolean documentClusterHasClusterAuthor(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>clusterAuthorCidValue</name>
+		<function-class>edu.uiowa.medline.clusterAuthor.ClusterAuthor</function-class>
+		<function-signature>java.lang.Integer cidValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterAuthorSeqnumValue</name>
+		<function-class>edu.uiowa.medline.clusterAuthor.ClusterAuthor</function-class>
+		<function-signature>java.lang.Integer seqnumValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterAuthorLastNameValue</name>
+		<function-class>edu.uiowa.medline.clusterAuthor.ClusterAuthor</function-class>
+		<function-signature>java.lang.String lastNameValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterAuthorForeNameValue</name>
+		<function-class>edu.uiowa.medline.clusterAuthor.ClusterAuthor</function-class>
+		<function-signature>java.lang.String foreNameValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterAuthorOccurrencesValue</name>
+		<function-class>edu.uiowa.medline.clusterAuthor.ClusterAuthor</function-class>
+		<function-signature>java.lang.Integer occurrencesValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterPatternExists</name>
+		<function-class>edu.uiowa.medline.clusterPattern.ClusterPatternIterator</function-class>
+		<function-signature>java.lang.String clusterPatternExists(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>clusterPatternCountByDocumentCluster</name>
+		<function-class>edu.uiowa.medline.clusterPattern.ClusterPatternIterator</function-class>
+		<function-signature>java.lang.String clusterPatternCountByDocumentCluster(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>documentClusterHasClusterPattern</name>
+		<function-class>edu.uiowa.medline.clusterPattern.ClusterPatternIterator</function-class>
+		<function-signature>java.lang.Boolean documentClusterHasClusterPattern(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>clusterPatternCidValue</name>
+		<function-class>edu.uiowa.medline.clusterPattern.ClusterPattern</function-class>
+		<function-signature>java.lang.Integer cidValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterPatternSeqnumValue</name>
+		<function-class>edu.uiowa.medline.clusterPattern.ClusterPattern</function-class>
+		<function-signature>java.lang.Integer seqnumValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterPatternLastNameValue</name>
+		<function-class>edu.uiowa.medline.clusterPattern.ClusterPattern</function-class>
+		<function-signature>java.lang.String lastNameValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterPatternForeNameValue</name>
+		<function-class>edu.uiowa.medline.clusterPattern.ClusterPattern</function-class>
+		<function-signature>java.lang.String foreNameValue()</function-signature>
+	</function>
+
+	<function>
+		<name>clusterPatternOccurrencesValue</name>
+		<function-class>edu.uiowa.medline.clusterPattern.ClusterPattern</function-class>
+		<function-signature>java.lang.Integer occurrencesValue()</function-signature>
 	</function>
 
 	<function>

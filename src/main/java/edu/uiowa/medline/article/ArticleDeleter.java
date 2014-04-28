@@ -26,7 +26,6 @@ public class ArticleDeleter extends MEDLINETagLibBodyTagSupport {
     int endPage = 0;
     String medlinePgn = null;
     String copyright = null;
-    String affiliation = null;
     String vernacularTitle = null;
     String country = null;
     String ta = null;
@@ -51,7 +50,7 @@ public class ArticleDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline12.article where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline14.article where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? "));
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);
             stat.execute();

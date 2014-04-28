@@ -45,7 +45,7 @@ public class AccessionDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline12.accession where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline14.accession where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? ")
                                                         + (seqnum == 0 ? "" : " and seqnum = ? ")
                                                         + (accnum == 0 ? "" : " and accnum = ? "));
