@@ -73,7 +73,7 @@ public class XpathLoader {
 
         if (args[1].equals("-full")) {
 			for (int i = 1; i <= 746; i++) {
-				String fileName = "/Volumes/ICTS/Corpora/MEDLINE14/ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/medline14n" + formatter.format(i) + ".xml.gz";
+				String fileName = "/Volumes/RAID1/MEDLINE14/ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/medline14n" + formatter.format(i) + ".xml.gz";
 				logger.trace("file: " + fileName);
 				XpathLoader theLoader = new XpathLoader(fileName);
 				
@@ -82,8 +82,8 @@ public class XpathLoader {
 				}
 			}
 		} else if (args[1].equals("-update")) {
-			for (int i = 685; i <= 754; i++) {
-				String fileName = "/Volumes/ICTS/Corpora/MEDLINE12/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline12n" + formatter.format(i) + ".xml.gz";
+			for (int i = 747; i <= 889; i++) {
+				String fileName = "/Volumes/ICTS/Corpora/MEDLINE14/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline14n" + formatter.format(i) + ".xml.gz";
 				logger.trace("file: " + fileName);
 				XpathLoader theLoader = new XpathLoader(fileName);
 				
