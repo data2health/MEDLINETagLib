@@ -9,6 +9,8 @@
 src/main/java/META-INF/MANIFEST.MF -text
 src/main/java/edu/uiowa/medline/CitationDump.java -text
 src/main/java/edu/uiowa/medline/DBTest.java svneol=native#text/x-java-source
+src/main/java/edu/uiowa/medline/DocumentQueue.java -text
+src/main/java/edu/uiowa/medline/DocumentRequest.java -text
 src/main/java/edu/uiowa/medline/Loader.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/MEDLINETagLibBodyTagSupport.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/MEDLINETagLibTagSupport.java svneol=native#text/x-java-source
@@ -16,6 +18,7 @@ src/main/java/edu/uiowa/medline/PropertyLoader.java svneol=native#text/x-java-so
 src/main/java/edu/uiowa/medline/Publisher.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/Sequence.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/XpathLoader.java svneol=native#text/x-java-source
+src/main/java/edu/uiowa/medline/XpathThread.java -text
 src/main/java/edu/uiowa/medline/abstr/Abstr.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/abstr/AbstrAbstractText.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/abstr/AbstrCategory.java svneol=native#text/x-java-source
