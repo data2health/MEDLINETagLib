@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.uiowa.icts.taglib</groupId>
   <artifactId>MEDLINETagLib</artifactId>
-  <version>0.0.2a-SNAPSHOT</version>
+  <version>0.0.8-SNAPSHOT</version>
   <name>MEDLINETagLib</name>
   
   <description>Medline11 Schema Support</description>

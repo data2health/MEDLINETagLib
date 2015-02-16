@@ -30,7 +30,7 @@ public class AuthorCountPatternIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorCountIterator theIterator = new AuthorCountIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.author_count"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.author_count"
 						);
 
 			ResultSet crs = stat.executeQuery();
@@ -52,7 +52,7 @@ public class AuthorCountPatternIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorCountIterator theIterator = new AuthorCountIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline12.author_count where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.author_count where 1=1"
 						+ " and last_name = ?"
 						+ " and fore_name = ?"
 						);
@@ -81,7 +81,7 @@ public class AuthorCountPatternIterator extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT last_name, fore_name from medline12.author_count where last_name = ? and fore_name ~ ?"
+            stat = getConnection().prepareStatement("SELECT last_name, fore_name from medline14.author_count where last_name = ? and fore_name ~ ?"
                                                         + " order by " + generateSortCriteria());
             stat.setString(1, lastName.substring(0, 1).toUpperCase() + lastName.substring(1));
             stat.setString(2, "^" + foreName.substring(0, 1).toUpperCase() + foreName.substring(1));
