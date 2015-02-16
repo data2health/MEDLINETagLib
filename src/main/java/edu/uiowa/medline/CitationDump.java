@@ -49,7 +49,7 @@ public class CitationDump extends DefaultHandler {
 	}
 	
 	static void emit(int pmid) throws Exception {
-		PreparedStatement artStmt = medConn.prepareStatement("select title,medline_pgn from medline12.article where pmid=?");
+		PreparedStatement artStmt = medConn.prepareStatement("select title,medline_pgn from medline14.article where pmid=?");
 		artStmt.setInt(1, pmid);
 		ResultSet ars = artStmt.executeQuery();
 		while (ars.next()) {
@@ -60,7 +60,7 @@ public class CitationDump extends DefaultHandler {
 		}
 		artStmt.close();
 		
-		PreparedStatement jourStmt = medConn.prepareStatement("select iso_abbreviation,volume,issue,pub_year,medline_date from medline12.journal where pmid=?");
+		PreparedStatement jourStmt = medConn.prepareStatement("select iso_abbreviation,volume,issue,pub_year,medline_date from medline14.journal where pmid=?");
 		jourStmt.setInt(1, pmid);
 		ResultSet jrs = jourStmt.executeQuery();
 		while (jrs.next()) {
@@ -79,7 +79,7 @@ public class CitationDump extends DefaultHandler {
 		}
 		jourStmt.close();
 
-		PreparedStatement authStmt = medConn.prepareStatement("select last_name,fore_name,initials,suffix,collective_name from medline12.author where pmid=? order by seqnum");
+		PreparedStatement authStmt = medConn.prepareStatement("select last_name,fore_name,initials,suffix,collective_name from medline14.author where pmid=? order by seqnum");
 		authStmt.setInt(1, pmid);
 		ResultSet aurs = authStmt.executeQuery();
 		while (aurs.next()) {
