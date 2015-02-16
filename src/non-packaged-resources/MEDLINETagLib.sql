@@ -336,7 +336,7 @@ CREATE TABLE medline15.investigator_affiliation (
      , identifier TEXT
      , PRIMARY KEY (pmid, seqnum, anum)
      , CONSTRAINT FK_investigator_affiliation_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline15.investigator (pmid, seqnum)
+                  REFERENCES medline15.investigator (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE medline_clustering.cluster_document (

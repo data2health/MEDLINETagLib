@@ -173,6 +173,7 @@ public class XpathLoader {
 	Document document = reader.read(in);
 	Element root = document.getRootElement();
 	logger.trace("document root: " + root.getName());
+	in.close();
 	
 	return root;
     }

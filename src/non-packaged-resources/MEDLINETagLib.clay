@@ -1688,7 +1688,7 @@
 </primary-key>
 <unique-key-list/>
 <foreign-key-list>
-<foreign-key alias="" name="FK_investigator_affiliation_1" on-delete="" on-update="" referenced-key="PK_INVESTIGATOR" referenced-table="investigator" referenced-table-schema="medline15" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="13909b84:14b85b67ac3:-7f3e">
+<foreign-key alias="" name="FK_investigator_affiliation_1" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_INVESTIGATOR" referenced-table="investigator" referenced-table-schema="medline15" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="13909b84:14b85b67ac3:-7f3e">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>
