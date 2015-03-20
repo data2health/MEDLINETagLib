@@ -1,6 +1,7 @@
 * text=auto !eol
 /.classpath -text
 /.project -text
+.settings/org.eclipse.core.resources.prefs -text
 .settings/org.eclipse.jdt.core.prefs -text
 .settings/org.eclipse.m2e.core.prefs -text
 .settings/org.eclipse.wst.common.component -text
@@ -305,6 +306,9 @@ src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshName.java svneo
 src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshPmid.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshSeqnum.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshType.java svneol=native#text/x-java-source
+src/main/java/edu/uiowa/medline/util/Address.java -text
+src/main/java/edu/uiowa/medline/util/AddressComponent.java -text
+src/main/java/edu/uiowa/medline/util/AddressTokenizer.java -text
 src/main/java/edu/uiowa/medline/util/ClusterByGrant.java -text
 src/main/java/edu/uiowa/medline/util/ClusterMEDLINE.java -text
 src/main/java/edu/uiowa/medline/util/ClusterMEDLINEhub.java -text
