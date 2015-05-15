@@ -31,6 +31,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 	int qnum = 0;
 	String qualifierName = null;
 	boolean major = false;
+	String ID = null;
 
 	public int doStartTag() throws JspException {
 		currentInstance = this;
@@ -60,7 +61,7 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or qnum was provided as an attribute - we need to load a MeshQualifier from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select qualifier_name,major from medline14.mesh_qualifier where pmid = ? and seqnum = ? and qnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select qualifier_name,major,id from medline15.mesh_qualifier where pmid = ? and seqnum = ? and qnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				stmt.setInt(3,qnum);
@@ -70,6 +71,8 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 						qualifierName = rs.getString(1);
 					if (major == false)
 						major = rs.getBoolean(2);
+					if (ID == null)
+						ID = rs.getString(3);
 					found = true;
 				}
 				stmt.close();
@@ -91,12 +94,13 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline14.mesh_qualifier set qualifier_name = ?, major = ? where pmid = ? and seqnum = ? and qnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline15.mesh_qualifier set qualifier_name = ?, major = ?, id = ? where pmid = ? and seqnum = ? and qnum = ?");
 				stmt.setString(1,qualifierName);
 				stmt.setBoolean(2,major);
-				stmt.setInt(3,pmid);
-				stmt.setInt(4,seqnum);
-				stmt.setInt(5,qnum);
+				stmt.setString(3,ID);
+				stmt.setInt(4,pmid);
+				stmt.setInt(5,seqnum);
+				stmt.setInt(6,qnum);
 				stmt.executeUpdate();
 				stmt.close();
 			}
@@ -119,12 +123,15 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 
 			if (qualifierName == null)
 				qualifierName = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.mesh_qualifier(pmid,seqnum,qnum,qualifier_name,major) values (?,?,?,?,?)");
+			if (ID == null)
+				ID = "";
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.mesh_qualifier(pmid,seqnum,qnum,qualifier_name,major,id) values (?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setInt(3,qnum);
 			stmt.setString(4,qualifierName);
 			stmt.setBoolean(5,major);
+			stmt.setString(6,ID);
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
@@ -200,6 +207,22 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		return major;
 	}
 
+	public String getID () {
+		if (commitNeeded)
+			return "";
+		else
+			return ID;
+	}
+
+	public void setID (String ID) {
+		this.ID = ID;
+		commitNeeded = true;
+	}
+
+	public String getActualID () {
+		return ID;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -240,12 +263,21 @@ public class MeshQualifier extends MEDLINETagLibTagSupport {
 		}
 	}
 
+	public static String IDValue() throws JspException {
+		try {
+			return currentInstance.getID();
+		} catch (Exception e) {
+			 throw new JspTagException("Error in tag function IDValue()");
+		}
+	}
+
 	private void clearServiceState () {
 		pmid = 0;
 		seqnum = 0;
 		qnum = 0;
 		qualifierName = null;
 		major = false;
+		ID = null;
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();

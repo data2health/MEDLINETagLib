@@ -21,6 +21,7 @@ public class ChemicalIterator extends MEDLINETagLibBodyTagSupport {
     int seqnum = 0;
     String registryNumber = null;
     String substanceName = null;
+    String ID = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
 	private static final Log log = LogFactory.getLog(ChemicalIterator.class);
@@ -37,7 +38,7 @@ public class ChemicalIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		ChemicalIterator theIterator = new ChemicalIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.chemical where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.chemical where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -65,7 +66,7 @@ public class ChemicalIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		ChemicalIterator theIterator = new ChemicalIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.chemical where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.chemical where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -115,7 +116,7 @@ public class ChemicalIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.chemical.pmid, medline14.chemical.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline15.chemical.pmid, medline15.chemical.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -139,7 +140,7 @@ public class ChemicalIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline14.chemical");
+       StringBuffer theBuffer = new StringBuffer("medline15.chemical");
       return theBuffer.toString();
     }
 

@@ -38,7 +38,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AbstrIterator theIterator = new AbstrIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.abstr where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.abstr where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -66,7 +66,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AbstrIterator theIterator = new AbstrIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.abstr where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.abstr where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -116,7 +116,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.abstr.pmid, medline14.abstr.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline15.abstr.pmid, medline15.abstr.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -140,7 +140,7 @@ public class AbstrIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline14.abstr");
+       StringBuffer theBuffer = new StringBuffer("medline15.abstr");
       return theBuffer.toString();
     }
 

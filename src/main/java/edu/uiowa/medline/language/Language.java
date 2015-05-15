@@ -56,7 +56,7 @@ public class Language extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Language from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select language from medline14.language where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select language from medline15.language where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -84,7 +84,7 @@ public class Language extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline14.language set language = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline15.language set language = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,language);
 				stmt.setInt(2,pmid);
 				stmt.setInt(3,seqnum);
@@ -110,7 +110,7 @@ public class Language extends MEDLINETagLibTagSupport {
 
 			if (language == null)
 				language = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.language(pmid,seqnum,language) values (?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.language(pmid,seqnum,language) values (?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,language);

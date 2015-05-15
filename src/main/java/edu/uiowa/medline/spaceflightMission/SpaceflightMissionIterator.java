@@ -36,7 +36,7 @@ public class SpaceflightMissionIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		SpaceflightMissionIterator theIterator = new SpaceflightMissionIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.spaceflight_mission where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.spaceflight_mission where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -64,7 +64,7 @@ public class SpaceflightMissionIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		SpaceflightMissionIterator theIterator = new SpaceflightMissionIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.spaceflight_mission where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.spaceflight_mission where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -114,7 +114,7 @@ public class SpaceflightMissionIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.spaceflight_mission.pmid, medline14.spaceflight_mission.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline15.spaceflight_mission.pmid, medline15.spaceflight_mission.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -138,7 +138,7 @@ public class SpaceflightMissionIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline14.spaceflight_mission");
+       StringBuffer theBuffer = new StringBuffer("medline15.spaceflight_mission");
       return theBuffer.toString();
     }
 

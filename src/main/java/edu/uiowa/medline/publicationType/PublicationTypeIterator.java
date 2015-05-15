@@ -20,6 +20,7 @@ public class PublicationTypeIterator extends MEDLINETagLibBodyTagSupport {
     int pmid = 0;
     int seqnum = 0;
     String label = null;
+    String ID = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
 	private static final Log log = LogFactory.getLog(PublicationTypeIterator.class);
@@ -36,7 +37,7 @@ public class PublicationTypeIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		PublicationTypeIterator theIterator = new PublicationTypeIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.publication_type where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.publication_type where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -64,7 +65,7 @@ public class PublicationTypeIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		PublicationTypeIterator theIterator = new PublicationTypeIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.publication_type where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.publication_type where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -114,7 +115,7 @@ public class PublicationTypeIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.publication_type.pmid, medline14.publication_type.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline15.publication_type.pmid, medline15.publication_type.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -138,7 +139,7 @@ public class PublicationTypeIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline14.publication_type");
+       StringBuffer theBuffer = new StringBuffer("medline15.publication_type");
       return theBuffer.toString();
     }
 

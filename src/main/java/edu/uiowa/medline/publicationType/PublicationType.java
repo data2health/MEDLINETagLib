@@ -29,6 +29,7 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 	int pmid = 0;
 	int seqnum = 0;
 	String label = null;
+	String ID = null;
 
 	public int doStartTag() throws JspException {
 		currentInstance = this;
@@ -56,13 +57,15 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a PublicationType from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select label from medline14.publication_type where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select label,id from medline15.publication_type where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
 					if (label == null)
 						label = rs.getString(1);
+					if (ID == null)
+						ID = rs.getString(2);
 					found = true;
 				}
 				stmt.close();
@@ -84,10 +87,11 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline14.publication_type set label = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline15.publication_type set label = ?, id = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,label);
-				stmt.setInt(2,pmid);
-				stmt.setInt(3,seqnum);
+				stmt.setString(2,ID);
+				stmt.setInt(3,pmid);
+				stmt.setInt(4,seqnum);
 				stmt.executeUpdate();
 				stmt.close();
 			}
@@ -110,10 +114,13 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 
 			if (label == null)
 				label = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.publication_type(pmid,seqnum,label) values (?,?,?)");
+			if (ID == null)
+				ID = "";
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.publication_type(pmid,seqnum,label,id) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,label);
+			stmt.setString(4,ID);
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
@@ -164,6 +171,22 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 		return label;
 	}
 
+	public String getID () {
+		if (commitNeeded)
+			return "";
+		else
+			return ID;
+	}
+
+	public void setID (String ID) {
+		this.ID = ID;
+		commitNeeded = true;
+	}
+
+	public String getActualID () {
+		return ID;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -188,10 +211,19 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 		}
 	}
 
+	public static String IDValue() throws JspException {
+		try {
+			return currentInstance.getID();
+		} catch (Exception e) {
+			 throw new JspTagException("Error in tag function IDValue()");
+		}
+	}
+
 	private void clearServiceState () {
 		pmid = 0;
 		seqnum = 0;
 		label = null;
+		ID = null;
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();

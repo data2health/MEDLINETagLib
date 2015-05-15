@@ -21,6 +21,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
     int seqnum = 0;
     String name = null;
     String type = null;
+    String ID = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
 	private static final Log log = LogFactory.getLog(SupplementalMeshIterator.class);
@@ -37,7 +38,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		SupplementalMeshIterator theIterator = new SupplementalMeshIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.supplemental_mesh where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.supplemental_mesh where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -65,7 +66,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		SupplementalMeshIterator theIterator = new SupplementalMeshIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.supplemental_mesh where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.supplemental_mesh where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -115,7 +116,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.supplemental_mesh.pmid, medline14.supplemental_mesh.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline15.supplemental_mesh.pmid, medline15.supplemental_mesh.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -139,7 +140,7 @@ public class SupplementalMeshIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline14.supplemental_mesh");
+       StringBuffer theBuffer = new StringBuffer("medline15.supplemental_mesh");
       return theBuffer.toString();
     }
 

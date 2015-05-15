@@ -30,6 +30,7 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 	int seqnum = 0;
 	String name = null;
 	String type = null;
+	String ID = null;
 
 	public int doStartTag() throws JspException {
 		currentInstance = this;
@@ -57,7 +58,7 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a SupplementalMesh from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select name,type from medline14.supplemental_mesh where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select name,type,id from medline15.supplemental_mesh where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -66,6 +67,8 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 						name = rs.getString(1);
 					if (type == null)
 						type = rs.getString(2);
+					if (ID == null)
+						ID = rs.getString(3);
 					found = true;
 				}
 				stmt.close();
@@ -87,11 +90,12 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline14.supplemental_mesh set name = ?, type = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline15.supplemental_mesh set name = ?, type = ?, id = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,name);
 				stmt.setString(2,type);
-				stmt.setInt(3,pmid);
-				stmt.setInt(4,seqnum);
+				stmt.setString(3,ID);
+				stmt.setInt(4,pmid);
+				stmt.setInt(5,seqnum);
 				stmt.executeUpdate();
 				stmt.close();
 			}
@@ -116,11 +120,14 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 				name = "";
 			if (type == null)
 				type = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.supplemental_mesh(pmid,seqnum,name,type) values (?,?,?,?)");
+			if (ID == null)
+				ID = "";
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.supplemental_mesh(pmid,seqnum,name,type,id) values (?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,name);
 			stmt.setString(4,type);
+			stmt.setString(5,ID);
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
@@ -187,6 +194,22 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 		return type;
 	}
 
+	public String getID () {
+		if (commitNeeded)
+			return "";
+		else
+			return ID;
+	}
+
+	public void setID (String ID) {
+		this.ID = ID;
+		commitNeeded = true;
+	}
+
+	public String getActualID () {
+		return ID;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -219,11 +242,20 @@ public class SupplementalMesh extends MEDLINETagLibTagSupport {
 		}
 	}
 
+	public static String IDValue() throws JspException {
+		try {
+			return currentInstance.getID();
+		} catch (Exception e) {
+			 throw new JspTagException("Error in tag function IDValue()");
+		}
+	}
+
 	private void clearServiceState () {
 		pmid = 0;
 		seqnum = 0;
 		name = null;
 		type = null;
+		ID = null;
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();

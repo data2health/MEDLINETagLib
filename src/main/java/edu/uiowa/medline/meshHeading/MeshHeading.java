@@ -31,6 +31,7 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 	String descriptorName = null;
 	boolean major = false;
 	String type = null;
+	String ID = null;
 
 	public int doStartTag() throws JspException {
 		currentInstance = this;
@@ -58,7 +59,7 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a MeshHeading from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select descriptor_name,major,type from medline14.mesh_heading where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select descriptor_name,major,type,id from medline15.mesh_heading where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -69,6 +70,8 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 						major = rs.getBoolean(2);
 					if (type == null)
 						type = rs.getString(3);
+					if (ID == null)
+						ID = rs.getString(4);
 					found = true;
 				}
 				stmt.close();
@@ -90,12 +93,13 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline14.mesh_heading set descriptor_name = ?, major = ?, type = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline15.mesh_heading set descriptor_name = ?, major = ?, type = ?, id = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,descriptorName);
 				stmt.setBoolean(2,major);
 				stmt.setString(3,type);
-				stmt.setInt(4,pmid);
-				stmt.setInt(5,seqnum);
+				stmt.setString(4,ID);
+				stmt.setInt(5,pmid);
+				stmt.setInt(6,seqnum);
 				stmt.executeUpdate();
 				stmt.close();
 			}
@@ -120,12 +124,15 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 				descriptorName = "";
 			if (type == null)
 				type = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.mesh_heading(pmid,seqnum,descriptor_name,major,type) values (?,?,?,?,?)");
+			if (ID == null)
+				ID = "";
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.mesh_heading(pmid,seqnum,descriptor_name,major,type,id) values (?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,descriptorName);
 			stmt.setBoolean(4,major);
 			stmt.setString(5,type);
+			stmt.setString(6,ID);
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
@@ -205,6 +212,22 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 		return type;
 	}
 
+	public String getID () {
+		if (commitNeeded)
+			return "";
+		else
+			return ID;
+	}
+
+	public void setID (String ID) {
+		this.ID = ID;
+		commitNeeded = true;
+	}
+
+	public String getActualID () {
+		return ID;
+	}
+
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -245,12 +268,21 @@ public class MeshHeading extends MEDLINETagLibTagSupport {
 		}
 	}
 
+	public static String IDValue() throws JspException {
+		try {
+			return currentInstance.getID();
+		} catch (Exception e) {
+			 throw new JspTagException("Error in tag function IDValue()");
+		}
+	}
+
 	private void clearServiceState () {
 		pmid = 0;
 		seqnum = 0;
 		descriptorName = null;
 		major = false;
 		type = null;
+		ID = null;
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();

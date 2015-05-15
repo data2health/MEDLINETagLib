@@ -21,6 +21,7 @@ public class ChemicalDeleter extends MEDLINETagLibBodyTagSupport {
     int seqnum = 0;
     String registryNumber = null;
     String substanceName = null;
+    String ID = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
 	private static final Log log = LogFactory.getLog(ChemicalDeleter.class);
@@ -44,7 +45,7 @@ public class ChemicalDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline14.chemical where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline15.chemical where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? ")
                                                         + (seqnum == 0 ? "" : " and seqnum = ? "));
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);

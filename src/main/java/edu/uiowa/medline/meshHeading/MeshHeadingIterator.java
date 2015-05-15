@@ -22,6 +22,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
     String descriptorName = null;
     boolean major = false;
     String type = null;
+    String ID = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
 	private static final Log log = LogFactory.getLog(MeshHeadingIterator.class);
@@ -38,7 +39,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		MeshHeadingIterator theIterator = new MeshHeadingIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.mesh_heading where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.mesh_heading where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -66,7 +67,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		MeshHeadingIterator theIterator = new MeshHeadingIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.mesh_heading where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.mesh_heading where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -116,7 +117,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.mesh_heading.pmid, medline14.mesh_heading.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline15.mesh_heading.pmid, medline15.mesh_heading.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -140,7 +141,7 @@ public class MeshHeadingIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline14.mesh_heading");
+       StringBuffer theBuffer = new StringBuffer("medline15.mesh_heading");
       return theBuffer.toString();
     }
 

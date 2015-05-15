@@ -61,7 +61,7 @@ public class Author extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Author from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select last_name,fore_name,initials,suffix,collective_name,affiliation from medline14.author where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select last_name,fore_name,initials,suffix,collective_name,affiliation from medline15.author where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -99,7 +99,7 @@ public class Author extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline14.author set last_name = ?, fore_name = ?, initials = ?, suffix = ?, collective_name = ?, affiliation = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline15.author set last_name = ?, fore_name = ?, initials = ?, suffix = ?, collective_name = ?, affiliation = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,lastName);
 				stmt.setString(2,foreName);
 				stmt.setString(3,initials);
@@ -140,7 +140,7 @@ public class Author extends MEDLINETagLibTagSupport {
 				collectiveName = "";
 			if (affiliation == null)
 				affiliation = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline14.author(pmid,seqnum,last_name,fore_name,initials,suffix,collective_name,affiliation) values (?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.author(pmid,seqnum,last_name,fore_name,initials,suffix,collective_name,affiliation) values (?,?,?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,lastName);

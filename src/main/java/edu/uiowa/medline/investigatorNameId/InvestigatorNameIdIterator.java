@@ -38,7 +38,7 @@ public class InvestigatorNameIdIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		InvestigatorNameIdIterator theIterator = new InvestigatorNameIdIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.investigator_name_id where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.investigator_name_id where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -68,7 +68,7 @@ public class InvestigatorNameIdIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		InvestigatorNameIdIterator theIterator = new InvestigatorNameIdIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.investigator_name_id where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.investigator_name_id where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						+ " and nnum = ?"
@@ -123,7 +123,7 @@ public class InvestigatorNameIdIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.investigator_name_id.pmid, medline14.investigator_name_id.seqnum, medline14.investigator_name_id.nnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline15.investigator_name_id.pmid, medline15.investigator_name_id.seqnum, medline15.investigator_name_id.nnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
@@ -150,7 +150,7 @@ public class InvestigatorNameIdIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline14.investigator_name_id");
+       StringBuffer theBuffer = new StringBuffer("medline15.investigator_name_id");
       return theBuffer.toString();
     }
 

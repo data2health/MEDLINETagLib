@@ -46,7 +46,7 @@ public class NameIdDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline14.name_id where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline15.name_id where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? ")
                                                         + (seqnum == 0 ? "" : " and seqnum = ? ")
                                                         + (nnum == 0 ? "" : " and nnum = ? "));

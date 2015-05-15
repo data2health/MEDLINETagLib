@@ -22,6 +22,7 @@ public class MeshQualifierDeleter extends MEDLINETagLibBodyTagSupport {
     int qnum = 0;
     String qualifierName = null;
     boolean major = false;
+    String ID = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
 	private static final Log log = LogFactory.getLog(MeshQualifierDeleter.class);
@@ -46,7 +47,7 @@ public class MeshQualifierDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline14.mesh_qualifier where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline15.mesh_qualifier where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? ")
                                                         + (seqnum == 0 ? "" : " and seqnum = ? ")
                                                         + (qnum == 0 ? "" : " and qnum = ? "));

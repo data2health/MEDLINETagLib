@@ -39,7 +39,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		PersonalNameSubjectIterator theIterator = new PersonalNameSubjectIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.personal_name_subject where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.personal_name_subject where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -67,7 +67,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		PersonalNameSubjectIterator theIterator = new PersonalNameSubjectIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.personal_name_subject where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.personal_name_subject where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -117,7 +117,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.personal_name_subject.pmid, medline14.personal_name_subject.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline15.personal_name_subject.pmid, medline15.personal_name_subject.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -141,7 +141,7 @@ public class PersonalNameSubjectIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline14.personal_name_subject");
+       StringBuffer theBuffer = new StringBuffer("medline15.personal_name_subject");
       return theBuffer.toString();
     }
 
