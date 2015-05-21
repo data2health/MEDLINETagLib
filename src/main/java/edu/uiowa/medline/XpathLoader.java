@@ -127,7 +127,7 @@ public class XpathLoader {
 	    while ((current = IODesc.readLine()) != null) {
 		XpathLoader theLoader = new XpathLoader(current.trim());
 	    }
-	    materializeAuthorView();
+//	    materializeAuthorView();
 	} else if (args[1].equals("-materialize")) {
 	    materializeAuthorView();
 	} else {
