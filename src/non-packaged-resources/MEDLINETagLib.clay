@@ -1699,6 +1699,31 @@
 </foreign-key-list>
 <index-list/>
 </table>
+<table alias="" name="last_name_count" remarks="" uid="795a22ba:150b5274e52:-7fdd">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="-16" y="463"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="last_name" remarks="" uid="795a22ba:150b5274e52:-7fd9">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="count" remarks="" uid="795a22ba:150b5274e52:-7fd8">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT">
+<variant type-name-pattern="INT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_LAST_NAME_COUNT" remarks="" uid="795a22ba:150b5274e52:-7fdc">
+<primary-key-description/>
+<primary-key-column name="last_name"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list/>
+<index-list/>
+</table>
 </table-list>
 </schema>
 <schema alias="" name="medline_clustering" remarks="" uid="42c7c9aa:128cc32cf06:-7fbf">
