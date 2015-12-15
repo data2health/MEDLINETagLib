@@ -4484,6 +4484,84 @@
 	</tag>
 
 	<tag>
+		<name>foreachLastNameCount</name>
+		<tag-class>edu.uiowa.medline.lastNameCount.LastNameCountIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>lastName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>lastNameCount</name>
+		<tag-class>edu.uiowa.medline.lastNameCount.LastNameCount</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>lastName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteLastNameCount</name>
+		<tag-class>edu.uiowa.medline.lastNameCount.LastNameCountDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>lastName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>lastNameCountLastName</name>
+		<tag-class>edu.uiowa.medline.lastNameCount.LastNameCountLastName</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>lastName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>lastNameCountCount</name>
+		<tag-class>edu.uiowa.medline.lastNameCount.LastNameCountCount</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>count</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
 		<name>foreachDocumentCluster</name>
 		<tag-class>edu.uiowa.medline.documentCluster.DocumentClusterIterator</tag-class>
 		<body-content>JSP</body-content>
@@ -6829,6 +6907,30 @@
 		<name>investigatorAffiliationIdentifierValue</name>
 		<function-class>edu.uiowa.medline.investigatorAffiliation.InvestigatorAffiliation</function-class>
 		<function-signature>java.lang.String identifierValue()</function-signature>
+	</function>
+
+	<function>
+		<name>lastNameCountCount</name>
+		<function-class>edu.uiowa.medline.lastNameCount.LastNameCountIterator</function-class>
+		<function-signature>java.lang.String lastNameCountCount()</function-signature>
+	</function>
+
+	<function>
+		<name>lastNameCountExists</name>
+		<function-class>edu.uiowa.medline.lastNameCount.LastNameCountIterator</function-class>
+		<function-signature>java.lang.String lastNameCountExists(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>lastNameCountLastNameValue</name>
+		<function-class>edu.uiowa.medline.lastNameCount.LastNameCount</function-class>
+		<function-signature>java.lang.String lastNameValue()</function-signature>
+	</function>
+
+	<function>
+		<name>lastNameCountCountValue</name>
+		<function-class>edu.uiowa.medline.lastNameCount.LastNameCount</function-class>
+		<function-signature>java.lang.Integer countValue()</function-signature>
 	</function>
 
 	<function>

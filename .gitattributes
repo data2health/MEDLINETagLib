@@ -250,6 +250,11 @@ src/main/java/edu/uiowa/medline/language/LanguageIterator.java svneol=native#tex
 src/main/java/edu/uiowa/medline/language/LanguageLanguage.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/language/LanguagePmid.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/language/LanguageSeqnum.java svneol=native#text/x-java-source
+src/main/java/edu/uiowa/medline/lastNameCount/LastNameCount.java -text
+src/main/java/edu/uiowa/medline/lastNameCount/LastNameCountCount.java -text
+src/main/java/edu/uiowa/medline/lastNameCount/LastNameCountDeleter.java -text
+src/main/java/edu/uiowa/medline/lastNameCount/LastNameCountIterator.java -text
+src/main/java/edu/uiowa/medline/lastNameCount/LastNameCountLastName.java -text
 src/main/java/edu/uiowa/medline/meshHeading/MeshHeading.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/meshHeading/MeshHeadingDeleter.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/meshHeading/MeshHeadingDescriptorName.java svneol=native#text/x-java-source
