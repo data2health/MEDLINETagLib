@@ -57,10 +57,10 @@ public class XpathLoader {
 	String use_ssl = prop_file.getProperty("db.use.ssl", "false");
 	logger.debug("Database SSL: " + use_ssl);
 
-	String databaseHost = prop_file.getProperty("db.host", "localhost");
+	String databaseHost = prop_file.getProperty("db.host", "neuromancer.icts.uiowa.edu");
 	logger.debug("Database Host: " + databaseHost);
 
-	String databaseName = prop_file.getProperty("db.name", "loki");
+	String databaseName = prop_file.getProperty("db.name", "bioinformatics");
 	logger.debug("Database Name: " + databaseName);
 
 	String db_url = prop_file.getProperty("db.url", "jdbc:postgresql://" + databaseHost + "/" + databaseName);
@@ -78,48 +78,49 @@ public class XpathLoader {
 	sessionReset(db_url, props);
 
 	if (args[1].equals("-full")) {
-	    loaderThread = new Thread(new XpathThread(documentQueue));
-	    loaderThread.start();
-	    for (int i = 775; i <= 779; i++) {
-		String fileName = "/Volumes/Seagate/MEDLINE15/ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/medline15n" + formatter.format(i) + ".xml.gz";
+//	    loaderThread = new Thread(new XpathThread(documentQueue));
+//	    loaderThread.start();
+	    for (int i = 1; i <= 812; i++) {
+		String fileName = "/Volumes/SLIS_SAN_01/Corpora/MEDLINE16/ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/medline16n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
-//		XpathLoader theLoader = new XpathLoader(fileName);
-		Element root = parseDocument(fileName);
-		
-		while (documentQueue.atCapacity()) {
-		    logger.info("parser thread sleeping...");
-		    Thread.sleep(2* 60 * 1000);
-		}
-		documentQueue.queue(fileName, root);
+		XpathLoader theLoader = new XpathLoader(fileName);
+//		Element root = parseDocument(fileName);
+//		theLoader.processDocument(root);
+//		while (documentQueue.atCapacity()) {
+//		    logger.info("parser thread sleeping...");
+//		    Thread.sleep(2* 60 * 1000);
+//		}
+//		documentQueue.queue(fileName, root);
 
 //		if (i % 5 == 0) {
 //		    sessionReset(db_url, props);
 //		}
 	    }
 	    logger.info("parsing completed.");
-	    documentQueue.completed();
-	    loaderThread.join();
+//	    documentQueue.completed();
+//	    loaderThread.join();
 	} else if (args[1].equals("-update")) {
-	    loaderThread = new Thread(new XpathThread(documentQueue));
-	    loaderThread.start();
-	    for (int i = 780; i <= 912; i++) {
-		String fileName = "/Volumes/Seagate/MEDLINE15/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline15n" + formatter.format(i) + ".xml.gz";
-//		XpathLoader theLoader = new XpathLoader(fileName);
-		Element root = parseDocument(fileName);
-		
-		while (documentQueue.atCapacity()) {
-		    logger.info("parser thread sleeping...");
-		    Thread.sleep(2* 60 * 1000);
-		}
-		documentQueue.queue(fileName, root);
+//	    loaderThread = new Thread(new XpathThread(documentQueue));
+//	    loaderThread.start();
+	    for (int i = 813; i <= 890; i++) {
+		String fileName = "/Volumes/SLIS_SAN_01/Corpora/MEDLINE16/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline16n" + formatter.format(i) + ".xml.gz";
+		logger.trace("file: " + fileName);
+		XpathLoader theLoader = new XpathLoader(fileName);
+//		Element root = parseDocument(fileName);
+//		
+//		while (documentQueue.atCapacity()) {
+//		    logger.info("parser thread sleeping...");
+//		    Thread.sleep(2* 60 * 1000);
+//		}
+//		documentQueue.queue(fileName, root);
 
 //		if (i % 5 == 0) {
 //		    sessionReset(db_url, props);
 //		}
 	    }
 	    logger.info("parsing completed.");
-	    documentQueue.completed();
-	    loaderThread.join();
+//	    documentQueue.completed();
+//	    loaderThread.join();
 	} else if (args[1].equals("-daily")) {
 	    // read files from stdin
 	    BufferedReader IODesc = new BufferedReader(new InputStreamReader(System.in));
@@ -142,7 +143,7 @@ public class XpathLoader {
 	conn = DriverManager.getConnection(db_url, props);
 	conn.setAutoCommit(false);
 
-	PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline15,loki");
+	PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline16,loki");
 	pathStmt.executeUpdate();
 	pathStmt.close();
 
@@ -1132,7 +1133,7 @@ public class XpathLoader {
 	    String country = grantNode.selectSingleNode("Country") == null ? null : grantNode.selectSingleNode("Country").getText();
 	    logger.trace("\t\tcountry: " + country);
 
-	    PreparedStatement stmt = conn.prepareStatement("insert into medline15.grant values (?,?,?,?,?,?)");
+	    PreparedStatement stmt = conn.prepareStatement("insert into medline16.grant values (?,?,?,?,?,?)");
 	    stmt.setInt(1, pmid);
 	    stmt.setInt(2, seqnum);
 	    stmt.setString(3, grantID);
@@ -1280,15 +1281,15 @@ public class XpathLoader {
     static void materializeAuthorView() throws SQLException {
 	// refresh author uid-pmid cache with new data
 	execute("delete from author_cache10");
-	execute("analyze medline15.author");
-	execute("analyze medline15.journal");
+	execute("analyze medline16.author");
+	execute("analyze medline16.journal");
 	execute("update journal set pub_day=28 where (pub_month='Feb' or pub_month='02') and pub_day > 28");
 	execute("update journal set pub_day=30 where (pub_month='Sep' or pub_month='09' or pub_month='Apr' or pub_month='04' or pub_month='Jun' or pub_month='06' or pub_month='Nov' or pub_month='11') and pub_day > 30");
-	execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline15.author.pmid"
-		+ " from loki.authors,medline15.author,medline15.journal"
-		+ " where authors.lastname=medline15.author.last_name and authors.forename=medline15.author.fore_name and medline15.author.pmid=medline15.journal.pmid");
-	execute("update author_cache10 set pubdate = (pub_month||' 01 '||pub_year)::date from medline15.journal where journal.pmid=author_cache10.pmid and pubdate is null and pub_month is not null");
-	execute("update author_cache10 set pubdate = ('Jan 01 '||pub_year)::date from medline15.journal where journal.pmid=author_cache10.pmid and pubdate is null");
+	execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline16.author.pmid"
+		+ " from loki.authors,medline16.author,medline16.journal"
+		+ " where authors.lastname=medline16.author.last_name and authors.forename=medline16.author.fore_name and medline16.author.pmid=medline16.journal.pmid");
+	execute("update author_cache10 set pubdate = (pub_month||' 01 '||pub_year)::date from medline16.journal where journal.pmid=author_cache10.pmid and pubdate is null and pub_month is not null");
+	execute("update author_cache10 set pubdate = ('Jan 01 '||pub_year)::date from medline16.journal where journal.pmid=author_cache10.pmid and pubdate is null");
 	execute("analyze author_cache10");
 
 	PreparedStatement cntStmt = conn.prepareStatement("select count(*) from author_cache10");
@@ -1304,14 +1305,14 @@ public class XpathLoader {
 	execute("set session random_page_cost = 1");
 
 	// refresh author statistics with new data
-	execute("truncate medline15.author_count");
-	execute("insert into medline15.author_count select last_name,fore_name,count(*) from medline15.author where fore_name is not null group by 1,2");
-	execute("analyze medline15.author_count");
+	execute("truncate medline16.author_count");
+	execute("insert into medline16.author_count select last_name,fore_name,count(*) from medline16.author where fore_name is not null group by 1,2");
+	execute("analyze medline16.author_count");
 
 	// refresh MeSH terminology and tf*idf statistics with new data
 	execute("delete from loki.mesh");
-	execute("insert into loki.mesh select id, descriptor_name as term from loki.publication natural join medline15.mesh_heading where descriptor_name is not null");
-	execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline15.mesh_heading where descriptor_name is not null and not exists (select id from publication where author_cache10.id=publication.id and pmid > 0)");
+	execute("insert into loki.mesh select id, descriptor_name as term from loki.publication natural join medline16.mesh_heading where descriptor_name is not null");
+	execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline16.mesh_heading where descriptor_name is not null and not exists (select id from publication where author_cache10.id=publication.id and pmid > 0)");
 
 	// TODO Now reset the parameters to their defaults.
 	execute("set session enable_seqscan = on");

@@ -1,4 +1,4 @@
-CREATE TABLE medline15.author_count (
+CREATE TABLE medline16.author_count (
        last_name TEXT NOT NULL
      , fore_name TEXT NOT NULL
      , count INT
@@ -12,7 +12,7 @@ CREATE TABLE medline_clustering.document_cluster (
      , PRIMARY KEY (cid)
 );
 
-CREATE TABLE medline15.article (
+CREATE TABLE medline16.article (
        pmid INT NOT NULL
      , date_created DATE
      , date_completed DATE
@@ -33,16 +33,16 @@ CREATE TABLE medline15.article (
      , PRIMARY KEY (pmid)
 );
 
-CREATE TABLE medline15.data_bank (
+CREATE TABLE medline16.data_bank (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , name TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_data_bank_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.mesh_heading (
+CREATE TABLE medline16.mesh_heading (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , descriptor_name TEXT
@@ -51,20 +51,20 @@ CREATE TABLE medline15.mesh_heading (
      , id TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_mesh_heading_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.other_abstract (
+CREATE TABLE medline16.other_abstract (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , type TEXT
      , copyright TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_other_abstract_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.investigator (
+CREATE TABLE medline16.investigator (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , last_name TEXT
@@ -74,10 +74,10 @@ CREATE TABLE medline15.investigator (
      , affiliation TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_investigator_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.author (
+CREATE TABLE medline16.author (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , last_name TEXT
@@ -88,39 +88,39 @@ CREATE TABLE medline15.author (
      , affiliation TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_author_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.elocation (
+CREATE TABLE medline16.elocation (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , eid TEXT
      , type TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_elocation_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.language (
+CREATE TABLE medline16.language (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , language TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_language_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.accession (
+CREATE TABLE medline16.accession (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , accnum INT NOT NULL
      , accession TEXT
      , PRIMARY KEY (pmid, seqnum, accnum)
      , CONSTRAINT FK_accession_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline15.data_bank (pmid, seqnum) ON DELETE CASCADE
+                  REFERENCES medline16.data_bank (pmid, seqnum) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.grant (
+CREATE TABLE medline16.grant (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , gid TEXT
@@ -129,10 +129,10 @@ CREATE TABLE medline15.grant (
      , country TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_grant_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.article_date (
+CREATE TABLE medline16.article_date (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , year INT
@@ -141,10 +141,10 @@ CREATE TABLE medline15.article_date (
      , type TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_article_date_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.chemical (
+CREATE TABLE medline16.chemical (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , registry_number TEXT
@@ -152,19 +152,19 @@ CREATE TABLE medline15.chemical (
      , id TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_chemical_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.citation_subset (
+CREATE TABLE medline16.citation_subset (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , label TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_citation_subset_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.comments_corrections (
+CREATE TABLE medline16.comments_corrections (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , ref_type TEXT
@@ -173,19 +173,19 @@ CREATE TABLE medline15.comments_corrections (
      , note TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_comment_on_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.gene_symbol (
+CREATE TABLE medline16.gene_symbol (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , symbol TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_gene_symbol_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.mesh_qualifier (
+CREATE TABLE medline16.mesh_qualifier (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , qnum INT NOT NULL
@@ -194,10 +194,10 @@ CREATE TABLE medline15.mesh_qualifier (
      , id TEXT
      , PRIMARY KEY (pmid, seqnum, qnum)
      , CONSTRAINT FK_mesh_qualifier_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline15.mesh_heading (pmid, seqnum) ON DELETE CASCADE
+                  REFERENCES medline16.mesh_heading (pmid, seqnum) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.personal_name_subject (
+CREATE TABLE medline16.personal_name_subject (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , last_name TEXT
@@ -206,20 +206,20 @@ CREATE TABLE medline15.personal_name_subject (
      , suffix TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_personal_name_subject_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.other_id (
+CREATE TABLE medline16.other_id (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , source TEXT
      , other_id TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_other_id_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.keyword (
+CREATE TABLE medline16.keyword (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , keyword TEXT
@@ -227,39 +227,39 @@ CREATE TABLE medline15.keyword (
      , owner TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_keyword_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.spaceflight_mission (
+CREATE TABLE medline16.spaceflight_mission (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , mission TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_spaceflight_mission_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.general_note (
+CREATE TABLE medline16.general_note (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , note TEXT
      , owner TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_general_note_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.publication_type (
+CREATE TABLE medline16.publication_type (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , label TEXT
      , id TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_publication_type_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.supplemental_mesh (
+CREATE TABLE medline16.supplemental_mesh (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , name TEXT
@@ -267,10 +267,10 @@ CREATE TABLE medline15.supplemental_mesh (
      , id TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_supplemental_mesh_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.name_id (
+CREATE TABLE medline16.name_id (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , nnum INT NOT NULL
@@ -278,10 +278,10 @@ CREATE TABLE medline15.name_id (
      , source TEXT
      , PRIMARY KEY (pmid, seqnum, nnum)
      , CONSTRAINT FK_name_id_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline15.author (pmid, seqnum) ON DELETE CASCADE
+                  REFERENCES medline16.author (pmid, seqnum) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.abstr (
+CREATE TABLE medline16.abstr (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , abstract_text TEXT
@@ -289,10 +289,10 @@ CREATE TABLE medline15.abstr (
      , category TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_abstract_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.other_abstract_text (
+CREATE TABLE medline16.other_abstract_text (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , tnum INT NOT NULL
@@ -301,10 +301,10 @@ CREATE TABLE medline15.other_abstract_text (
      , category TEXT
      , PRIMARY KEY (pmid, seqnum, tnum)
      , CONSTRAINT FK_other_abstract_text_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline15.other_abstract (pmid, seqnum) ON DELETE CASCADE
+                  REFERENCES medline16.other_abstract (pmid, seqnum) ON DELETE CASCADE
 );
 
-CREATE TABLE medline15.investigator_name_id (
+CREATE TABLE medline16.investigator_name_id (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , nnum INT NOT NULL
@@ -312,10 +312,10 @@ CREATE TABLE medline15.investigator_name_id (
      , source TEXT
      , PRIMARY KEY (pmid, seqnum, nnum)
      , CONSTRAINT FK_investigator_name_id_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline15.investigator (pmid, seqnum)
+                  REFERENCES medline16.investigator (pmid, seqnum)
 );
 
-CREATE TABLE medline15.affiliation (
+CREATE TABLE medline16.affiliation (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , anum INT NOT NULL
@@ -324,10 +324,10 @@ CREATE TABLE medline15.affiliation (
      , identifier TEXT
      , PRIMARY KEY (pmid, seqnum, anum)
      , CONSTRAINT FK_affiliation_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline15.author (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
+                  REFERENCES medline16.author (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE medline15.investigator_affiliation (
+CREATE TABLE medline16.investigator_affiliation (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , anum INT NOT NULL
@@ -336,7 +336,7 @@ CREATE TABLE medline15.investigator_affiliation (
      , identifier TEXT
      , PRIMARY KEY (pmid, seqnum, anum)
      , CONSTRAINT FK_investigator_affiliation_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline15.investigator (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
+                  REFERENCES medline16.investigator (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE medline_clustering.cluster_document (
@@ -344,7 +344,7 @@ CREATE TABLE medline_clustering.cluster_document (
      , pmid INT NOT NULL
      , PRIMARY KEY (cid, pmid)
      , CONSTRAINT FK_cluster_document_2 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE ON UPDATE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE ON UPDATE CASCADE
      , CONSTRAINT FK_cluster_document_1 FOREIGN KEY (cid)
                   REFERENCES medline_clustering.document_cluster (cid) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -371,7 +371,7 @@ CREATE TABLE medline_clustering.cluster_pattern (
                   REFERENCES medline_clustering.document_cluster (cid) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE medline15.journal (
+CREATE TABLE medline16.journal (
        pmid INT NOT NULL
      , issn TEXT
      , volume TEXT
@@ -385,6 +385,6 @@ CREATE TABLE medline15.journal (
      , iso_abbreviation TEXT
      , PRIMARY KEY (pmid)
      , CONSTRAINT FK_journal_1 FOREIGN KEY (pmid)
-                  REFERENCES medline15.article (pmid) ON DELETE CASCADE
+                  REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
