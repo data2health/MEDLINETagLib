@@ -249,7 +249,66 @@ public class XpathLoader {
 
 	// MedlineCitation elements
 	int pmid = Integer.parseInt(citationElement.selectSingleNode("PMID").getText());
-	logger.debug("\tcitation pmid: " + pmid);
+	logger.trace("\tcitation pmid: " + pmid);
+	
+	int found = 0;
+	PreparedStatement cntStmt = conn.prepareStatement("select pmid from article where pmid = ?");
+	cntStmt.setInt(1, pmid);
+	ResultSet rs = cntStmt.executeQuery();
+	if (rs.next()) {
+	    found++;
+	}
+	cntStmt.close();
+	if (found == 0)
+	    return;
+
+	PreparedStatement delStmt = conn.prepareStatement("delete from author where pmid = ?");
+	delStmt.setInt(1, pmid);
+	delStmt.execute();
+	delStmt.close();
+
+	delStmt = conn.prepareStatement("delete from investigator where pmid = ?");
+	delStmt.setInt(1, pmid);
+	delStmt.execute();
+	delStmt.close();
+
+	
+	article(pmid, citationElement);
+
+	journal(pmid, citationElement.selectSingleNode("Article/Journal"));
+	elocationID(pmid, citationElement.selectNodes("Article/ELocationID"));
+	abstr(pmid, citationElement.selectSingleNode("Article/Abstract"));
+	author(pmid, citationElement.selectSingleNode("Article/AuthorList"));
+	language(pmid, citationElement.selectNodes("Article/Language"));
+	dataBank(pmid, citationElement.selectSingleNode("Article/DataBankList"));
+	grant(pmid, citationElement.selectSingleNode("Article/GrantList"));
+	publicationType(pmid, citationElement.selectSingleNode("Article/PublicationTypeList"));
+	articleDate(pmid, citationElement.selectNodes("Article/ArticleDate"));
+
+	chemical(pmid, citationElement.selectSingleNode("ChemicalList"));
+	supplMesh(pmid, citationElement.selectSingleNode("SupplMeshList"));
+	citationSubset(pmid, citationElement.selectNodes("CitationSubset"));
+	commentsCorrections(pmid, citationElement.selectSingleNode("CommentsCorrectionsList"));
+	geneSymbol(pmid, citationElement.selectSingleNode("GeneSymbolList"));
+	meshHeading(pmid, citationElement.selectSingleNode("MeshHeadingList"));
+	personalName(pmid, citationElement.selectSingleNode("PersonalNameSubjectList"));
+	otherID(pmid, citationElement.selectNodes("OtherID"));
+	otherAbstract(pmid, citationElement.selectNodes("OtherAbstract"));
+	keyword(pmid, citationElement.selectSingleNode("KeywordList"));
+	spaceFlightMission(pmid, citationElement.selectNodes("SpaceFlightMission"));
+	investigator(pmid, citationElement.selectSingleNode("InvestigatorList"));
+	generalNote(pmid, citationElement.selectNodes("GeneralNote"));
+
+	if ((++count % 100) == 0) {
+	    logger.debug("committing transaction for " + pmid + "....");
+	    PreparedStatement commitStmt = conn.prepareStatement("commit transaction");
+	    commitStmt.executeUpdate();
+	    commitStmt.close();
+	}
+
+    }
+    
+    void article(int pmid, Element citationElement) throws SQLException {
 	GregorianCalendar dateCreated = new GregorianCalendar(Integer.parseInt(citationElement.selectSingleNode("DateCreated/Year").getText()),
 		Integer.parseInt(citationElement.selectSingleNode("DateCreated/Month").getText()) - 1, Integer.parseInt(citationElement.selectSingleNode(
 			"DateCreated/Day").getText()));
@@ -352,38 +411,6 @@ public class XpathLoader {
 	citeStmt.setString(17, status);
 	citeStmt.executeUpdate();
 	citeStmt.close();
-
-	journal(pmid, citationElement.selectSingleNode("Article/Journal"));
-	elocationID(pmid, citationElement.selectNodes("Article/ELocationID"));
-	abstr(pmid, citationElement.selectSingleNode("Article/Abstract"));
-	author(pmid, citationElement.selectSingleNode("Article/AuthorList"));
-	language(pmid, citationElement.selectNodes("Article/Language"));
-	dataBank(pmid, citationElement.selectSingleNode("Article/DataBankList"));
-	grant(pmid, citationElement.selectSingleNode("Article/GrantList"));
-	publicationType(pmid, citationElement.selectSingleNode("Article/PublicationTypeList"));
-	articleDate(pmid, citationElement.selectNodes("Article/ArticleDate"));
-
-	chemical(pmid, citationElement.selectSingleNode("ChemicalList"));
-	supplMesh(pmid, citationElement.selectSingleNode("SupplMeshList"));
-	citationSubset(pmid, citationElement.selectNodes("CitationSubset"));
-	commentsCorrections(pmid, citationElement.selectSingleNode("CommentsCorrectionsList"));
-	geneSymbol(pmid, citationElement.selectSingleNode("GeneSymbolList"));
-	meshHeading(pmid, citationElement.selectSingleNode("MeshHeadingList"));
-	personalName(pmid, citationElement.selectSingleNode("PersonalNameSubjectList"));
-	otherID(pmid, citationElement.selectNodes("OtherID"));
-	otherAbstract(pmid, citationElement.selectNodes("OtherAbstract"));
-	keyword(pmid, citationElement.selectSingleNode("KeywordList"));
-	spaceFlightMission(pmid, citationElement.selectNodes("SpaceFlightMission"));
-	investigator(pmid, citationElement.selectSingleNode("InvestigatorList"));
-	generalNote(pmid, citationElement.selectNodes("GeneralNote"));
-
-	if ((++count % 100) == 0) {
-	    logger.debug("committing transaction for " + pmid + "....");
-	    PreparedStatement commitStmt = conn.prepareStatement("commit transaction");
-	    commitStmt.executeUpdate();
-	    commitStmt.close();
-	}
-
     }
 
     void journal(int pmid, Node journalNode) throws SQLException {
@@ -482,8 +509,8 @@ public class XpathLoader {
 	    stmt.executeUpdate();
 	    stmt.close();
 
-	    nameID(pmid, seqnum, "name_id", authorNode.selectNodes("NameID"));
-	    affiliation(pmid, seqnum, "affiliation", authorNode.selectNodes("AffiliationInfo"));
+	    identifier(pmid, seqnum, "author_identifier", authorNode.selectNodes("Identifier"));
+	    affiliation(pmid, seqnum, "author_affiliation", authorNode.selectNodes("AffiliationInfo"));
 
 	    seqnum++;
 	}
@@ -936,7 +963,7 @@ public class XpathLoader {
 	    stmt.executeUpdate();
 	    stmt.close();
 
-	    nameID(pmid, seqnum, "investigator_name_id", investigatorNode.selectNodes("NameID"));
+	    identifier(pmid, seqnum, "investigator_identifier", investigatorNode.selectNodes("Identifier"));
 	    affiliation(pmid, seqnum, "investigator_affiliation", investigatorNode.selectNodes("AffiliationInfo"));
 
 	    seqnum++;
@@ -1175,9 +1202,9 @@ public class XpathLoader {
 	}
     }
 
-    void nameID(int pmid, int seqnum, String tableName, List list) throws SQLException {
-	// <!ELEMENT NameID (#PCDATA)>
-	// <!ATTLIST NameID
+    void identifier(int pmid, int seqnum, String tableName, List list) throws SQLException {
+	// <!ELEMENT Identifier (#PCDATA)>
+	// <!ATTLIST Identifier
 	// Source CDATA #REQUIRED >
 	int inum = 1;
 
@@ -1185,19 +1212,20 @@ public class XpathLoader {
 	    return;
 	ListIterator<Node> names = list.listIterator();
 	while (names.hasNext()) {
-	    logger.trace("\t\tnameID " + seqnum + ":");
+	    logger.debug("\tcitation pmid: " + pmid);
+	    logger.debug("\t\tidentifier " + seqnum + ":");
 	    Node nameNode = names.next();
-	    String nameID = nameNode.getText();
-	    logger.trace("\t\t\tnameID: " + nameID);
+	    String identifier = nameNode.getText();
+	    logger.debug("\t\t\tidentifier: " + identifier);
 	    String source = ((Element) nameNode).attributeValue("Source");
-	    logger.trace("\t\t\tsource: " + source);
+	    logger.debug("\t\t\tsource: " + source);
 
 	    PreparedStatement stmt = conn.prepareStatement("insert into " + tableName + " values (?,?,?,?,?)");
 	    stmt.setInt(1, pmid);
 	    stmt.setInt(2, seqnum);
 	    stmt.setInt(3, inum);
-	    stmt.setString(4, nameID);
-	    stmt.setString(5, source);
+	    stmt.setString(4, source);
+	    stmt.setString(5, identifier);
 	    stmt.executeUpdate();
 	    stmt.close();
 
@@ -1209,32 +1237,55 @@ public class XpathLoader {
 	// <!ELEMENT NameID (#PCDATA)>
 	// <!ATTLIST NameID
 	// Source CDATA #REQUIRED >
-	int inum = 1;
+	int anum = 1;
 
 	if (list == null)
 	    return;
 	ListIterator<Node> affiliations = list.listIterator();
 	while (affiliations.hasNext()) {
+	    logger.debug("\tcitation pmid: " + pmid);
 	    logger.debug("\t\taffiliation " + seqnum + ":");
 	    Node affiliationListNode = affiliations.next();
 	    Node affiliationNode = affiliationListNode.selectSingleNode("Affiliation");
 	    String affiliation = affiliationNode.getText();
 	    logger.debug("\t\t\taffiliation: " + affiliation);
-	    String source = null;
-	    String identifier = null;
-	    Node sourceNode = affiliationListNode.selectSingleNode("Identifier");
-	    if (sourceNode != null) {
-		source = ((Element)sourceNode).attributeValue("Source");
-		identifier = sourceNode.getText();
-	    }
-	    logger.debug("\t\t\tsource: " + source);
+
+	    PreparedStatement stmt = conn.prepareStatement("insert into " + tableName + " values (?,?,?,?)");
+	    stmt.setInt(1, pmid);
+	    stmt.setInt(2, seqnum);
+	    stmt.setInt(3, anum);
+	    stmt.setString(4, affiliation);
+	    stmt.executeUpdate();
+	    stmt.close();
+	    
+	    affiliationIdentifier(pmid, seqnum, anum, tableName+"_identifier", affiliationListNode.selectNodes("Identifier"));
+
+	    anum++;
+	}
+    }
+
+    void affiliationIdentifier(int pmid, int seqnum, int anum, String tableName, List list) throws SQLException {
+	// <!ELEMENT Identifier (#PCDATA)>
+	// <!ATTLIST Identifier
+	// Source CDATA #REQUIRED >
+	int inum = 1;
+
+	if (list == null)
+	    return;
+	ListIterator<Node> names = list.listIterator();
+	while (names.hasNext()) {
+	    logger.debug("\t\tidentifier " + seqnum + ":");
+	    Node nameNode = names.next();
+	    String identifier = nameNode.getText();
 	    logger.debug("\t\t\tidentifier: " + identifier);
+	    String source = ((Element) nameNode).attributeValue("Source");
+	    logger.debug("\t\t\tsource: " + source);
 
 	    PreparedStatement stmt = conn.prepareStatement("insert into " + tableName + " values (?,?,?,?,?,?)");
 	    stmt.setInt(1, pmid);
 	    stmt.setInt(2, seqnum);
-	    stmt.setInt(3, inum);
-	    stmt.setString(4, affiliation);
+	    stmt.setInt(3, anum);
+	    stmt.setInt(4, inum);
 	    stmt.setString(5, source);
 	    stmt.setString(6, identifier);
 	    stmt.executeUpdate();
