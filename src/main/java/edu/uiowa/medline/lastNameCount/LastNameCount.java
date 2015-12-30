@@ -46,7 +46,7 @@ public class LastNameCount extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or lastName was provided as an attribute - we need to load a LastNameCount from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select count from medline15.last_name_count where last_name = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select count from medline16.last_name_count where last_name = ?");
 				stmt.setString(1,lastName);
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
@@ -73,7 +73,7 @@ public class LastNameCount extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline15.last_name_count set count = ? where last_name = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline16.last_name_count set count = ? where last_name = ?");
 				stmt.setInt(1,count);
 				stmt.setString(2,lastName);
 				stmt.executeUpdate();
@@ -91,7 +91,7 @@ public class LastNameCount extends MEDLINETagLibTagSupport {
 
 	public void insertEntity() throws JspException {
 		try {
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.last_name_count(last_name,count) values (?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.last_name_count(last_name,count) values (?,?)");
 			stmt.setString(1,lastName);
 			stmt.setInt(2,count);
 			stmt.executeUpdate();

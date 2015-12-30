@@ -36,7 +36,7 @@ public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		LanguageIterator theIterator = new LanguageIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.language where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.language where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -64,7 +64,7 @@ public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		LanguageIterator theIterator = new LanguageIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.language where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.language where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -114,7 +114,7 @@ public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline15.language.pmid, medline15.language.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline16.language.pmid, medline16.language.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -138,7 +138,7 @@ public class LanguageIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline15.language");
+       StringBuffer theBuffer = new StringBuffer("medline16.language");
       return theBuffer.toString();
     }
 

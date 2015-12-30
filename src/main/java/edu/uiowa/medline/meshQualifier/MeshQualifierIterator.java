@@ -39,7 +39,7 @@ public class MeshQualifierIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		MeshQualifierIterator theIterator = new MeshQualifierIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.mesh_qualifier where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.mesh_qualifier where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -69,7 +69,7 @@ public class MeshQualifierIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		MeshQualifierIterator theIterator = new MeshQualifierIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline15.mesh_qualifier where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.mesh_qualifier where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						+ " and qnum = ?"
@@ -124,7 +124,7 @@ public class MeshQualifierIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline15.mesh_qualifier.pmid, medline15.mesh_qualifier.seqnum, medline15.mesh_qualifier.qnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline16.mesh_qualifier.pmid, medline16.mesh_qualifier.seqnum, medline16.mesh_qualifier.qnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
@@ -151,7 +151,7 @@ public class MeshQualifierIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline15.mesh_qualifier");
+       StringBuffer theBuffer = new StringBuffer("medline16.mesh_qualifier");
       return theBuffer.toString();
     }
 
