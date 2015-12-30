@@ -30,8 +30,6 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 	int seqnum = 0;
 	int anum = 0;
 	String label = null;
-	String source = null;
-	String identifier = null;
 
 	public int doStartTag() throws JspException {
 		currentInstance = this;
@@ -61,7 +59,7 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or anum was provided as an attribute - we need to load a InvestigatorAffiliation from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select label,source,identifier from medline15.investigator_affiliation where pmid = ? and seqnum = ? and anum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select label from medline16.investigator_affiliation where pmid = ? and seqnum = ? and anum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				stmt.setInt(3,anum);
@@ -69,10 +67,6 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 				while (rs.next()) {
 					if (label == null)
 						label = rs.getString(1);
-					if (source == null)
-						source = rs.getString(2);
-					if (identifier == null)
-						identifier = rs.getString(3);
 					found = true;
 				}
 				stmt.close();
@@ -94,13 +88,11 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline15.investigator_affiliation set label = ?, source = ?, identifier = ? where pmid = ? and seqnum = ? and anum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline16.investigator_affiliation set label = ? where pmid = ? and seqnum = ? and anum = ?");
 				stmt.setString(1,label);
-				stmt.setString(2,source);
-				stmt.setString(3,identifier);
-				stmt.setInt(4,pmid);
-				stmt.setInt(5,seqnum);
-				stmt.setInt(6,anum);
+				stmt.setInt(2,pmid);
+				stmt.setInt(3,seqnum);
+				stmt.setInt(4,anum);
 				stmt.executeUpdate();
 				stmt.close();
 			}
@@ -123,17 +115,11 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 
 			if (label == null)
 				label = "";
-			if (source == null)
-				source = "";
-			if (identifier == null)
-				identifier = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.investigator_affiliation(pmid,seqnum,anum,label,source,identifier) values (?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.investigator_affiliation(pmid,seqnum,anum,label) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setInt(3,anum);
 			stmt.setString(4,label);
-			stmt.setString(5,source);
-			stmt.setString(6,identifier);
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
@@ -196,38 +182,6 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 		return label;
 	}
 
-	public String getSource () {
-		if (commitNeeded)
-			return "";
-		else
-			return source;
-	}
-
-	public void setSource (String source) {
-		this.source = source;
-		commitNeeded = true;
-	}
-
-	public String getActualSource () {
-		return source;
-	}
-
-	public String getIdentifier () {
-		if (commitNeeded)
-			return "";
-		else
-			return identifier;
-	}
-
-	public void setIdentifier (String identifier) {
-		this.identifier = identifier;
-		commitNeeded = true;
-	}
-
-	public String getActualIdentifier () {
-		return identifier;
-	}
-
 	public static Integer pmidValue() throws JspException {
 		try {
 			return currentInstance.getPmid();
@@ -260,29 +214,11 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 		}
 	}
 
-	public static String sourceValue() throws JspException {
-		try {
-			return currentInstance.getSource();
-		} catch (Exception e) {
-			 throw new JspTagException("Error in tag function sourceValue()");
-		}
-	}
-
-	public static String identifierValue() throws JspException {
-		try {
-			return currentInstance.getIdentifier();
-		} catch (Exception e) {
-			 throw new JspTagException("Error in tag function identifierValue()");
-		}
-	}
-
 	private void clearServiceState () {
 		pmid = 0;
 		seqnum = 0;
 		anum = 0;
 		label = null;
-		source = null;
-		identifier = null;
 		newRecord = false;
 		commitNeeded = false;
 		parentEntities = new Vector<MEDLINETagLibTagSupport>();

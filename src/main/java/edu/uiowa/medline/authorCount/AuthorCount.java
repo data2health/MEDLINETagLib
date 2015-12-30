@@ -48,7 +48,7 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or lastName was provided as an attribute - we need to load a AuthorCount from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select count from medline15.author_count where last_name = ? and fore_name = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select count from medline16.author_count where last_name = ? and fore_name = ?");
 				stmt.setString(1,lastName);
 				stmt.setString(2,foreName);
 				ResultSet rs = stmt.executeQuery();
@@ -76,7 +76,7 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline15.author_count set count = ? where last_name = ? and fore_name = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline16.author_count set count = ? where last_name = ? and fore_name = ?");
 				stmt.setInt(1,count);
 				stmt.setString(2,lastName);
 				stmt.setString(3,foreName);
@@ -95,7 +95,7 @@ public class AuthorCount extends MEDLINETagLibTagSupport {
 
 	public void insertEntity() throws JspException {
 		try {
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.author_count(last_name,fore_name,count) values (?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.author_count(last_name,fore_name,count) values (?,?,?)");
 			stmt.setString(1,lastName);
 			stmt.setString(2,foreName);
 			stmt.setInt(3,count);

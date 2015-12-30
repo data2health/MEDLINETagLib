@@ -21,8 +21,6 @@ public class InvestigatorAffiliationDeleter extends MEDLINETagLibBodyTagSupport 
     int seqnum = 0;
     int anum = 0;
     String label = null;
-    String source = null;
-    String identifier = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
 	private static final Log log = LogFactory.getLog(InvestigatorAffiliationDeleter.class);
@@ -47,7 +45,7 @@ public class InvestigatorAffiliationDeleter extends MEDLINETagLibBodyTagSupport 
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline15.investigator_affiliation where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline16.investigator_affiliation where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? ")
                                                         + (seqnum == 0 ? "" : " and seqnum = ? ")
                                                         + (anum == 0 ? "" : " and anum = ? "));

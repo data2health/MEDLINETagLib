@@ -43,7 +43,7 @@ public class GeneSymbolDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline15.gene_symbol where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline16.gene_symbol where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? ")
                                                         + (seqnum == 0 ? "" : " and seqnum = ? "));
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);
