@@ -57,7 +57,7 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a PublicationType from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select label,id from medline15.publication_type where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select label,id from medline16.publication_type where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -87,7 +87,7 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline15.publication_type set label = ?, id = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline16.publication_type set label = ?, id = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,label);
 				stmt.setString(2,ID);
 				stmt.setInt(3,pmid);
@@ -116,7 +116,7 @@ public class PublicationType extends MEDLINETagLibTagSupport {
 				label = "";
 			if (ID == null)
 				ID = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.publication_type(pmid,seqnum,label,id) values (?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.publication_type(pmid,seqnum,label,id) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,label);

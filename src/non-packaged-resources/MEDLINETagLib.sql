@@ -5,6 +5,12 @@ CREATE TABLE medline16.author_count (
      , PRIMARY KEY (last_name, fore_name)
 );
 
+CREATE TABLE medline16.last_name_count (
+       last_name TEXT NOT NULL
+     , count INT
+     , PRIMARY KEY (last_name)
+);
+
 CREATE TABLE medline_clustering.document_cluster (
        cid INT NOT NULL
      , last_name TEXT
@@ -75,6 +81,30 @@ CREATE TABLE medline16.investigator (
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_investigator_1 FOREIGN KEY (pmid)
                   REFERENCES medline16.article (pmid) ON DELETE CASCADE
+);
+
+CREATE TABLE medline16.author_affiliation (
+       pmid INT NOT NULL
+     , seqnum INT NOT NULL
+     , anum INT NOT NULL
+     , label TEXT
+     , source TEXT
+     , identifier TEXT
+     , PRIMARY KEY (pmid, seqnum, anum)
+     , CONSTRAINT FK_affiliation_1 FOREIGN KEY (pmid, seqnum)
+                  REFERENCES medline16.author (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE medline16.investigator_affiliation (
+       pmid INT NOT NULL
+     , seqnum INT NOT NULL
+     , anum INT NOT NULL
+     , label TEXT
+     , source TEXT
+     , identifier TEXT
+     , PRIMARY KEY (pmid, seqnum, anum)
+     , CONSTRAINT FK_investigator_affiliation_1 FOREIGN KEY (pmid, seqnum)
+                  REFERENCES medline16.investigator (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE medline16.author (
@@ -270,15 +300,15 @@ CREATE TABLE medline16.supplemental_mesh (
                   REFERENCES medline16.article (pmid) ON DELETE CASCADE
 );
 
-CREATE TABLE medline16.name_id (
+CREATE TABLE medline16.author_identifier (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
-     , nnum INT NOT NULL
-     , name_id TEXT
+     , inum INT NOT NULL
      , source TEXT
-     , PRIMARY KEY (pmid, seqnum, nnum)
+     , identifier TEXT
+     , PRIMARY KEY (pmid, seqnum, inum)
      , CONSTRAINT FK_name_id_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline16.author (pmid, seqnum) ON DELETE CASCADE
+                  REFERENCES medline16.author (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE medline16.abstr (
@@ -304,39 +334,39 @@ CREATE TABLE medline16.other_abstract_text (
                   REFERENCES medline16.other_abstract (pmid, seqnum) ON DELETE CASCADE
 );
 
-CREATE TABLE medline16.investigator_name_id (
+CREATE TABLE medline16.investigator_identifier (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
-     , nnum INT NOT NULL
-     , name_id TEXT
+     , inum INT NOT NULL
      , source TEXT
-     , PRIMARY KEY (pmid, seqnum, nnum)
+     , identifier TEXT
+     , PRIMARY KEY (pmid, seqnum, inum)
      , CONSTRAINT FK_investigator_name_id_1 FOREIGN KEY (pmid, seqnum)
                   REFERENCES medline16.investigator (pmid, seqnum)
 );
 
-CREATE TABLE medline16.affiliation (
+CREATE TABLE medline16.author_affiliation_identifier (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , anum INT NOT NULL
-     , label TEXT
+     , inum INT NOT NULL
      , source TEXT
      , identifier TEXT
-     , PRIMARY KEY (pmid, seqnum, anum)
-     , CONSTRAINT FK_affiliation_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline16.author (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
+     , PRIMARY KEY (pmid, seqnum, anum, inum)
+     , CONSTRAINT FK_author_affiliation_identifier_1 FOREIGN KEY (pmid, seqnum, anum)
+                  REFERENCES medline16.author_affiliation (pmid, seqnum, anum) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE medline16.investigator_affiliation (
+CREATE TABLE medline16.investigator_affiliation_identifier (
        pmid INT NOT NULL
      , seqnum INT NOT NULL
      , anum INT NOT NULL
-     , label TEXT
+     , inum INT NOT NULL
      , source TEXT
      , identifier TEXT
-     , PRIMARY KEY (pmid, seqnum, anum)
-     , CONSTRAINT FK_investigator_affiliation_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline16.investigator (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
+     , PRIMARY KEY (pmid, seqnum, anum, inum)
+     , CONSTRAINT FK_investigator_affiliation_identifier_1 FOREIGN KEY (pmid, seqnum, anum)
+                  REFERENCES medline16.investigator_affiliation (pmid, seqnum, anum) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE medline_clustering.cluster_document (

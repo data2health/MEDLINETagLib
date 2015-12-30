@@ -3566,8 +3566,8 @@
 	</tag>
 
 	<tag>
-		<name>foreachNameId</name>
-		<tag-class>edu.uiowa.medline.nameId.NameIdIterator</tag-class>
+		<name>foreachAuthorIdentifier</name>
+		<tag-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3601,15 +3601,15 @@
 		</attribute>
 
 		<attribute>
-			<name>nnum</name>
+			<name>inum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>nameId</name>
-		<tag-class>edu.uiowa.medline.nameId.NameId</tag-class>
+		<name>authorIdentifier</name>
+		<tag-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifier</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3625,15 +3625,15 @@
 		</attribute>
 
 		<attribute>
-			<name>nnum</name>
+			<name>inum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>deleteNameId</name>
-		<tag-class>edu.uiowa.medline.nameId.NameIdDeleter</tag-class>
+		<name>deleteAuthorIdentifier</name>
+		<tag-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -3649,15 +3649,15 @@
 		</attribute>
 
 		<attribute>
-			<name>nnum</name>
+			<name>inum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>nameIdPmid</name>
-		<tag-class>edu.uiowa.medline.nameId.NameIdPmid</tag-class>
+		<name>authorIdentifierPmid</name>
+		<tag-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3668,8 +3668,8 @@
 	</tag>
 
 	<tag>
-		<name>nameIdSeqnum</name>
-		<tag-class>edu.uiowa.medline.nameId.NameIdSeqnum</tag-class>
+		<name>authorIdentifierSeqnum</name>
+		<tag-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -3680,36 +3680,36 @@
 	</tag>
 
 	<tag>
-		<name>nameIdNnum</name>
-		<tag-class>edu.uiowa.medline.nameId.NameIdNnum</tag-class>
+		<name>authorIdentifierInum</name>
+		<tag-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierInum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>nnum</name>
+			<name>inum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>nameIdNameId</name>
-		<tag-class>edu.uiowa.medline.nameId.NameIdNameId</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>nameId</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>nameIdSource</name>
-		<tag-class>edu.uiowa.medline.nameId.NameIdSource</tag-class>
+		<name>authorIdentifierSource</name>
+		<tag-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierSource</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
 			<name>source</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorIdentifierIdentifier</name>
+		<tag-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierIdentifier</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>identifier</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -4010,8 +4010,8 @@
 	</tag>
 
 	<tag>
-		<name>foreachInvestigatorNameId</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</tag-class>
+		<name>foreachInvestigatorIdentifier</name>
+		<tag-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierIterator</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4045,15 +4045,15 @@
 		</attribute>
 
 		<attribute>
-			<name>nnum</name>
+			<name>inum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>investigatorNameId</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</tag-class>
+		<name>investigatorIdentifier</name>
+		<tag-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifier</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4069,15 +4069,15 @@
 		</attribute>
 
 		<attribute>
-			<name>nnum</name>
+			<name>inum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>deleteInvestigatorNameId</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdDeleter</tag-class>
+		<name>deleteInvestigatorIdentifier</name>
+		<tag-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierDeleter</tag-class>
 		<body-content>JSP</body-content>
 
 		<attribute>
@@ -4093,15 +4093,15 @@
 		</attribute>
 
 		<attribute>
-			<name>nnum</name>
+			<name>inum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>investigatorNameIdPmid</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdPmid</tag-class>
+		<name>investigatorIdentifierPmid</name>
+		<tag-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierPmid</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -4112,8 +4112,8 @@
 	</tag>
 
 	<tag>
-		<name>investigatorNameIdSeqnum</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdSeqnum</tag-class>
+		<name>investigatorIdentifierSeqnum</name>
+		<tag-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierSeqnum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -4124,32 +4124,20 @@
 	</tag>
 
 	<tag>
-		<name>investigatorNameIdNnum</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdNnum</tag-class>
+		<name>investigatorIdentifierInum</name>
+		<tag-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierInum</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
-			<name>nnum</name>
+			<name>inum</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 
 	<tag>
-		<name>investigatorNameIdNameId</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdNameId</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>nameId</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorNameIdSource</name>
-		<tag-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdSource</tag-class>
+		<name>investigatorIdentifierSource</name>
+		<tag-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierSource</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
@@ -4160,162 +4148,150 @@
 	</tag>
 
 	<tag>
-		<name>foreachAffiliation</name>
-		<tag-class>edu.uiowa.medline.affiliation.AffiliationIterator</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>var</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>sortCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>limitCriteria</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>anum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>affiliation</name>
-		<tag-class>edu.uiowa.medline.affiliation.Affiliation</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>anum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>deleteAffiliation</name>
-		<tag-class>edu.uiowa.medline.affiliation.AffiliationDeleter</tag-class>
-		<body-content>JSP</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-
-		<attribute>
-			<name>anum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>affiliationPmid</name>
-		<tag-class>edu.uiowa.medline.affiliation.AffiliationPmid</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>pmid</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>affiliationSeqnum</name>
-		<tag-class>edu.uiowa.medline.affiliation.AffiliationSeqnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>seqnum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>affiliationAnum</name>
-		<tag-class>edu.uiowa.medline.affiliation.AffiliationAnum</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>anum</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>affiliationLabel</name>
-		<tag-class>edu.uiowa.medline.affiliation.AffiliationLabel</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>label</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>affiliationSource</name>
-		<tag-class>edu.uiowa.medline.affiliation.AffiliationSource</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>source</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>affiliationIdentifier</name>
-		<tag-class>edu.uiowa.medline.affiliation.AffiliationIdentifier</tag-class>
+		<name>investigatorIdentifierIdentifier</name>
+		<tag-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierIdentifier</tag-class>
 		<body-content>empty</body-content>
 
 		<attribute>
 			<name>identifier</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachAuthorAffiliation</name>
+		<tag-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliationIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliation</name>
+		<tag-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliation</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteAuthorAffiliation</name>
+		<tag-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliationDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationPmid</name>
+		<tag-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliationPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationSeqnum</name>
+		<tag-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliationSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationAnum</name>
+		<tag-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliationAnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationLabel</name>
+		<tag-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliationLabel</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>label</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -4460,30 +4436,6 @@
 	</tag>
 
 	<tag>
-		<name>investigatorAffiliationSource</name>
-		<tag-class>edu.uiowa.medline.investigatorAffiliation.InvestigatorAffiliationSource</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>source</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<name>investigatorAffiliationIdentifier</name>
-		<tag-class>edu.uiowa.medline.investigatorAffiliation.InvestigatorAffiliationIdentifier</tag-class>
-		<body-content>empty</body-content>
-
-		<attribute>
-			<name>identifier</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
 		<name>foreachLastNameCount</name>
 		<tag-class>edu.uiowa.medline.lastNameCount.LastNameCountIterator</tag-class>
 		<body-content>JSP</body-content>
@@ -4556,6 +4508,366 @@
 
 		<attribute>
 			<name>count</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachAuthorAffiliationIdentifier</name>
+		<tag-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>inum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationIdentifier</name>
+		<tag-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifier</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>inum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteAuthorAffiliationIdentifier</name>
+		<tag-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>inum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationIdentifierPmid</name>
+		<tag-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationIdentifierSeqnum</name>
+		<tag-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationIdentifierAnum</name>
+		<tag-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierAnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationIdentifierInum</name>
+		<tag-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierInum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>inum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationIdentifierSource</name>
+		<tag-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierSource</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>source</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>authorAffiliationIdentifierIdentifier</name>
+		<tag-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierIdentifier</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>identifier</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>foreachInvestigatorAffiliationIdentifier</name>
+		<tag-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>sortCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>limitCriteria</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>inum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorAffiliationIdentifier</name>
+		<tag-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifier</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>inum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>deleteInvestigatorAffiliationIdentifier</name>
+		<tag-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierDeleter</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>inum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorAffiliationIdentifierPmid</name>
+		<tag-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierPmid</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pmid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorAffiliationIdentifierSeqnum</name>
+		<tag-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierSeqnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>seqnum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorAffiliationIdentifierAnum</name>
+		<tag-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierAnum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>anum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorAffiliationIdentifierInum</name>
+		<tag-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierInum</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>inum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorAffiliationIdentifierSource</name>
+		<tag-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierSource</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>source</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>investigatorAffiliationIdentifierIdentifier</name>
+		<tag-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierIdentifier</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>identifier</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -6604,51 +6916,51 @@
 	</function>
 
 	<function>
-		<name>nameIdExists</name>
-		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
-		<function-signature>java.lang.String nameIdExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+		<name>authorIdentifierExists</name>
+		<function-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierIterator</function-class>
+		<function-signature>java.lang.String authorIdentifierExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>nameIdCountByAuthor</name>
-		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
-		<function-signature>java.lang.String nameIdCountByAuthor(java.lang.String, java.lang.String)</function-signature>
+		<name>authorIdentifierCountByAuthor</name>
+		<function-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierIterator</function-class>
+		<function-signature>java.lang.String authorIdentifierCountByAuthor(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>authorHasNameId</name>
-		<function-class>edu.uiowa.medline.nameId.NameIdIterator</function-class>
-		<function-signature>java.lang.Boolean authorHasNameId(java.lang.String, java.lang.String)</function-signature>
+		<name>authorHasAuthorIdentifier</name>
+		<function-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifierIterator</function-class>
+		<function-signature>java.lang.Boolean authorHasAuthorIdentifier(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>nameIdPmidValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
+		<name>authorIdentifierPmidValue</name>
+		<function-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifier</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
-		<name>nameIdSeqnumValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
+		<name>authorIdentifierSeqnumValue</name>
+		<function-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifier</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
-		<name>nameIdNnumValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
-		<function-signature>java.lang.Integer nnumValue()</function-signature>
+		<name>authorIdentifierInumValue</name>
+		<function-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifier</function-class>
+		<function-signature>java.lang.Integer inumValue()</function-signature>
 	</function>
 
 	<function>
-		<name>nameIdNameIdValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
-		<function-signature>java.lang.String nameIdValue()</function-signature>
-	</function>
-
-	<function>
-		<name>nameIdSourceValue</name>
-		<function-class>edu.uiowa.medline.nameId.NameId</function-class>
+		<name>authorIdentifierSourceValue</name>
+		<function-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifier</function-class>
 		<function-signature>java.lang.String sourceValue()</function-signature>
+	</function>
+
+	<function>
+		<name>authorIdentifierIdentifierValue</name>
+		<function-class>edu.uiowa.medline.authorIdentifier.AuthorIdentifier</function-class>
+		<function-signature>java.lang.String identifierValue()</function-signature>
 	</function>
 
 	<function>
@@ -6754,105 +7066,93 @@
 	</function>
 
 	<function>
-		<name>investigatorNameIdExists</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</function-class>
-		<function-signature>java.lang.String investigatorNameIdExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+		<name>investigatorIdentifierExists</name>
+		<function-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierIterator</function-class>
+		<function-signature>java.lang.String investigatorIdentifierExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>investigatorNameIdCountByInvestigator</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</function-class>
-		<function-signature>java.lang.String investigatorNameIdCountByInvestigator(java.lang.String, java.lang.String)</function-signature>
+		<name>investigatorIdentifierCountByInvestigator</name>
+		<function-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierIterator</function-class>
+		<function-signature>java.lang.String investigatorIdentifierCountByInvestigator(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>investigatorHasInvestigatorNameId</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameIdIterator</function-class>
-		<function-signature>java.lang.Boolean investigatorHasInvestigatorNameId(java.lang.String, java.lang.String)</function-signature>
+		<name>investigatorHasInvestigatorIdentifier</name>
+		<function-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifierIterator</function-class>
+		<function-signature>java.lang.Boolean investigatorHasInvestigatorIdentifier(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>investigatorNameIdPmidValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
+		<name>investigatorIdentifierPmidValue</name>
+		<function-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifier</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
-		<name>investigatorNameIdSeqnumValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
+		<name>investigatorIdentifierSeqnumValue</name>
+		<function-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifier</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
-		<name>investigatorNameIdNnumValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
-		<function-signature>java.lang.Integer nnumValue()</function-signature>
+		<name>investigatorIdentifierInumValue</name>
+		<function-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifier</function-class>
+		<function-signature>java.lang.Integer inumValue()</function-signature>
 	</function>
 
 	<function>
-		<name>investigatorNameIdNameIdValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
-		<function-signature>java.lang.String nameIdValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorNameIdSourceValue</name>
-		<function-class>edu.uiowa.medline.investigatorNameId.InvestigatorNameId</function-class>
+		<name>investigatorIdentifierSourceValue</name>
+		<function-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifier</function-class>
 		<function-signature>java.lang.String sourceValue()</function-signature>
 	</function>
 
 	<function>
-		<name>affiliationExists</name>
-		<function-class>edu.uiowa.medline.affiliation.AffiliationIterator</function-class>
-		<function-signature>java.lang.String affiliationExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+		<name>investigatorIdentifierIdentifierValue</name>
+		<function-class>edu.uiowa.medline.investigatorIdentifier.InvestigatorIdentifier</function-class>
+		<function-signature>java.lang.String identifierValue()</function-signature>
 	</function>
 
 	<function>
-		<name>affiliationCountByAuthor</name>
-		<function-class>edu.uiowa.medline.affiliation.AffiliationIterator</function-class>
-		<function-signature>java.lang.String affiliationCountByAuthor(java.lang.String, java.lang.String)</function-signature>
+		<name>authorAffiliationExists</name>
+		<function-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliationIterator</function-class>
+		<function-signature>java.lang.String authorAffiliationExists(java.lang.String, java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>authorHasAffiliation</name>
-		<function-class>edu.uiowa.medline.affiliation.AffiliationIterator</function-class>
-		<function-signature>java.lang.Boolean authorHasAffiliation(java.lang.String, java.lang.String)</function-signature>
+		<name>authorAffiliationCountByAuthor</name>
+		<function-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliationIterator</function-class>
+		<function-signature>java.lang.String authorAffiliationCountByAuthor(java.lang.String, java.lang.String)</function-signature>
 	</function>
 
 	<function>
-		<name>affiliationPmidValue</name>
-		<function-class>edu.uiowa.medline.affiliation.Affiliation</function-class>
+		<name>authorHasAuthorAffiliation</name>
+		<function-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliationIterator</function-class>
+		<function-signature>java.lang.Boolean authorHasAuthorAffiliation(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationPmidValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliation</function-class>
 		<function-signature>java.lang.Integer pmidValue()</function-signature>
 	</function>
 
 	<function>
-		<name>affiliationSeqnumValue</name>
-		<function-class>edu.uiowa.medline.affiliation.Affiliation</function-class>
+		<name>authorAffiliationSeqnumValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliation</function-class>
 		<function-signature>java.lang.Integer seqnumValue()</function-signature>
 	</function>
 
 	<function>
-		<name>affiliationAnumValue</name>
-		<function-class>edu.uiowa.medline.affiliation.Affiliation</function-class>
+		<name>authorAffiliationAnumValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliation</function-class>
 		<function-signature>java.lang.Integer anumValue()</function-signature>
 	</function>
 
 	<function>
-		<name>affiliationLabelValue</name>
-		<function-class>edu.uiowa.medline.affiliation.Affiliation</function-class>
+		<name>authorAffiliationLabelValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliation.AuthorAffiliation</function-class>
 		<function-signature>java.lang.String labelValue()</function-signature>
-	</function>
-
-	<function>
-		<name>affiliationSourceValue</name>
-		<function-class>edu.uiowa.medline.affiliation.Affiliation</function-class>
-		<function-signature>java.lang.String sourceValue()</function-signature>
-	</function>
-
-	<function>
-		<name>affiliationIdentifierValue</name>
-		<function-class>edu.uiowa.medline.affiliation.Affiliation</function-class>
-		<function-signature>java.lang.String identifierValue()</function-signature>
 	</function>
 
 	<function>
@@ -6898,18 +7198,6 @@
 	</function>
 
 	<function>
-		<name>investigatorAffiliationSourceValue</name>
-		<function-class>edu.uiowa.medline.investigatorAffiliation.InvestigatorAffiliation</function-class>
-		<function-signature>java.lang.String sourceValue()</function-signature>
-	</function>
-
-	<function>
-		<name>investigatorAffiliationIdentifierValue</name>
-		<function-class>edu.uiowa.medline.investigatorAffiliation.InvestigatorAffiliation</function-class>
-		<function-signature>java.lang.String identifierValue()</function-signature>
-	</function>
-
-	<function>
 		<name>lastNameCountCount</name>
 		<function-class>edu.uiowa.medline.lastNameCount.LastNameCountIterator</function-class>
 		<function-signature>java.lang.String lastNameCountCount()</function-signature>
@@ -6931,6 +7219,114 @@
 		<name>lastNameCountCountValue</name>
 		<function-class>edu.uiowa.medline.lastNameCount.LastNameCount</function-class>
 		<function-signature>java.lang.Integer countValue()</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationIdentifierExists</name>
+		<function-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierIterator</function-class>
+		<function-signature>java.lang.String authorAffiliationIdentifierExists(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationIdentifierCountByAuthorAffiliation</name>
+		<function-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierIterator</function-class>
+		<function-signature>java.lang.String authorAffiliationIdentifierCountByAuthorAffiliation(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationHasAuthorAffiliationIdentifier</name>
+		<function-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifierIterator</function-class>
+		<function-signature>java.lang.Boolean authorAffiliationHasAuthorAffiliationIdentifier(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationIdentifierPmidValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.Integer pmidValue()</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationIdentifierSeqnumValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.Integer seqnumValue()</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationIdentifierAnumValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.Integer anumValue()</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationIdentifierInumValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.Integer inumValue()</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationIdentifierSourceValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.String sourceValue()</function-signature>
+	</function>
+
+	<function>
+		<name>authorAffiliationIdentifierIdentifierValue</name>
+		<function-class>edu.uiowa.medline.authorAffiliationIdentifier.AuthorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.String identifierValue()</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorAffiliationIdentifierExists</name>
+		<function-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierIterator</function-class>
+		<function-signature>java.lang.String investigatorAffiliationIdentifierExists(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorAffiliationIdentifierCountByInvestigatorAffiliation</name>
+		<function-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierIterator</function-class>
+		<function-signature>java.lang.String investigatorAffiliationIdentifierCountByInvestigatorAffiliation(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorAffiliationHasInvestigatorAffiliationIdentifier</name>
+		<function-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifierIterator</function-class>
+		<function-signature>java.lang.Boolean investigatorAffiliationHasInvestigatorAffiliationIdentifier(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorAffiliationIdentifierPmidValue</name>
+		<function-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.Integer pmidValue()</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorAffiliationIdentifierSeqnumValue</name>
+		<function-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.Integer seqnumValue()</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorAffiliationIdentifierAnumValue</name>
+		<function-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.Integer anumValue()</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorAffiliationIdentifierInumValue</name>
+		<function-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.Integer inumValue()</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorAffiliationIdentifierSourceValue</name>
+		<function-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.String sourceValue()</function-signature>
+	</function>
+
+	<function>
+		<name>investigatorAffiliationIdentifierIdentifierValue</name>
+		<function-class>edu.uiowa.medline.investigatorAffiliationIdentifier.InvestigatorAffiliationIdentifier</function-class>
+		<function-signature>java.lang.String identifierValue()</function-signature>
 	</function>
 
 	<function>

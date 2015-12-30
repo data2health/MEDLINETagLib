@@ -57,7 +57,7 @@ public class OtherId extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a OtherId from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select source,other_id from medline15.other_id where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select source,other_id from medline16.other_id where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -87,7 +87,7 @@ public class OtherId extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline15.other_id set source = ?, other_id = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline16.other_id set source = ?, other_id = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,source);
 				stmt.setString(2,otherId);
 				stmt.setInt(3,pmid);
@@ -116,7 +116,7 @@ public class OtherId extends MEDLINETagLibTagSupport {
 				source = "";
 			if (otherId == null)
 				otherId = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline15.other_id(pmid,seqnum,source,other_id) values (?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.other_id(pmid,seqnum,source,other_id) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,source);
