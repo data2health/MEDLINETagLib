@@ -311,7 +311,6 @@ public class ClusteringSource extends ExternalSource {
     }
 
     public String citationString(int pmid) {
-        String citationString = "";
     	return null;
     }
     

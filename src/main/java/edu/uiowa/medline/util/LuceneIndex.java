@@ -111,6 +111,7 @@ public class LuceneIndex {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	static IndexWriter initializeWriter() {
 		IndexWriter theWriter = null;
 		logger.debug("Starting Index Operation");

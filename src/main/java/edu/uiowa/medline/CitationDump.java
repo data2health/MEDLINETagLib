@@ -15,6 +15,7 @@ import java.util.*;
 
 public class CitationDump extends DefaultHandler {
 
+	@SuppressWarnings("unused")
 	private static final Log log = LogFactory.getLog(CitationDump.class);
 
 	static Connection conn = null;
@@ -48,6 +49,7 @@ public class CitationDump extends DefaultHandler {
 		cntStmt.close();
 	}
 	
+	@SuppressWarnings("unused")
 	static void emit(int pmid) throws Exception {
 		PreparedStatement artStmt = medConn.prepareStatement("select title,medline_pgn from medline14.article where pmid=?");
 		artStmt.setInt(1, pmid);

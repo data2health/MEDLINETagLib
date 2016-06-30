@@ -12,7 +12,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 
 import edu.uiowa.medline.MEDLINETagLibTagSupport;
-import edu.uiowa.medline.Sequence;
 
 @SuppressWarnings("serial")
 public class AuthorCount extends MEDLINETagLibTagSupport {

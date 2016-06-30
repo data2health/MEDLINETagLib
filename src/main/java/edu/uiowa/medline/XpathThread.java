@@ -3,7 +3,6 @@ package edu.uiowa.medline;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
-import org.dom4j.Element;
 
 public class XpathThread implements Runnable {
     static Logger logger = Logger.getLogger(XpathThread.class);

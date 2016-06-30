@@ -31,6 +31,7 @@ public abstract class PropertyLoader {
      * @throws IllegalArgumentException if the resource was not found and
      * THROW_ON_LOAD_FAILURE is true
      */
+    @SuppressWarnings("rawtypes")
     public static Properties loadProperties (String name, ClassLoader loader)
     {
         if (name == null)

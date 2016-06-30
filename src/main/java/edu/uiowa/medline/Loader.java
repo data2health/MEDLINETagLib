@@ -369,7 +369,6 @@ public class Loader extends DefaultHandler {
 				if (load || doThisOne)
 					try {
 						int existingID = 0;
-						PreparedStatement citeStmt = null;
 						PreparedStatement cntStmt = conn.prepareStatement("select pmid from article where pmid = ?");
 						cntStmt.setInt(1, pmid);
 						ResultSet rs = cntStmt.executeQuery();

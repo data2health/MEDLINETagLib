@@ -4,6 +4,7 @@ package edu.uiowa.medline.article;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -21,6 +22,7 @@ public class ArticleByAuthorIterator extends MEDLINETagLibBodyTagSupport {
     String lastName = null;
     String foreName = null;
 
+	@SuppressWarnings("unused")
 	private static final Log log =LogFactory.getLog(Article.class);
 
 	public static String authorArticleCount(String lastName, String foreName, String year) throws JspTagException {
@@ -66,6 +68,7 @@ public class ArticleByAuthorIterator extends MEDLINETagLibBodyTagSupport {
     String var = null;
     int rsCount = 0;
 
+    @SuppressWarnings("unused")
     public int doStartTag() throws JspException {
 
 

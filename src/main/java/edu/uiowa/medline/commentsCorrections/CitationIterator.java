@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -26,6 +27,7 @@ public class CitationIterator extends MEDLINETagLibBodyTagSupport {
     String note = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
+	@SuppressWarnings("unused")
 	private static final Log log =LogFactory.getLog(CommentsCorrections.class);
 
 	public static String citationCount(String pmid) throws JspTagException {

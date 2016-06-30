@@ -4,6 +4,7 @@ package edu.uiowa.medline.article;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -11,7 +12,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 
 import edu.uiowa.medline.MEDLINETagLibBodyTagSupport;
-import edu.uiowa.medline.commentsCorrections.CommentsCorrectionsIterator;
 
 @SuppressWarnings("serial")
 
@@ -20,6 +20,7 @@ public class CoauthorCountIterator extends MEDLINETagLibBodyTagSupport {
     String lastName = null;
     String foreName = null;
 
+	@SuppressWarnings("unused")
 	private static final Log log =LogFactory.getLog(Article.class);
 
     PreparedStatement stat = null;

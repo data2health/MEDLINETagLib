@@ -38,6 +38,11 @@ public class AuthorListForArticle extends MEDLINETagLibTagSupport {
         }
 		return SKIP_BODY;
 	}
+    
+    public int doEndTag() throws JspException {
+	clearServiceState();
+	return super.doEndTag();
+    }
 
     /**
      * @return the iD

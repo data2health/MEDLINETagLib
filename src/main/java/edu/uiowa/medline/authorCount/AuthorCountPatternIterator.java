@@ -74,6 +74,7 @@ public class AuthorCountPatternIterator extends MEDLINETagLibBodyTagSupport {
 		return count > 0;
 	}
 
+    @SuppressWarnings("unused")
     public int doStartTag() throws JspException {
 
 

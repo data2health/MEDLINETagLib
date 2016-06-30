@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -26,6 +27,7 @@ public class CoCitationIterator extends MEDLINETagLibBodyTagSupport {
     String note = null;
 	Vector<MEDLINETagLibTagSupport> parentEntities = new Vector<MEDLINETagLibTagSupport>();
 
+	@SuppressWarnings("unused")
 	private static final Log log =LogFactory.getLog(CommentsCorrections.class);
 
 	public static String coCitationCount(String pmid) throws JspTagException {
@@ -97,16 +99,19 @@ public class CoCitationIterator extends MEDLINETagLibBodyTagSupport {
         return SKIP_BODY;
     }
 
+    @SuppressWarnings("unused")
     private String generateFromClause() {
        StringBuffer theBuffer = new StringBuffer("medline14.comments_corrections");
       return theBuffer.toString();
     }
 
+    @SuppressWarnings("unused")
     private String generateJoinCriteria() {
        StringBuffer theBuffer = new StringBuffer(" and ref_type='Cites'");
       return theBuffer.toString();
     }
 
+    @SuppressWarnings("unused")
     private String generateSortCriteria() {
         if (sortCriteria != null) {
             return sortCriteria;

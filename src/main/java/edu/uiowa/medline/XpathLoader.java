@@ -3,7 +3,6 @@ package edu.uiowa.medline;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
@@ -17,13 +16,11 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Properties;
 
-import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
@@ -47,6 +44,7 @@ public class XpathLoader {
      * @param args
      * @throws Exception
      */
+    @SuppressWarnings("unused")
     public static void main(String[] args) throws Exception {
 	PropertyConfigurator.configure(args[0]);
 
@@ -179,6 +177,7 @@ public class XpathLoader {
 	return root;
     }
     
+    @SuppressWarnings("unchecked")
     void processDocument(Element root) throws SQLException {
 	ListIterator<Element> citations = root.selectNodes("MedlineCitation").listIterator();
 	while (citations.hasNext()) {
@@ -203,6 +202,7 @@ public class XpathLoader {
 	recordsDeleted = 0;
     }
 
+    @SuppressWarnings("unchecked")
     void deleteCitation(Node deleteNode) throws SQLException {
 	// <!ELEMENT DeleteCitation (PMID+)>
 
@@ -308,6 +308,7 @@ public class XpathLoader {
 
     }
     
+    @SuppressWarnings("unused")
     void article(int pmid, Element citationElement) throws SQLException {
 	GregorianCalendar dateCreated = new GregorianCalendar(Integer.parseInt(citationElement.selectSingleNode("DateCreated/Year").getText()),
 		Integer.parseInt(citationElement.selectSingleNode("DateCreated/Month").getText()) - 1, Integer.parseInt(citationElement.selectSingleNode(
@@ -470,6 +471,7 @@ public class XpathLoader {
 	stmt.close();
     }
 
+    @SuppressWarnings("unchecked")
     void author(int pmid, Node authorListNode) throws SQLException {
 	// <!ELEMENT Author (((LastName, ForeName?, Initials?, Suffix?) |
 	// CollectiveName),NameID*)>
@@ -516,6 +518,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void chemical(int pmid, Node chemicalListNode) throws SQLException {
 	// <!ELEMENT Chemical (RegistryNumber,NameOfSubstance)>
 	// <!ELEMENT ChemicalList (Chemical+)>
@@ -549,6 +552,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void supplMesh(int pmid, Node supplMeshListNode) throws SQLException {
 	// <!ELEMENT SupplMeshList (SupplMeshName+)>
 	// <!ELEMENT SupplMeshName (#PCDATA)>
@@ -581,6 +585,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void citationSubset(int pmid, List list) throws SQLException {
 	// <!ELEMENT CitationSubset (#PCDATA)>
 	int seqnum = 1;
@@ -605,6 +610,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void commentsCorrections(int pmid, Node commentsCorrectionsListNode) throws SQLException {
 	// <!ELEMENT CommentsCorrections (RefSource,PMID?,Note?)>
 	// <!ATTLIST CommentsCorrections
@@ -648,6 +654,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void geneSymbol(int pmid, Node geneSymbolListNode) throws SQLException {
 	// <!ELEMENT GeneSymbol (#PCDATA)>
 	// <!ELEMENT GeneSymbolList (GeneSymbol+)>
@@ -673,6 +680,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void meshHeading(int pmid, Node meshHeadingListNode) throws SQLException {
 	// <!ELEMENT MeshHeading (DescriptorName, QualifierName*)>
 	// <!ELEMENT MeshHeadingList (MeshHeading+)>
@@ -738,6 +746,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void personalName(int pmid, Node personalNameListNode) throws SQLException {
 	// <!ELEMENT PersonalNameSubject (LastName,ForeName?,
 	// Initials?,Suffix?)>
@@ -773,6 +782,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void otherID(int pmid, List list) throws SQLException {
 	// <!ELEMENT OtherID (#PCDATA)>
 	// <!ATTLIST OtherID Source (NASA | KIE | PIP | POP | ARPL | CPC |
@@ -802,6 +812,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void otherAbstract(int pmid, List list) throws SQLException {
 	// <!ELEMENT OtherAbstract (AbstractText+,CopyrightInformation?)>
 	// <!ATTLIST OtherAbstract Type (AAMC | AIDS | KIE | PIP |
@@ -834,6 +845,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void otherAbstractText(int pmid, int seqnum, Node abstractNode) throws SQLException {
 	// <!ELEMENT AbstractText (#PCDATA)>
 	// <!ATTLIST AbstractText
@@ -870,6 +882,7 @@ public class XpathLoader {
 
     }
 
+    @SuppressWarnings("unchecked")
     void keyword(int pmid, Node keywordListNode) throws SQLException {
 	// <!ELEMENT Keyword (#PCDATA)>
 	// <!ATTLIST Keyword MajorTopicYN (Y | N) "N">
@@ -904,6 +917,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void spaceFlightMission(int pmid, List list) throws SQLException {
 	// <!ELEMENT SpaceFlightMission (#PCDATA)>
 	int seqnum = 1;
@@ -928,6 +942,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void investigator(int pmid, Node investigatorListNode) throws SQLException {
 	// <!ELEMENT Investigator (LastName,ForeName?,
 	// Initials?,Suffix?,NameID*,Affiliation?)>
@@ -970,6 +985,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void generalNote(int pmid, List list) throws SQLException {
 	// <!ELEMENT GeneralNote (#PCDATA)>
 	// <!ATTLIST GeneralNote Owner (NLM | NASA | PIP | KIE | HSR | HMD)
@@ -999,6 +1015,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void elocationID(int pmid, List list) throws SQLException {
 	// <!ELEMENT ELocationID (#PCDATA)>
 	// <!ATTLIST ELocationID EIdType (doi | pii) #REQUIRED
@@ -1028,6 +1045,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void abstr(int pmid, Node abstrNode) throws SQLException {
 	// <!ELEMENT Abstract (AbstractText+,CopyrightInformation?)>
 	int seqnum = 1;
@@ -1069,6 +1087,7 @@ public class XpathLoader {
 
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void language(int pmid, List list) throws SQLException {
 	// <!ELEMENT Language (#PCDATA)>
 	int seqnum = 1;
@@ -1093,6 +1112,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void dataBank(int pmid, Node dataBankListNode) throws SQLException {
 	// <!ELEMENT DataBank (DataBankName, AccessionNumberList?)>
 	// <!ELEMENT DataBankList (DataBank+)>
@@ -1138,6 +1158,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void grant(int pmid, Node grantListNode) throws SQLException {
 	// <!ELEMENT Grant (GrantID?, Acronym?, Agency, Country)>
 	// <!ELEMENT GrantID (#PCDATA)>
@@ -1174,6 +1195,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     void publicationType(int pmid, Node publicationTypeListNode) throws SQLException {
 	// <!ELEMENT PublicationType (#PCDATA)>
 	// <!ELEMENT PublicationTypeList (PublicationType+)>
@@ -1202,6 +1224,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void identifier(int pmid, int seqnum, String tableName, List list) throws SQLException {
 	// <!ELEMENT Identifier (#PCDATA)>
 	// <!ATTLIST Identifier
@@ -1233,6 +1256,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void affiliation(int pmid, int seqnum, String tableName, List list) throws SQLException {
 	// <!ELEMENT NameID (#PCDATA)>
 	// <!ATTLIST NameID
@@ -1264,6 +1288,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void affiliationIdentifier(int pmid, int seqnum, int anum, String tableName, List list) throws SQLException {
 	// <!ELEMENT Identifier (#PCDATA)>
 	// <!ATTLIST Identifier
@@ -1295,6 +1320,7 @@ public class XpathLoader {
 	}
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     void articleDate(int pmid, List list) throws SQLException {
 	// <!ELEMENT ArticleDate (Year,Month,Day)>
 	// <!ATTLIST ArticleDate DateType CDATA #FIXED "Electronic">
