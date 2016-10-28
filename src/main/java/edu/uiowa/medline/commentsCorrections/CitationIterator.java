@@ -34,7 +34,7 @@ public class CitationIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		CommentsCorrectionsIterator theIterator = new CommentsCorrectionsIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.comments_corrections where ref_type='Cites'"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.comments_corrections where ref_type='Cites'"
 						+ " and pmid = ?"
 						);
 
@@ -93,7 +93,7 @@ public class CitationIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.comments_corrections.ref_pmid, medline14.comments_corrections.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline16.comments_corrections.ref_pmid, medline16.comments_corrections.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -117,7 +117,7 @@ public class CitationIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline14.comments_corrections");
+       StringBuffer theBuffer = new StringBuffer("medline16.comments_corrections");
       return theBuffer.toString();
     }
 

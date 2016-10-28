@@ -131,7 +131,7 @@
         <executions>
           <execution>
             <goals>
-              <goal>WebApp</goal>
+<!--               <goal>WebApp</goal> -->
             </goals>
 
           </execution>

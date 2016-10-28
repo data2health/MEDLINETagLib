@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -80,7 +79,6 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
 		return count > 0;
 	}
 
-    @SuppressWarnings("unused")
     public int doStartTag() throws JspException {
 
 

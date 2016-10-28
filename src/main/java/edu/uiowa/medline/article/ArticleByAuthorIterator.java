@@ -30,8 +30,8 @@ public class ArticleByAuthorIterator extends MEDLINETagLibBodyTagSupport {
 		CommentsCorrectionsIterator theIterator = new CommentsCorrectionsIterator();
 		try {
 			int argCount = 1;
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline14.author"
-						+ (year != null && year.length() > 0 ? ",medline14.journal" : "")
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.author"
+						+ (year != null && year.length() > 0 ? ",medline16.journal" : "")
 						+ " where last_name = ?"
 						+ (foreName != null && foreName.length() > 0 ? " and fore_name = ?" : "")
 						+ (year != null && year.length() > 0 ? " and author.pmid=journal.pmid and pub_year = ?" : "")
@@ -88,7 +88,7 @@ public class ArticleByAuthorIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline14.article.pmid from " + generateFromClause() + " where"
+            stat = getConnection().prepareStatement("SELECT medline16.article.pmid from " + generateFromClause() + " where"
                                                         + generateJoinCriteria()
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
             rs = stat.executeQuery();
@@ -109,7 +109,7 @@ public class ArticleByAuthorIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer(" medline14.article,medline14.journal,medline14.author");
+       StringBuffer theBuffer = new StringBuffer(" medline16.article,medline16.journal,medline16.author");
       return theBuffer.toString();
     }
 

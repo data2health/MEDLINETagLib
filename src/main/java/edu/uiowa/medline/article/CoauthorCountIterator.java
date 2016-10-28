@@ -36,8 +36,8 @@ public class CoauthorCountIterator extends MEDLINETagLibBodyTagSupport {
 
       try {
     	  int argCount = 1;
-    	  stat = getConnection().prepareStatement("SELECT last_name,fore_name,count(*) from medline14.author"
-					+ " where pmid in (select pmid from medline14.author"
+    	  stat = getConnection().prepareStatement("SELECT last_name,fore_name,count(*) from medline16.author"
+					+ " where pmid in (select pmid from medline16.author"
 					+ " where last_name = ?"
 					+ (foreName != null && foreName.length() > 0 ? " and fore_name = ?" : "")
 					+ ")"

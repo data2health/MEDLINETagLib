@@ -37,8 +37,8 @@ public class AuthorCountIterator extends MEDLINETagLibBodyTagSupport {
 
       try {
     	  int argCount = 1;
-    	  stat = getConnection().prepareStatement("SELECT last_name,fore_name,count(*) from medline14.author"
-					+ (year != 0 ? ",medline14.journal" : "")
+    	  stat = getConnection().prepareStatement("SELECT last_name,fore_name,count(*) from medline16.author"
+					+ (year != 0 ? ",medline16.journal" : "")
 					+ " where last_name = ?"
 					+ (foreName != null && foreName.length() > 0 ? " and fore_name ~ ?" : "")
 					+ (year != 0 ? " and author.pmid=journal.pmid and pub_year = ?" : "")

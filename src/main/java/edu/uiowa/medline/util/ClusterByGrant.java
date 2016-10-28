@@ -99,8 +99,8 @@ public class ClusterByGrant {
 			Cluster theCluster = new Cluster(cid);
 			clusters.add(theCluster);
 			
-			PreparedStatement grantStmt = useFirstInitial ? theConnection.prepareStatement("select gid from medline14.grant,medline_clustering.document_cluster_prefix_2 as cluster,medline_clustering.cluster_document_prefix_2 as document where cluster.cid=? and medline14.grant.pmid=document.pmid and document.cid=cluster.cid")
-														  : theConnection.prepareStatement("select gid from medline14.grant,medline_clustering.document_cluster_2 as cluster,medline_clustering.cluster_document_2 as document where cluster.cid=? and medline14.grant.pmid=document.pmid and document.cid=cluster.cid");
+			PreparedStatement grantStmt = useFirstInitial ? theConnection.prepareStatement("select gid from medline16.grant,medline_clustering.document_cluster_prefix_2 as cluster,medline_clustering.cluster_document_prefix_2 as document where cluster.cid=? and medline16.grant.pmid=document.pmid and document.cid=cluster.cid")
+														  : theConnection.prepareStatement("select gid from medline16.grant,medline_clustering.document_cluster_2 as cluster,medline_clustering.cluster_document_2 as document where cluster.cid=? and medline16.grant.pmid=document.pmid and document.cid=cluster.cid");
 			grantStmt.setInt(1, cid);
 			ResultSet grs = grantStmt.executeQuery();
 			while (grs.next()) {
