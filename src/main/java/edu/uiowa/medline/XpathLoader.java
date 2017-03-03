@@ -78,8 +78,8 @@ public class XpathLoader {
 	if (args[1].equals("-full")) {
 //	    loaderThread = new Thread(new XpathThread(documentQueue));
 //	    loaderThread.start();
-	    for (int i = 1; i <= 812; i++) {
-		String fileName = "/Volumes/SLIS_SAN_01/Corpora/MEDLINE16/ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/medline16n" + formatter.format(i) + ".xml.gz";
+	    for (int i = 1; i <= 892; i++) {
+		String fileName = "/Volumes/SLIS_SAN_01/Corpora/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/baseline/medline17n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		XpathLoader theLoader = new XpathLoader(fileName);
 //		Element root = parseDocument(fileName);
@@ -100,8 +100,8 @@ public class XpathLoader {
 	} else if (args[1].equals("-update")) {
 //	    loaderThread = new Thread(new XpathThread(documentQueue));
 //	    loaderThread.start();
-	    for (int i = 813; i <= 890; i++) {
-		String fileName = "/Volumes/SLIS_SAN_01/Corpora/MEDLINE16/ftp.nlm.nih.gov/nlmdata/.medlease/gz/medline16n" + formatter.format(i) + ".xml.gz";
+	    for (int i = 893; i <= 1070; i++) {
+		String fileName = "/Volumes/SLIS_SAN_01/Corpora/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/medline17n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		XpathLoader theLoader = new XpathLoader(fileName);
 //		Element root = parseDocument(fileName);
@@ -141,7 +141,7 @@ public class XpathLoader {
 	conn = DriverManager.getConnection(db_url, props);
 	conn.setAutoCommit(false);
 
-	PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline16,loki");
+	PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline17,loki");
 	pathStmt.executeUpdate();
 	pathStmt.close();
 
@@ -171,7 +171,7 @@ public class XpathLoader {
 
 	Document document = reader.read(in);
 	Element root = document.getRootElement();
-	logger.trace("document root: " + root.getName());
+	logger.debug("document root: " + root.getName());
 	in.close();
 	
 	return root;
@@ -179,9 +179,7 @@ public class XpathLoader {
     
     @SuppressWarnings("unchecked")
     void processDocument(Element root) throws SQLException {
-	ListIterator<Element> citations = root.selectNodes("MedlineCitation").listIterator();
-	while (citations.hasNext()) {
-	    Element citation = citations.next();
+	for (Element citation : (List<Element>) root.selectNodes("PubmedArticle/MedlineCitation")) {
 	    medlineCitation(citation);
 	}
 
@@ -249,7 +247,7 @@ public class XpathLoader {
 
 	// MedlineCitation elements
 	int pmid = Integer.parseInt(citationElement.selectSingleNode("PMID").getText());
-	logger.trace("\tcitation pmid: " + pmid);
+	logger.debug("\tcitation pmid: " + pmid);
 	
 	int found = 0;
 	PreparedStatement cntStmt = conn.prepareStatement("select pmid from article where pmid = ?");
@@ -259,7 +257,7 @@ public class XpathLoader {
 	    found++;
 	}
 	cntStmt.close();
-	if (found == 0)
+	if (found != 0)
 	    return;
 
 	PreparedStatement delStmt = conn.prepareStatement("delete from author where pmid = ?");
@@ -1181,7 +1179,7 @@ public class XpathLoader {
 	    String country = grantNode.selectSingleNode("Country") == null ? null : grantNode.selectSingleNode("Country").getText();
 	    logger.trace("\t\tcountry: " + country);
 
-	    PreparedStatement stmt = conn.prepareStatement("insert into medline16.grant values (?,?,?,?,?,?)");
+	    PreparedStatement stmt = conn.prepareStatement("insert into medline17.grant values (?,?,?,?,?,?)");
 	    stmt.setInt(1, pmid);
 	    stmt.setInt(2, seqnum);
 	    stmt.setString(3, grantID);
@@ -1358,15 +1356,15 @@ public class XpathLoader {
     static void materializeAuthorView() throws SQLException {
 	// refresh author uid-pmid cache with new data
 	execute("delete from author_cache10");
-	execute("analyze medline16.author");
-	execute("analyze medline16.journal");
+	execute("analyze medline17.author");
+	execute("analyze medline17.journal");
 	execute("update journal set pub_day=28 where (pub_month='Feb' or pub_month='02') and pub_day > 28");
 	execute("update journal set pub_day=30 where (pub_month='Sep' or pub_month='09' or pub_month='Apr' or pub_month='04' or pub_month='Jun' or pub_month='06' or pub_month='Nov' or pub_month='11') and pub_day > 30");
-	execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline16.author.pmid"
-		+ " from loki.authors,medline16.author,medline16.journal"
-		+ " where authors.lastname=medline16.author.last_name and authors.forename=medline16.author.fore_name and medline16.author.pmid=medline16.journal.pmid");
-	execute("update author_cache10 set pubdate = (pub_month||' 01 '||pub_year)::date from medline16.journal where journal.pmid=author_cache10.pmid and pubdate is null and pub_month is not null");
-	execute("update author_cache10 set pubdate = ('Jan 01 '||pub_year)::date from medline16.journal where journal.pmid=author_cache10.pmid and pubdate is null");
+	execute("insert into author_cache10 select authors.id,(pub_year||'-'||pub_month||'-'||pub_day)::date,medline17.author.pmid"
+		+ " from loki.authors,medline17.author,medline17.journal"
+		+ " where authors.lastname=medline17.author.last_name and authors.forename=medline17.author.fore_name and medline17.author.pmid=medline17.journal.pmid");
+	execute("update author_cache10 set pubdate = (pub_month||' 01 '||pub_year)::date from medline17.journal where journal.pmid=author_cache10.pmid and pubdate is null and pub_month is not null");
+	execute("update author_cache10 set pubdate = ('Jan 01 '||pub_year)::date from medline17.journal where journal.pmid=author_cache10.pmid and pubdate is null");
 	execute("analyze author_cache10");
 
 	PreparedStatement cntStmt = conn.prepareStatement("select count(*) from author_cache10");
@@ -1382,14 +1380,14 @@ public class XpathLoader {
 	execute("set session random_page_cost = 1");
 
 	// refresh author statistics with new data
-	execute("truncate medline16.author_count");
-	execute("insert into medline16.author_count select last_name,fore_name,count(*) from medline16.author where fore_name is not null group by 1,2");
-	execute("analyze medline16.author_count");
+	execute("truncate medline17.author_count");
+	execute("insert into medline17.author_count select last_name,fore_name,count(*) from medline17.author where fore_name is not null group by 1,2");
+	execute("analyze medline17.author_count");
 
 	// refresh MeSH terminology and tf*idf statistics with new data
 	execute("delete from loki.mesh");
-	execute("insert into loki.mesh select id, descriptor_name as term from loki.publication natural join medline16.mesh_heading where descriptor_name is not null");
-	execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline16.mesh_heading where descriptor_name is not null and not exists (select id from publication where author_cache10.id=publication.id and pmid > 0)");
+	execute("insert into loki.mesh select id, descriptor_name as term from loki.publication natural join medline17.mesh_heading where descriptor_name is not null");
+	execute("insert into loki.mesh select id, descriptor_name as term from loki.author_cache10 natural join medline17.mesh_heading where descriptor_name is not null and not exists (select id from publication where author_cache10.id=publication.id and pmid > 0)");
 
 	// TODO Now reset the parameters to their defaults.
 	execute("set session enable_seqscan = on");
