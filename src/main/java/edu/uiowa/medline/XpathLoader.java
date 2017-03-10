@@ -78,7 +78,7 @@ public class XpathLoader {
 	if (args[1].equals("-full")) {
 //	    loaderThread = new Thread(new XpathThread(documentQueue));
 //	    loaderThread.start();
-	    for (int i = 1; i <= 892; i++) {
+	    for (int i = 640; i <= 892; i++) {
 		String fileName = "/Volumes/SLIS_SAN_01/Corpora/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/baseline/medline17n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		XpathLoader theLoader = new XpathLoader(fileName);
@@ -628,7 +628,7 @@ public class XpathLoader {
 	    Node commentNode = commCorrs.next();
 	    String refSource = commentNode.selectSingleNode("RefSource") == null ? null : commentNode.selectSingleNode("RefSource").getText();
 	    logger.trace("\t\trefSource: " + refSource);
-	    int pmid2 = commentNode.selectSingleNode("PMID") == null ? 0 : Integer.parseInt(commentNode.selectSingleNode("PMID").getText());
+	    int pmid2 = commentNode.selectSingleNode("PMID") == null ? 0 : Integer.parseInt(commentNode.selectSingleNode("PMID").getText().trim());
 	    logger.trace("\t\tpmid: " + pmid2);
 	    String note = commentNode.selectSingleNode("Note") == null ? null : commentNode.selectSingleNode("Note").getText();
 	    logger.trace("\t\tnote: " + note);
