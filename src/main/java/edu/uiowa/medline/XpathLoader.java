@@ -30,7 +30,7 @@ public class XpathLoader {
     static DecimalFormat formatter = new DecimalFormat("0000");
     static Properties prop_file = PropertyLoader.loadProperties("loader");
 
-    static Connection conn = null;
+    Connection conn = null;
     
     static DocumentQueue documentQueue = new DocumentQueue();
     static Thread loaderThread = null;
@@ -48,55 +48,35 @@ public class XpathLoader {
     public static void main(String[] args) throws Exception {
 	PropertyConfigurator.configure(args[0]);
 
-	String db_user = prop_file.getProperty("db.user.name", "eichmann");
-	logger.debug("Database User Name: " + db_user);
-	String db_pass = prop_file.getProperty("db.user.password", "translational");
-
-	String use_ssl = prop_file.getProperty("db.use.ssl", "false");
-	logger.debug("Database SSL: " + use_ssl);
-
-	String databaseHost = prop_file.getProperty("db.host", "neuromancer.icts.uiowa.edu");
-	logger.debug("Database Host: " + databaseHost);
-
-	String databaseName = prop_file.getProperty("db.name", "bioinformatics");
-	logger.debug("Database Name: " + databaseName);
-
-	String db_url = prop_file.getProperty("db.url", "jdbc:postgresql://" + databaseHost + "/" + databaseName);
-	logger.debug("Database URL: " + db_url);
-
-	Class.forName("org.postgresql.Driver");
-	Properties props = new Properties();
-	props.setProperty("user", "eichmann");
-	props.setProperty("password", "translational");
-	if (use_ssl.equals("true")) {
-	    props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
-	    props.setProperty("ssl", "true");
-	}
-
-	sessionReset(db_url, props);
-
 	if (args[1].equals("-full")) {
-//	    loaderThread = new Thread(new XpathThread(documentQueue));
-//	    loaderThread.start();
-	    for (int i = 640; i <= 892; i++) {
-		String fileName = "/Volumes/SLIS_SAN_01/Corpora/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/baseline/medline17n" + formatter.format(i) + ".xml.gz";
+	    for (int i = 1; i <= 892; i++) {
+		String fileName = "/Volumes/SSD/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/baseline/medline17n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		XpathLoader theLoader = new XpathLoader(fileName);
-//		Element root = parseDocument(fileName);
-//		theLoader.processDocument(root);
-//		while (documentQueue.atCapacity()) {
-//		    logger.info("parser thread sleeping...");
-//		    Thread.sleep(2* 60 * 1000);
-//		}
-//		documentQueue.queue(fileName, root);
-
-//		if (i % 5 == 0) {
-//		    sessionReset(db_url, props);
-//		}
 	    }
 	    logger.info("parsing completed.");
-//	    documentQueue.completed();
-//	    loaderThread.join();
+	} else if (args[1].equals("-threaded")) {
+	    for (int i = 1; i <= 892; i++) {
+		String fileName = "/Volumes/SSD/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/baseline/medline17n" + formatter.format(i) + ".xml.gz";
+		logger.info("file: " + fileName);
+		documentQueue.queue(fileName, null);
+	    }
+
+	    int maxCrawlerThreads = Runtime.getRuntime().availableProcessors();
+	    Thread[] scannerThreads = new Thread[maxCrawlerThreads];
+
+	    for (int i = 0; i < maxCrawlerThreads; i++) {
+		logger.info("starting thread " + i);
+		Thread theThread = new Thread(new XpathThread(documentQueue));
+		theThread.setPriority(Math.max(theThread.getPriority() - 2, Thread.MIN_PRIORITY));
+		theThread.start();
+		scannerThreads[i] = theThread;
+	    }
+
+	    for (int i = 0; i < maxCrawlerThreads; i++) {
+		scannerThreads[i].join();
+	    }
+	    logger.info("parsing completed.");
 	} else if (args[1].equals("-update")) {
 //	    loaderThread = new Thread(new XpathThread(documentQueue));
 //	    loaderThread.start();
@@ -128,13 +108,56 @@ public class XpathLoader {
 	    }
 //	    materializeAuthorView();
 	} else if (args[1].equals("-materialize")) {
-	    materializeAuthorView();
+//	    materializeAuthorView();
 	} else {
 	    XpathLoader theLoader = new XpathLoader(args[1]);
 	}
     }
+    
+    static Connection getConnection() throws SQLException, ClassNotFoundException {
+	Connection conn = null;
+	
+	String db_user = prop_file.getProperty("db.user.name", "eichmann");
+	logger.debug("Database User Name: " + db_user);
+	String db_pass = prop_file.getProperty("db.user.password", "translational");
 
-    static void sessionReset(String db_url, Properties props) throws SQLException {
+	String use_ssl = prop_file.getProperty("db.use.ssl", "false");
+	logger.debug("Database SSL: " + use_ssl);
+
+	String databaseHost = prop_file.getProperty("db.host", "neuromancer.icts.uiowa.edu");
+	logger.debug("Database Host: " + databaseHost);
+
+	String databaseName = prop_file.getProperty("db.name", "bioinformatics");
+	logger.debug("Database Name: " + databaseName);
+
+	String db_url = prop_file.getProperty("db.url", "jdbc:postgresql://" + databaseHost + "/" + databaseName);
+	logger.debug("Database URL: " + db_url);
+
+	Class.forName("org.postgresql.Driver");
+	Properties props = new Properties();
+	props.setProperty("user", "eichmann");
+	props.setProperty("password", "translational");
+	if (use_ssl.equals("true")) {
+	    props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
+	    props.setProperty("ssl", "true");
+	}
+	
+	conn = DriverManager.getConnection(db_url, props);
+	conn.setAutoCommit(false);
+	
+
+	PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline17,loki");
+	pathStmt.executeUpdate();
+	pathStmt.close();
+
+	pathStmt = conn.prepareStatement("set constraints all deferred");
+	pathStmt.executeUpdate();
+	pathStmt.close();
+
+	return conn;
+    }
+
+    void sessionReset(String db_url, Properties props) throws SQLException {
 	if (conn != null)
 	    conn.close();
 
@@ -151,11 +174,12 @@ public class XpathLoader {
 
     }
     
-    public XpathLoader() {
-	
+    public XpathLoader() throws Exception {
+	conn = getConnection();
     }
 
     public XpathLoader(String fileName) throws Exception {
+	conn = getConnection();
 	processDocument(parseDocument(fileName));
     }
     
@@ -628,7 +652,7 @@ public class XpathLoader {
 	    Node commentNode = commCorrs.next();
 	    String refSource = commentNode.selectSingleNode("RefSource") == null ? null : commentNode.selectSingleNode("RefSource").getText();
 	    logger.trace("\t\trefSource: " + refSource);
-	    int pmid2 = commentNode.selectSingleNode("PMID") == null ? 0 : Integer.parseInt(commentNode.selectSingleNode("PMID").getText().trim());
+	    int pmid2 = commentNode.selectSingleNode("PMID") == null ? 0 : Integer.parseInt(commentNode.selectSingleNode("PMID").getText());
 	    logger.trace("\t\tpmid: " + pmid2);
 	    String note = commentNode.selectSingleNode("Note") == null ? null : commentNode.selectSingleNode("Note").getText();
 	    logger.trace("\t\tnote: " + note);
@@ -1353,7 +1377,7 @@ public class XpathLoader {
 	}
     }
 
-    static void materializeAuthorView() throws SQLException {
+    void materializeAuthorView() throws SQLException {
 	// refresh author uid-pmid cache with new data
 	execute("delete from author_cache10");
 	execute("analyze medline17.author");
@@ -1404,7 +1428,7 @@ public class XpathLoader {
 	execute("end transaction");
     }
 
-    static void execute(String statement) throws SQLException {
+    void execute(String statement) throws SQLException {
 	logger.info("executing " + statement + "...");
 	PreparedStatement stmt = conn.prepareStatement(statement);
 	stmt.executeUpdate();

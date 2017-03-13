@@ -1,15 +1,14 @@
 package edu.uiowa.medline;
 
-import java.sql.SQLException;
-
 import org.apache.log4j.Logger;
 
 public class XpathThread implements Runnable {
     static Logger logger = Logger.getLogger(XpathThread.class);
-    XpathLoader theLoader = new XpathLoader();
+    XpathLoader theLoader = null;
     DocumentQueue theQueue = null;
     
-    public XpathThread(DocumentQueue theQueue) {
+    public XpathThread(DocumentQueue theQueue) throws Exception {
+	theLoader = new XpathLoader();
 	this.theQueue = theQueue;
     }
 
@@ -18,18 +17,16 @@ public class XpathThread implements Runnable {
 	while (!theQueue.isCompleted()) {
 	    DocumentRequest theRequest = theQueue.dequeue();
 	    if (theRequest == null) {
-		try {
-		    logger.info("loader thread sleeping...");
-		    Thread.sleep(5000);
-		} catch (InterruptedException e) {
-		    logger.error("loader sleep error: ", e);
-		}
+		return;
 	    } else {
 		try {
 		    logger.info("processing document: " + theRequest.fileName);
-		    theLoader.processDocument(theRequest.document);
-		} catch (SQLException e) {
-		    logger.error("loader processing error: ", e);
+		    if (theRequest.document == null)
+			theLoader.processDocument(XpathLoader.parseDocument(theRequest.fileName));
+		    else
+			theLoader.processDocument(theRequest.document);
+		} catch (Exception e) {
+		    logger.error("loader processing error: " + theRequest.fileName, e);
 		}
 	    }
 	}
