@@ -29,6 +29,8 @@ public class XpathLoader {
     static Logger logger = Logger.getLogger(XpathLoader.class);
     static DecimalFormat formatter = new DecimalFormat("0000");
     static Properties prop_file = PropertyLoader.loadProperties("loader");
+    
+    static boolean updateMode = false;
 
     Connection conn = null;
     
@@ -50,14 +52,14 @@ public class XpathLoader {
 
 	if (args[1].equals("-full")) {
 	    for (int i = 1; i <= 892; i++) {
-		String fileName = "/Volumes/SSD/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/baseline/medline17n" + formatter.format(i) + ".xml.gz";
+		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/baseline/medline17n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		XpathLoader theLoader = new XpathLoader(fileName);
 	    }
 	    logger.info("parsing completed.");
 	} else if (args[1].equals("-threaded")) {
 	    for (int i = 1; i <= 892; i++) {
-		String fileName = "/Volumes/SSD/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/baseline/medline17n" + formatter.format(i) + ".xml.gz";
+		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/baseline/medline17n" + formatter.format(i) + ".xml.gz";
 		logger.info("file: " + fileName);
 		documentQueue.queue(fileName, null);
 	    }
@@ -78,28 +80,15 @@ public class XpathLoader {
 	    }
 	    logger.info("parsing completed.");
 	} else if (args[1].equals("-update")) {
-//	    loaderThread = new Thread(new XpathThread(documentQueue));
-//	    loaderThread.start();
-	    for (int i = 893; i <= 1070; i++) {
-		String fileName = "/Volumes/SLIS_SAN_01/Corpora/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/medline17n" + formatter.format(i) + ".xml.gz";
+	    updateMode = true;
+	    for (int i = 1082; i <= 1083; i++) {
+		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE17/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/medline17n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		XpathLoader theLoader = new XpathLoader(fileName);
-//		Element root = parseDocument(fileName);
-//		
-//		while (documentQueue.atCapacity()) {
-//		    logger.info("parser thread sleeping...");
-//		    Thread.sleep(2* 60 * 1000);
-//		}
-//		documentQueue.queue(fileName, root);
-
-//		if (i % 5 == 0) {
-//		    sessionReset(db_url, props);
-//		}
 	    }
 	    logger.info("parsing completed.");
-//	    documentQueue.completed();
-//	    loaderThread.join();
 	} else if (args[1].equals("-daily")) {
+	    updateMode = true;
 	    // read files from stdin
 	    BufferedReader IODesc = new BufferedReader(new InputStreamReader(System.in));
 	    String current = null;
@@ -233,7 +222,7 @@ public class XpathLoader {
 	logger.debug("\ndeleting citations:");
 	ListIterator<Element> pmids = deleteNode.selectNodes("PMID").listIterator();
 	while (pmids.hasNext()) {
-	    int pmid = Integer.parseInt(pmids.next().getText());
+	    int pmid = Integer.parseInt(pmids.next().getText().trim());
 	    logger.debug("\t" + pmid);
 	    PreparedStatement delStmt = conn.prepareStatement("delete from article where pmid = ?");
 	    delStmt.setInt(1, pmid);
@@ -270,7 +259,7 @@ public class XpathLoader {
 	// Electronic-Print) #REQUIRED>
 
 	// MedlineCitation elements
-	int pmid = Integer.parseInt(citationElement.selectSingleNode("PMID").getText());
+	int pmid = Integer.parseInt(citationElement.selectSingleNode("PMID").getText().trim());
 	logger.debug("\tcitation pmid: " + pmid);
 	
 	int found = 0;
@@ -281,7 +270,7 @@ public class XpathLoader {
 	    found++;
 	}
 	cntStmt.close();
-	if (found != 0)
+	if (!updateMode && found != 0)
 	    return;
 
 	PreparedStatement delStmt = conn.prepareStatement("delete from author where pmid = ?");
@@ -332,18 +321,18 @@ public class XpathLoader {
     
     @SuppressWarnings("unused")
     void article(int pmid, Element citationElement) throws SQLException {
-	GregorianCalendar dateCreated = new GregorianCalendar(Integer.parseInt(citationElement.selectSingleNode("DateCreated/Year").getText()),
-		Integer.parseInt(citationElement.selectSingleNode("DateCreated/Month").getText()) - 1, Integer.parseInt(citationElement.selectSingleNode(
-			"DateCreated/Day").getText()));
+	GregorianCalendar dateCreated = new GregorianCalendar(Integer.parseInt(citationElement.selectSingleNode("DateCreated/Year").getText().trim()),
+		Integer.parseInt(citationElement.selectSingleNode("DateCreated/Month").getText().trim()) - 1, Integer.parseInt(citationElement.selectSingleNode(
+			"DateCreated/Day").getText().trim()));
 	logger.trace("\tDateCreated: " + new java.sql.Date(dateCreated.getTimeInMillis()));
 	GregorianCalendar dateCompleted = citationElement.selectSingleNode("DateCompleted") == null ? null : new GregorianCalendar(
-		Integer.parseInt(citationElement.selectSingleNode("DateCompleted/Year").getText()), Integer.parseInt(citationElement.selectSingleNode(
-			"DateCompleted/Month").getText()) - 1, Integer.parseInt(citationElement.selectSingleNode("DateCompleted/Day").getText()));
+		Integer.parseInt(citationElement.selectSingleNode("DateCompleted/Year").getText().trim()), Integer.parseInt(citationElement.selectSingleNode(
+			"DateCompleted/Month").getText().trim()) - 1, Integer.parseInt(citationElement.selectSingleNode("DateCompleted/Day").getText().trim()));
 	if (dateCompleted != null)
 	    logger.trace("\tDateCompleted: " + new java.sql.Date(dateCompleted.getTimeInMillis()));
 	GregorianCalendar dateRevised = citationElement.selectSingleNode("DateRevised") == null ? null : new GregorianCalendar(Integer.parseInt(citationElement
-		.selectSingleNode("DateRevised/Year").getText()), Integer.parseInt(citationElement.selectSingleNode("DateRevised/Month").getText()) - 1,
-		Integer.parseInt(citationElement.selectSingleNode("DateRevised/Day").getText()));
+		.selectSingleNode("DateRevised/Year").getText().trim()), Integer.parseInt(citationElement.selectSingleNode("DateRevised/Month").getText().trim()) - 1,
+		Integer.parseInt(citationElement.selectSingleNode("DateRevised/Day").getText().trim()));
 	if (dateRevised != null)
 	    logger.trace("\tDateRevised: " + new java.sql.Date(dateRevised.getTimeInMillis()));
 	String country = citationElement.selectSingleNode("MedlineJournalInfo/Country") == null ? null : citationElement.selectSingleNode(
@@ -359,7 +348,7 @@ public class XpathLoader {
 		"MedlineJournalInfo/ISSNLinking").getText();
 	logger.trace("\tISSNlinking: " + ISSNlinking);
 	int numRefs = citationElement.selectSingleNode("NumberOfReferences") == null ? 0 : Integer.parseInt(citationElement.selectSingleNode(
-		"NumberOfReferences").getText());
+		"NumberOfReferences").getText().trim());
 	logger.trace("\tnumRefs: " + numRefs);
 	String status = citationElement.attributeValue("Status");
 	logger.trace("\tstatus: " + status);
@@ -369,10 +358,10 @@ public class XpathLoader {
 		.getText();
 	logger.trace("\ttitle: " + title);
 	int startPage = citationElement.selectSingleNode("Article/Pagination/StartPage") == null ? 0 : Integer.parseInt(citationElement.selectSingleNode(
-		"Article/Pagination/StartPage").getText());
+		"Article/Pagination/StartPage").getText().trim());
 	logger.trace("\tstart page: " + startPage);
 	int endPage = citationElement.selectSingleNode("Article/Pagination/EndPage") == null ? 0 : Integer.parseInt(citationElement.selectSingleNode(
-		"Article/Pagination/EndPage").getText());
+		"Article/Pagination/EndPage").getText().trim());
 	logger.trace("\tend page: " + endPage);
 	String pagination = citationElement.selectSingleNode("Article/Pagination/MedlinePgn") == null ? null : citationElement.selectSingleNode(
 		"Article/Pagination/MedlinePgn").getText();
@@ -449,13 +438,13 @@ public class XpathLoader {
 	String issue = journalNode.selectSingleNode("JournalIssue/Issue") == null ? null : journalNode.selectSingleNode("JournalIssue/Issue").getText();
 	logger.trace("\t\tissue: " + issue);
 	int pubYear = journalNode.selectSingleNode("JournalIssue/PubDate/Year") == null ? 0 : Integer.parseInt(journalNode.selectSingleNode(
-		"JournalIssue/PubDate/Year").getText());
+		"JournalIssue/PubDate/Year").getText().trim());
 	logger.trace("\t\tpubYear: " + pubYear);
 	String pubMonth = journalNode.selectSingleNode("JournalIssue/PubDate/Month") == null ? null : journalNode
 		.selectSingleNode("JournalIssue/PubDate/Month").getText();
 	logger.trace("\t\tpubMonth: " + pubMonth);
 	int pubDay = journalNode.selectSingleNode("JournalIssue/PubDate/Day") == null ? 0 : Integer.parseInt(journalNode.selectSingleNode(
-		"JournalIssue/PubDate/Day").getText());
+		"JournalIssue/PubDate/Day").getText().trim());
 	logger.trace("\t\tpubDay: " + pubDay);
 	String pubSeason = journalNode.selectSingleNode("JournalIssue/PubDate/Season") == null ? null : journalNode.selectSingleNode(
 		"JournalIssue/PubDate/Season").getText();
@@ -652,7 +641,7 @@ public class XpathLoader {
 	    Node commentNode = commCorrs.next();
 	    String refSource = commentNode.selectSingleNode("RefSource") == null ? null : commentNode.selectSingleNode("RefSource").getText();
 	    logger.trace("\t\trefSource: " + refSource);
-	    int pmid2 = commentNode.selectSingleNode("PMID") == null ? 0 : Integer.parseInt(commentNode.selectSingleNode("PMID").getText());
+	    int pmid2 = commentNode.selectSingleNode("PMID") == null ? 0 : Integer.parseInt(commentNode.selectSingleNode("PMID").getText().trim());
 	    logger.trace("\t\tpmid: " + pmid2);
 	    String note = commentNode.selectSingleNode("Note") == null ? null : commentNode.selectSingleNode("Note").getText();
 	    logger.trace("\t\tnote: " + note);
@@ -1354,11 +1343,11 @@ public class XpathLoader {
 	while (dates.hasNext()) {
 	    logger.trace("\tarticleDate " + seqnum + ":");
 	    Node articleDateNode = dates.next();
-	    int year = articleDateNode.selectSingleNode("Year") == null ? 0 : Integer.parseInt(articleDateNode.selectSingleNode("Year").getText());
+	    int year = articleDateNode.selectSingleNode("Year") == null ? 0 : Integer.parseInt(articleDateNode.selectSingleNode("Year").getText().trim());
 	    logger.trace("\t\tyear: " + year);
-	    int month = articleDateNode.selectSingleNode("Month") == null ? 0 : Integer.parseInt(articleDateNode.selectSingleNode("Month").getText());
+	    int month = articleDateNode.selectSingleNode("Month") == null ? 0 : Integer.parseInt(articleDateNode.selectSingleNode("Month").getText().trim());
 	    logger.trace("\t\tmonth: " + month);
-	    int day = articleDateNode.selectSingleNode("Day") == null ? 0 : Integer.parseInt(articleDateNode.selectSingleNode("Day").getText());
+	    int day = articleDateNode.selectSingleNode("Day") == null ? 0 : Integer.parseInt(articleDateNode.selectSingleNode("Day").getText().trim());
 	    logger.trace("\t\tday: " + day);
 	    String dateType = ((Element) articleDateNode).attributeValue("DateType");
 	    logger.trace("\t\tdateType: " + dateType);
