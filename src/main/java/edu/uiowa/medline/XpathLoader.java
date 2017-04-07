@@ -228,6 +228,8 @@ public class XpathLoader {
 	    delStmt.setInt(1, pmid);
 	    delStmt.execute();
 	    delStmt.close();
+	    
+	    parseRequest(pmid);
 
 	    recordsDeleted++;
 	}
@@ -261,6 +263,8 @@ public class XpathLoader {
 	// MedlineCitation elements
 	int pmid = Integer.parseInt(citationElement.selectSingleNode("PMID").getText().trim());
 	logger.debug("\tcitation pmid: " + pmid);
+	
+	parseRequest(pmid);
 	
 	int found = 0;
 	PreparedStatement cntStmt = conn.prepareStatement("select pmid from article where pmid = ?");
@@ -1364,6 +1368,13 @@ public class XpathLoader {
 
 	    seqnum++;
 	}
+    }
+
+    void parseRequest(int pmid) throws SQLException {
+	PreparedStatement stmt = conn.prepareStatement("insert into medline_local.parse_request values (?)");
+	stmt.setInt(1, pmid);
+	stmt.execute();
+	stmt.close();
     }
 
     void materializeAuthorView() throws SQLException {
