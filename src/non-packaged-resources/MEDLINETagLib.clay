@@ -367,7 +367,7 @@
 </table>
 <table alias="" name="data_bank" remarks="" uid="bedf7:11f82875ee1:-7f38">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="656" y="653"/>
+<table-figure-bounds height="-1" width="-1" x="710" y="630"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="bedf7:11f82875ee1:-7f1b">
 <column-description/>
@@ -455,7 +455,7 @@
 </table>
 <table alias="" name="grant" remarks="" uid="bedf7:11f82875ee1:-7eee">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="850" y="467"/>
+<table-figure-bounds height="-1" width="-1" x="931" y="440"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="bedf7:11f82875ee1:-7ed8">
 <column-description/>
@@ -513,7 +513,7 @@
 </table>
 <table alias="" name="article_date" remarks="" uid="bedf7:11f82875ee1:-7ec8">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="859" y="167"/>
+<table-figure-bounds height="-1" width="-1" x="944" y="180"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="bedf7:11f82875ee1:-7eb2">
 <column-description/>
@@ -571,7 +571,7 @@
 </table>
 <table alias="" name="chemical" remarks="" uid="bedf7:11f82875ee1:-7e9f">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="738" y="674"/>
+<table-figure-bounds height="-1" width="-1" x="821" y="709"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="bedf7:11f82875ee1:-7e88">
 <column-description/>
@@ -721,7 +721,7 @@
 </table>
 <table alias="" name="gene_symbol" remarks="" uid="392d25:11f8bbc6e4b:-7efa">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="799" y="586"/>
+<table-figure-bounds height="-1" width="-1" x="887" y="595"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="392d25:11f8bbc6e4b:-7eea">
 <column-description/>
@@ -1081,7 +1081,7 @@
 </table>
 <table alias="" name="spaceflight_mission" remarks="" uid="392d25:11f8bbc6e4b:-7dfe">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="940" y="92"/>
+<table-figure-bounds height="-1" width="-1" x="1075" y="109"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="392d25:11f8bbc6e4b:-7ded">
 <column-description/>
@@ -1231,7 +1231,7 @@
 </table>
 <table alias="" name="publication_type" remarks="" uid="392d25:11f8bbc6e4b:-7d16">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="826" y="78"/>
+<table-figure-bounds height="-1" width="-1" x="899" y="62"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="392d25:11f8bbc6e4b:-7d0a">
 <column-description/>
@@ -1309,7 +1309,7 @@
 </table>
 <table alias="" name="supplemental_mesh" remarks="" uid="579cec04:12cd120518d:-7f90">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="394" y="809"/>
+<table-figure-bounds height="-1" width="-1" x="366" y="765"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="579cec04:12cd120518d:-7f8c">
 <column-description/>
