@@ -342,7 +342,7 @@ CREATE TABLE medline17.investigator_identifier (
      , identifier TEXT
      , PRIMARY KEY (pmid, seqnum, inum)
      , CONSTRAINT FK_investigator_name_id_1 FOREIGN KEY (pmid, seqnum)
-                  REFERENCES medline17.investigator (pmid, seqnum)
+                  REFERENCES medline17.investigator (pmid, seqnum) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE medline17.author_affiliation_identifier (
