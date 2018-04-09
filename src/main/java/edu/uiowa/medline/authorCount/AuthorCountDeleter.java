@@ -35,7 +35,7 @@ public class AuthorCountDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline16.author_count where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline18.author_count where 1=1"
                                                         + (lastName == null ? "" : " and last_name = ? ")
                                                         + (foreName == null ? "" : " and fore_name = ? "));
             if (lastName != null) stat.setString(webapp_keySeq++, lastName);

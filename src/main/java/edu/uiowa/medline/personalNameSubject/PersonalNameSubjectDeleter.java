@@ -46,7 +46,7 @@ public class PersonalNameSubjectDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline16.personal_name_subject where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline18.personal_name_subject where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? ")
                                                         + (seqnum == 0 ? "" : " and seqnum = ? "));
             if (pmid != 0) stat.setInt(webapp_keySeq++, pmid);

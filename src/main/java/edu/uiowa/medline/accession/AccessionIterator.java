@@ -37,7 +37,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AccessionIterator theIterator = new AccessionIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.accession where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.accession where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -67,7 +67,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AccessionIterator theIterator = new AccessionIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.accession where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.accession where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						+ " and accnum = ?"
@@ -122,7 +122,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline16.accession.pmid, medline16.accession.seqnum, medline16.accession.accnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline18.accession.pmid, medline18.accession.seqnum, medline18.accession.accnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
@@ -149,7 +149,7 @@ public class AccessionIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline16.accession");
+       StringBuffer theBuffer = new StringBuffer("medline18.accession");
       return theBuffer.toString();
     }
 

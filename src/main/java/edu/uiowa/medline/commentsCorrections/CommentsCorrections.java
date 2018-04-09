@@ -59,7 +59,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a CommentsCorrections from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select ref_type,source,ref_pmid,note from medline16.comments_corrections where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select ref_type,source,ref_pmid,note from medline18.comments_corrections where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -93,7 +93,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline16.comments_corrections set ref_type = ?, source = ?, ref_pmid = ?, note = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline18.comments_corrections set ref_type = ?, source = ?, ref_pmid = ?, note = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,refType);
 				stmt.setString(2,source);
 				stmt.setInt(3,refPmid);
@@ -126,7 +126,7 @@ public class CommentsCorrections extends MEDLINETagLibTagSupport {
 				source = "";
 			if (note == null)
 				note = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.comments_corrections(pmid,seqnum,ref_type,source,ref_pmid,note) values (?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline18.comments_corrections(pmid,seqnum,ref_type,source,ref_pmid,note) values (?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,refType);

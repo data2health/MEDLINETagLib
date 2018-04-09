@@ -46,7 +46,7 @@ public class InvestigatorIdentifierDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline16.investigator_identifier where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline18.investigator_identifier where 1=1"
                                                         + (pmid == 0 ? "" : " and pmid = ? ")
                                                         + (seqnum == 0 ? "" : " and seqnum = ? ")
                                                         + (inum == 0 ? "" : " and inum = ? "));

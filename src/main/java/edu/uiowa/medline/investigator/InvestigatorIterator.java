@@ -40,7 +40,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		InvestigatorIterator theIterator = new InvestigatorIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.investigator where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.investigator where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -68,7 +68,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		InvestigatorIterator theIterator = new InvestigatorIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.investigator where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.investigator where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -118,7 +118,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline16.investigator.pmid, medline16.investigator.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline18.investigator.pmid, medline18.investigator.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -142,7 +142,7 @@ public class InvestigatorIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline16.investigator");
+       StringBuffer theBuffer = new StringBuffer("medline18.investigator");
       return theBuffer.toString();
     }
 

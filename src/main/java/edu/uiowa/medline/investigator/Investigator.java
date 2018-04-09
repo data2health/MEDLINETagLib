@@ -60,7 +60,7 @@ public class Investigator extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Investigator from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select last_name,fore_name,initials,suffix,affiliation from medline16.investigator where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select last_name,fore_name,initials,suffix,affiliation from medline18.investigator where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -96,7 +96,7 @@ public class Investigator extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline16.investigator set last_name = ?, fore_name = ?, initials = ?, suffix = ?, affiliation = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline18.investigator set last_name = ?, fore_name = ?, initials = ?, suffix = ?, affiliation = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,lastName);
 				stmt.setString(2,foreName);
 				stmt.setString(3,initials);
@@ -134,7 +134,7 @@ public class Investigator extends MEDLINETagLibTagSupport {
 				suffix = "";
 			if (affiliation == null)
 				affiliation = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.investigator(pmid,seqnum,last_name,fore_name,initials,suffix,affiliation) values (?,?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline18.investigator(pmid,seqnum,last_name,fore_name,initials,suffix,affiliation) values (?,?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,lastName);

@@ -59,7 +59,7 @@ public class Grant extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or seqnum was provided as an attribute - we need to load a Grant from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select gid,acronym,agency,country from medline16.grant where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select gid,acronym,agency,country from medline18.grant where pmid = ? and seqnum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				ResultSet rs = stmt.executeQuery();
@@ -93,7 +93,7 @@ public class Grant extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline16.grant set gid = ?, acronym = ?, agency = ?, country = ? where pmid = ? and seqnum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline18.grant set gid = ?, acronym = ?, agency = ?, country = ? where pmid = ? and seqnum = ?");
 				stmt.setString(1,gid);
 				stmt.setString(2,acronym);
 				stmt.setString(3,agency);
@@ -128,7 +128,7 @@ public class Grant extends MEDLINETagLibTagSupport {
 				agency = "";
 			if (country == null)
 				country = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.grant(pmid,seqnum,gid,acronym,agency,country) values (?,?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline18.grant(pmid,seqnum,gid,acronym,agency,country) values (?,?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setString(3,gid);

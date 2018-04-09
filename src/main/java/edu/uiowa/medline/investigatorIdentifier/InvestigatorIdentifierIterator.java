@@ -38,7 +38,7 @@ public class InvestigatorIdentifierIterator extends MEDLINETagLibBodyTagSupport 
 		int count = 0;
 		InvestigatorIdentifierIterator theIterator = new InvestigatorIdentifierIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.investigator_identifier where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.investigator_identifier where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -68,7 +68,7 @@ public class InvestigatorIdentifierIterator extends MEDLINETagLibBodyTagSupport 
 		int count = 0;
 		InvestigatorIdentifierIterator theIterator = new InvestigatorIdentifierIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.investigator_identifier where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.investigator_identifier where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						+ " and inum = ?"
@@ -123,7 +123,7 @@ public class InvestigatorIdentifierIterator extends MEDLINETagLibBodyTagSupport 
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline16.investigator_identifier.pmid, medline16.investigator_identifier.seqnum, medline16.investigator_identifier.inum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline18.investigator_identifier.pmid, medline18.investigator_identifier.seqnum, medline18.investigator_identifier.inum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
@@ -150,7 +150,7 @@ public class InvestigatorIdentifierIterator extends MEDLINETagLibBodyTagSupport 
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline16.investigator_identifier");
+       StringBuffer theBuffer = new StringBuffer("medline18.investigator_identifier");
       return theBuffer.toString();
     }
 

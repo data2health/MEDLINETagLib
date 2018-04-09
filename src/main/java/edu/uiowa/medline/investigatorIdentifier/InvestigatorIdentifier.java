@@ -60,7 +60,7 @@ public class InvestigatorIdentifier extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or inum was provided as an attribute - we need to load a InvestigatorIdentifier from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select source,identifier from medline16.investigator_identifier where pmid = ? and seqnum = ? and inum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select source,identifier from medline18.investigator_identifier where pmid = ? and seqnum = ? and inum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				stmt.setInt(3,inum);
@@ -91,7 +91,7 @@ public class InvestigatorIdentifier extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline16.investigator_identifier set source = ?, identifier = ? where pmid = ? and seqnum = ? and inum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline18.investigator_identifier set source = ?, identifier = ? where pmid = ? and seqnum = ? and inum = ?");
 				stmt.setString(1,source);
 				stmt.setString(2,identifier);
 				stmt.setInt(3,pmid);
@@ -121,7 +121,7 @@ public class InvestigatorIdentifier extends MEDLINETagLibTagSupport {
 				source = "";
 			if (identifier == null)
 				identifier = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.investigator_identifier(pmid,seqnum,inum,source,identifier) values (?,?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline18.investigator_identifier(pmid,seqnum,inum,source,identifier) values (?,?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setInt(3,inum);

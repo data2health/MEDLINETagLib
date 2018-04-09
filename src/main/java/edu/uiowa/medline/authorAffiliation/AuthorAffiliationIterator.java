@@ -37,7 +37,7 @@ public class AuthorAffiliationIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorAffiliationIterator theIterator = new AuthorAffiliationIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.author_affiliation where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.author_affiliation where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -67,7 +67,7 @@ public class AuthorAffiliationIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorAffiliationIterator theIterator = new AuthorAffiliationIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.author_affiliation where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.author_affiliation where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						+ " and anum = ?"
@@ -122,7 +122,7 @@ public class AuthorAffiliationIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline16.author_affiliation.pmid, medline16.author_affiliation.seqnum, medline16.author_affiliation.anum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline18.author_affiliation.pmid, medline18.author_affiliation.seqnum, medline18.author_affiliation.anum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
@@ -149,7 +149,7 @@ public class AuthorAffiliationIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline16.author_affiliation");
+       StringBuffer theBuffer = new StringBuffer("medline18.author_affiliation");
       return theBuffer.toString();
     }
 

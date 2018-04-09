@@ -59,7 +59,7 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 			} else {
 				// an iterator or anum was provided as an attribute - we need to load a InvestigatorAffiliation from the database
 				boolean found = false;
-				PreparedStatement stmt = getConnection().prepareStatement("select label from medline16.investigator_affiliation where pmid = ? and seqnum = ? and anum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("select label from medline18.investigator_affiliation where pmid = ? and seqnum = ? and anum = ?");
 				stmt.setInt(1,pmid);
 				stmt.setInt(2,seqnum);
 				stmt.setInt(3,anum);
@@ -88,7 +88,7 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 		currentInstance = null;
 		try {
 			if (commitNeeded) {
-				PreparedStatement stmt = getConnection().prepareStatement("update medline16.investigator_affiliation set label = ? where pmid = ? and seqnum = ? and anum = ?");
+				PreparedStatement stmt = getConnection().prepareStatement("update medline18.investigator_affiliation set label = ? where pmid = ? and seqnum = ? and anum = ?");
 				stmt.setString(1,label);
 				stmt.setInt(2,pmid);
 				stmt.setInt(3,seqnum);
@@ -115,7 +115,7 @@ public class InvestigatorAffiliation extends MEDLINETagLibTagSupport {
 
 			if (label == null)
 				label = "";
-			PreparedStatement stmt = getConnection().prepareStatement("insert into medline16.investigator_affiliation(pmid,seqnum,anum,label) values (?,?,?,?)");
+			PreparedStatement stmt = getConnection().prepareStatement("insert into medline18.investigator_affiliation(pmid,seqnum,anum,label) values (?,?,?,?)");
 			stmt.setInt(1,pmid);
 			stmt.setInt(2,seqnum);
 			stmt.setInt(3,anum);

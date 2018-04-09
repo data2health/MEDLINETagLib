@@ -41,7 +41,7 @@ public class AuthorIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorIterator theIterator = new AuthorIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.author where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.author where 1=1"
 						+ " and pmid = ?"
 						);
 
@@ -69,7 +69,7 @@ public class AuthorIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorIterator theIterator = new AuthorIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.author where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.author where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -119,7 +119,7 @@ public class AuthorIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline16.author.pmid, medline16.author.seqnum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline18.author.pmid, medline18.author.seqnum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
@@ -143,7 +143,7 @@ public class AuthorIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline16.author");
+       StringBuffer theBuffer = new StringBuffer("medline18.author");
       return theBuffer.toString();
     }
 

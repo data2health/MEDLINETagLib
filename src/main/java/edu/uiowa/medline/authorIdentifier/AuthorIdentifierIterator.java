@@ -38,7 +38,7 @@ public class AuthorIdentifierIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorIdentifierIterator theIterator = new AuthorIdentifierIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.author_identifier where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.author_identifier where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						);
@@ -68,7 +68,7 @@ public class AuthorIdentifierIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		AuthorIdentifierIterator theIterator = new AuthorIdentifierIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.author_identifier where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.author_identifier where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						+ " and inum = ?"
@@ -123,7 +123,7 @@ public class AuthorIdentifierIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline16.author_identifier.pmid, medline16.author_identifier.seqnum, medline16.author_identifier.inum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline18.author_identifier.pmid, medline18.author_identifier.seqnum, medline18.author_identifier.inum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
@@ -150,7 +150,7 @@ public class AuthorIdentifierIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline16.author_identifier");
+       StringBuffer theBuffer = new StringBuffer("medline18.author_identifier");
       return theBuffer.toString();
     }
 

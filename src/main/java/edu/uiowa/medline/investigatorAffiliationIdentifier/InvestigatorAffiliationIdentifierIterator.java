@@ -39,7 +39,7 @@ public class InvestigatorAffiliationIdentifierIterator extends MEDLINETagLibBody
 		int count = 0;
 		InvestigatorAffiliationIdentifierIterator theIterator = new InvestigatorAffiliationIdentifierIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.investigator_affiliation_identifier where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.investigator_affiliation_identifier where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						+ " and anum = ?"
@@ -71,7 +71,7 @@ public class InvestigatorAffiliationIdentifierIterator extends MEDLINETagLibBody
 		int count = 0;
 		InvestigatorAffiliationIdentifierIterator theIterator = new InvestigatorAffiliationIdentifierIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.investigator_affiliation_identifier where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.investigator_affiliation_identifier where 1=1"
 						+ " and pmid = ?"
 						+ " and seqnum = ?"
 						+ " and anum = ?"
@@ -131,7 +131,7 @@ public class InvestigatorAffiliationIdentifierIterator extends MEDLINETagLibBody
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline16.investigator_affiliation_identifier.pmid, medline16.investigator_affiliation_identifier.seqnum, medline16.investigator_affiliation_identifier.anum, medline16.investigator_affiliation_identifier.inum from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline18.investigator_affiliation_identifier.pmid, medline18.investigator_affiliation_identifier.seqnum, medline18.investigator_affiliation_identifier.anum, medline18.investigator_affiliation_identifier.inum from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + (pmid == 0 ? "" : " and pmid = ?")
                                                         + (seqnum == 0 ? "" : " and seqnum = ?")
@@ -161,7 +161,7 @@ public class InvestigatorAffiliationIdentifierIterator extends MEDLINETagLibBody
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline16.investigator_affiliation_identifier");
+       StringBuffer theBuffer = new StringBuffer("medline18.investigator_affiliation_identifier");
       return theBuffer.toString();
     }
 

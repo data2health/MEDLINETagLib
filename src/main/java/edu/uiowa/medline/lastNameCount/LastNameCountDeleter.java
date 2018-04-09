@@ -34,7 +34,7 @@ public class LastNameCountDeleter extends MEDLINETagLibBodyTagSupport {
         PreparedStatement stat;
         try {
             int webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("DELETE from medline16.last_name_count where 1=1"
+            stat = getConnection().prepareStatement("DELETE from medline18.last_name_count where 1=1"
                                                         + (lastName == null ? "" : " and last_name = ? "));
             if (lastName != null) stat.setString(webapp_keySeq++, lastName);
             stat.execute();

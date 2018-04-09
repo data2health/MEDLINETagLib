@@ -34,7 +34,7 @@ public class LastNameCountIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		LastNameCountIterator theIterator = new LastNameCountIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.last_name_count"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.last_name_count"
 						);
 
 			ResultSet crs = stat.executeQuery();
@@ -56,7 +56,7 @@ public class LastNameCountIterator extends MEDLINETagLibBodyTagSupport {
 		int count = 0;
 		LastNameCountIterator theIterator = new LastNameCountIterator();
 		try {
-			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline16.last_name_count where 1=1"
+			PreparedStatement stat = theIterator.getConnection().prepareStatement("SELECT count(*) from medline18.last_name_count where 1=1"
 						+ " and last_name = ?"
 						);
 
@@ -95,7 +95,7 @@ public class LastNameCountIterator extends MEDLINETagLibBodyTagSupport {
 
             //run select id query  
             webapp_keySeq = 1;
-            stat = getConnection().prepareStatement("SELECT medline16.last_name_count.last_name from " + generateFromClause() + " where 1=1"
+            stat = getConnection().prepareStatement("SELECT medline18.last_name_count.last_name from " + generateFromClause() + " where 1=1"
                                                         + generateJoinCriteria()
                                                         + " order by " + generateSortCriteria() + generateLimitCriteria());
             rs = stat.executeQuery();
@@ -116,7 +116,7 @@ public class LastNameCountIterator extends MEDLINETagLibBodyTagSupport {
     }
 
     private String generateFromClause() {
-       StringBuffer theBuffer = new StringBuffer("medline16.last_name_count");
+       StringBuffer theBuffer = new StringBuffer("medline18.last_name_count");
       return theBuffer.toString();
     }
 
