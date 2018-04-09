@@ -1372,6 +1372,11 @@ public class XpathLoader {
 	stmt.setInt(1, pmid);
 	stmt.execute();
 	stmt.close();
+
+	stmt = conn.prepareStatement("insert into medline_local.concept_request values (?)");
+	stmt.setInt(1, pmid);
+	stmt.execute();
+	stmt.close();
     }
 
     void materializeAuthorView() throws SQLException {
