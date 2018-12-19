@@ -51,15 +51,15 @@ public class XpathLoader {
 	PropertyConfigurator.configure(args[0]);
 
 	if (args[1].equals("-full")) {
-	    for (int i = 1; i <= 928; i++) {
-		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE18/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed18n" + formatter.format(i) + ".xml.gz";
+	    for (int i = 1; i <= 972; i++) {
+		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE19/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed19n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		XpathLoader theLoader = new XpathLoader(fileName);
 	    }
 	    logger.info("parsing completed.");
 	} else if (args[1].equals("-threaded")) {
-	    for (int i = 1; i <= 928; i++) {
-		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE18/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed18n" + formatter.format(i) + ".xml.gz";
+	    for (int i = 1; i <= 972; i++) {
+		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE19/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed19n" + formatter.format(i) + ".xml.gz";
 		logger.info("file: " + fileName);
 		documentQueue.queue(fileName, null);
 	    }
@@ -82,7 +82,7 @@ public class XpathLoader {
 	} else if (args[1].equals("-update")) {
 	    updateMode = true;
 	    for (int i = 929; i <= 938; i++) {
-		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE18/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/pubmed18n" + formatter.format(i) + ".xml.gz";
+		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE19/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/pubmed19n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		XpathLoader theLoader = new XpathLoader(fileName);
 	    }
@@ -106,9 +106,9 @@ public class XpathLoader {
     static Connection getConnection() throws SQLException, ClassNotFoundException {
 	Connection conn = null;
 	
-	String db_user = prop_file.getProperty("db.user.name", "eichmann");
+	String db_user = prop_file.getProperty("db.user.name", "");
 	logger.debug("Database User Name: " + db_user);
-	String db_pass = prop_file.getProperty("db.user.password", "translational");
+	String db_pass = prop_file.getProperty("db.user.password", "");
 
 	String use_ssl = prop_file.getProperty("db.use.ssl", "false");
 	logger.debug("Database SSL: " + use_ssl);
@@ -135,7 +135,7 @@ public class XpathLoader {
 	conn.setAutoCommit(false);
 	
 
-	PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline18,loki");
+	PreparedStatement pathStmt = conn.prepareStatement("set search_path to medline,loki");
 	pathStmt.executeUpdate();
 	pathStmt.close();
 
