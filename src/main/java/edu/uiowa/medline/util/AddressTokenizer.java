@@ -55,11 +55,11 @@ public class AddressTokenizer implements Runnable {
     
     static Connection getConnection() throws ClassNotFoundException, SQLException {
 	Connection newConnection = null;
-	
+	LocalProperties prop_file = PropertyLoader.loadProperties("medline");
 	Class.forName("org.postgresql.Driver");
 	Properties props = new Properties();
-	props.setProperty("user", "eichmann");
-	props.setProperty("password", "translational");
+	props.setProperty("user", prop_file.getProperty("jdbc.user"));
+	props.setProperty("password", prop_file.getProperty("jdbc.password"));
 //	props.setProperty("sslfactory","org.postgresql.ssl.NonValidatingFactory");
 //	props.setProperty("ssl", "true");
 	newConnection = DriverManager.getConnection("jdbc:postgresql://localhost/loki", props);

@@ -146,21 +146,22 @@ public class LuceneIndex {
 
     static Connection getConnection() throws NamingException, SQLException, ClassNotFoundException {
 		Connection theConnection = null;
-
+		LocalProperties prop_file = PropertyLoader.loadProperties("medline");
+		
 		if (tomcat) {
 	    	DataSource theDataSource = (DataSource)new InitialContext().lookup("java:/comp/env/jdbc/MEDLINETagLib");
 	    	theConnection = theDataSource.getConnection();
 	    } else if (local) {
 	        Class.forName("org.postgresql.Driver");
 			Properties props = new Properties();
-			props.setProperty("user", "eichmann");
-			props.setProperty("password", "translational");
+			props.setProperty("user", prop_file.getProperty("jdbc.user"));
+			props.setProperty("password", prop_file.getProperty("jdbc.password"));
 			theConnection = DriverManager.getConnection("jdbc:postgresql://localhost/loki", props);	    	
 	    } else {
 	        Class.forName("org.postgresql.Driver");
 			Properties props = new Properties();
-			props.setProperty("user", "eichmann");
-			props.setProperty("password", "translational");
+			props.setProperty("user", prop_file.getProperty("jdbc.user"));
+			props.setProperty("password", prop_file.getProperty("jdbc.password"));
 			props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
 			props.setProperty("ssl", "true");
 			theConnection = DriverManager.getConnection("jdbc:postgresql://neuromancer.icts.uiowa.edu/bioinformatics", props);

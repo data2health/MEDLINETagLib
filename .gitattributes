@@ -355,7 +355,9 @@ src/main/java/edu/uiowa/medline/util/ClusterByGrant.java -text
 src/main/java/edu/uiowa/medline/util/ClusterMEDLINE.java -text
 src/main/java/edu/uiowa/medline/util/ClusterMEDLINEhub.java -text
 src/main/java/edu/uiowa/medline/util/ClusteringSource.java -text
+src/main/java/edu/uiowa/medline/util/LocalProperties.java -text
 src/main/java/edu/uiowa/medline/util/LuceneIndex.java -text
+src/main/java/edu/uiowa/medline/util/PropertyLoader.java -text
 src/main/resources/META-INF/taglib.tld -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.clay -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.sql svneol=native#text/plain

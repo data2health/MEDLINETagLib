@@ -42,9 +42,9 @@ public class Publisher {
     }
     
     static void connect() throws SQLException, ClassNotFoundException {
-        String db_user = prop_file.getProperty("db.user.name", "eichmann");
+        String db_user = prop_file.getProperty("db.user.name");
         logger.debug("Database User Name: " + db_user);
-        String db_pass = prop_file.getProperty("db.user.password", "translational");
+        String db_pass = prop_file.getProperty("db.user.password");
 
         String use_ssl = prop_file.getProperty("db.use.ssl", "true");
         logger.debug("Database SSL: " + use_ssl);
