@@ -263,7 +263,7 @@ xmltable(
     columns
         seqnum FOR ORDINALITY,
         last_name text path 'LastName/text()',
-        forename_name text path 'ForeName/text()',
+        fore_name text path 'ForeName/text()',
         initials text path 'Initials/text()',
         suffix text path 'Suffix/text()'
     );
