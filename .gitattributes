@@ -361,7 +361,9 @@ src/main/java/edu/uiowa/medline/util/PropertyLoader.java -text
 src/main/resources/META-INF/taglib.tld -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.clay -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.sql svneol=native#text/plain
+src/non-packaged-resources/create.sql -text
 src/non-packaged-resources/functions.tld -text svneol=unset#text/xml
 src/non-packaged-resources/new_year_parse_configure.sql -text
 src/non-packaged-resources/tags.tld -text svneol=unset#text/xml
+src/non-packaged-resources/views.sql -text
 src/test/resources/README.txt svneol=native#text/plain
