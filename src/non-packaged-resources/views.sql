@@ -23,6 +23,17 @@ xmltable(
         author_list xml path 'AuthorList'
     );
 
+create view article_title as
+select pmid,xmltable.* from
+xml,
+xmltable(
+    '//Article/ArticleTitle'
+    passing raw
+    columns
+        seqnum FOR ORDINALITY,
+        article_title text path '.'
+    );
+
 create view e_location_id as
 select pmid,xmltable.* from 
 xml,
@@ -170,6 +181,7 @@ xmltable(
     '//ChemicalList/Chemical'
     passing raw
     columns
+        seqnum FOR ORDINALITY,
         registry_number text path 'RegistryNumber/text()',
         substance_ui text PATH 'NameOfSubstance/@UI',
         name_of_substance text path 'NameOfSubstance/text()'
@@ -182,6 +194,7 @@ xmltable(
     '//SupplMeshList/SupplMeshName'
     passing raw
     columns
+        seqnum FOR ORDINALITY,
         type text PATH '@Type',
         ui text PATH '@UI',
         suppl_mesh_name text path '.'
