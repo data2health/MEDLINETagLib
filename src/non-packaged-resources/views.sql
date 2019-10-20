@@ -7,7 +7,6 @@ xmltable(
     '//Article'
     passing raw
     columns
-        article_title text path 'ArticleTitle/text()',
         issn text path 'Journal/ISSN/text()',
         volume text path 'Journal/JournalIssue/Volume/text()',
         issue text path 'Journal/JournalIssue/Issue/text()',
