@@ -11,7 +11,6 @@ CREATE TABLE medline.article (
      , start_page TEXT
      , end_page TEXT
      , medline_pgn TEXT
-     , vernacular_title TEXT
      , PRIMARY KEY (pmid)
 );
 
@@ -357,6 +356,15 @@ CREATE TABLE medline.article_title (
      , article_title TEXT
      , PRIMARY KEY (pmid, seqnum)
      , CONSTRAINT FK_article_title_1 FOREIGN KEY (pmid)
+                  REFERENCES medline.article (pmid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE medline.vernacular_title (
+       pmid INT NOT NULL
+     , seqnum INT NOT NULL
+     , vernacular_title TEXT
+     , PRIMARY KEY (pmid, seqnum)
+     , CONSTRAINT FK_vernacular_title_1 FOREIGN KEY (pmid)
                   REFERENCES medline.article (pmid) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

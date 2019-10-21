@@ -9,7 +9,7 @@
 <table-list>
 <table alias="" name="abstract" remarks="" uid="507218f:16db229e8e6:-7fd5">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="272" y="43"/>
+<table-figure-bounds height="-1" width="-1" x="141" y="26"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7fd3">
 <column-description/>
@@ -61,7 +61,7 @@
 </table>
 <table alias="" name="accession_number" remarks="" uid="507218f:16db229e8e6:-7fce">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="31" y="368"/>
+<table-figure-bounds height="-1" width="-1" x="20" y="442"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7fcc">
 <column-description/>
@@ -183,12 +183,6 @@
 <variant type-name-pattern="TEXT"/>
 </data-type>
 </column>
-<column alias="" auto-increment="false" column-size="2147483647" decimal-digits="0" default-value="" mandatory="false" name="vernacular_title" remarks="" uid="507218f:16db229e8e6:-7fb9">
-<column-description/>
-<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
-<variant type-name-pattern="TEXT"/>
-</data-type>
-</column>
 </column-list>
 <primary-key alias="" name="PK_ARTICLE" remarks="" uid="507218f:16db229e8e6:-7fc7">
 <primary-key-description/>
@@ -200,7 +194,7 @@
 </table>
 <table alias="" name="article_id" remarks="" uid="507218f:16db229e8e6:-7fb8">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="651" y="13"/>
+<table-figure-bounds height="-1" width="-1" x="707" y="-13"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7fb6">
 <column-description/>
@@ -424,7 +418,7 @@
 </table>
 <table alias="" name="chemical" remarks="" uid="507218f:16db229e8e6:-7f9a">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="364" y="752"/>
+<table-figure-bounds height="-1" width="-1" x="425" y="688"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7f98">
 <column-description/>
@@ -574,7 +568,7 @@
 </table>
 <table alias="" name="data_bank" remarks="" uid="507218f:16db229e8e6:-7f87">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="250" y="373"/>
+<table-figure-bounds height="-1" width="-1" x="220" y="372"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7f85">
 <column-description/>
@@ -614,7 +608,7 @@
 </table>
 <table alias="" name="e_location_id" remarks="" uid="507218f:16db229e8e6:-7f82">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="436" y="-36"/>
+<table-figure-bounds height="-1" width="-1" x="491" y="-51"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7f80">
 <column-description/>
@@ -746,7 +740,7 @@
 </table>
 <table alias="" name="grant_info" remarks="" uid="507218f:16db229e8e6:-7f71">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="297" y="450"/>
+<table-figure-bounds height="-1" width="-1" x="263" y="455"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7f6f">
 <column-description/>
@@ -1046,7 +1040,7 @@
 </table>
 <table alias="" name="keyword" remarks="" uid="507218f:16db229e8e6:-7f48">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="817" y="7"/>
+<table-figure-bounds height="-1" width="-1" x="886" y="-26"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7f46">
 <column-description/>
@@ -1138,7 +1132,7 @@
 </table>
 <table alias="" name="medline_journal_info" remarks="" uid="507218f:16db229e8e6:-7f3c">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="331" y="645"/>
+<table-figure-bounds height="-1" width="-1" x="297" y="694"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7f3a">
 <column-description/>
@@ -1307,7 +1301,7 @@
 </table>
 <table alias="" name="object" remarks="" uid="507218f:16db229e8e6:-7f25">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="554" y="50"/>
+<table-figure-bounds height="-1" width="-1" x="612" y="26"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7f23">
 <column-description/>
@@ -1353,7 +1347,7 @@
 </table>
 <table alias="" name="other_abstract" remarks="" uid="507218f:16db229e8e6:-7f1f">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="960" y="14"/>
+<table-figure-bounds height="-1" width="-1" x="1008" y="-4"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7f1d">
 <column-description/>
@@ -1509,7 +1503,7 @@
 </table>
 <table alias="" name="publication_type" remarks="" uid="507218f:16db229e8e6:-7f0a">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="276" y="561"/>
+<table-figure-bounds height="-1" width="-1" x="248" y="594"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7f08">
 <column-description/>
@@ -1655,7 +1649,7 @@
 </table>
 <table alias="" name="space_flight_mission" remarks="" uid="507218f:16db229e8e6:-7ef7">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="714" y="-66"/>
+<table-figure-bounds height="-1" width="-1" x="783" y="-90"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="507218f:16db229e8e6:-7ef5">
 <column-description/>
@@ -1747,7 +1741,7 @@
 </table>
 <table alias="" name="article_title" remarks="" uid="6f88319b:16de2be5d6a:-7fdd">
 <table-description/>
-<table-figure-bounds height="-1" width="-1" x="529" y="490"/>
+<table-figure-bounds height="-1" width="-1" x="379" y="-51"/>
 <column-list>
 <column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="6f88319b:16de2be5d6a:-7fd9">
 <column-description/>
@@ -1776,6 +1770,46 @@
 <unique-key-list/>
 <foreign-key-list>
 <foreign-key alias="" name="FK_article_title_1" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="6f88319b:16de2be5d6a:-7f78">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="pmid" referenced-key-column-name="pmid"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="vernacular_title" remarks="" uid="6f88319b:16de2be5d6a:-7f64">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="231" y="-45"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="pmid" remarks="" uid="6f88319b:16de2be5d6a:-7f62">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT">
+<variant type-name-pattern="INT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="seqnum" remarks="" uid="6f88319b:16de2be5d6a:-7f61">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT">
+<variant type-name-pattern="INT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="vernacular_title" remarks="" uid="6f88319b:16de2be5d6a:-7f60">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_VERNACULAR_TITLE" remarks="" uid="6f88319b:16de2be5d6a:-7f5f">
+<primary-key-description/>
+<primary-key-column name="pmid"/>
+<primary-key-column name="seqnum"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="FK_vernacular_title_1" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_ARTICLE" referenced-table="article" referenced-table-schema="medline" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="6f88319b:16de2be5d6a:-7f21">
 <foreign-key-description/>
 <foreign-key-figure>
 <fk-fig-bendpoint-list/>

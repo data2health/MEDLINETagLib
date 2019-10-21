@@ -1,5 +1,6 @@
-insert into medline.article select pmid,issn,volume,issue,pub_date_year,pub_date_month,pub_date_day,pub_date_season,pub_date_medline,start_page,end_page,medline_pgn,vernacular_title from medline19_staging.article;
+insert into medline.article select pmid,issn,volume,issue,pub_date_year,pub_date_month,pub_date_day,pub_date_season,pub_date_medline,start_page,end_page,medline_pgn from medline19_staging.article;
 insert into medline.article_title select * from medline19_staging.article_title;
+insert into medline.vernacular_title select * from medline19_staging.vernacular_title;
 insert into medline.e_location_id select * from medline19_staging.e_location_id;
 insert into medline.abstract select * from medline19_staging.abstract;
 insert into medline.author select pmid,seqnum,equal_contrib,last_name,fore_name,initials,suffix,collective_name from medline19_staging.author;

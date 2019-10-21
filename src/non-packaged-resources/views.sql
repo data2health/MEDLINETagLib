@@ -18,7 +18,6 @@ xmltable(
         start_page text path 'Pagination/StartPage/text()',
         end_page text path 'Pagination/EndPage/text()',
         medline_pgn text path 'Pagination/MedlinePgn/text()',
-        vernacular_title text path 'VernacularTitle/text()',
         author_list xml path 'AuthorList'
     );
 
@@ -31,6 +30,17 @@ xmltable(
     columns
         seqnum FOR ORDINALITY,
         article_title text path '.'
+    );
+
+create view vernacular_title as
+select pmid,xmltable.* from
+xml,
+xmltable(
+    '//Article/VernacularTitle'
+    passing raw
+    columns
+        seqnum FOR ORDINALITY,
+        vernacular_title text path '.'
     );
 
 create view e_location_id as
