@@ -27,7 +27,7 @@ import org.dom4j.io.SAXReader;
 public class XtableLoader {
     static Logger logger = Logger.getLogger(XtableLoader.class);
     static DecimalFormat formatter = new DecimalFormat("0000");
-    static Properties prop_file = PropertyLoader.loadProperties("loader");
+    static Properties prop_file = PropertyLoader.loadProperties("cd2h_neuromancer");
     
     static boolean initial = false;
     static boolean updateMode = false;
@@ -206,8 +206,9 @@ public class XtableLoader {
     }
     
     static void materialize() throws SQLException {
-	materialize("article", "pmid,issn,volume,issue,pub_date_year,pub_date_month,pub_date_day,pub_date_season,pub_date_medline,start_page,end_page,medline_pgn,vernacular_title");
+	materialize("article", "pmid,issn,volume,issue,pub_date_year,pub_date_month,pub_date_day,pub_date_season,pub_date_medline,start_page,end_page,medline_pgn");
 	materialize("article_title","*");
+	materialize("venacular_title","*");
 	materialize("e_location_id","*");
 	materialize("abstract","*");
 	materialize("author","pmid,seqnum,equal_contrib,last_name,fore_name,initials,suffix,collective_name");
@@ -251,7 +252,7 @@ public class XtableLoader {
 	    logger.info(table + " min: " + min / increment + "\tmax: " + max / increment);
 	    for (int fence = min / increment; fence <= max / increment; fence++) {
 		logger.info("\tfence: " + fence * increment + " : " + (fence + 1) * increment);
-		PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes + " from medline19_staging." + table + " where id >= ? and id < ?");
+		PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes + " from medline19_staging." + table + " where pmid >= ? and pmid < ?");
 		stmt.setInt(1, fence * increment);
 		stmt.setInt(2, (fence + 1) * increment);
 		int count = stmt.executeUpdate();
