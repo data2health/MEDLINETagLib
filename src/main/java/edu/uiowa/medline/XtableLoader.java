@@ -170,7 +170,7 @@ public class XtableLoader {
 	while (pmids.hasNext()) {
 	    int pmid = Integer.parseInt(pmids.next().getText().trim());
 	    logger.debug("\t" + pmid);
-	    PreparedStatement delStmt = conn.prepareStatement("delete from article where pmid = ?");
+	    PreparedStatement delStmt = conn.prepareStatement("delete from medline19_staging.xml where pmid = ?");
 	    delStmt.setInt(1, pmid);
 	    delStmt.execute();
 	    delStmt.close();
@@ -262,6 +262,64 @@ public class XtableLoader {
 	}
 	checkStmt.close();
     }
+    
+    static void rematerialize() throws SQLException {
+	logger.info("scanning for existing records...");
+	PreparedStatement stmt = conn.prepareStatement("delete from medline.article where pmid in (select pmid from medline19_staging.queue)");
+	int count = stmt.executeUpdate();
+	stmt.close();
+	logger.info("\tdeleted " + count + " existing records");
+
+	rematerialize("article", "pmid,issn,volume,issue,pub_date_year,pub_date_month,pub_date_day,pub_date_season,pub_date_medline,start_page,end_page,medline_pgn");
+	rematerialize("article_title","*");
+	rematerialize("venacular_title","*");
+	rematerialize("e_location_id","*");
+	rematerialize("abstract","*");
+	rematerialize("author","pmid,seqnum,equal_contrib,last_name,fore_name,initials,suffix,collective_name");
+	rematerialize("author_identifier","*");
+	rematerialize("author_affiliation","*");
+	rematerialize("language","*");
+	rematerialize("data_bank","pmid,seqnum,data_bank_name");
+	rematerialize("accession_number","*");
+	rematerialize("grant_info","*");
+	rematerialize("publication_type","*");
+	rematerialize("medline_journal_info","*");
+	rematerialize("chemical","*");
+	rematerialize("suppl_mesh_name","*");
+	rematerialize("citation_subset","*");
+	rematerialize("comments_corrections","*");
+	rematerialize("gene_symbol","*");
+	rematerialize("mesh_heading","pmid,seqnum,major_topic,type,ui,descriptor_name");
+	rematerialize("mesh_qualifier","*");
+	rematerialize("personal_name_subject","*");
+	rematerialize("other_id","*");
+	rematerialize("other_abstract","*");
+	rematerialize("keyword","*");
+	rematerialize("space_flight_mission","*");
+	rematerialize("investigator","pmid,seqnum,last_name,fore_name,initials,suffix");
+	rematerialize("investigator_identifier","*");
+	rematerialize("investigator_affiliation","*");
+	rematerialize("general_note","*");
+	rematerialize("history","*");
+	rematerialize("article_id","*");
+	rematerialize("object","*");
+	rematerialize("reference","pmid,seqnum,title,citation");
+	rematerialize("reference_article_id","*");
+
+	logger.info("truncating queue...");
+	stmt = conn.prepareStatement("truncate medline19_staging.queue");
+	count = stmt.executeUpdate();
+	stmt.close();
+    }
+    
+    static void rematerialize(String table, String attributes) throws SQLException {
+	logger.info("rematerializing " + table + "...");
+	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes + " from medline19_staging." + table + " where pmid in (select pmid from medline19_staging.queue)");
+	int count = stmt.executeUpdate();
+	stmt.close();
+	logger.info("\tcount: " + count);
+    }
+    
     void parseRequest(int pmid) throws SQLException {
 	PreparedStatement stmt = conn.prepareStatement("insert into medline_local.parse_request values (?)");
 	stmt.setInt(1, pmid);

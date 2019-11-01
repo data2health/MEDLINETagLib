@@ -82,15 +82,15 @@ xmltable(
         initials text path 'Initials/text()',
         suffix text path 'Suffix/text()',
         collective_name text path 'CollectiveName/text()',
-        identifiers xml path 'Identifier',
-        affiliation_info xml path 'AffiliationInfo'
+        identifiers xml path '.', -- need to pass in the current node to have a well-formed qualifier list
+        affiliation_info xml path '.' -- need to pass in the current node to have a well-formed qualifier list
     );
 
 create view author_identifier as
 select pmid,seqnum,xmltable.* from 
 author,
 xmltable(
-    '//Identifier'
+    '//Author/Identifier'
     passing identifiers
     columns
         seqnum2 FOR ORDINALITY,
@@ -102,12 +102,12 @@ create view author_affiliation as
 select pmid,seqnum,xmltable.* from 
 author,
 xmltable(
-    '//AffiliationInfo'
+    '//Author/AffiliationInfo/Affiliation'
     passing affiliation_info
     columns
         seqnum2 FOR ORDINALITY,
-        affiliation text path 'Affiliation/text()',
-        identifier xml path 'Identifier'
+        affiliation text path '.',
+        identifier xml path '..' -- need to pass in the current node to have a well-formed qualifier list
     );
 
 create view language as
@@ -352,7 +352,7 @@ xmltable(
         initials text path 'Initials/text()',
         suffix text path 'Suffix/text()',
         identifiers xml path 'Identifier',
-        affiliation_info xml path 'AffiliationInfo'
+        affiliation_info xml path '.' -- need to pass in the current node to have a well-formed affiliation list
     );
 
 create view investigator_identifier as
@@ -371,7 +371,7 @@ create view investigator_affiliation as
 select pmid,seqnum,xmltable.* from 
 investigator,
 xmltable(
-    '//AffiliationInfo'
+    '//Investigator/AffiliationInfo'
     passing affiliation_info
     columns
         seqnum2 FOR ORDINALITY,
