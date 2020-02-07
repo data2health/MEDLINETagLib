@@ -202,7 +202,7 @@ public class XtableLoader {
 	logger.debug("\tcitation pmid: " + pmid);
 
 	boolean pmidInXML = false;
-	PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline19_staging.xml where pmid = ?");
+	PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline19_staging.xml_staging where pmid = ?");
 	checkStmt.setInt(1, pmid);
 	ResultSet rs = checkStmt.executeQuery();
 	while (rs.next()) {
@@ -211,7 +211,7 @@ public class XtableLoader {
 	checkStmt.close();
 
 	if (pmidInXML) {
-	    PreparedStatement delStmt = conn.prepareStatement("delete from medline19_staging.xml where pmid = ?");
+	    PreparedStatement delStmt = conn.prepareStatement("delete from medline19_staging.xml_staging where pmid = ?");
 	    delStmt.setInt(1, pmid);
 	    delStmt.execute();
 	    delStmt.close();
@@ -220,7 +220,7 @@ public class XtableLoader {
 	    recordsAdded++;
 	}
 
-	PreparedStatement insStmt = conn.prepareStatement("insert into medline19_staging.xml values(?,?::xml)");
+	PreparedStatement insStmt = conn.prepareStatement("insert into medline19_staging.xml_staging values(?,?::xml)");
 	insStmt.setInt(1, pmid);
 	insStmt.setString(2, citationElement.asXML());
 	insStmt.execute();
@@ -359,12 +359,16 @@ public class XtableLoader {
 	stmt = conn.prepareStatement("truncate medline19_staging.queue");
 	count = stmt.executeUpdate();
 	stmt.close();
+
+	logger.info("truncating xml_staging...");
+	stmt = conn.prepareStatement("truncate medline19_staging.xml_staging");
+	count = stmt.executeUpdate();
+	stmt.close();
     }
 
     static void rematerialize(String table, String attributes) throws SQLException {
 	logger.info("rematerializing " + table + "...");
-	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes + " from medline19_staging." + table
-		+ " where pmid in (select pmid from medline19_staging.queue)");
+	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes + " from medline19_staging." + table);
 	int count = stmt.executeUpdate();
 	stmt.close();
 	logger.info("\tcount: " + count);
