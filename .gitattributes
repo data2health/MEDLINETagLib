@@ -23,6 +23,7 @@ src/main/java/edu/uiowa/medline/Sequence.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/XpathLoader.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/XpathThread.java -text
 src/main/java/edu/uiowa/medline/XtableLoader.java -text
+src/main/java/edu/uiowa/medline/XtableThread.java -text
 src/main/java/edu/uiowa/medline/abstr/Abstr.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/abstr/AbstrAbstractText.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/abstr/AbstrCategory.java svneol=native#text/x-java-source

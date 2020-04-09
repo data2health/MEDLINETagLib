@@ -27,22 +27,22 @@ import org.dom4j.io.SAXReader;
 public class XtableLoader {
     static Logger logger = Logger.getLogger(XtableLoader.class);
     static DecimalFormat formatter = new DecimalFormat("0000");
-    static Properties prop_file = PropertyLoader.loadProperties("cd2h_neuromancer");
+    static Properties prop_file = PropertyLoader.loadProperties("cd2h_hal");
 
     static boolean initial = false;
     static boolean updateMode = false;
 
     static int increment = 1000000;
 
-    static Connection conn = null;
+    Connection conn = null;
 
     static DocumentQueue documentQueue = new DocumentQueue();
     static Thread loaderThread = null;
 
-    static int count = 0;
-    static int recordsAdded = 0;
-    static int recordsUpdated = 0;
-    static int recordsDeleted = 0;
+    int count = 0;
+    int recordsAdded = 0;
+    int recordsUpdated = 0;
+    int recordsDeleted = 0;
 
     /**
      * @param args
@@ -51,28 +51,28 @@ public class XtableLoader {
     @SuppressWarnings("unused")
     public static void main(String[] args) throws Exception {
 	PropertyConfigurator.configure(args[0]);
-	conn = getConnection();
 
 	if (args[1].equals("-full")) {
-	    for (int i = 1; i <= 972; i++) {
-		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE19/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed19n" + formatter.format(i) + ".xml.gz";
+	    XtableLoader theLoader = new XtableLoader();
+	    for (int i = 1; i <= 300; i++) {
+		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE20/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed20n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
-		processDocument(parseDocument(fileName));
+		theLoader.processDocument(theLoader.parseDocument(fileName));
 	    }
 	    logger.info("parsing completed.");
 	} else if (args[1].equals("-threaded")) {
-	    for (int i = 1; i <= 972; i++) {
-		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE19/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed19n" + formatter.format(i) + ".xml.gz";
+	    for (int i = 1; i <= 1015; i++) {
+		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE20/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed20n" + formatter.format(i) + ".xml.gz";
 		logger.info("file: " + fileName);
 		documentQueue.queue(fileName, null);
 	    }
 
-	    int maxCrawlerThreads = Runtime.getRuntime().availableProcessors();
+	    int maxCrawlerThreads = Runtime.getRuntime().availableProcessors()/2;
 	    Thread[] scannerThreads = new Thread[maxCrawlerThreads];
 
 	    for (int i = 0; i < maxCrawlerThreads; i++) {
 		logger.info("starting thread " + i);
-		Thread theThread = new Thread(new XpathThread(documentQueue));
+		Thread theThread = new Thread(new XtableThread(documentQueue));
 		theThread.setPriority(Math.max(theThread.getPriority() - 2, Thread.MIN_PRIORITY));
 		theThread.start();
 		scannerThreads[i] = theThread;
@@ -83,26 +83,29 @@ public class XtableLoader {
 	    }
 	    logger.info("parsing completed.");
 	} else if (args[1].equals("-update")) {
+	    XtableLoader theLoader = new XtableLoader();
 	    updateMode = true;
 	    for (int i = 973; i <= 983; i++) {
-		String fileName = "/Volumes/Pegasus3/Corpora/MEDLINE19/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/pubmed19n" + formatter.format(i) + ".xml.gz";
+		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE20/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/pubmed19n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
-		processDocument(parseDocument(fileName));
+		theLoader.processDocument(theLoader.parseDocument(fileName));
 	    }
 	    logger.info("parsing completed.");
 	} else if (args[1].equals("-daily")) {
+	    XtableLoader theLoader = new XtableLoader();
 	    updateMode = true;
 	    // read files from stdin
 	    BufferedReader IODesc = new BufferedReader(new InputStreamReader(System.in));
 	    String current = null;
 	    while ((current = IODesc.readLine()) != null) {
-		processDocument(parseDocument(current.trim()));
+		theLoader.processDocument(theLoader.parseDocument(current.trim()));
 	    }
 	    // materializeAuthorView();
 	} else if (args[1].equals("-materialize")) {
-	    materialize();
+	    XtableLoader theLoader = new XtableLoader();
+	    theLoader.materialize();
 	} else {
-	    XpathLoader theLoader = new XpathLoader(args[1]);
+	    XtableLoader theLoader = new XtableLoader();
 	}
     }
 
@@ -117,8 +120,12 @@ public class XtableLoader {
 	// local.setAutoCommit(false);
 	return local;
     }
+    
+    public XtableLoader() throws ClassNotFoundException, SQLException {
+	conn = getConnection();
+    }
 
-    static Element parseDocument(String fileName) throws Exception {
+    Element parseDocument(String fileName) throws Exception {
 	logger.info("scanning " + fileName + "...");
 
 	File input = new File(fileName);
@@ -137,7 +144,7 @@ public class XtableLoader {
     }
 
     @SuppressWarnings("unchecked")
-    static void processDocument(Element root) throws SQLException {
+    void processDocument(Element root) throws SQLException {
 	for (Element citation : (List<Element>) root.selectNodes("PubmedArticle/MedlineCitation")) {
 	    medlineCitation(citation);
 	}
@@ -160,7 +167,7 @@ public class XtableLoader {
     }
 
     @SuppressWarnings("unchecked")
-    static void deleteCitation(Node deleteNode) throws SQLException {
+    void deleteCitation(Node deleteNode) throws SQLException {
 	// <!ELEMENT DeleteCitation (PMID+)>
 
 	if (deleteNode == null)
@@ -170,13 +177,13 @@ public class XtableLoader {
 	while (pmids.hasNext()) {
 	    int pmid = Integer.parseInt(pmids.next().getText().trim());
 	    logger.debug("\t" + pmid);
-	    PreparedStatement delStmt = conn.prepareStatement("delete from medline19_staging.xml where pmid = ?");
+	    PreparedStatement delStmt = conn.prepareStatement("delete from medline20_staging.xml where pmid = ?");
 	    delStmt.setInt(1, pmid);
 	    delStmt.execute();
 	    delStmt.close();
 
 	    boolean pmidInQueue = false;
-	    PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline19_staging.queue where pmid = ?");
+	    PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline20_staging.queue where pmid = ?");
 	    checkStmt.setInt(1, pmid);
 	    ResultSet rs = checkStmt.executeQuery();
 	    while (rs.next()) {
@@ -185,7 +192,7 @@ public class XtableLoader {
 	    checkStmt.close();
 
 	    if (!pmidInQueue) {
-		PreparedStatement insStmt = conn.prepareStatement("insert into medline19_staging.queue values(?)");
+		PreparedStatement insStmt = conn.prepareStatement("insert into medline20_staging.queue values(?)");
 		insStmt.setInt(1, pmid);
 		insStmt.execute();
 		insStmt.close();
@@ -197,12 +204,12 @@ public class XtableLoader {
 	}
     }
 
-    static void medlineCitation(Element citationElement) throws SQLException {
+    void medlineCitation(Element citationElement) throws SQLException {
 	int pmid = Integer.parseInt(citationElement.selectSingleNode("PMID").getText().trim());
 	logger.debug("\tcitation pmid: " + pmid);
 
 	boolean pmidInXML = false;
-	PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline19_staging.xml_staging where pmid = ?");
+	PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline20_staging.xml_staging where pmid = ?");
 	checkStmt.setInt(1, pmid);
 	ResultSet rs = checkStmt.executeQuery();
 	while (rs.next()) {
@@ -211,7 +218,7 @@ public class XtableLoader {
 	checkStmt.close();
 
 	if (pmidInXML) {
-	    PreparedStatement delStmt = conn.prepareStatement("delete from medline19_staging.xml_staging where pmid = ?");
+	    PreparedStatement delStmt = conn.prepareStatement("delete from medline20_staging.xml_staging where pmid = ?");
 	    delStmt.setInt(1, pmid);
 	    delStmt.execute();
 	    delStmt.close();
@@ -220,14 +227,14 @@ public class XtableLoader {
 	    recordsAdded++;
 	}
 
-	PreparedStatement insStmt = conn.prepareStatement("insert into medline19_staging.xml_staging values(?,?::xml)");
+	PreparedStatement insStmt = conn.prepareStatement("insert into medline20_staging.xml_staging values(?,?::xml)");
 	insStmt.setInt(1, pmid);
 	insStmt.setString(2, citationElement.asXML());
 	insStmt.execute();
 	insStmt.close();
 	
 	boolean pmidInQueue = false;
-	checkStmt = conn.prepareStatement("select pmid from medline19_staging.queue where pmid = ?");
+	checkStmt = conn.prepareStatement("select pmid from medline20_staging.queue where pmid = ?");
 	checkStmt.setInt(1, pmid);
 	rs = checkStmt.executeQuery();
 	while (rs.next()) {
@@ -236,7 +243,7 @@ public class XtableLoader {
 	checkStmt.close();
 
 	if (!pmidInQueue) {
-	    insStmt = conn.prepareStatement("insert into medline19_staging.queue values(?)");
+	    insStmt = conn.prepareStatement("insert into medline20_staging.queue values(?)");
 	    insStmt.setInt(1, pmid);
 	    insStmt.execute();
 	    insStmt.close();
@@ -251,7 +258,7 @@ public class XtableLoader {
 
     }
 
-    static void materialize() throws SQLException {
+    void materialize() throws SQLException {
 	materialize("article",
 		"pmid,issn,volume,issue,pub_date_year,pub_date_month,pub_date_day,pub_date_season,pub_date_medline,start_page,end_page,medline_pgn");
 	materialize("article_title", "*");
@@ -290,8 +297,8 @@ public class XtableLoader {
 	materialize("reference_article_id", "*");
     }
 
-    static void materialize(String table, String attributes) throws SQLException {
-	PreparedStatement checkStmt = conn.prepareStatement("select min(pmid), max(pmid) from medline19_staging.xml");
+    void materialize(String table, String attributes) throws SQLException {
+	PreparedStatement checkStmt = conn.prepareStatement("select min(pmid), max(pmid) from medline20_staging.xml");
 	ResultSet rs = checkStmt.executeQuery();
 	while (rs.next()) {
 	    int min = rs.getInt(1);
@@ -300,7 +307,7 @@ public class XtableLoader {
 	    for (int fence = min / increment; fence <= max / increment; fence++) {
 		logger.info("\tfence: " + fence * increment + " : " + (fence + 1) * increment);
 		PreparedStatement stmt = conn.prepareStatement(
-			"insert into medline." + table + " select " + attributes + " from medline19_staging." + table + " where pmid >= ? and pmid < ?");
+			"insert into medline." + table + " select " + attributes + " from medline20_staging." + table + " where pmid >= ? and pmid < ?");
 		stmt.setInt(1, fence * increment);
 		stmt.setInt(2, (fence + 1) * increment);
 		int count = stmt.executeUpdate();
@@ -311,9 +318,9 @@ public class XtableLoader {
 	checkStmt.close();
     }
 
-    static void rematerialize() throws SQLException {
+    void rematerialize() throws SQLException {
 	logger.info("scanning for existing records...");
-	PreparedStatement stmt = conn.prepareStatement("delete from medline.article where pmid in (select pmid from medline19_staging.queue)");
+	PreparedStatement stmt = conn.prepareStatement("delete from medline.article where pmid in (select pmid from medline20_staging.queue)");
 	int count = stmt.executeUpdate();
 	stmt.close();
 	logger.info("\tdeleted " + count + " existing records");
@@ -356,25 +363,25 @@ public class XtableLoader {
 	rematerialize("reference_article_id", "*");
 
 	logger.info("truncating queue...");
-	stmt = conn.prepareStatement("truncate medline19_staging.queue");
+	stmt = conn.prepareStatement("truncate medline20_staging.queue");
 	count = stmt.executeUpdate();
 	stmt.close();
 
 	logger.info("truncating xml_staging...");
-	stmt = conn.prepareStatement("truncate medline19_staging.xml_staging");
+	stmt = conn.prepareStatement("truncate medline20_staging.xml_staging");
 	count = stmt.executeUpdate();
 	stmt.close();
     }
 
-    static void rematerialize(String table, String attributes) throws SQLException {
+    void rematerialize(String table, String attributes) throws SQLException {
 	logger.info("rematerializing " + table + "...");
-	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes + " from medline19_staging." + table);
+	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes + " from medline20_staging." + table);
 	int count = stmt.executeUpdate();
 	stmt.close();
 	logger.info("\tcount: " + count);
     }
 
-    static void parseRequest(int pmid) throws SQLException {
+    void parseRequest(int pmid) throws SQLException {
 	PreparedStatement stmt = conn.prepareStatement("insert into medline_local.parse_request values (?)");
 	stmt.setInt(1, pmid);
 	stmt.execute();
