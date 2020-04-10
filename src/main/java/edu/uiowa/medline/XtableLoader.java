@@ -32,7 +32,7 @@ public class XtableLoader {
     static boolean initial = false;
     static boolean updateMode = false;
 
-    static int increment = 1000000;
+    static int increment = 5000000;
 
     Connection conn = null;
 
@@ -85,8 +85,8 @@ public class XtableLoader {
 	} else if (args[1].equals("-update")) {
 	    XtableLoader theLoader = new XtableLoader();
 	    updateMode = true;
-	    for (int i = 973; i <= 983; i++) {
-		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE20/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/pubmed19n" + formatter.format(i) + ".xml.gz";
+	    for (int i = 1016; i <= 1159; i++) {
+		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE20/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/pubmed20n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		theLoader.processDocument(theLoader.parseDocument(fileName));
 	    }
@@ -298,7 +298,7 @@ public class XtableLoader {
     }
 
     void materialize(String table, String attributes) throws SQLException {
-	PreparedStatement checkStmt = conn.prepareStatement("select min(pmid), max(pmid) from medline20_staging.xml");
+	PreparedStatement checkStmt = conn.prepareStatement("select min(pmid), max(pmid) from medline20_staging.xml_staging");
 	ResultSet rs = checkStmt.executeQuery();
 	while (rs.next()) {
 	    int min = rs.getInt(1);
