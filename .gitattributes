@@ -17,6 +17,8 @@ src/main/java/edu/uiowa/medline/DocumentRequest.java -text
 src/main/java/edu/uiowa/medline/Loader.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/MEDLINETagLibBodyTagSupport.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/MEDLINETagLibTagSupport.java svneol=native#text/x-java-source
+src/main/java/edu/uiowa/medline/MaterializationQueue.java -text
+src/main/java/edu/uiowa/medline/MaterializationRequest.java -text
 src/main/java/edu/uiowa/medline/PropertyLoader.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/Publisher.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/Sequence.java svneol=native#text/x-java-source

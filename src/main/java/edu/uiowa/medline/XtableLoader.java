@@ -14,6 +14,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Properties;
+import java.util.Vector;
 
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
@@ -145,7 +146,7 @@ public class XtableLoader {
 
     @SuppressWarnings("unchecked")
     void processDocument(Element root) throws SQLException {
-	for (Element citation : (List<Element>) root.selectNodes("PubmedArticle/MedlineCitation")) {
+	for (Element citation : (List<Element>) root.selectNodes("PubmedArticle")) {
 	    medlineCitation(citation);
 	}
 
@@ -173,7 +174,7 @@ public class XtableLoader {
 	if (deleteNode == null)
 	    return;
 	logger.debug("\ndeleting citations:");
-	ListIterator<Element> pmids = deleteNode.selectNodes("PMID").listIterator();
+	ListIterator<Element> pmids = deleteNode.selectNodes("MedlineCitation/PMID").listIterator();
 	while (pmids.hasNext()) {
 	    int pmid = Integer.parseInt(pmids.next().getText().trim());
 	    logger.debug("\t" + pmid);
@@ -205,7 +206,7 @@ public class XtableLoader {
     }
 
     void medlineCitation(Element citationElement) throws SQLException {
-	int pmid = Integer.parseInt(citationElement.selectSingleNode("PMID").getText().trim());
+	int pmid = Integer.parseInt(citationElement.selectSingleNode("MedlineCitation/PMID").getText().trim());
 	logger.debug("\tcitation pmid: " + pmid);
 
 	boolean pmidInXML = false;
@@ -258,9 +259,154 @@ public class XtableLoader {
 
     }
 
-    void materialize() throws SQLException {
-	materialize("article",
-		"pmid,issn,volume,issue,pub_date_year,pub_date_month,pub_date_day,pub_date_season,pub_date_medline,start_page,end_page,medline_pgn");
+    void materialize() throws Exception {
+	MaterializationQueue theQueue = new MaterializationQueue();
+	Vector<MaterializationRequest> theRequestList = null;
+	
+	// first materialize the root of everything
+//	materialize("article", "pmid,issn,volume,issue,pub_date_year,pub_date_month,pub_date_day,pub_date_season,pub_date_medline,start_page,end_page,medline_pgn");
+	
+	// build chains of materialization dependencies
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("article_title", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("vernacular_title", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("e_location_id", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("abstract", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("author", "pmid,seqnum,equal_contrib,last_name,fore_name,initials,suffix,collective_name"));
+	theRequestList.add(new MaterializationRequest("author_identifier", "*"));
+	theRequestList.add(new MaterializationRequest("author_affiliation", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("language", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("data_bank", "pmid,seqnum,data_bank_name"));
+	theRequestList.add(new MaterializationRequest("accession_number", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("grant_info", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("publication_type", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("medline_journal_info", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("chemical", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("suppl_mesh_name", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("citation_subset", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("comments_corrections", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("gene_symbol", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("mesh_heading", "pmid,seqnum,major_topic,type,ui,descriptor_name"));
+	theRequestList.add(new MaterializationRequest("mesh_qualifier", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("personal_name_subject", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("other_id", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("other_abstract", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("keyword", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("space_flight_mission", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("investigator", "pmid,seqnum,last_name,fore_name,initials,suffix"));
+	theRequestList.add(new MaterializationRequest("investigator_identifier", "*"));
+	theRequestList.add(new MaterializationRequest("investigator_affiliation", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("general_note", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("history", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("article_id", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("object", "*"));
+	theQueue.queue(theRequestList);
+	
+	theRequestList = new Vector<MaterializationRequest>();
+	theRequestList.add(new MaterializationRequest("reference", "pmid,seqnum,title,citation"));
+	theRequestList.add(new MaterializationRequest("reference_article_id", "*"));
+	theQueue.queue(theRequestList);
+	
+	int maxCrawlerThreads = 12;
+	Thread[] scannerThreads = new Thread[maxCrawlerThreads];
+
+	for (int i = 0; i < maxCrawlerThreads; i++) {
+	    logger.info("starting thread " + i);
+	    Thread theThread = new Thread(new XtableThread(i, theQueue));
+	    theThread.start();
+	    scannerThreads[i] = theThread;
+	}
+
+	for (int i = 0; i < maxCrawlerThreads; i++) {
+	    scannerThreads[i].join();
+	}
+	logger.info("materialization completed.");
+    }
+
+    void materialize(String table, String attributes) throws SQLException {
+	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes	+ " from medline20_staging." + table);
+	int count = stmt.executeUpdate();
+	stmt.close();
+	logger.info("\tcount: " + count);
+    }
+
+    void materializeByGroup() throws SQLException {
+	materialize("article", "pmid,issn,volume,issue,pub_date_year,pub_date_month,pub_date_day,pub_date_season,pub_date_medline,start_page,end_page,medline_pgn");
 	materialize("article_title", "*");
 	materialize("vernacular_title", "*");
 	materialize("e_location_id", "*");
@@ -297,7 +443,7 @@ public class XtableLoader {
 	materialize("reference_article_id", "*");
     }
 
-    void materialize(String table, String attributes) throws SQLException {
+    void materializeByGroup(String table, String attributes) throws SQLException {
 	PreparedStatement checkStmt = conn.prepareStatement("select min(pmid), max(pmid) from medline20_staging.xml_staging");
 	ResultSet rs = checkStmt.executeQuery();
 	while (rs.next()) {
