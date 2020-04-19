@@ -150,7 +150,7 @@ public class MaterializationQueue {
 	queue(theRequestList);
 	
 	theRequestList = new Vector<MaterializationRequest>();
-	theRequestList.add(new MaterializationRequest("reference", "pmid,seqnum,title,citation"));
+	theRequestList.add(new MaterializationRequest("reference", "pmid,seqnum,title,unnest(xpath('.',citation)) as citation"));
 	theRequestList.add(new MaterializationRequest("reference_article_id", "*"));
 	queue(theRequestList);
 	

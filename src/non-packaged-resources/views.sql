@@ -432,8 +432,10 @@ xmltable(
         object text path '.'
     );
 
+-- citation is unwrapped as unnest(xpath('.',citation)) as citation in the insert
+-- this is just a weird Postgres query optimization issue
 create view reference as
-select pmid,seqnum,title,unnest(xpath('.',citation)) as citation,article_ids from 
+select pmid,seqnum,title,citation,article_ids from 
 xml_staging,
 xmltable(
     '//ReferenceList/Reference'
