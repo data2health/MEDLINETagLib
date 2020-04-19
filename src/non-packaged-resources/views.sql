@@ -433,15 +433,15 @@ xmltable(
     );
 
 create view reference as
-select pmid,xmltable.* from 
-xml,
+select pmid,seqnum,title,unnest(xpath('.',citation)),article_ids from 
+xml_staging,
 xmltable(
     '//ReferenceList/Reference'
     passing raw
     columns
         seqnum FOR ORDINALITY,
-        title text path '../Title/text()',
-        citation text path 'Citation/text()',
+        title text path 'Title/text()',
+        citation xml path 'Citation',
         article_ids xml path 'ArticleIdList'
     );
 
