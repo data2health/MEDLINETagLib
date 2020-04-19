@@ -63,7 +63,7 @@ public class XtableThread implements Runnable {
 			}
 			int count = stmt.executeUpdate();
 			stmt.close();
-			logger.info("[" + formatter.format(threadID) + "]\t" + theRequest.tableName + "count: " + count);
+			logger.info("[" + formatter.format(threadID) + "]\t" + theRequest.tableName + " count: " + count);
 		    } catch (Exception e) {
 			logger.error("[" + formatter.format(threadID) + "] exception raised materializing " + theRequest.tableName + ": ",e);
 		    }

@@ -433,7 +433,7 @@ xmltable(
     );
 
 create view reference as
-select pmid,seqnum,title,unnest(xpath('.',citation)),article_ids from 
+select pmid,seqnum,title,unnest(xpath('.',citation)) as citation,article_ids from 
 xml_staging,
 xmltable(
     '//ReferenceList/Reference'
