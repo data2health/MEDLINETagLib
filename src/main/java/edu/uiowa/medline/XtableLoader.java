@@ -94,13 +94,16 @@ public class XtableLoader {
 	} else if (args[1].equals("-daily")) {
 	    XtableLoader theLoader = new XtableLoader();
 	    updateMode = true;
+	    int count = 0;
 	    // read files from stdin
 	    BufferedReader IODesc = new BufferedReader(new InputStreamReader(System.in));
 	    String current = null;
 	    while ((current = IODesc.readLine()) != null) {
 		theLoader.processDocument(theLoader.parseDocument(current.trim()));
+		count++;
 	    }
-	    theLoader.rematerialize();
+	    if (count > 0)
+		theLoader.rematerialize();
 	} else if (args[1].equals("-materialize")) {
 	    XtableLoader theLoader = new XtableLoader();
 	    theLoader.materialize();
@@ -370,6 +373,10 @@ public class XtableLoader {
 	    scannerThreads[i].join();
 	}
 
+	logger.info("loading indexing queue...");
+	stmt = conn.prepareStatement("insert into medline20_staging.queue_indexing select * from medline20_staging.queue");
+	count = stmt.executeUpdate();
+	stmt.close();
 	logger.info("truncating queue...");
 	stmt = conn.prepareStatement("truncate medline20_staging.queue");
 	count = stmt.executeUpdate();

@@ -13,6 +13,11 @@ public class DocumentQueue {
 	return documentQueue.size() >= capacity;
     }
     
+    public synchronized void queue(int pmid, String title) {
+	documentQueue.add(new DocumentRequest(pmid, title));
+	completed = false;
+    }
+    
     public synchronized void queue(String fileName, Element theElement) {
 	documentQueue.add(new DocumentRequest(fileName, theElement));
 	completed = false;
