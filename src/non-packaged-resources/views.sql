@@ -1,8 +1,15 @@
+create table xml_staging(
+	pmid int primary key,
+	raw xml
+	);
 
+create table queue(pmid int primary key);
+
+create table queue_indexing(pmid int);
 
 create view article as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//Article'
     passing raw
@@ -23,7 +30,7 @@ xmltable(
 
 create view article_title as
 select pmid,xmltable.* from
-xml,
+xml_staging,
 xmltable(
     '//Article/ArticleTitle'
     passing raw
@@ -34,7 +41,7 @@ xmltable(
 
 create view vernacular_title as
 select pmid,xmltable.* from
-xml,
+xml_staging,
 xmltable(
     '//Article/VernacularTitle'
     passing raw
@@ -45,7 +52,7 @@ xmltable(
 
 create view e_location_id as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//Article/ELocationID'
     passing raw
@@ -57,7 +64,7 @@ xmltable(
 
 create view abstract as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//Article/Abstract/AbstractText'
     passing raw
@@ -70,7 +77,7 @@ xmltable(
 
 create view author as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//Article/AuthorList/Author'
     passing raw
@@ -112,7 +119,7 @@ xmltable(
 
 create view language as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//Article/Language'
     passing raw
@@ -123,7 +130,7 @@ xmltable(
 
 create view data_bank as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//Article/DataBankList/DataBank'
     passing raw
@@ -146,7 +153,7 @@ xmltable(
 
 create view grant_info as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//Article/GrantList/Grant'
     passing raw
@@ -160,7 +167,7 @@ xmltable(
 
 create view publication_type as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//Article/PublicationTypeList/PublicationType'
     passing raw
@@ -172,7 +179,7 @@ xmltable(
 
 create view medline_journal_info as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//MedlineJournalInfo'
     passing raw
@@ -185,7 +192,7 @@ xmltable(
 
 create view chemical as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//ChemicalList/Chemical'
     passing raw
@@ -198,7 +205,7 @@ xmltable(
 
 create view suppl_mesh_name as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//SupplMeshList/SupplMeshName'
     passing raw
@@ -211,7 +218,7 @@ xmltable(
 
 create view citation_subset as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//CitationSubset'
     passing raw
@@ -222,7 +229,7 @@ xmltable(
 
 create view comments_corrections as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//CommentsCorrectionsList/CommentsCorrections'
     passing raw
@@ -236,7 +243,7 @@ xmltable(
 
 create view gene_symbol as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//GeneSymbolList/GeneSymbol'
     passing raw
@@ -247,7 +254,7 @@ xmltable(
 
 create view mesh_heading as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//MeshHeadingList/MeshHeading'
     passing raw
@@ -278,7 +285,7 @@ xmltable(
 
 create view personal_name_subject as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//PersonalNameSubjectList/PersonalNameSubject'
     passing raw
@@ -292,7 +299,7 @@ xmltable(
 
 create view other_id as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//OtherID'
     passing raw
@@ -304,7 +311,7 @@ xmltable(
 
 create view other_abstract as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//OtherAbstract/AbstractText'
     passing raw
@@ -317,7 +324,7 @@ xmltable(
 
 create view keyword as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//KeywordList/Keyword'
     passing raw
@@ -330,7 +337,7 @@ xmltable(
 
 create view space_flight_mission as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//SpaceFlightMission'
     passing raw
@@ -341,7 +348,7 @@ xmltable(
 
 create view investigator as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//InvestigatorList/Investigator'
     passing raw
@@ -381,7 +388,7 @@ xmltable(
 
 create view general_note as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//GeneralNote'
     passing raw
@@ -393,7 +400,7 @@ xmltable(
 
 create view history as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//PubmedData/History/PubMedPubDate'
     passing raw
@@ -410,7 +417,7 @@ xmltable(
 
 create view article_id as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//ArticleIdList/ArticleId'
     passing raw
@@ -422,7 +429,7 @@ xmltable(
 
 create view object as
 select pmid,xmltable.* from 
-xml,
+xml_staging,
 xmltable(
     '//ObjectList/Object'
     passing raw
