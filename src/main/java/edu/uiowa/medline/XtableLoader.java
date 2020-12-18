@@ -60,7 +60,7 @@ public class XtableLoader {
 		theLoader.processDocument(theLoader.parseDocument(fileName));
 	    }
 	    logger.info("parsing completed.");
-	} else if (args[1].equals("-threaded")) {
+	} else if (args[1].equals("-threaded xxx")) { // there are differences in the '21 XML data as text when loaded serially vs. in parallel that need exploring
 	    for (int i = 1; i <= 1062; i++) {
 		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE21/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed21n" + formatter.format(i) + ".xml.gz";
 		logger.info("file: " + fileName);
