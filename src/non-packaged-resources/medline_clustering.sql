@@ -14,7 +14,15 @@ group by 1,2
 
 ===============
 
-select * from medline.author_affiliation t, unnest(string_to_array(t.affiliation,';')) s(token) where affiliation~'[a-oq-z];' limit 10000;
+select * from medline.author_affiliation , unnest(string_to_array(regexp_replace(affiliation,'&amp;','&','g'),';')) s(token) where affiliation~'&amp' limit 10;
+
+select pmid,seqnum,seqnum2,token,affiliation,regexp_replace(token,'^ *& *','') from
+(select *
+from
+	medline.author_affiliation ,
+	unnest(string_to_array(regexp_replace(affiliation,'&amp;','&','g'),';')) s(token)
+where affiliation~'[^p];.&') as foo
+limit 100;
 
 create view medline_clustering.affiliation as
 select
