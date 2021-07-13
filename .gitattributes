@@ -369,6 +369,7 @@ src/non-packaged-resources/Model2019.clay -text svneol=unset#application/xml
 src/non-packaged-resources/Model2019.sql -text
 src/non-packaged-resources/create.sql -text
 src/non-packaged-resources/functions.tld -text svneol=unset#text/xml
+src/non-packaged-resources/medline_clustering.sql -text
 src/non-packaged-resources/new_year_parse_configure.sql -text
 src/non-packaged-resources/populate.sql -text
 src/non-packaged-resources/refresh.sql -text
