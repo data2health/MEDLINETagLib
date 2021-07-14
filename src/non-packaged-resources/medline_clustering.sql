@@ -1,7 +1,6 @@
 create schema medline_clustering;
 
-create sequence medline_clustering.seqnum;
-
+fdddgyu 
 create materialized view medline_clustering.author_count as
 select
 	last_name,
@@ -16,15 +15,14 @@ group by 1,2
 
 select * from medline.author_affiliation , unnest(string_to_array(regexp_replace(affiliation,'&amp;','&','g'),';')) s(token) where affiliation~'&amp' limit 10;
 
-select pmid,seqnum,seqnum2,token,affiliation,regexp_replace(token,'^ *& *','') from
-(select *
+create view medline_clustering.author_affiliation as 
+select pmid,seqnum,seqnum2,token as affiliation
 from
 	medline.author_affiliation ,
-	unnest(string_to_array(regexp_replace(affiliation,'&amp;','&','g'),';')) s(token)
-where affiliation~'[^p];.&') as foo
-limit 100;
+	unnest(regexp_split_to_array(affiliation,'(?<!&#?[A-Za-z0-9]+); *')) s(token)
+;
 
-create view medline_clustering.affiliation as
+create view medline_clustering.affiliation_staging as
 select
 	pmid,
 	seqnum,
@@ -43,90 +41,136 @@ from medline.author_affiliation
 ;
 
 select
-	affiliation.*,
+	pmid,
+	seqnum,
+	seqnum2,
 	name,
 	id
-from medline_clustering.affiliation,ror.organization
-where affiliation.slot1=organization.name
+from medline_clustering.affiliation_staging,ror.organization
+where affiliation_staging.slot1=organization.name
   and not exists (select * from ror.organization where slot2=name)
-limit 100
-;
-
-select
-	affiliation.*,
-	name,
-	id
-from medline_clustering.affiliation,ror.organization
-where affiliation.slot2=organization.name
   and not exists (select * from ror.organization where slot3=name)
-limit 100
-;
-
-select
-	affiliation.*,
-	name,
-	id
-from medline_clustering.affiliation,ror.organization
-where affiliation.slot3=organization.name
   and not exists (select * from ror.organization where slot4=name)
-limit 100
-;
-
-select
-	affiliation.*,
-	name,
-	id
-from medline_clustering.affiliation,ror.organization
-where affiliation.slot4=organization.name
   and not exists (select * from ror.organization where slot5=name)
-limit 100
-;
-
-select
-	affiliation.*,
-	name,
-	id
-from medline_clustering.affiliation,ror.organization
-where affiliation.slot5=organization.name
   and not exists (select * from ror.organization where slot6=name)
-limit 100
-;
-
-select
-	affiliation.*,
-	name,
-	id
-from medline_clustering.affiliation,ror.organization
-where affiliation.slot6=organization.name
   and not exists (select * from ror.organization where slot7=name)
-limit 100
-;
-
-select
-	affiliation.*,
-	name,
-	id
-from medline_clustering.affiliation,ror.organization
-where affiliation.slot7=organization.name
   and not exists (select * from ror.organization where slot8=name)
-limit 100
-;
-
-select
-	affiliation.*,
-	name,
-	id
-from medline_clustering.affiliation,ror.organization
-where affiliation.slot8=organization.name
   and not exists (select * from ror.organization where slot9=name)
 limit 100
 ;
 
 select
-	affiliation.*,
+	pmid,
+	seqnum,
+	seqnum2,
 	name,
 	id
-from medline_clustering.affiliation,ror.organization
-where affiliation.slot9=organization.name
+from medline_clustering.affiliation_staging,ror.organization
+where affiliation_staging.slot2=organization.name
+  and not exists (select * from ror.organization where slot3=name)
+  and not exists (select * from ror.organization where slot4=name)
+  and not exists (select * from ror.organization where slot5=name)
+  and not exists (select * from ror.organization where slot6=name)
+  and not exists (select * from ror.organization where slot7=name)
+  and not exists (select * from ror.organization where slot8=name)
+  and not exists (select * from ror.organization where slot9=name)
+limit 100
+;
+
+select
+	pmid,
+	seqnum,
+	seqnum2,
+	name,
+	id
+from medline_clustering.affiliation_staging,ror.organization
+where affiliation_staging.slot3=organization.name
+  and not exists (select * from ror.organization where slot4=name)
+  and not exists (select * from ror.organization where slot5=name)
+  and not exists (select * from ror.organization where slot6=name)
+  and not exists (select * from ror.organization where slot7=name)
+  and not exists (select * from ror.organization where slot8=name)
+  and not exists (select * from ror.organization where slot9=name)
+limit 100
+;
+
+select
+	pmid,
+	seqnum,
+	seqnum2,
+	name,
+	id
+from medline_clustering.affiliation_staging,ror.organization
+where affiliation_staging.slot4=organization.name
+  and not exists (select * from ror.organization where slot5=name)
+  and not exists (select * from ror.organization where slot6=name)
+  and not exists (select * from ror.organization where slot7=name)
+  and not exists (select * from ror.organization where slot8=name)
+  and not exists (select * from ror.organization where slot9=name)
+limit 100
+;
+
+select
+	pmid,
+	seqnum,
+	seqnum2,
+	name,
+	id
+from medline_clustering.affiliation_staging,ror.organization
+where affiliation_staging.slot5=organization.name
+  and not exists (select * from ror.organization where slot6=name)
+  and not exists (select * from ror.organization where slot7=name)
+  and not exists (select * from ror.organization where slot8=name)
+  and not exists (select * from ror.organization where slot9=name)
+limit 100
+;
+
+select
+	pmid,
+	seqnum,
+	seqnum2,
+	name,
+	id
+from medline_clustering.affiliation_staging,ror.organization
+where affiliation_staging.slot6=organization.name
+  and not exists (select * from ror.organization where slot7=name)
+  and not exists (select * from ror.organization where slot8=name)
+  and not exists (select * from ror.organization where slot9=name)
+limit 100
+;
+
+select
+	pmid,
+	seqnum,
+	seqnum2,
+	name,
+	id
+from medline_clustering.affiliation_staging,ror.organization
+where affiliation_staging.slot7=organization.name
+  and not exists (select * from ror.organization where slot8=name)
+  and not exists (select * from ror.organization where slot9=name)
+limit 100
+;
+
+select
+	pmid,
+	seqnum,
+	seqnum2,
+	name,
+	id
+from medline_clustering.affiliation_staging,ror.organization
+where affiliation_staging.slot8=organization.name
+  and not exists (select * from ror.organization where slot9=name)
+limit 100
+;
+
+select
+	pmid,
+	seqnum,
+	seqnum2,
+	name,
+	id
+from medline_clustering.affiliation_staging,ror.organization
+where affiliation_staging.slot9=organization.name
 limit 100
 ;
