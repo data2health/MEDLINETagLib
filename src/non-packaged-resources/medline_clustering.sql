@@ -157,26 +157,21 @@ from medline_clustering.author_affiliation_staging,ror.organization
 where author_affiliation_staging.slot9=organization.name
 ;
 
-
+create materialized view testing as
 select
 	document_cluster.last_name,
 	document_cluster.fore_name,
 	document_cluster.cid,
 	cluster_document.pmid,
-	author.seqnum,
-	name,
-	id
+	author.seqnum
 from
 	medline_clustering.document_cluster,
 	medline_clustering.cluster_document,
-	medline.author,
-	medline_clustering.author_affiliation
-where document_cluster.last_name = 'Eichmann'
-  and document_cluster.fore_name = 'David'
-  and document_cluster.cid = cluster_document.cid
+	medline.author
+where document_cluster.cid = cluster_document.cid
   and cluster_document.pmid = author.pmid
   and document_cluster.last_name = author.last_name
   and document_cluster.fore_name = author.fore_name
-  and author.pmid = author_affiliation.pmid
-  and author.seqnum = author_affiliation.seqnum
 ;
+
+create index test1 on testing(pmid,seqnum);
