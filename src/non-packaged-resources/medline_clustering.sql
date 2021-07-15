@@ -38,7 +38,7 @@ select
 from medline.author_affiliation_split
 ;
 
-create view medline_clustering.author_affiliation as
+create materialized view medline_clustering.author_affiliation as
 select
 	pmid,
 	seqnum,
@@ -157,7 +157,9 @@ from medline_clustering.author_affiliation_staging,ror.organization
 where author_affiliation_staging.slot9=organization.name
 ;
 
-create materialized view testing as
+create index authaff on author_affiliation(pmid,seqnum);
+
+create view author_cluster_affiliation as
 select
 	document_cluster.last_name,
 	document_cluster.fore_name,
@@ -173,5 +175,3 @@ where document_cluster.cid = cluster_document.cid
   and document_cluster.last_name = author.last_name
   and document_cluster.fore_name = author.fore_name
 ;
-
-create index test1 on testing(pmid,seqnum);
