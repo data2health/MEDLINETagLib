@@ -175,3 +175,20 @@ where document_cluster.cid = cluster_document.cid
   and document_cluster.last_name = author.last_name
   and document_cluster.fore_name = author.fore_name
 ;
+
+create view author_cluster_grant as
+select
+	document_cluster.last_name,
+	document_cluster.fore_name,
+	document_cluster.cid,
+	grant_info.grant_id,
+	count(*)
+from
+	medline_clustering.document_cluster,
+	medline_clustering.cluster_document,
+	medline.grant_info
+where document_cluster.cid = cluster_document.cid
+  and cluster_document.pmid = grant_info.pmid
+group by 1,2,3,4
+order by 1,2,3,4
+;

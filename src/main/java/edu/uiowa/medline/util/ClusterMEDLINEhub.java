@@ -18,7 +18,8 @@ public class ClusterMEDLINEhub {
 	protected static final Log logger = LogFactory.getLog(ClusterMEDLINEhub.class);
 	static Connection theConnection = null;
 	static TupleSpace ts = null;
-
+	static LocalProperties prop_file = null;
+	
 	/**
 	 * @param args
 	 * @throws ClassNotFoundException 
@@ -26,26 +27,26 @@ public class ClusterMEDLINEhub {
 	 */
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		PropertyConfigurator.configure(args[0]);
+		prop_file = PropertyLoader.loadProperties("medline_clustering");
 
         Class.forName("org.postgresql.Driver");
 		Properties props = new Properties();
-		LocalProperties prop_file = PropertyLoader.loadProperties("medline");
 		props.setProperty("user", prop_file.getProperty("jdbc.user"));
 		props.setProperty("password", prop_file.getProperty("jdbc.password"));
 //		props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
 //		props.setProperty("ssl", "true");
-		theConnection = DriverManager.getConnection("jdbc:postgresql://localhost/loki", props);
+		theConnection = DriverManager.getConnection(prop_file.getProperty("jdbc.url"), props);
 
         try {
-            ts = new TupleSpace("MEDLINE", "localhost");
+            ts = new TupleSpace(prop_file.getProperty("tspace.space"), prop_file.getProperty("tspace.server"));
         } catch (TupleSpaceException tse) {
             logger.error("TSpace error: " + tse);
         }
 
 		Statement stmt = theConnection.createStatement();
-//		ResultSet rs = ClusterMEDLINE.useFirstInitial ? stmt.executeQuery("select last_name,initial from medline_clustering.author_prefix where not completed order by 1,2")
-//													  : stmt.executeQuery("select last_name,fore_name from medline_clustering.author_count where not completed order by 1,2 limit 2000000");
-		ResultSet rs = stmt.executeQuery("select last_name,fore_name,count(*) from medline_clustering.document_cluster_prefix_2 group by 1,2 having count(*) > 1 order by 1,2");
+		ResultSet rs = ClusterMEDLINE.useFirstInitial ? stmt.executeQuery("select last_name,initial from medline_clustering.author_prefix where not completed order by 1,2")
+													  : stmt.executeQuery("select last_name,fore_name from medline_clustering.author_count where last_name='Payne' and not completed order by 1,2");
+//		ResultSet rs = stmt.executeQuery("select last_name,fore_name,count(*) from medline_clustering.document_cluster_prefix_2 group by 1,2 having count(*) > 1 order by 1,2");
 
 		while (rs.next()) {
 			String lastName = rs.getString(1);

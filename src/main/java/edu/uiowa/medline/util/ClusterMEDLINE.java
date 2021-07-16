@@ -20,37 +20,46 @@ import com.ibm.tspaces.TupleSpaceException;
 
 import edu.uiowa.loki.clustering.Author;
 import edu.uiowa.loki.clustering.Cluster;
+import edu.uiowa.loki.clustering.Clusterer;
 import edu.uiowa.loki.clustering.ExternalSource;
 import edu.uiowa.loki.clustering.Instance;
 
-public class ClusterMEDLINE {
-	final static boolean useFirstInitial = true;
+public class ClusterMEDLINE extends Clusterer {
+	public ClusterMEDLINE() throws Exception {
+		super(0);
+	}
+	public ClusterMEDLINE(int uid) throws Exception {
+		super(uid);
+		// TODO Auto-generated constructor stub
+	}
+
+	final static boolean useFirstInitial = false;
 	
 	protected static final Log logger = LogFactory.getLog(ExternalSource.class);
 	static Connection theConnection = null;
+	static LocalProperties prop_file = null;
 	ExternalSource source = new ClusteringSource();
 
 	/**
 	 * @param args
-	 * @throws ClassNotFoundException 
-	 * @throws SQLException 
-	 * @throws TupleSpaceException 
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) throws ClassNotFoundException, SQLException, TupleSpaceException {
+	public static void main(String[] args) throws Exception {
 		PropertyConfigurator.configure(args[0]);
+		prop_file = PropertyLoader.loadProperties("medline_clustering");
 
         Class.forName("org.postgresql.Driver");
 		Properties props = new Properties();
-		LocalProperties prop_file = PropertyLoader.loadProperties("medline");
 		props.setProperty("user", prop_file.getProperty("jdbc.user"));
 		props.setProperty("password", prop_file.getProperty("jdbc.password"));
 //		props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
 //		props.setProperty("ssl", "true");
-		theConnection = DriverManager.getConnection("jdbc:postgresql://localhost/loki", props);
+		theConnection = DriverManager.getConnection(prop_file.getProperty("jdbc.url"), props);
 		theConnection.setAutoCommit(false);
-
-		ClusterMEDLINE theClusterer = new ClusterMEDLINE();
+		conn = theConnection;
 		
+		ClusterMEDLINE theClusterer = new ClusterMEDLINE();
+		theClusterer.source.setParentCluster(theClusterer);
 //		theClusterer.solo();
 		if (args.length > 1 && args[1].equals("null"))
 				theClusterer.tspace_null();
@@ -117,7 +126,7 @@ public class ClusterMEDLINE {
 		TupleSpace ts = null;
 		logger.debug("initializing tspace...");
 		try {
-			ts = new TupleSpace("MEDLINE", "localhost");
+			ts = new TupleSpace(prop_file.getProperty("tspace.space"), prop_file.getProperty("tspace.server"));
 		} catch (TupleSpaceException tse) {
 			logger.error("TSpace error: " + tse);
 		}
