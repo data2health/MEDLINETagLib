@@ -55,7 +55,7 @@
   <dependency>
   	<groupId>edu.uiowa.icts.taglib</groupId>
   	<artifactId>LokiTagLib</artifactId>
-  	<version>0.0.1a-SNAPSHOT</version>
+  	<version>0.0.36-SNAPSHOT</version>
   	<scope>compile</scope>
   </dependency>
   <dependency>
