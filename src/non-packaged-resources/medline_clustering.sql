@@ -219,3 +219,24 @@ where document_cluster.cid = cluster_document.cid
 group by 1,2,3,4
 order by 1,2,3,4
 ;
+
+create view author_cluster_orcid as
+select
+	document_cluster.last_name,
+	document_cluster.fore_name,
+	document_cluster.cid,
+	regexp_replace(author_identifier.identifier,'.*([0-9]{4})[ -/]?([0-9]{4})[ -/]?([0-9]{4})[ -/]?([0-9xX]{4})','\1-\2-\3-\4') as orcid,
+	count(*)
+from
+	medline_clustering.document_cluster,
+	medline_clustering.cluster_document,
+	medline.author_identifier,
+	medline.author
+where document_cluster.cid = cluster_document.cid
+  and cluster_document.pmid = author_identifier.pmid
+  and document_cluster.last_name = author.last_name
+  and document_cluster.fore_name = author.fore_name
+  and author.pmid = author_identifier.pmid
+  and author.seqnum = author_identifier.seqnum
+group by 1,2,3,4
+;
