@@ -240,3 +240,33 @@ where document_cluster.cid = cluster_document.cid
   and author.seqnum = author_identifier.seqnum
 group by 1,2,3,4
 ;
+
+------------------------------
+
+create materialized view medline.mesh_idf as
+SELECT
+	mesh_heading.descriptor_name,
+    log(( SELECT count(*) AS count FROM article) / count(*) * 1.0) AS idf
+FROM mesh_heading
+GROUP BY mesh_heading.descriptor_name;
+
+create view medline_clustering.mesh_tf as
+select
+	foo.cid,
+	descriptor_name,
+	foo.count / (bar.count * 1.0) as tf
+from
+(select cid,descriptor_name,count(*) from medline.mesh_heading natural join medline_clustering.cluster_document
+group by 1,2) as foo,
+(select cid,count(*) from medline.mesh_heading natural join medline_clustering.cluster_document
+group by 1) as bar
+where foo.cid = bar.cid
+;
+
+create view medline_clustering.mesh_tfidf as
+select
+	cid,
+	descriptor_name,
+	tf*idf as tfidf
+from medline_clustering.mesh_tf natural join medline.mesh_idf
+;	
