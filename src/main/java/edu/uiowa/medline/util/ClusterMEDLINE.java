@@ -346,6 +346,7 @@ public class ClusterMEDLINE extends Clusterer {
             String foreName = (String) theTuple.getField(2).getValue();
             logger.info("consuming " + lastName + ", " + foreName);
 
+            sourceIDHash.clear();
             cluster(new Author(lastName, foreName));
 
 			PreparedStatement compStmt = useFirstInitial ? theConnection.prepareStatement("update medline_clustering.author_prefix set completed = true where last_name = ? and initial = ?")

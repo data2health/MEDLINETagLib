@@ -45,7 +45,10 @@ public class ClusterMEDLINEhub {
 
 		Statement stmt = theConnection.createStatement();
 		ResultSet rs = ClusterMEDLINE.useFirstInitial ? stmt.executeQuery("select last_name,initial from medline_clustering.author_prefix where not completed order by 1,2")
-													  : stmt.executeQuery("select last_name,fore_name from medline_clustering.author_count where last_name='Liu' and not completed order by 1,2");
+													  : stmt.executeQuery("select distinct author_count.last_name,author_count.fore_name "
+													  						+ "from medline_clustering.author_count,neuromancer_n3c_admin.registration "
+													  						+ "where not completed and author_count.last_name=registration.last_name "
+													  						+ "and author_count.fore_name ~ ('^'||substring(first_name from 1 for 1))::text order by 1,2");
 //		ResultSet rs = stmt.executeQuery("select last_name,fore_name,count(*) from medline_clustering.document_cluster_prefix_2 group by 1,2 having count(*) > 1 order by 1,2");
 
 		while (rs.next()) {
