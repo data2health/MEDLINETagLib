@@ -355,13 +355,19 @@ src/main/java/edu/uiowa/medline/supplementalMesh/SupplementalMeshType.java svneo
 src/main/java/edu/uiowa/medline/util/Address.java -text
 src/main/java/edu/uiowa/medline/util/AddressComponent.java -text
 src/main/java/edu/uiowa/medline/util/AddressTokenizer.java -text
+src/main/java/edu/uiowa/medline/util/Affiliation.java -text
+src/main/java/edu/uiowa/medline/util/Cluster.java -text
 src/main/java/edu/uiowa/medline/util/ClusterByGrant.java -text
 src/main/java/edu/uiowa/medline/util/ClusterMEDLINE.java -text
 src/main/java/edu/uiowa/medline/util/ClusterMEDLINEhub.java -text
 src/main/java/edu/uiowa/medline/util/ClusteringSource.java -text
+src/main/java/edu/uiowa/medline/util/Grant.java -text
 src/main/java/edu/uiowa/medline/util/LocalProperties.java -text
 src/main/java/edu/uiowa/medline/util/LuceneIndex.java -text
+src/main/java/edu/uiowa/medline/util/MeshSimilarity.java -text
+src/main/java/edu/uiowa/medline/util/ORCiD.java -text
 src/main/java/edu/uiowa/medline/util/PropertyLoader.java -text
+src/main/java/edu/uiowa/medline/util/Term.java -text
 src/main/resources/META-INF/taglib.tld -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.clay -text svneol=unset#text/xml
 src/non-packaged-resources/MEDLINETagLib.sql svneol=native#text/plain

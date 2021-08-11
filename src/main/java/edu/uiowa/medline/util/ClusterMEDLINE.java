@@ -63,9 +63,215 @@ public class ClusterMEDLINE extends Clusterer {
 //		theClusterer.solo();
 		if (args.length > 1 && args[1].equals("null"))
 				theClusterer.tspace_null();
+		else if (args.length > 1 && args[1].equals("aggregate"))
+			theClusterer.aggregate();
 		else
 			theClusterer.tspace();
 //		theClusterer.unicodeInitial();
+	}
+	
+	void aggregate() throws SQLException {
+		PreparedStatement stmt = theConnection.prepareStatement("select distinct last_name, substring(first_name from 1 for 1) from n3c_admin.registration order by 1,2");
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			aggregate(rs.getString(1), rs.getString(2));
+		}
+		stmt.close();
+	}
+	
+	void aggregate(String lastName, String initial) throws SQLException {
+		Vector<edu.uiowa.medline.util.Cluster> clusters = new Vector<edu.uiowa.medline.util.Cluster>();
+		
+		PreparedStatement stmt = theConnection.prepareStatement("select last_name, fore_name, cid from medline_clustering.document_cluster where last_name = ? and fore_name ~ ?");
+		stmt.setString(1, lastName);
+		stmt.setString(2, "^"+initial);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			String last_name = rs.getString(1);
+			String fore_name = rs.getString(2);
+			int cid = rs.getInt(3);
+			clusters.add(new edu.uiowa.medline.util.Cluster(last_name, fore_name, cid, theConnection));
+		}
+		stmt.close();
+		
+		logger.info("Aggregating " + clusters.size() + " clusters...");
+		boolean merged = false;
+		do {
+			merged = false;
+			for (int fenceID = 0; fenceID < clusters.size() - 1; fenceID++) {
+				edu.uiowa.medline.util.Cluster fence = clusters.elementAt(fenceID);
+				for (int i = fenceID + 1; i < clusters.size(); i++) {
+					int grantMatchCount = fence.grantMatchCount(clusters.elementAt(i));
+					int orcidMatchCount = fence.orcidMatchCount(clusters.elementAt(i));
+					int affiliationMatchCount = fence.affiliationMatchCount(clusters.elementAt(i));
+
+					if (grantMatchCount > 0 || orcidMatchCount > 0 || affiliationMatchCount > 0) {
+						logger.info("matches: " + fence.ID + " <-> " + clusters.elementAt(i).ID + " : " + grantMatchCount
+								+ "," + orcidMatchCount + "," + affiliationMatchCount);
+						fence.addSubcluster(clusters.elementAt(i));
+						clusters.remove(i);
+						i--;
+						merged = true;
+					}
+				}
+			} 
+		} while (merged);
+		
+		simpleStmt("truncate medline_clustering.supercluster");
+		for (edu.uiowa.medline.util.Cluster cluster : clusters) {
+			for (edu.uiowa.medline.util.Cluster subcluster : cluster.subclusters) {
+				PreparedStatement insStmt = theConnection.prepareStatement("insert into medline_clustering.supercluster values(?,?)");
+				insStmt.setInt(1, cluster.ID);
+				insStmt.setInt(2, subcluster.ID);
+				insStmt.execute();
+				insStmt.close();
+			}
+		}
+		
+		logger.info("Aggregated clusters:");
+		dumpSuperClusters(clusters);
+		
+		similarityMerge(clusters);
+		
+		simpleStmt("truncate medline_clustering.supercluster_similarity");
+		for (edu.uiowa.medline.util.Cluster cluster : clusters) {
+			for (edu.uiowa.medline.util.Cluster subcluster : cluster.subclusters) {
+				PreparedStatement insStmt = theConnection.prepareStatement("insert into medline_clustering.supercluster_similarity values(?,?)");
+				insStmt.setInt(1, cluster.ID);
+				insStmt.setInt(2, subcluster.ID);
+				insStmt.execute();
+				insStmt.close();
+			}
+		}
+		
+		theConnection.commit();
+
+		logger.info("Similarity Aggregated clusters:");
+		dumpSuperClusters(clusters);
+	}
+	
+	void dumpSuperClusters(Vector<edu.uiowa.medline.util.Cluster> clusters) throws SQLException {
+		for (edu.uiowa.medline.util.Cluster cluster : clusters) {
+			logger.info("primary: " + cluster);
+			
+			PreparedStatement stmt = theConnection.prepareStatement("select article_title from medline.article_title natural join medline_clustering.cluster_document where cid = ?");
+			stmt.setInt(1, cluster.ID);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				logger.info("\t" + rs.getString(1));
+			}
+			stmt.close();
+			logger.debug("");
+			
+			for (edu.uiowa.medline.util.Cluster subcluster : cluster.subclusters) {
+				logger.info("\tsecondary: " + subcluster);
+				
+				stmt = theConnection.prepareStatement("select article_title from medline.article_title natural join medline_clustering.cluster_document where cid = ?");
+				stmt.setInt(1, subcluster.ID);
+				rs = stmt.executeQuery();
+				while (rs.next()) {
+					logger.info("\t\t" + rs.getString(1));
+				}
+				stmt.close();
+			}
+			
+		}
+	}
+	
+	MeshSimilarity comparator = new MeshSimilarity();
+	double similarityThreshold = 0.10;
+
+	void similarityMerge(Vector<edu.uiowa.medline.util.Cluster> clusters) {
+		logger.info("merging by similarity:");
+		for (int fenceID = 1; fenceID < clusters.size(); fenceID++) {
+			MatchMetadata match = new MatchMetadata();
+			similarityMerge(clusters, fenceID, match);
+			logger.info(clusters.elementAt(fenceID) + " best match: " + match.bestSuperCluster + " : " + match.bestCluster + " : " + match.bestMatch);
+			
+			if (match.bestMatch > similarityThreshold) {
+				match.bestSuperCluster.subclusters.add(clusters.elementAt(fenceID));
+				for (edu.uiowa.medline.util.Cluster cluster : clusters.elementAt(fenceID).subclusters) {
+					match.bestSuperCluster.subclusters.add(cluster);
+				}
+				clusters.elementAt(fenceID).subclusters.clear();
+				clusters.remove(fenceID);
+				fenceID--;
+			}
+		}
+	}
+	
+	void similarityMerge(Vector<edu.uiowa.medline.util.Cluster> clusters, int fenceID, MatchMetadata match) {
+		// do the supercluster
+		similarityMerge(clusters, fenceID, clusters.elementAt(fenceID), match);
+		
+		// now do the supercluster's subclusters
+		for (edu.uiowa.medline.util.Cluster current : clusters.elementAt(fenceID).subclusters) {
+			similarityMerge(clusters, fenceID, current, match);
+		}
+	}
+	
+	void similarityMerge(Vector<edu.uiowa.medline.util.Cluster> clusters, int fenceID, edu.uiowa.medline.util.Cluster current, MatchMetadata match) {
+		for (int i = 0; i < fenceID; i++) {
+			double similarity = comparator.similarity(clusters.elementAt(i).terms, current.terms);
+			logger.debug("\tsimilarity " + current.ID + ", " + clusters.elementAt(i).ID + " : " + similarity);
+			if (similarity > match.bestMatch && nameMatch(current, clusters.elementAt(i))) {
+				logger.info("\tcurrent: " + current.fore_name + "\tsuper: " + clusters.elementAt(i).fore_name);
+				match.bestSuperCluster = clusters.elementAt(i);
+				match.bestCluster = clusters.elementAt(i);
+				match.bestMatch = similarity;
+			}
+			
+			for (edu.uiowa.medline.util.Cluster cluster : clusters.elementAt(i).subclusters) {
+				double sim = comparator.similarity(cluster.terms, current.terms);
+				logger.debug("\t\tsimilarity " + current.ID + ", " + cluster.ID + " : " + similarity);
+				if (sim > match.bestMatch && nameMatch(current, clusters.elementAt(i))) {
+					logger.info("\tcurrent: " + current.fore_name + "\tsub: " + clusters.elementAt(i).fore_name);
+					match.bestSuperCluster = clusters.elementAt(i);
+					match.bestCluster = cluster;
+					match.bestMatch = sim;
+				}
+			}
+		}		
+	}
+	
+	boolean nameMatch(edu.uiowa.medline.util.Cluster current, edu.uiowa.medline.util.Cluster candidate) {
+		if (current.fore_name.equals(candidate.fore_name))
+			return true;
+		
+		String[] currentElements = current.fore_name.split(" ");
+		String[] candidateElements = candidate.fore_name.split(" ");
+		
+		if (currentElements.length == candidateElements.length) {
+			if (currentElements[0].equals(candidateElements[0])) {
+				if (currentElements.length > 1 && !currentElements[1].equals(candidateElements[1]))
+					return false;
+				if (currentElements.length > 2 && !currentElements[2].equals(candidateElements[2]))
+					return false;
+				return true;
+			}
+			if (currentElements[0].length() > 0 && candidateElements[0].length() == 1 && currentElements[0].charAt(0) == candidateElements[0].charAt(0)) {
+				if (currentElements.length > 1 && !currentElements[1].equals(candidateElements[1]))
+					return false;
+				if (currentElements.length > 2 && !currentElements[2].equals(candidateElements[2]))
+					return false;
+				return true;
+			}
+			if (currentElements[0].length() == 1 && candidateElements[0].length() > 0 && currentElements[0].charAt(0) == candidateElements[0].charAt(0)) {
+				if (currentElements.length > 1 && !currentElements[1].equals(candidateElements[1]))
+					return false;
+				if (currentElements.length > 2 && !currentElements[2].equals(candidateElements[2]))
+					return false;
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	class MatchMetadata {
+		edu.uiowa.medline.util.Cluster bestSuperCluster = null;
+		edu.uiowa.medline.util.Cluster bestCluster = null;
+		double bestMatch = 0.0;
 	}
 	
 	void unicodeInitial() throws SQLException {
@@ -257,4 +463,17 @@ public class ClusterMEDLINE extends Clusterer {
             }
         }
 	}
+
+    void simpleStmt(String queryString) {
+	try {
+	    logger.debug("executing " + queryString + "...");
+	    PreparedStatement beginStmt = theConnection.prepareStatement(queryString);
+	    beginStmt.executeUpdate();
+	    beginStmt.close();
+	} catch (Exception e) {
+	    logger.error("Error in database initialization: " + e);
+	    e.printStackTrace();
+	}
+    }
+
 }
