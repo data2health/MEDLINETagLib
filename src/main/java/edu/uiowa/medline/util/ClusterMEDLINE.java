@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Vector;
@@ -71,9 +72,16 @@ public class ClusterMEDLINE extends Clusterer {
 	}
 	
 	void aggregate() throws SQLException {
-		PreparedStatement stmt = theConnection.prepareStatement("select distinct last_name, substring(first_name from 1 for 1) from n3c_admin.registration order by 1,2");
+		PreparedStatement stmt = theConnection.prepareStatement("select distinct last_name,substring(fore_name from 1 for 1) "
+																+ "from medline_clustering.document_cluster "
+																+ "where (last_name,substring(fore_name from 1 for 1)) not in (select distinct last_name,substring(fore_name from 1 for 1) "
+																															+ "from medline_clustering.document_cluster "
+																															+ "where cid in (select super from medline_clustering.supercluster) "
+																															+ "   or cid in (select sub from medline_clustering.supercluster)) "
+																+ "order by 1,2");
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
+			logger.info(rs.getString(1) + "\t" + rs.getString(2));
 			aggregate(rs.getString(1), rs.getString(2));
 		}
 		stmt.close();
@@ -117,8 +125,15 @@ public class ClusterMEDLINE extends Clusterer {
 			} 
 		} while (merged);
 		
-		simpleStmt("truncate medline_clustering.supercluster");
+//		simpleStmt("truncate medline_clustering.supercluster");
 		for (edu.uiowa.medline.util.Cluster cluster : clusters) {
+			if (cluster.subclusters.size() == 0) {
+				PreparedStatement insStmt = theConnection.prepareStatement("insert into medline_clustering.supercluster values(?,?)");
+				insStmt.setInt(1, cluster.ID);
+				insStmt.setNull(2, Types.INTEGER);
+				insStmt.execute();
+				insStmt.close();			
+			}
 			for (edu.uiowa.medline.util.Cluster subcluster : cluster.subclusters) {
 				PreparedStatement insStmt = theConnection.prepareStatement("insert into medline_clustering.supercluster values(?,?)");
 				insStmt.setInt(1, cluster.ID);
@@ -133,7 +148,7 @@ public class ClusterMEDLINE extends Clusterer {
 		
 		similarityMerge(clusters);
 		
-		simpleStmt("truncate medline_clustering.supercluster_similarity");
+//		simpleStmt("truncate medline_clustering.supercluster_similarity");
 		for (edu.uiowa.medline.util.Cluster cluster : clusters) {
 			for (edu.uiowa.medline.util.Cluster subcluster : cluster.subclusters) {
 				PreparedStatement insStmt = theConnection.prepareStatement("insert into medline_clustering.supercluster_similarity values(?,?)");
