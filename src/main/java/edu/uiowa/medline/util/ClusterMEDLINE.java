@@ -354,7 +354,7 @@ public class ClusterMEDLINE extends Clusterer {
 		
         Tuple theTuple = null;
 
-        theTuple = ts.waitToTake("cluster_request", new Field(String.class), new Field(String.class));
+        theTuple = ts.take("cluster_request", new Field(String.class), new Field(String.class));
 
         while (theTuple != null) {
             String lastName = (String) theTuple.getField(1).getValue();
@@ -372,7 +372,7 @@ public class ClusterMEDLINE extends Clusterer {
 			compStmt.close();
 			theConnection.commit();
 
-			theTuple = ts.waitToTake("cluster_request", new Field(String.class), new Field(String.class));
+			theTuple = ts.take("cluster_request", new Field(String.class), new Field(String.class));
         }
 	}
 
