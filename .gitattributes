@@ -359,6 +359,7 @@ src/main/java/edu/uiowa/medline/util/Affiliation.java -text
 src/main/java/edu/uiowa/medline/util/Cluster.java -text
 src/main/java/edu/uiowa/medline/util/ClusterByGrant.java -text
 src/main/java/edu/uiowa/medline/util/ClusterMEDLINE.java -text
+src/main/java/edu/uiowa/medline/util/ClusterMEDLINEAggregatorhub.java -text
 src/main/java/edu/uiowa/medline/util/ClusterMEDLINEhub.java -text
 src/main/java/edu/uiowa/medline/util/ClusteringSource.java -text
 src/main/java/edu/uiowa/medline/util/Grant.java -text

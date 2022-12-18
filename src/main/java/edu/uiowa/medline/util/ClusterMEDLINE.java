@@ -71,20 +71,28 @@ public class ClusterMEDLINE extends Clusterer {
 //		theClusterer.unicodeInitial();
 	}
 	
-	void aggregate() throws SQLException {
-		PreparedStatement stmt = theConnection.prepareStatement("select distinct last_name,substring(fore_name from 1 for 1) "
-																+ "from medline_clustering.document_cluster "
-																+ "where (last_name,substring(fore_name from 1 for 1)) not in (select distinct last_name,substring(fore_name from 1 for 1) "
-																															+ "from medline_clustering.document_cluster "
-																															+ "where cid in (select super from medline_clustering.supercluster) "
-																															+ "   or cid in (select sub from medline_clustering.supercluster)) "
-																+ "order by 1,2");
-		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
-			logger.info(rs.getString(1) + "\t" + rs.getString(2));
-			aggregate(rs.getString(1), rs.getString(2));
+	void aggregate() throws SQLException, TupleSpaceException {
+		TupleSpace ts = null;
+		logger.debug("initializing tspace...");
+		try {
+			ts = new TupleSpace(prop_file.getProperty("tspace.space"), prop_file.getProperty("tspace.server"));
+		} catch (TupleSpaceException tse) {
+			logger.error("TSpace error: " + tse);
 		}
-		stmt.close();
+		
+        Tuple theTuple = null;
+
+        theTuple = ts.take("aggregate_request", new Field(String.class), new Field(String.class));
+
+        while (theTuple != null) {
+            String lastName = (String) theTuple.getField(1).getValue();
+            String initial = (String) theTuple.getField(2).getValue();
+            logger.info("consuming " + lastName + ", " + initial);
+            
+            aggregate(lastName,initial);
+
+			theTuple = ts.take("aggregate_request", new Field(String.class), new Field(String.class));
+        }
 	}
 	
 	void aggregate(String lastName, String initial) throws SQLException {
