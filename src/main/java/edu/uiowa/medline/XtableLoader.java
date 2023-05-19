@@ -54,15 +54,15 @@ public class XtableLoader {
 
 	if (args[1].equals("-full")) {
 	    XtableLoader theLoader = new XtableLoader();
-	    for (int i = 1; i <= 1114; i++) {
-		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE22/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed22n" + formatter.format(i) + ".xml.gz";
+	    for (int i = 1046; i <= 1166; i++) {
+		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE23/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed23n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		theLoader.processDocument(theLoader.parseDocument(fileName));
 	    }
 	    logger.info("parsing completed.");
 	} else if (args[1].equals("-threaded xxx")) { // there are differences in the '21 XML data as text when loaded serially vs. in parallel that need exploring
 	    for (int i = 1; i <= 1114; i++) {
-		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE22/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed22n" + formatter.format(i) + ".xml.gz";
+		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE23/ftp.ncbi.nlm.nih.gov/pubmed/baseline/pubmed23n" + formatter.format(i) + ".xml.gz";
 		logger.info("file: " + fileName);
 		documentQueue.queue(fileName, null);
 	    }
@@ -85,8 +85,8 @@ public class XtableLoader {
 	} else if (args[1].equals("-update")) {
 	    XtableLoader theLoader = new XtableLoader();
 	    updateMode = true;
-	    for (int i = 1016; i <= 1159; i++) {
-		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE21/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/pubmed22n" + formatter.format(i) + ".xml.gz";
+	    for (int i = 1167; i <= 1237; i++) {
+		String fileName = "/Volumes/Pegasus0/Corpora/MEDLINE23/ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/pubmed23n" + formatter.format(i) + ".xml.gz";
 		logger.trace("file: " + fileName);
 		theLoader.processDocument(theLoader.parseDocument(fileName));
 	    }
@@ -180,13 +180,13 @@ public class XtableLoader {
 	while (pmids.hasNext()) {
 	    int pmid = Integer.parseInt(pmids.next().getText().trim());
 	    logger.debug("\t" + pmid);
-	    PreparedStatement delStmt = conn.prepareStatement("delete from medline22_staging.xml where pmid = ?");
+	    PreparedStatement delStmt = conn.prepareStatement("delete from medline23_staging.xml where pmid = ?");
 	    delStmt.setInt(1, pmid);
 	    delStmt.execute();
 	    delStmt.close();
 
 	    boolean pmidInQueue = false;
-	    PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline22_staging.queue where pmid = ?");
+	    PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline23_staging.queue where pmid = ?");
 	    checkStmt.setInt(1, pmid);
 	    ResultSet rs = checkStmt.executeQuery();
 	    while (rs.next()) {
@@ -195,7 +195,7 @@ public class XtableLoader {
 	    checkStmt.close();
 
 	    if (!pmidInQueue) {
-		PreparedStatement insStmt = conn.prepareStatement("insert into medline22_staging.queue values(?)");
+		PreparedStatement insStmt = conn.prepareStatement("insert into medline23_staging.queue values(?)");
 		insStmt.setInt(1, pmid);
 		insStmt.execute();
 		insStmt.close();
@@ -212,7 +212,7 @@ public class XtableLoader {
 	logger.debug("\tcitation pmid: " + pmid);
 
 	boolean pmidInXML = false;
-	PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline22_staging.xml_staging where pmid = ?");
+	PreparedStatement checkStmt = conn.prepareStatement("select pmid from medline23_staging.xml_staging where pmid = ?");
 	checkStmt.setInt(1, pmid);
 	ResultSet rs = checkStmt.executeQuery();
 	while (rs.next()) {
@@ -221,7 +221,7 @@ public class XtableLoader {
 	checkStmt.close();
 
 	if (pmidInXML) {
-	    PreparedStatement delStmt = conn.prepareStatement("delete from medline22_staging.xml_staging where pmid = ?");
+	    PreparedStatement delStmt = conn.prepareStatement("delete from medline23_staging.xml_staging where pmid = ?");
 	    delStmt.setInt(1, pmid);
 	    delStmt.execute();
 	    delStmt.close();
@@ -230,14 +230,14 @@ public class XtableLoader {
 	    recordsAdded++;
 	}
 
-	PreparedStatement insStmt = conn.prepareStatement("insert into medline22_staging.xml_staging values(?,?::xml)");
+	PreparedStatement insStmt = conn.prepareStatement("insert into medline23_staging.xml_staging values(?,?::xml)");
 	insStmt.setInt(1, pmid);
 	insStmt.setString(2, citationElement.asXML());
 	insStmt.execute();
 	insStmt.close();
 	
 	boolean pmidInQueue = false;
-	checkStmt = conn.prepareStatement("select pmid from medline22_staging.queue where pmid = ?");
+	checkStmt = conn.prepareStatement("select pmid from medline23_staging.queue where pmid = ?");
 	checkStmt.setInt(1, pmid);
 	rs = checkStmt.executeQuery();
 	while (rs.next()) {
@@ -246,7 +246,7 @@ public class XtableLoader {
 	checkStmt.close();
 
 	if (!pmidInQueue) {
-	    insStmt = conn.prepareStatement("insert into medline22_staging.queue values(?)");
+	    insStmt = conn.prepareStatement("insert into medline23_staging.queue values(?)");
 	    insStmt.setInt(1, pmid);
 	    insStmt.execute();
 	    insStmt.close();
@@ -285,7 +285,7 @@ public class XtableLoader {
 
     void materialize(String table, String attributes) throws SQLException {
 	logger.info("materializing: " + table + ": " + attributes);
-	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes	+ " from medline22_staging." + table);
+	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes	+ " from medline23_staging." + table);
 	int count = stmt.executeUpdate();
 	stmt.close();
 	logger.info("\tcount: " + count);
@@ -330,7 +330,7 @@ public class XtableLoader {
     }
 
     void materializeByGroup(String table, String attributes) throws SQLException {
-	PreparedStatement checkStmt = conn.prepareStatement("select min(pmid), max(pmid) from medline22_staging.xml_staging");
+	PreparedStatement checkStmt = conn.prepareStatement("select min(pmid), max(pmid) from medline23_staging.xml_staging");
 	ResultSet rs = checkStmt.executeQuery();
 	while (rs.next()) {
 	    int min = rs.getInt(1);
@@ -339,7 +339,7 @@ public class XtableLoader {
 	    for (int fence = min / increment; fence <= max / increment; fence++) {
 		logger.info("\tfence: " + fence * increment + " : " + (fence + 1) * increment);
 		PreparedStatement stmt = conn.prepareStatement(
-			"insert into medline." + table + " select " + attributes + " from medline22_staging." + table + " where pmid >= ? and pmid < ?");
+			"insert into medline." + table + " select " + attributes + " from medline23_staging." + table + " where pmid >= ? and pmid < ?");
 		stmt.setInt(1, fence * increment);
 		stmt.setInt(2, (fence + 1) * increment);
 		int count = stmt.executeUpdate();
@@ -353,7 +353,7 @@ public class XtableLoader {
     void rematerialize() throws Exception {
 	MaterializationQueue theQueue = new MaterializationQueue();
 	logger.info("scanning for existing records...");
-	PreparedStatement stmt = conn.prepareStatement("delete from medline.article where pmid in (select pmid from medline22_staging.queue)");
+	PreparedStatement stmt = conn.prepareStatement("delete from medline.article where pmid in (select pmid from medline23_staging.queue)");
 	int count = stmt.executeUpdate();
 	stmt.close();
 	logger.info("\tdeleted " + count + " existing records");
@@ -375,11 +375,11 @@ public class XtableLoader {
 	}
 
 	logger.info("loading indexing queue...");
-	stmt = conn.prepareStatement("insert into medline22_staging.queue_indexing select * from medline22_staging.queue");
+	stmt = conn.prepareStatement("insert into medline23_staging.queue_indexing select * from medline23_staging.queue");
 	count = stmt.executeUpdate();
 	stmt.close();
 	logger.info("truncating queue...");
-	stmt = conn.prepareStatement("truncate medline22_staging.queue");
+	stmt = conn.prepareStatement("truncate medline23_staging.queue");
 	count = stmt.executeUpdate();
 	stmt.close();
 	logger.info("rematerialization completed.");
@@ -387,7 +387,7 @@ public class XtableLoader {
 
     void rematerializeByGroup() throws SQLException {
 	logger.info("scanning for existing records...");
-	PreparedStatement stmt = conn.prepareStatement("delete from medline.article where pmid in (select pmid from medline22_staging.queue)");
+	PreparedStatement stmt = conn.prepareStatement("delete from medline.article where pmid in (select pmid from medline23_staging.queue)");
 	int count = stmt.executeUpdate();
 	stmt.close();
 	logger.info("\tdeleted " + count + " existing records");
@@ -430,14 +430,14 @@ public class XtableLoader {
 	rematerialize("reference_article_id", "*");
 
 	logger.info("truncating queue...");
-	stmt = conn.prepareStatement("truncate medline22_staging.queue");
+	stmt = conn.prepareStatement("truncate medline23_staging.queue");
 	count = stmt.executeUpdate();
 	stmt.close();
     }
 
     void rematerialize(String table, String attributes) throws SQLException {
 	logger.info("rematerializing " + table + "...");
-	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes + " from medline22_staging." + table + " where pmid in (select pmid from medline22_staging.queue)");
+	PreparedStatement stmt = conn.prepareStatement("insert into medline." + table + " select " + attributes + " from medline23_staging." + table + " where pmid in (select pmid from medline23_staging.queue)");
 	int count = stmt.executeUpdate();
 	stmt.close();
 	logger.info("\tcount: " + count);

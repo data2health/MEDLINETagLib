@@ -56,10 +56,10 @@ public class XtableThread implements Runnable {
 			PreparedStatement stmt = null;
 			if (mode == Mode.MATERIALIZE) {
 			    logger.info("[" + formatter.format(threadID) + "] materializing: " + theRequest.tableName + ": " + theRequest.attributeList);
-			    stmt = conn.prepareStatement("insert into medline." + theRequest.tableName + " select " + theRequest.attributeList + " from medline21_staging." + theRequest.tableName);
+			    stmt = conn.prepareStatement("insert into medline." + theRequest.tableName + " select " + theRequest.attributeList + " from medline23_staging." + theRequest.tableName);
 			} else {
 			    logger.info("[" + formatter.format(threadID) + "] rematerializing: " + theRequest.tableName + ": " + theRequest.attributeList);
-			    stmt = conn.prepareStatement("insert into medline." + theRequest.tableName + " select " + theRequest.attributeList + " from medline21_staging." + theRequest.tableName + " where pmid in (select pmid from medline21_staging.queue)");
+			    stmt = conn.prepareStatement("insert into medline." + theRequest.tableName + " select " + theRequest.attributeList + " from medline23_staging." + theRequest.tableName + " where pmid in (select pmid from medline23_staging.queue)");
 			}
 			int count = stmt.executeUpdate();
 			stmt.close();
