@@ -381,6 +381,7 @@ src/non-packaged-resources/medline_litcovid.sql -text
 src/non-packaged-resources/new_year_parse_configure.sql -text
 src/non-packaged-resources/populate.sql -text
 src/non-packaged-resources/refresh.sql -text
+src/non-packaged-resources/staging_schema.sql -text
 src/non-packaged-resources/tags.tld -text svneol=unset#text/xml
 src/non-packaged-resources/views.sql -text
 src/test/resources/README.txt svneol=native#text/plain
