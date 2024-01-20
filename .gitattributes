@@ -19,6 +19,7 @@ src/main/java/edu/uiowa/medline/MEDLINETagLibBodyTagSupport.java svneol=native#t
 src/main/java/edu/uiowa/medline/MEDLINETagLibTagSupport.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/MaterializationQueue.java -text
 src/main/java/edu/uiowa/medline/MaterializationRequest.java -text
+src/main/java/edu/uiowa/medline/MeshLoader.java -text
 src/main/java/edu/uiowa/medline/PropertyLoader.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/Publisher.java svneol=native#text/x-java-source
 src/main/java/edu/uiowa/medline/Sequence.java svneol=native#text/x-java-source
@@ -378,6 +379,7 @@ src/non-packaged-resources/create.sql -text
 src/non-packaged-resources/functions.tld -text svneol=unset#text/xml
 src/non-packaged-resources/medline_clustering.sql -text
 src/non-packaged-resources/medline_litcovid.sql -text
+src/non-packaged-resources/mesh_views.sql -text
 src/non-packaged-resources/new_year_parse_configure.sql -text
 src/non-packaged-resources/populate.sql -text
 src/non-packaged-resources/refresh.sql -text
